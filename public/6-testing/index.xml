@@ -2,13 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Kiểm tra Kết quả on Deploy ShareNote Application on Auto Scaling Group</title>
-    <link>/6-testing/</link>
+    <link>//localhost:60807/6-testing/</link>
     <description>Recent content in Kiểm tra Kết quả on Deploy ShareNote Application on Auto Scaling Group</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 01 Jan 1970 07:33:40 +0700</lastBuildDate>
-    
-	<atom:link href="/6-testing/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate></lastBuildDate>
+    <atom:link href="//localhost:60807/6-testing/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

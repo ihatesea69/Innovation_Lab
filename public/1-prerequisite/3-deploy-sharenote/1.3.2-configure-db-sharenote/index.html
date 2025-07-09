@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" class="js csstransforms3d">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=60807&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.69.0" />
+    <meta name="generator" content="Hugo 0.147.9">
     <meta name="description" content="">
 <meta name="author" content="journeyoftheaverageguy@gmail.com">
 
@@ -12,21 +12,21 @@
     <title>Thiết lập cấu hình Database cho ShareNote :: Deploy ShareNote Application on Auto Scaling Group</title>
 
     
-    <link href="/css/nucleus.css?1631812248" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1631812248" rel="stylesheet">
-    <link href="/css/hybrid.css?1631812248" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1631812248" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1631812248" rel="stylesheet">
-    <link href="/css/auto-complete.css?1631812248" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1631812248" rel="stylesheet">
-    <link href="/css/theme.css?1631812248" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1631812248" rel="stylesheet">
+    <link href="/css/nucleus.css?1751962352" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1751962352" rel="stylesheet">
+    <link href="/css/hybrid.css?1751962352" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1751962352" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1751962352" rel="stylesheet">
+    <link href="/css/auto-complete.css?1751962352" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1751962352" rel="stylesheet">
+    <link href="/css/theme.css?1751962352" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1751962352" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1631812248" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1751962352" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1631812248"></script>
+    <script src="/js/jquery-3.3.1.min.js?1751962352"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1631812248"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1631812248"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1751962352"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1751962352"></script>
 <script type="text/javascript">
     
-        var baseurl = "";
+        var baseurl = "\/\/localhost:60807\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1631812248"></script>
+<script type="text/javascript" src="/js/search.js?1751962352"></script>
 
     
   </div>
@@ -515,7 +515,7 @@
                   
                     
                     
-                      <option id="en" value="/1-prerequisite/3-deploy-sharenote/1.3.2-configure-db-sharenote/" selected>English</option>
+                      <option id="en" value="//localhost:60807/1-prerequisite/3-deploy-sharenote/1.3.2-configure-db-sharenote/" selected>English</option>
                     
                   
               
@@ -529,7 +529,7 @@
                   
                     
                     
-                      <option id="vi" value="/vi/1-prerequisite/3-deploy-sharenote/1.3.2-configure-db-sharenote/">Tiếng Việt</option>
+                      <option id="vi" value="//localhost:60807/vi/1-prerequisite/3-deploy-sharenote/1.3.2-configure-db-sharenote/">Tiếng Việt</option>
                     
                   
               
@@ -680,13 +680,13 @@
 <li>Kết nối đến Ubuntu instance đã được khởi tạo.</li>
 <li>Từ cửa sổ dòng lệnh, nhập lệnh sau để tạo tập tin chứa script bằng <strong>vi editor</strong>.</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo vi /etc/init.d/startup.sh
-</code></pre></div><p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo vi /etc/init.d/startup.sh
+</span></span></code></pre></div><p>
 <div class="notices info" ><p>Lưu ý thay thể RDS Endpoint và password chúng ta đã lưu lại ở bước 1.2 .</p>
 </div>
 
 3. Nhấn phím <strong>i</strong> rồi nhập nội dung script như sau:</p>
-<pre><code># Cập nhật Ubuntu Instane và cài đặt JRE
+<pre tabindex="0"><code># Cập nhật Ubuntu Instane và cài đặt JRE
 sudo apt update -y
 sudo apt install openjdk-8-jre-headless -y
 
@@ -697,7 +697,7 @@ export MYSQL_USER=admin
 export MYSQL_PASSWORD=&lt;Replace with your password&gt;
 
 # Tải xuống và khởi chạy ứng dụng ShareNote.
-wget &quot;https://example-corp-storage.s3.amazonaws.com/deploy-artifact/demo-0.0.1-SNAPSHOT.jar&quot; -O demo-0.0.1-SNAPSHOT.jar
+wget &#34;https://example-corp-storage.s3.amazonaws.com/deploy-artifact/demo-0.0.1-SNAPSHOT.jar&#34; -O demo-0.0.1-SNAPSHOT.jar
 java -jar demo-0.0.1-SNAPSHOT.jar &amp;
 </code></pre><p><img src="/images/asg/013.png?width=90pc" alt="ShareNote"></p>
 <p>Dựa vào đoạn mã trên, chúng ta thấy:</p>
@@ -715,12 +715,12 @@ java -jar demo-0.0.1-SNAPSHOT.jar &amp;
 <p>Thiết lập thuộc tính của script để bạn có kích hoạt được (<em>executable</em>) bằng lệnh:</p>
 </li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo chmod +x /etc/init.d/startup.sh
-</code></pre></div><ol start="6">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo chmod +x /etc/init.d/startup.sh
+</span></span></code></pre></div><ol start="6">
 <li>Bạn có thể kiểm tra script thiết lập của mình bằng cách khởi chạy thử nó với dòng lệnh dưới đây:</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">. /etc/init.d/startup.sh
-</code></pre></div><ol start="7">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>. /etc/init.d/startup.sh
+</span></span></code></pre></div><ol start="7">
 <li>ShareNote sẽ được khởi chạy và kết nối đến Database như hình sau.</li>
 </ol>
 <p><img src="/images/1/1.3_Success.png?width=90pc" alt="Success"></p>
@@ -1021,19 +1021,19 @@ java -jar demo-0.0.1-SNAPSHOT.jar &amp;
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1631812248"></script>
-    <script src="/js/perfect-scrollbar.min.js?1631812248"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1631812248"></script>
-    <script src="/js/jquery.sticky.js?1631812248"></script>
-    <script src="/js/featherlight.min.js?1631812248"></script>
-    <script src="/js/highlight.pack.js?1631812248"></script>
+    <script src="/js/clipboard.min.js?1751962352"></script>
+    <script src="/js/perfect-scrollbar.min.js?1751962352"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1751962352"></script>
+    <script src="/js/jquery.sticky.js?1751962352"></script>
+    <script src="/js/featherlight.min.js?1751962352"></script>
+    <script src="/js/highlight.pack.js?1751962352"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1631812248"></script>
-    <script src="/js/learn.js?1631812248"></script>
-    <script src="/js/hugo-learn.js?1631812248"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1751962352"></script>
+    <script src="/js/learn.js?1751962352"></script>
+    <script src="/js/hugo-learn.js?1751962352"></script>
 
-    <link href="/mermaid/mermaid.css?1631812248" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1631812248"></script>
+    <link href="/mermaid/mermaid.css?1751962352" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1751962352"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

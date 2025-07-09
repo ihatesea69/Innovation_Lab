@@ -1,13 +1,13 @@
 +++
-title = "Triển khai Ứng dụng ShareNote với Auto Scaling Group"
+title = "Innovation Lab"
 date = 2021
 weight = 1
 chapter = false
 +++
 
-# Triển khai Ứng dụng ShareNote với Auto Scaling Group
+# Xây dựng một không gian để thoải mái sáng tạo và học tập trên AWS
 
-#### Tổng quan
+#### 
 
 Ở bài thực hành này, chúng ta sẽ tiến hành việc triển khai ứng dụng với **Auto Scaling Group** nhằm đảm bảo khả năng co giãn của ứng dụng đó theo nhu cầu của người truy cập.
 Thêm vào đó, chúng ta cũng sẽ triển khai **Load Balancer** nhằm cân bằng tải và điều phối các yêu cầu truy cập từ phía người dùng đến Application Tier của chúng ta.

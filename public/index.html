@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" class="js csstransforms3d">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.69.0" />
+    <meta name="generator" content="Hugo 0.147.9">
     <meta name="description" content="">
 <meta name="author" content="journeyoftheaverageguy@gmail.com">
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Triển khai Ứng dụng ShareNote với Auto Scaling Group :: Deploy ShareNote Application on Auto Scaling Group</title>
+    <title>Helllo :: Deploy ShareNote Application on Auto Scaling Group</title>
 
     
-    <link href="/css/nucleus.css?1631812248" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1631812248" rel="stylesheet">
-    <link href="/css/hybrid.css?1631812248" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1631812248" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1631812248" rel="stylesheet">
-    <link href="/css/auto-complete.css?1631812248" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1631812248" rel="stylesheet">
-    <link href="/css/theme.css?1631812248" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1631812248" rel="stylesheet">
+    <link href="/css/nucleus.css?1751962624" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1751962624" rel="stylesheet">
+    <link href="/css/hybrid.css?1751962624" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1751962624" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1751962624" rel="stylesheet">
+    <link href="/css/auto-complete.css?1751962624" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1751962624" rel="stylesheet">
+    <link href="/css/theme.css?1751962624" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1751962624" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1631812248" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1751962624" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1631812248"></script>
+    <script src="/js/jquery-3.3.1.min.js?1751962624"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1631812248"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1631812248"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1751962624"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1751962624"></script>
 <script type="text/javascript">
     
-        var baseurl = "";
+        var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1631812248"></script>
+<script type="text/javascript" src="/js/search.js?1751962624"></script>
 
     
   </div>
@@ -515,7 +515,7 @@
                   
                     
                     
-                      <option id="en" value="/" selected>English</option>
+                      <option id="en" value="//localhost:1313/" selected>English</option>
                     
                   
               
@@ -529,7 +529,7 @@
                   
                     
                     
-                      <option id="vi" value="/vi/">Tiếng Việt</option>
+                      <option id="vi" value="//localhost:1313/vi/">Tiếng Việt</option>
                     
                   
               
@@ -606,7 +606,7 @@
 </span>
 
  
-<h1 id="triển-khai-ứng-dụng-sharenote-với-auto-scaling-group">Triển khai Ứng dụng ShareNote với Auto Scaling Group</h1>
+<h1 id="hello">Hello</h1>
 <h4 id="tổng-quan">Tổng quan</h4>
 <p>Ở bài thực hành này, chúng ta sẽ tiến hành việc triển khai ứng dụng với <strong>Auto Scaling Group</strong> nhằm đảm bảo khả năng co giãn của ứng dụng đó theo nhu cầu của người truy cập.
 Thêm vào đó, chúng ta cũng sẽ triển khai <strong>Load Balancer</strong> nhằm cân bằng tải và điều phối các yêu cầu truy cập từ phía người dùng đến Application Tier của chúng ta.</p>
@@ -621,12 +621,12 @@ Thêm vào đó, chúng ta cũng sẽ triển khai <strong>Load Balancer</strong
 <p><strong>Target Group</strong> (<em>nhóm mục tiêu</em>) là một nhóm những thành phần tài nguyên AWS sẽ nhận lưu lượng dữ liệu được phân phối và truyền tải bởi <strong>Load Balancer</strong>.</p>
 <h4 id="nội-dung">Nội dung:</h4>
 <ol>
-<li><a href="1-prerequisite">Các bước chuẩn bị</a></li>
-<li><a href="2-launch-template">Khởi tạo Launch Template</a></li>
-<li><a href="3-target-group">Khởi tạo Target Group</a></li>
+<li><a href="/1-prerequisite/">Các bước chuẩn bị</a></li>
+<li><a href="/2-launch-template/">Khởi tạo Launch Template</a></li>
+<li><a href="/3-target-group/">Khởi tạo Target Group</a></li>
 <li><a href="5-load-balance">Khởi tạo Load Balancer</a></li>
 <li><a href="4-asg">Khởi tạo Auto Scaling Group</a></li>
-<li><a href="6-testing">Kiểm tra kết quả</a></li>
+<li><a href="/6-testing/">Kiểm tra kết quả</a></li>
 </ol>
 	
   
@@ -907,19 +907,19 @@ Thêm vào đó, chúng ta cũng sẽ triển khai <strong>Load Balancer</strong
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1631812248"></script>
-    <script src="/js/perfect-scrollbar.min.js?1631812248"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1631812248"></script>
-    <script src="/js/jquery.sticky.js?1631812248"></script>
-    <script src="/js/featherlight.min.js?1631812248"></script>
-    <script src="/js/highlight.pack.js?1631812248"></script>
+    <script src="/js/clipboard.min.js?1751962624"></script>
+    <script src="/js/perfect-scrollbar.min.js?1751962624"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1751962624"></script>
+    <script src="/js/jquery.sticky.js?1751962624"></script>
+    <script src="/js/featherlight.min.js?1751962624"></script>
+    <script src="/js/highlight.pack.js?1751962624"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1631812248"></script>
-    <script src="/js/learn.js?1631812248"></script>
-    <script src="/js/hugo-learn.js?1631812248"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1751962624"></script>
+    <script src="/js/learn.js?1751962624"></script>
+    <script src="/js/hugo-learn.js?1751962624"></script>
 
-    <link href="/mermaid/mermaid.css?1631812248" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1631812248"></script>
+    <link href="/mermaid/mermaid.css?1751962624" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1751962624"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Triển khai Ứng dụng ShareNote với Auto Scaling Group on Deploy ShareNote Application on Auto Scaling Group</title>
-    <link>/</link>
-    <description>Recent content in Triển khai Ứng dụng ShareNote với Auto Scaling Group on Deploy ShareNote Application on Auto Scaling Group</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 01 Jan 1970 07:33:41 +0700</lastBuildDate>
-    
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <title>Helllo on Deploy ShareNote Application on Auto Scaling Group</title>
+    <link>//localhost:1313/</link>
+    <description>Recent content in Helllo on Deploy ShareNote Application on Auto Scaling Group</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate></lastBuildDate>
+    <atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

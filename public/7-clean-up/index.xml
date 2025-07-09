@@ -2,13 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Dọn dẹp tài nguyên on Deploy ShareNote Application on Auto Scaling Group</title>
-    <link>/7-clean-up/</link>
+    <link>//localhost:60807/7-clean-up/</link>
     <description>Recent content in Dọn dẹp tài nguyên on Deploy ShareNote Application on Auto Scaling Group</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 08 Jun 2021 18:57:03 +0700</lastBuildDate>
-    
-	<atom:link href="/7-clean-up/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate></lastBuildDate>
+    <atom:link href="//localhost:60807/7-clean-up/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
