@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi" class="js csstransforms3d">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=60807&amp;path=livereload" data-no-instant defer></script>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Hugo 0.147.9">
@@ -12,21 +12,21 @@
     <title>Các bước chuẩn bị :: Triển khai Ứng dụng ShareNote với Auto Scaling Group</title>
 
     
-    <link href="/css/nucleus.css?1751962353" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1751962353" rel="stylesheet">
-    <link href="/css/hybrid.css?1751962353" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1751962353" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1751962353" rel="stylesheet">
-    <link href="/css/auto-complete.css?1751962353" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1751962353" rel="stylesheet">
-    <link href="/css/theme.css?1751962353" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1751962353" rel="stylesheet">
+    <link href="/css/nucleus.css?1752248979" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1752248979" rel="stylesheet">
+    <link href="/css/hybrid.css?1752248979" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1752248979" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1752248979" rel="stylesheet">
+    <link href="/css/auto-complete.css?1752248979" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1752248979" rel="stylesheet">
+    <link href="/css/theme.css?1752248979" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1752248979" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1751962353" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1752248979" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1751962353"></script>
+    <script src="/js/jquery-3.3.1.min.js?1752248979"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1751962353"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1751962353"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1752248979"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1752248979"></script>
 <script type="text/javascript">
     
-        var baseurl = "\/\/localhost:60807\/\/vi";
+        var baseurl = "\/\/localhost:1313\/\/vi";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1751962353"></script>
+<script type="text/javascript" src="/js/search.js?1752248979"></script>
 
     
   </div>
@@ -94,226 +94,6 @@
           
       </a>
       
-      
-        <ul>
-          
-          
-            
-          
-          
-          
-        
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/1-prerequisite/1-security-group/" title="Tạo Security Group" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/1-prerequisite/1-security-group/">
-          <b>1.1 </b>Tạo Security Group
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/1-prerequisite/2-database/" title="Tạo ShareNote Database" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/1-prerequisite/2-database/">
-          <b>1.2 </b>Tạo ShareNote Database
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/1-prerequisite/3-deploy-sharenote/" title="Triển khai Máy ảo ShareNote" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/1-prerequisite/3-deploy-sharenote/">
-          <b>1.3 </b>Triển khai Máy ảo ShareNote
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-      
-        <ul>
-          
-          
-            
-          
-          
-          
-        
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/1-prerequisite/3-deploy-sharenote/1.3.1-createec2/" title="Tạo máy ảo EC2 Ubuntu" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/1-prerequisite/3-deploy-sharenote/1.3.1-createec2/">
-          <b>1.3.1 </b>Tạo máy ảo EC2 Ubuntu
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/1-prerequisite/3-deploy-sharenote/1.3.2-configure-db-sharenote/" title="Thiết lập cấu hình Database cho ShareNote" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/1-prerequisite/3-deploy-sharenote/1.3.2-configure-db-sharenote/">
-          <b>1.3.2 </b>Thiết lập cấu hình Database cho ShareNote
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/1-prerequisite/3-deploy-sharenote/1.3.3-autostart/" title="Thiết lập khởi chạy ứng dụng khi khởi chạy instance" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/1-prerequisite/3-deploy-sharenote/1.3.3-autostart/">
-          <b>1.3.3 </b>Thiết lập khởi chạy ứng dụng khi khởi chạy instance
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-        
-        </ul>
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/1-prerequisite/4-create-ami/" title="Khởi tạo AMI từ Máy ảo" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/1-prerequisite/4-create-ami/">
-          <b>1.4 </b>Khởi tạo AMI từ Máy ảo
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-        
-        </ul>
               
     </li>
   
@@ -328,12 +108,12 @@
  
   
     
-    <li data-nav-id="/vi/2-launch-template/" title="Khởi tạo Launch Template" class="dd-item 
+    <li data-nav-id="/vi/2-deploy-the-solution/" title="Khởi tạo Launch Template" class="dd-item 
         
         
         
         ">
-      <a href="/vi/2-launch-template/">
+      <a href="/vi/2-deploy-the-solution/">
           <b>2. </b>Khởi tạo Launch Template
           
             <i class="fas fa-check read-icon"></i>
@@ -354,12 +134,12 @@
  
   
     
-    <li data-nav-id="/vi/3-target-group/" title="Khởi tạo Target Group" class="dd-item 
+    <li data-nav-id="/vi/3-configure-the-solution/" title="Khởi tạo Target Group" class="dd-item 
         
         
         
         ">
-      <a href="/vi/3-target-group/">
+      <a href="/vi/3-configure-the-solution/">
           <b>3. </b>Khởi tạo Target Group
           
             <i class="fas fa-check read-icon"></i>
@@ -380,12 +160,12 @@
  
   
     
-    <li data-nav-id="/vi/4-load-balance/" title="Khởi tạo Load Balancer" class="dd-item 
+    <li data-nav-id="/vi/4-use-the-solution/" title="Khởi tạo Load Balancer" class="dd-item 
         
         
         
         ">
-      <a href="/vi/4-load-balance/">
+      <a href="/vi/4-use-the-solution/">
           <b>4. </b>Khởi tạo Load Balancer
           
             <i class="fas fa-check read-icon"></i>
@@ -406,65 +186,13 @@
  
   
     
-    <li data-nav-id="/vi/5-asg/" title="Khởi tạo Auto Scaling Group" class="dd-item 
+    <li data-nav-id="/vi/5-remove-the-solution/" title="Khởi tạo Auto Scaling Group" class="dd-item 
         
         
         
         ">
-      <a href="/vi/5-asg/">
+      <a href="/vi/5-remove-the-solution/">
           <b>5. </b>Khởi tạo Auto Scaling Group
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-          
-          
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/6-testing/" title="Kiểm tra Kết quả" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/6-testing/">
-          <b>6. </b>Kiểm tra Kết quả
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-          
-          
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/7-clean-up/" title="Dọn dẹp tài nguyên" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/7-clean-up/">
-          <b>7. </b>Dọn dẹp tài nguyên
           
             <i class="fas fa-check read-icon"></i>
           
@@ -515,7 +243,7 @@
                   
                     
                     
-                      <option id="en" value="//localhost:60807/1-prerequisite/">English</option>
+                      <option id="en" value="//localhost:1313/1-prerequisite/">English</option>
                     
                   
               
@@ -529,7 +257,7 @@
                   
                     
                     
-                      <option id="vi" value="//localhost:60807/vi/1-prerequisite/" selected>Tiếng Việt</option>
+                      <option id="vi" value="//localhost:1313/vi/1-prerequisite/" selected>Tiếng Việt</option>
                     
                   
               
@@ -615,7 +343,7 @@
             
           
           
-            <a href='/vi/'>Triển khai Ứng dụng ShareNote với Auto Scaling Group</a> > Các bước chuẩn bị
+            <a href='/vi/'>Innovation Lab</a> > Các bước chuẩn bị
           
         
           
@@ -628,7 +356,11 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#sơ-đồ-tổng-quan-bài-thực-hành">Sơ đồ tổng quan bài thực hành</a></li>
+    <li>
+      <ul>
+        <li><a href="#yêu-cầu-trước-khi-triển-khai-innovation-sandbox-trên-aws">Yêu cầu trước khi triển khai Innovation Sandbox trên AWS</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
     </div>
@@ -654,10 +386,129 @@
 
 
 
-	<h2 id="sơ-đồ-tổng-quan-bài-thực-hành">Sơ đồ tổng quan bài thực hành</h2>
-<p>Trong bài thực hành này, chúng ta cần chuẩn bị một số dịch vụ để có thể tiến hành triển khai ứng dụng ShareNote sử dụng Auto Scaling Group cùng với Elastic Load Balancer.
-Một cách tổng quan, chúng ta sẽ triển khai ứng dụng ShareNote theo kiến trúc như sau:</p>
-<p><img src="../../../images/1/0.png?width=40pc" alt="Diagram"></p>
+	<h3 id="yêu-cầu-trước-khi-triển-khai-innovation-sandbox-trên-aws">Yêu cầu trước khi triển khai Innovation Sandbox trên AWS</h3>
+<h4 id="tổng-quan">Tổng quan</h4>
+<p>Để triển khai giải pháp Innovation Sandbox trên AWS, bạn cần chuẩn bị một số bước cơ bản cho môi trường AWS của mình. Các bước này bao gồm:</p>
+<ul>
+<li>Xác định các tài khoản AWS cần thiết</li>
+<li>Chọn region AWS</li>
+<li>Thiết lập tổ chức AWS (AWS Organization)</li>
+<li>Kích hoạt các sau:
+<ul>
+<li>AWS IAM Identity Center</li>
+<li>AWS Resource Access Manager (RAM)</li>
+<li>AWS CloudFormation StackSets</li>
+<li>Service Control Policies (SCPs)</li>
+</ul>
+</li>
+</ul>
+<p><strong>Thời gian dự kiến:</strong> Khoảng 15-20 phút (có thể lâu hơn nếu bạn cần tạo mới các tài khoản AWS)</p>
+<h4 id="xác-định-các-tài-khoản-aws-cần-thiết">Xác định các tài khoản AWS cần thiết</h4>
+<ul>
+<li>Innovation Sandbox sử dụng tính năng của AWS Organizations, giúp bạn quản lý tập trung và kiểm soát môi trường AWS khi mở rộng quy mô.</li>
+<li>Bạn cần chọn một tài khoản ban đầu (gọi là tài khoản quản lý – management account).</li>
+<li>Có hai lựa chọn cho tài khoản ban đầu:
+<ul>
+<li>Sử dụng tài khoản AWS hiện có</li>
+<li>Tạo tài khoản AWS mới</li>
+</ul>
+</li>
+</ul>
+<p><strong>Lưu ý:</strong></p>
+<ul>
+<li>Nếu đã có tổ chức AWS: tài khoản ban đầu chính là tài khoản quản lý hiện có.</li>
+<li>Nếu tạo tổ chức AWS mới: có thể dùng một tài khoản AWS độc lập (sẽ trở thành management account) hoặc tạo tài khoản mới cho vai trò này.</li>
+<li>Tài khoản này sẽ là tài khoản quản lý cho toàn bộ tổ chức AWS của bạn.</li>
+</ul>
+<h4 id="chọn-vùng-aws-chính-home-region">Chọn vùng AWS chính (home Region)</h4>
+<ul>
+<li>Tất cả các thành phần của Innovation Sandbox phải được triển khai trong cùng một vùng AWS.</li>
+<li>Vùng được chọn cần đáp ứng:
+<ul>
+<li>Hỗ trợ đầy đủ các dịch vụ bắt buộc: AWS Organizations, IAM Identity Center, CloudFormation, DynamoDB, Lambda, CloudWatch, Secrets Manager, AppConfig.</li>
+<li>Là nơi đã bật IAM Identity Center.</li>
+<li>Có thể truy cập cho tất cả người dùng dự kiến sử dụng giải pháp.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Khi chọn vùng AWS, cân nhắc:</strong></p>
+<ul>
+<li>Vị trí địa lý, khoảng cách với người dùng, yêu cầu lưu trữ dữ liệu, độ trễ mạng.</li>
+<li>Chi phí dịch vụ và sự khác biệt giá giữa các vùng.</li>
+<li>Chi phí truyền dữ liệu giữa các vùng.</li>
+<li>Sự khác biệt về giá của từng dịch vụ.</li>
+</ul>
+<h4 id="thiết-lập-aws-organizations">Thiết lập AWS Organizations</h4>
+<ul>
+<li>
+<p>Bạn cần tổ chức AWS có ít nhất 4 tài khoản:</p>
+<ul>
+<li>Tài khoản quản lý (management account)</li>
+<li>Tài khoản hub (hub account)</li>
+<li>Sandbox account 1</li>
+<li>Sandbox account 2</li>
+</ul>
+</li>
+<li>
+<p>Có thể thêm nhiều tài khoản sandbox tùy nhu cầu.</p>
+</li>
+</ul>
+<p><strong>Các bước tạo tổ chức AWS mới:</strong></p>
+<ul>
+<li>Đăng nhập AWS Management Console với quyền quản trị.</li>
+<li>Mở AWS Organizations console và chọn &ldquo;Create an organization&rdquo;.</li>
+<li>Xác thực email quản lý theo hướng dẫn gửi về hộp thư.</li>
+<li>Thêm các tài khoản thành viên:
+<ul>
+<li>Có thể tạo tài khoản mới (cung cấp tên, email root, giữ nguyên IAM role mặc định).</li>
+<li>Hoặc mời tài khoản AWS hiện có vào tổ chức (bằng email hoặc ID tài khoản).</li>
+</ul>
+</li>
+<li>Lặp lại cho đến khi có ít nhất 4 tài khoản như cấu trúc sau:</li>
+</ul>
+<pre tabindex="0"><code>Root
+├── Management account
+├── Hub account
+├── Sandbox account 1
+└── Sandbox account 2
+</code></pre><p><img src="/resources/_gen/images/anh2.jpg" alt="architect" title="Architect"></p>
+<p><img src="/resources/_gen/images/Anh1.jpg" alt="architect" title="Architect"></p>
+<ul>
+<li>Kiểm tra trong phần Settings của AWS Organizations console:
+<ul>
+<li>Đã bật consolidated billing</li>
+<li>Đã bật all features</li>
+</ul>
+</li>
+</ul>
+<h4 id="kích-hoạt-các-dịch-vụ-bắt-buộc">Kích hoạt các dịch vụ bắt buộc</h4>
+<p>Trước khi triển khai giải pháp, hãy đảm bảo các dịch vụ sau đã được bật trên tài khoản quản lý:</p>
+<ul>
+<li>
+<p><strong>AWS IAM Identity Center:</strong> Quản lý truy cập tập trung cho các tài khoản AWS.</p>
+<ul>
+<li>Mở IAM Identity Center ở tài khoản quản lý, kiểm tra đúng vùng, chọn Enable.</li>
+</ul>
+</li>
+<li>
+<p><strong>AWS Resource Access Manager (RAM):</strong> Chia sẻ tài nguyên AWS an toàn giữa các tài khoản trong tổ chức.</p>
+<ul>
+<li>Mở RAM ở tài khoản quản lý, vào Settings, bật &ldquo;Enable sharing with AWS Organizations&rdquo;, lưu lại.</li>
+</ul>
+</li>
+<li>
+<p><strong>CloudFormation StackSets trusted access:</strong> Quản lý CloudFormation stack trên nhiều tài khoản/vùng.</p>
+<ul>
+<li>Mở CloudFormation ở tài khoản quản lý, chọn StackSets, bật &ldquo;Enable trusted access&rdquo;.</li>
+</ul>
+</li>
+<li>
+<p><strong>Service Control Policies (SCPs):</strong> Quản lý quyền truy cập trên toàn tổ chức.</p>
+<ul>
+<li>Mở AWS Organizations ở tài khoản quản lý, vào Policies, chọn Service control policies, bật tính năng này.</li>
+</ul>
+</li>
+</ul>
 
 
 
@@ -704,24 +555,6 @@ Một cách tổng quan, chúng ta sẽ triển khai ứng dụng ShareNote theo
 
                     
                     
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
                     
 
                     
@@ -733,138 +566,8 @@ Một cách tổng quan, chúng ta sẽ triển khai ứng dụng ShareNote theo
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
                         
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
                         
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -934,10 +637,10 @@ Một cách tổng quan, chúng ta sẽ triển khai ứng dụng ShareNote theo
 	 
 	 
 		
-			<a class="nav nav-prev" href="/vi/" title="Triển khai Ứng dụng ShareNote với Auto Scaling Group"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/vi/" title="Innovation Lab"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/vi/1-prerequisite/1-security-group/" title="Tạo Security Group" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/vi/2-deploy-the-solution/" title="Khởi tạo Launch Template" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -947,19 +650,19 @@ Một cách tổng quan, chúng ta sẽ triển khai ứng dụng ShareNote theo
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1751962353"></script>
-    <script src="/js/perfect-scrollbar.min.js?1751962353"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1751962353"></script>
-    <script src="/js/jquery.sticky.js?1751962353"></script>
-    <script src="/js/featherlight.min.js?1751962353"></script>
-    <script src="/js/highlight.pack.js?1751962353"></script>
+    <script src="/js/clipboard.min.js?1752248979"></script>
+    <script src="/js/perfect-scrollbar.min.js?1752248979"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1752248979"></script>
+    <script src="/js/jquery.sticky.js?1752248979"></script>
+    <script src="/js/featherlight.min.js?1752248979"></script>
+    <script src="/js/highlight.pack.js?1752248979"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1751962353"></script>
-    <script src="/js/learn.js?1751962353"></script>
-    <script src="/js/hugo-learn.js?1751962353"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1752248979"></script>
+    <script src="/js/learn.js?1752248979"></script>
+    <script src="/js/hugo-learn.js?1752248979"></script>
 
-    <link href="/mermaid/mermaid.css?1751962353" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1751962353"></script>
+    <link href="/mermaid/mermaid.css?1752248979" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1752248979"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

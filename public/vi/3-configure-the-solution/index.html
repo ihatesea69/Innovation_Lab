@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="vi" class="js csstransforms3d">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.147.9">
+    <meta name="description" content="">
+<meta name="author" content="journeyoftheaverageguy@gmail.com">
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>Khởi tạo Target Group :: Triển khai Ứng dụng ShareNote với Auto Scaling Group</title>
+
+    
+    <link href="/css/nucleus.css?1752249528" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1752249528" rel="stylesheet">
+    <link href="/css/hybrid.css?1752249528" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1752249528" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1752249528" rel="stylesheet">
+    <link href="/css/auto-complete.css?1752249528" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1752249528" rel="stylesheet">
+    <link href="/css/theme.css?1752249528" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1752249528" rel="stylesheet">
+    
+    <link href="/css/theme-workshop.css?1752249528" rel="stylesheet">
+    
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1752249528"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/vi/3-configure-the-solution/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="/">
+
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="30%"><defs><style>.cls-1{fill:#fff;}.cls-2{fill:#f90;fill-rule:evenodd;}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"></path><path class="cls-2" d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"></path><path class="cls-2" d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"></path></svg>
+
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1752249528"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1752249528"></script>
+<script type="text/javascript">
+    
+        var baseurl = "\/\/localhost:1313\/\/vi";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1752249528"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/1-prerequisite/" title="Các bước chuẩn bị" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/1-prerequisite/">
+          <b>1. </b>Các bước chuẩn bị
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/2-deploy-the-solution/" title="Khởi tạo Launch Template" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/2-deploy-the-solution/">
+          <b>2. </b>Khởi tạo Launch Template
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/3-configure-the-solution/" title="Khởi tạo Target Group" class="dd-item 
+        
+        active
+        
+        ">
+      <a href="/vi/3-configure-the-solution/">
+          <b>3. </b>Khởi tạo Target Group
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-use-the-solution/" title="Khởi tạo Load Balancer" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-use-the-solution/">
+          <b>4. </b>Khởi tạo Load Balancer
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-remove-the-solution/" title="Khởi tạo Auto Scaling Group" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-remove-the-solution/">
+          <b>5. </b>Khởi tạo Auto Scaling Group
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="http://awsstudygroup.com"><i class='fab fa-aws'></i> AWS Study Group - Blog</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://www.facebook.com/groups/660548818043427/"><i class='fab fa-facebook'></i> AWS Study Group - Nhóm FB</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+          <div class="select-style">
+            <select id="select-language" onchange="location = this.value;">
+          
+          
+          
+              
+              
+                  
+                    
+                    
+                      <option id="en" value="//localhost:1313/3-configure-the-solution/">English</option>
+                    
+                  
+              
+                  
+              
+          
+              
+              
+                  
+              
+                  
+                    
+                    
+                      <option id="vi" value="//localhost:1313/vi/3-configure-the-solution/" selected>Tiếng Việt</option>
+                    
+                  
+              
+          
+        </select>
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          width="255px" height="255px" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255;" xml:space="preserve">
+          <g>
+            <g id="arrow-drop-down">
+              <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+            </g>
+          </g>
+        </svg>
+        </div>
+        </a>
+        </li>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <left>
+    
+     <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7831210&style=0038&nbdigits=9&type=page&initCount=0" title="Migrate" Alt="web counter"   border="0" /></a>  <br>
+     <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0" title="Total CLoud Journey" Alt="web counter"   border="0"   />
+     
+</left>
+<left>
+    <br>
+    <br>
+        <b> Last Updated </b> <br>
+        <i><font color=orange>17-09-2021</font></i>
+    </left>
+    <left>
+        <br>
+        <br>
+            <b> Team </b> <br>
+           
+            <i>
+                <a href="https://www.linkedin.com/in/jotaguy"  style="color:orange">Gia Hưng</a>
+        </i>
+        </left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            <a href='/vi/'>Innovation Lab</a> > Khởi tạo Target Group
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#cấu-hình-giải-pháp-configure-the-solution">Cấu hình Giải pháp (Configure the Solution)</a></li>
+        <li><a href="#thiết-lập-ứng-dụng-saml-20-cho-innovation-sandbox-trên-aws">Thiết lập Ứng dụng SAML 2.0 cho Innovation Sandbox trên AWS</a></li>
+        <li><a href="#cấu-hình-người-dùng-và-nhóm-trong-iam-identity-center">Cấu hình Người dùng và Nhóm trong IAM Identity Center</a></li>
+        <li><a href="#cấu-hình-ứng-dụng-web-với-aws-appconfig-và-aws-secrets-manager">Cấu hình Ứng dụng Web với AWS AppConfig và AWS Secrets Manager</a></li>
+        <li><a href="#onboard-sandbox-accounts-vào-innovation-sandbox-trên-aws">Onboard Sandbox Accounts vào Innovation Sandbox trên AWS</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Khởi tạo Target Group
+            </h1>
+          
+
+        
+
+
+
+	<h3 id="cấu-hình-giải-pháp-configure-the-solution">Cấu hình Giải pháp (Configure the Solution)</h3>
+<p>Sau khi chạy đủ các stack, bạn cần thực hiện các bước cấu hình để cho phép người dùng truy cập và chuẩn bị môi trường Innovation Sandbox trên AWS để xài nha.</p>
+<h4 id="tổng-quan-các-bước-cấu-hình">Tổng quan các bước cấu hình</h4>
+<ul>
+<li>Thiết lập liên kết SAML 2.0 (SAML federation)</li>
+<li>Cấu hình người dùng AWS IAM Identity Center</li>
+<li>Cấu hình ứng dụng web</li>
+<li>Onboard (gắn kết) các tài khoản vào cấu trúc Innovation Sandbox</li>
+</ul>
+<h4 id="thiết-lập-liên-kết-saml-20">Thiết lập liên kết SAML 2.0</h4>
+<p><strong>1. Cấu hình tích hợp SAML</strong></p>
+<ul>
+<li>Truy cập AWS IAM Identity Center trong tài khoản quản lý tổ chức.</li>
+<li>Chọn mục “Settings” và chuyển sang phần “Identity Source”.</li>
+<li>Chọn “External identity provider” để sử dụng SAML 2.0.</li>
+</ul>
+<p><strong>2. Tải về certification</strong></p>
+<ul>
+<li>Trong giao diện cấu hình SAML, tải về certificate (file .pem) của AWS IAM Identity Center.</li>
+<li>Lưu lại file này để sử dụng khi cấu hình trên hệ thống nhận dạng bên ngoài</li>
+</ul>
+<h4 id="cấu-hình-người-dùng-aws-iam-identity-center">Cấu hình người dùng AWS IAM Identity Center</h4>
+<p><strong>1. Tạo và cấu hình nhóm (Groups)</strong></p>
+<ul>
+<li>Trong IAM Identity Center, vào mục “Groups”.</li>
+<li>Tạo các nhóm phù hợp với vai trò sử dụng (ví dụ: Admin, Developer, Viewer&hellip;).</li>
+<li>Gán quyền truy cập (permission sets) tương ứng cho từng nhóm.</li>
+</ul>
+<p><strong>2. Thiết lập người dùng ban đầu</strong></p>
+<ul>
+<li>Vào mục “Users” trong IAM Identity Center.</li>
+<li>Thêm mới người dùng hoặc đồng bộ từ hệ thống nhận dạng ngoài (nếu đã cấu hình SAML).</li>
+<li>Gán người dùng vào các nhóm đã tạo.</li>
+</ul>
+<h4 id="cấu-hình-ứng-dụng-web">Cấu hình ứng dụng web</h4>
+<p><strong>1. Cập nhật cài đặt AWS AppConfig</strong></p>
+<ul>
+<li>Truy cập AWS AppConfig trong tài khoản hub.</li>
+<li>Chọn ứng dụng Innovation Sandbox, cập nhật các thông số cấu hình cần thiết (ví dụ: endpoint, tham số môi trường, v.v.).</li>
+<li>Xác nhận các thông tin cấu hình đã phù hợp với môi trường triển khai.</li>
+</ul>
+<p><strong>2. Cấu hình xác thực (Authentication)</strong></p>
+<ul>
+<li>Đảm bảo ứng dụng web sử dụng xác thực thông qua AWS IAM Identity Center.</li>
+<li>Kiểm tra lại thông tin kết nối SAML hoặc các tham số xác thực khác nếu có.</li>
+</ul>
+<h4 id="onboard-các-tài-khoản">Onboard các tài khoản</h4>
+<p><strong>1. Di chuyển tài khoản vào cấu trúc Innovation Sandbox</strong></p>
+<ul>
+<li>Truy cập AWS Organizations bằng tài khoản quản lý.</li>
+<li>Di chuyển các tài khoản thành viên (hub, sandbox&hellip;) vào đúng organizational unit (OU) đã thiết kế cho Innovation Sandbox.</li>
+</ul>
+<p><strong>2. Xác minh cấu hình tài khoản</strong></p>
+<ul>
+<li>Kiểm tra lại trong AWS Organizations để đảm bảo các tài khoản đã nằm đúng vị trí trong cấu trúc OU.</li>
+<li>Đảm bảo các chính sách, quyền truy cập và cấu hình liên quan đã được áp dụng chính xác.</li>
+</ul>
+<p><strong>Thời gian dự kiến:</strong> Khoảng 15 phút</p>
+<p>Thực hiện đầy đủ các bước trên sẽ giúp giải pháp Innovation Sandbox trên AWS sẵn sàng cho người dùng truy cập và sử dụng, đồng thời đảm bảo tuân thủ các yêu cầu quản trị, bảo mật của tổ chức.</p>
+<h3 id="thiết-lập-ứng-dụng-saml-20-cho-innovation-sandbox-trên-aws">Thiết lập Ứng dụng SAML 2.0 cho Innovation Sandbox trên AWS</h3>
+<p>Việc cấu hình tích hợp SAML 2.0 giữa AWS IAM Identity Center và Innovation Sandbox trên AWS giúp đảm bảo xác thực người dùng an toàn khi truy cập giao diện web của giải pháp.</p>
+<h4 id="lưu-ý-quan-trọng">Lưu ý quan trọng</h4>
+<ul>
+<li>Thực hiện toàn bộ các bước dưới đây trong <strong>tài khoản quản lý tổ chức</strong> (organization management account) – nơi bạn đã cấu hình AWS IAM Identity Center.</li>
+<li>Đảm bảo bạn đang ở đúng <strong>home Region</strong> đã chọn cho toàn bộ hệ thống.</li>
+</ul>
+<h4 id="các-bước-cấu-hình">Các bước cấu hình</h4>
+<p><strong>1. Tạo ứng dụng SAML trong IAM Identity Center</strong></p>
+<ul>
+<li>Mở <strong>AWS IAM Identity Center console</strong> bằng tài khoản quản lý tổ chức.</li>
+<li>Trong thanh điều hướng, chọn <strong>Applications</strong>.</li>
+<li>Chuyển sang tab <strong>Customer managed</strong>.
+<img src="/resources/_gen/images/organiza.jpg" alt="architect" title="Architect"></li>
+</ul>
+<p><strong>2. Thêm ứng dụng mới</strong></p>
+<ul>
+<li>Chọn <strong>Add application</strong>.</li>
+<li>Chọn <strong>I have an application I want to set up</strong>.</li>
+<li>Chọn <strong>SAML 2.0</strong>, sau đó nhấn <strong>Next</strong>.</li>
+</ul>
+<p><img src="/resources/_gen/images/Buoc3.png" alt="architect" title="Architect"></p>
+<p><strong>3. Cấu hình ứng dụng</strong></p>
+<ul>
+<li>Ở trang cấu hình, nhập <strong>Display name</strong> (ví dụ: MyISB app) và mô tả cho ứng dụng.</li>
+<li></li>
+</ul>
+<p><img src="/resources/_gen/images/Buoc5.png" alt="architect" title="Architect"></p>
+<ul>
+<li>Trong phần <strong>IAM Identity Center metadata</strong>:
+<ul>
+<li>Tải về <strong>SAML metadata file</strong> (metadata của nhà cung cấp danh tính).</li>
+<li>Tải về <strong>certificate</strong> (chứng chỉ của nhà cung cấp danh tính).</li>
+</ul>
+</li>
+</ul>
+<p><img src="/resources/_gen/images/Buoc6.png" alt="architect" title="Architect"></p>
+<ul>
+<li>Ghi chú lại các <strong>Sign-in URL</strong> và <strong>Sign-out URL</strong> – sẽ cần dùng khi cấu hình ở tài khoản hub.</li>
+</ul>
+<p><img src="/resources/_gen/images/Buoc7.png" alt="architect" title="Architect"></p>
+<p><strong>4. Nhập thông tin metadata cho ứng dụng</strong></p>
+<ul>
+<li>
+<p>Ở phần <strong>Application metadata</strong>, chọn <strong>Manually type your metadata values</strong>.</p>
+</li>
+<li>
+<p>Nhập các giá trị sau:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Trường</th>
+          <th>Giá trị nhập</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Application ACS URL</td>
+          <td><code>{ISB_WEB_URL}/api/auth/login/callback</code>  (Thay <code>{ISB_WEB_URL}</code> bằng CloudFrontDistributionUrl đã lưu, ví dụ: <code>https://duyXXXXXXXeh.cloudfront.net/api/auth/login/callback</code>)</td>
+      </tr>
+      <tr>
+          <td>Application SAML audience</td>
+          <td>Giá trị định danh ứng dụng (có thể dùng tên namespace hoặc tên stack ban đầu, ví dụ: <code>Isb-dev-namespace-Audience</code>). Lưu lại giá trị này để cấu hình cho AppConfig ở tài khoản hub.</td>
+      </tr>
+      <tr>
+          <td><img src="/resources/_gen/images/Buoc8.png" alt="architect" title="Architect"></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td><strong>5. Hoàn tất cấu hình</strong></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+</li>
+<li>
+<p>Nhấn <strong>Submit</strong>.</p>
+</li>
+<li>
+<p>Bạn sẽ nhận được thông báo xác nhận cấu hình thành công cho ứng dụng SAML.</p>
+</li>
+<li>
+<p>Lưu ý: Bạn cần cấu hình thêm <strong>attribute mappings</strong> cho IAM Identity Center để việc xác thực hoạt động đúng.</p>
+</li>
+</ul>
+<h4 id="thông-tin-cần-lưu-lại-cho-các-bước-cấu-hình-tiếp-theo">Thông tin cần lưu lại cho các bước cấu hình tiếp theo</h4>
+<ul>
+<li><strong>Sign-in URL</strong> (từ bước tải metadata)</li>
+<li><strong>Sign-out URL</strong> (từ bước tải metadata)</li>
+<li><strong>Audience value</strong> (giá trị đã nhập ở Application SAML audience)</li>
+</ul>
+<p>Các thông tin này sẽ được sử dụng trong quá trình cấu hình ứng dụng web và xác thực người dùng cho Innovation Sandbox trên AWS.</p>
+<h3 id="cấu-hình-người-dùng-và-nhóm-trong-iam-identity-center">Cấu hình Người dùng và Nhóm trong IAM Identity Center</h3>
+<p>Việc thiết lập người dùng và nhóm trong AWS IAM Identity Center giúp kiểm soát truy cập và phân quyền cho người dùng sử dụng giải pháp Innovation Sandbox trên AWS. Thực hiện các bước dưới đây trong <strong>tài khoản quản lý tổ chức</strong> (organization management account) và đúng <strong>home Region</strong> đã chọn.</p>
+<h4 id="1-ánh-xạ-thuộc-tính-ứng-dụng-map-application-attributes">1. Ánh xạ thuộc tính ứng dụng (Map application attributes)</h4>
+<ul>
+<li>Mở <strong>IAM Identity Center console</strong> trong tài khoản quản lý.</li>
+<li>Chọn <strong>Applications</strong> trong thanh điều hướng.</li>
+<li>Trong danh sách <strong>Customer managed applications</strong>, chọn ứng dụng đã tạo (ví dụ: MyISB app).</li>
+<li>Ở trang chi tiết ứng dụng, chọn <strong>Actions</strong> &gt; <strong>Edit attribute mappings</strong>.</li>
+<li>Trong ô thứ hai (&ldquo;Maps to this string value or user attribute in IAM Identity Center&rdquo;), nhập:
+<pre tabindex="0"><code>${user:email}
+</code></pre></li>
+<li>Ở cột thứ ba, chọn định dạng <strong>emailAddress</strong>.</li>
+<li>Nhấn <strong>Save changes</strong> để lưu cấu hình.</li>
+</ul>
+<h4 id="2-gán-nhóm-cho-ứng-dụng-assign-groups-to-your-application">2. Gán nhóm cho ứng dụng (Assign groups to your application)</h4>
+<ul>
+<li>Quay lại ứng dụng vừa cấu hình.</li>
+<li>Chọn <strong>Assign users and groups</strong>.</li>
+<li>Tìm và thêm cả ba nhóm đã được tạo bởi IDC stack:
+<ul>
+<li><code>{NAMESPACE}_IsbUsersGroup</code></li>
+<li><code>{NAMESPACE}_IsbManagersGroup</code></li>
+<li><code>{NAMESPACE}_IsbAdminsGroup</code></li>
+</ul>
+</li>
+<li>Chọn <strong>Assign</strong> để hoàn tất.</li>
+</ul>
+<h4 id="3-gán-nhóm-cho-người-dùng-assign-a-group-to-your-user">3. Gán nhóm cho người dùng (Assign a group to your user)</h4>
+<ul>
+<li>Trong IAM Identity Center console, chọn <strong>Users</strong> ở thanh điều hướng.</li>
+<li>Trong danh sách người dùng, chọn người dùng muốn gán vào nhóm. Để thêm người dùng mới, chọn <strong>Add user</strong>.</li>
+<li>Chọn tab <strong>Groups</strong>, sau đó nhấn <strong>Add user to groups</strong>.</li>
+<li>Chọn một trong ba nhóm đã tạo:
+<ul>
+<li><code>{NAMESPACE}_IsbUsersGroup</code></li>
+<li><code>{NAMESPACE}_IsbManagersGroup</code></li>
+<li><code>{NAMESPACE}_IsbAdminsGroup</code></li>
+</ul>
+</li>
+<li>Nhấn <strong>Add user to 1 group</strong> để hoàn tất.</li>
+</ul>
+<p><img src="/resources/_gen/images/users-and-groups.png" alt="architect" title="Architect"></p>
+<p><strong>Lưu ý:</strong><br>
+Để kiểm thử đủ ba vai trò người dùng (user personas), hãy đảm bảo có ít nhất ba người dùng, mỗi người thuộc một nhóm khác nhau.</p>
+<p>Sau khi hoàn thành các bước trên, bạn đã cấu hình thành công người dùng và nhóm cho giải pháp Innovation Sandbox trên AWS. Tiếp theo, bạn sẽ tiến hành cấu hình ứng dụng web trên tài khoản hub.</p>
+<h3 id="cấu-hình-ứng-dụng-web-với-aws-appconfig-và-aws-secrets-manager">Cấu hình Ứng dụng Web với AWS AppConfig và AWS Secrets Manager</h3>
+<p>Việc cấu hình ứng dụng web Innovation Sandbox trên AWS giúp kích hoạt xác thực người dùng và thiết lập các thông số toàn cục cho ứng dụng. Các thao tác này cần được thực hiện trong <strong>tài khoản hub</strong> và đúng <strong>home Region</strong> đã chọn.</p>
+<h4 id="1-cấu-hình-aws-appconfig">1. Cấu hình AWS AppConfig</h4>
+<ul>
+<li><strong>Mở AWS AppConfig console</strong> trong tài khoản hub.</li>
+<li>Ở thanh điều hướng, chọn <strong>Applications</strong>.</li>
+<li>Chọn ứng dụng <strong>InnovationSandboxData-Config-Application-XXXXXXX</strong>.</li>
+<li>Chọn <strong>InnovationSandboxData-Config-GlobalConfigHostedConfiguration-XXXXX</strong> (configuration profile).</li>
+<li>Chọn <strong>Create</strong> để tạo một phiên bản cấu hình mới (hosted configuration version).</li>
+</ul>
+<p><img src="/resources/_gen/images/appconfig.png" alt="architect" title="Architect"></p>
+<p><strong>Cập nhật cấu hình:</strong></p>
+<ul>
+<li>Đặt giá trị <code>maintenanceMode</code> thành <code>false</code> để mở ứng dụng cho người dùng.</li>
+</ul>
+<p><strong>Trong phần <code>auth</code>, cập nhật các trường sau:</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>Trường</th>
+          <th>Giá trị cập nhật</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>idpSignInUrl</td>
+          <td>URL đăng nhập từ bước cấu hình SAML 2.0 Application</td>
+      </tr>
+      <tr>
+          <td>idpSignOutUrl</td>
+          <td>URL đăng xuất từ bước cấu hình SAML 2.0 Application</td>
+      </tr>
+      <tr>
+          <td>idpAudience</td>
+          <td>Audience ID từ bước cấu hình SAML 2.0 Application</td>
+      </tr>
+      <tr>
+          <td>webAppUrl</td>
+          <td>CloudFront Distribution URL (Innovation Sandbox URL) từ Outputs tab của CloudFormation (tài khoản hub)</td>
+      </tr>
+      <tr>
+          <td>awsAccessPortalUrl</td>
+          <td>AWS Access Portal URL từ IAM Identity Center dashboard (tài khoản quản lý tổ chức)</td>
+      </tr>
+      <tr>
+          <td>sessionDurationInMinutes</td>
+          <td>Thời lượng phiên đăng nhập, ví dụ: 240</td>
+      </tr>
+      <tr>
+          <td>emailFrom</td>
+          <td>Địa chỉ email đăng nhập đã xác thực của bạn</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li>Sau khi cập nhật, chọn <strong>Create hosted configuration version</strong>.</li>
+<li>Chọn <strong>Start Deployment</strong> và chọn phiên bản cấu hình vừa tạo.</li>
+<li>Chọn <strong>Start Deployment</strong> để áp dụng cấu hình mới.</li>
+</ul>
+<h4 id="2-cập-nhật-giá-trị-chứng-chỉ-trong-aws-secrets-manager">2. Cập nhật giá trị chứng chỉ trong AWS Secrets Manager</h4>
+<ul>
+<li>Mở <strong>AWS Secrets Manager console</strong> trong tài khoản hub.</li>
+<li>Tìm và chọn secret:<br>
+<code>/InnovationSandbox//Auth/IDPCert</code></li>
+<li>Ở tab <strong>Overview</strong>, mục <strong>Secret value</strong>:
+<ul>
+<li>Chọn <strong>Retrieve secret value</strong>.</li>
+<li>Chọn <strong>Edit</strong>.</li>
+<li>Chọn <strong>Plaintext</strong>.</li>
+<li>Chọn <strong>Edit</strong> lần nữa.</li>
+<li>Dán nội dung file chứng chỉ IAM Identity Center (.pem) đã tải về khi tạo ứng dụng SAML 2.0.</li>
+<li>Chọn <strong>Save</strong> để lưu lại giá trị mới.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Lưu ý:</strong></p>
+<ul>
+<li>Đảm bảo mọi giá trị đều chính xác và nhất quán với các thông tin đã lấy ở các bước cấu hình trước (SAML, CloudFront, IAM Identity Center).</li>
+<li>Việc cấu hình đúng giúp hệ thống xác thực và phân quyền người dùng hiệu quả, đồng thời đảm bảo ứng dụng web Innovation Sandbox trên AWS hoạt động ổn định và an toàn.</li>
+</ul>
+<h3 id="onboard-sandbox-accounts-vào-innovation-sandbox-trên-aws">Onboard Sandbox Accounts vào Innovation Sandbox trên AWS</h3>
+<p>Việc onboard các tài khoản sandbox là bước cấu hình cuối cùng để hoàn thiện giải pháp Innovation Sandbox trên AWS. Bước này giúp di chuyển các tài khoản AWS vào đúng cấu trúc tổ chức và áp dụng các kiểm soát cần thiết.</p>
+<h4 id="lưu-ý-quan-trọng-1">Lưu ý quan trọng</h4>
+<ul>
+<li>Thực hiện các bước này trong <strong>tài khoản quản lý tổ chức</strong> (organization management account) – nơi đã cấu hình AWS IAM Identity Center.</li>
+<li>Đảm bảo bạn đang ở đúng <strong>home Region</strong> đã chọn cho toàn bộ hệ thống.</li>
+</ul>
+<h4 id="các-bước-onboard-tài-khoản-sandbox">Các bước Onboard Tài khoản Sandbox</h4>
+<p><strong>1. Mở AWS Organizations console</strong></p>
+<ul>
+<li>Đăng nhập vào AWS Management Console bằng tài khoản quản lý tổ chức.</li>
+<li>Mở <strong>AWS Organizations console</strong>.</li>
+</ul>
+<p><strong>2. Tìm và chọn các tài khoản cần di chuyển</strong></p>
+<ul>
+<li>Chọn mục <strong>AWS accounts</strong>.</li>
+<li>Tìm các tài khoản bạn muốn chuyển vào môi trường sandbox. Có thể duyệt theo cấu trúc OU hoặc chọn <strong>List</strong> để xem danh sách tài khoản dạng phẳng.</li>
+<li><strong>Lưu ý:</strong> Không chọn tài khoản quản lý tổ chức hoặc tài khoản hub.</li>
+</ul>
+<p><img src="/resources/_gen/images/account-onboarding.png" alt="architect" title="Architect"></p>
+<p><strong>3. Di chuyển tài khoản vào OU Entry</strong></p>
+<ul>
+<li>Đánh dấu chọn các tài khoản cần di chuyển.</li>
+<li>Tại menu <strong>Actions</strong> (hoặc menu thao tác tương ứng), chọn <strong>Move</strong> dưới mục AWS account.</li>
+<li>Trong hộp thoại <strong>Move AWS account</strong>, nhấn vào mũi tên cạnh OU của Innovation Sandbox on AWS (OU này đã được tạo khi triển khai AccountPool stack) để mở rộng và xem các OU con.</li>
+<li>Chọn <strong>Entry OU</strong> (OU con dùng cho sandbox accounts).</li>
+<li>Nhấn <strong>Move AWS accounts</strong> để xác nhận di chuyển.</li>
+</ul>
+<h4 id="kết-quả">Kết quả</h4>
+<ul>
+<li>Các tài khoản sandbox đã được di chuyển vào đúng OU trong cấu trúc tổ chức Innovation Sandbox trên AWS.</li>
+<li>Các chính sách kiểm soát và cấu hình liên quan sẽ tự động được áp dụng cho các tài khoản này.</li>
+</ul>
+<p>Việc onboard đúng các tài khoản vào Entry OU đảm bảo môi trường sandbox hoạt động tách biệt, an toàn và tuân thủ các chính sách quản trị của tổ chức.</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/vi/2-deploy-the-solution/" title="Khởi tạo Launch Template"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/vi/4-use-the-solution/" title="Khởi tạo Load Balancer" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1752249528"></script>
+    <script src="/js/perfect-scrollbar.min.js?1752249528"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1752249528"></script>
+    <script src="/js/jquery.sticky.js?1752249528"></script>
+    <script src="/js/featherlight.min.js?1752249528"></script>
+    <script src="/js/highlight.pack.js?1752249528"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1752249528"></script>
+    <script src="/js/learn.js?1752249528"></script>
+    <script src="/js/hugo-learn.js?1752249528"></script>
+
+    <link href="/mermaid/mermaid.css?1752249528" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1752249528"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-158079754-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </body>
+</html>

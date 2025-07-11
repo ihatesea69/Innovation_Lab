@@ -1,35 +1,102 @@
 +++
-title = "Helllo"
-date = 2021
+title = "Innovation Lab"
+date = 2025
 weight = 1
 chapter = false
 +++
 
-# Hello
+# Building a Comfortable Environment for Innovation and Learning on AWS
 
-#### Tổng quan
+#### Workshop Overview
 
-Ở bài thực hành này, chúng ta sẽ tiến hành việc triển khai ứng dụng với **Auto Scaling Group** nhằm đảm bảo khả năng co giãn của ứng dụng đó theo nhu cầu của người truy cập.
-Thêm vào đó, chúng ta cũng sẽ triển khai **Load Balancer** nhằm cân bằng tải và điều phối các yêu cầu truy cập từ phía người dùng đến Application Tier của chúng ta.
+# Introduction to Innovation Sandbox on AWS Workshop
 
-Hãy chắc chắn rằng bạn đã xem qua tài liệu [Triển khai Ứng dụng ShareNote trên Máy ảo Windows/AmazonLinux](https://000004.awsstudygroup.com/) và nắm được cách triển khai ứng dụng trên máy ảo. Chúng ta sẽ cần sử dụng máy ảo được triển khai ShareNote cho việc triển khai đồng loạt và mở rộng trong Auto Scaling Group.
+## Workshop Overview
 
-#### Auto Scaling Group
-**Auto Scaling Group** (*nhóm co giãn tự động*) là một nhóm các EC2 Instance. Nhóm này có thể co giãn số lượng của các EC2 Instance thành viên theo **chính sách co giãn** (*scaling policy*) mà bạn đặt ra.
+**Innovation Sandbox on AWS Workshop** is a guide to help learning groups or companies have a place to experiment and try things out without worrying about security or costs.
 
-#### Launch Template
-**Launch Template** (*khuôn mẫu khởi tạo*) là một tính năng giúp bạn tạo khuôn mẫu cho việc khởi tạo các EC2 Instance. Nhờ thế, bạn có thể quy trình hóa và đơn giản hóa công tác khởi tạo các EC2 Instance cho dịch vụ **Auto Scaling** (*co giãn tự động*).
 
-#### Load Balancer
-**Load Balancer** (*máy cân bằng tải*) là một công cụ có thể phân phối lưu lượng dữ liệu được trao đổi tới các tài nguyên AWS (cụ thể trong bài lab này là các EC2 Instances) trong **Target Group**.
 
-#### Target Group
-**Target Group** (*nhóm mục tiêu*) là một nhóm những thành phần tài nguyên AWS sẽ nhận lưu lượng dữ liệu được phân phối và truyền tải bởi **Load Balancer**.
 
-#### Nội dung:
-1. [Các bước chuẩn bị](1-prerequisite)
-2. [Khởi tạo Launch Template](2-launch-template)
-3. [Khởi tạo Target Group](3-target-group)
-4. [Khởi tạo Load Balancer](5-load-balance)
-5. [Khởi tạo Auto Scaling Group](4-asg) 
-6. [Kiểm tra kết quả](6-testing)
+![architect](/resources/_gen/images/high-level.png "Architect")
+### Main Objectives
+
+
+- **Manage separate AWS accounts for experimentation**
+- **Convenient cost management through web interface**.
+
+
+## Knowledge Requirements (Should know beforehand)
+
+- Knowledge of **AWS Organizations** and **AWS IAM Identity Center**
+- Basic understanding of **AWS CloudFormation** (just need to understand the concept since template files are already provided)
+
+## Implementation Time
+
+- **Total implementation time:** About 2 hours (may take longer if you want to dive deep)
+
+## Main Solution Components
+
+| Component                | Primary Role                                                                                           |
+|--------------------------|-------------------------------------------------------------------------------------------------------|
+| AWS IAM Identity Center  | User authentication, access management                                                               |
+| Amazon CloudFront        | Distribute user interface, serve web from S3, forward API to Lambda                                  |
+| AWS WAF                  | Security filtering for dynamic routes                                                                 |
+| AWS AppConfig            | Store solution configuration                                                                          |
+| AWS Organizations        | Manage multiple AWS accounts under one organization, group by OU, manage entire environment          |
+| AWS Lambda               | Execute provisioning logic, cleanup, sandbox account management, dynamic interfaces                  |
+| Amazon EventBridge       | Trigger tasks based on time or events                                                                |
+| AWS Step Functions       | Manage sandbox account state according to logical processes                                           |
+| AWS accounts             | Sandbox accounts prepared and distributed to end users                                               |
+
+![Account LifeCycle](/resources/_gen/images/sandbox-account-ou-lifecycle.png "a title")
+
+## Account Lifecycle
+
+1. **Account onboarding**: Accounts are brought into the system and cleaned up before use.
+2. **Available**: Accounts ready to be provisioned to users.
+3. **Active**: Accounts in use, system monitors cost and usage time.
+4. **Frozen**: Accounts frozen when exceeding budget or time, or by administrator.
+5. **Cleanup**: When accounts expire, system automatically cleans up resources.
+6. **Quarantine**: If cleanup process fails, accounts are quarantined for reprocessing.
+7. **Exit**: Accounts can be removed from system when necessary.
+
+## Detailed Explanation of Account Lifecycle Diagram
+
+The account lifecycle diagram describes the main states of a sandbox account in the system:
+- **Available**: Account ready for provisioning.
+- **Active**: Currently in use, monitoring cost and time.
+- **Frozen**: Frozen when exceeding spending/time limits or by administrator request.
+- **Cleanup**: Clean up account when usage expires.
+- **Quarantine**: Quarantine if cleanup fails, can retry.
+- **Entry/Exit**: Onboard or remove account from system.
+
+
+
+
+
+## Workshop Deployment Process
+
+### 1. Prerequisites (Preparation)
+- Prepare AWS environment, create accounts.
+- Time: 15-20 minutes (may take longer if creating new accounts).
+
+### 2. Deployment
+- Deploy CloudFormation stacks, configure infrastructure, set up management.
+- Time: ~45 minutes.
+
+### 3. Configuration
+- Configure SAML integration for authentication, set up user access, onboard sandbox accounts.
+- Time: ~15 minutes.
+
+### 4. Using the sandbox
+- Learn how to use the solution through three different roles.
+- Time: ~30 minutes.
+
+#### References Links:
+
+https://catalog.us-east-1.prod.workshops.aws/workshops/23f635fc-dc98-4f75-8b91-6f334d0e22c3
+
+https://docs.aws.amazon.com/solutions/latest/innovation-sandbox-on-aws/solution-overview.html
+
+https://aws.amazon.com/solutions/implementations/innovation-sandbox-on-aws/
