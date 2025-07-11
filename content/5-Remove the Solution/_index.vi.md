@@ -1,5 +1,5 @@
 +++
-title = "Khởi tạo Auto Scaling Group"
+title = "Remove the Solution"
 date = 2020
 weight = 5
 chapter = false

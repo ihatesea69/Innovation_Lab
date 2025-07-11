@@ -1,5 +1,5 @@
 +++
-title = "5-Remove the Solution"
+title = "Remove the Solution"
 date = 2025
 weight = 5
 chapter = false
