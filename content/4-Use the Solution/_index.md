@@ -31,7 +31,7 @@ Estimated practice time: about 30 minutes.
 **Note:**  
 If the interface has two tabs **Accounts** and **Applications**, choose **Applications** to enter the main application. The welcome page will appear.
 
-![architect](/images/Anha1.png "Architect")
+![architect](/resources/_gen/images/Anha1.png "Architect")
 
 #### 2. Add accounts for lease
 
@@ -40,7 +40,7 @@ If the interface has two tabs **Accounts** and **Applications**, choose **Applic
 - In **Select accounts**, you will see list of available accounts. If there are no accounts, ensure sandbox accounts have been moved to **Entry** OU in organizational unit with name like `your-namespace_InnovationSandboxAccountPool`.
 - Select one or more accounts to add, click **Next** then **Submit**.
 
-![architect](/images/Anha2.png "Architect")
+![architect](/resources/_gen/images/Anha2.png "Architect")
 
 - Return to **Accounts** to check status of added accounts.
 
@@ -53,7 +53,7 @@ If the interface has two tabs **Accounts** and **Applications**, choose **Applic
   - **Clean Up Settings**
 - To change these settings, you need to use **AWS AppConfig** (will be guided in next section).
 
-![architect](/images/Anha3.png "Architect")
+![architect](/resources/_gen/images/Anha3.png "Architect")
 
 #### 4. Create Service Control Policy (SCP) to limit resources
 
@@ -66,7 +66,7 @@ Example: Create SCP to prevent sandbox users from launching `m5.large` EC2 insta
 - In navigation bar, choose **Policies**.
 - Under **Supported policy types**, choose **Service control policies**.
 
-![architect](/images/Anha4.png "Architect")
+![architect](/resources/_gen/images/Anha4.png "Architect")
 
 - Click **Create policy** and enter:
   - **Policy name:** RestrictEC2Instances
@@ -98,7 +98,7 @@ Example: Create SCP to prevent sandbox users from launching `m5.large` EC2 insta
 - Choose **Targets** tab, click **Attach**.
 - Choose OU named `your-namespace_InnovationSandboxAccountPool` and click **Attach policy**.
 
-![architect](/images/Anha6.png "Architect")
+![architect](/resources/_gen/images/Anha6.png "Architect")
 
 **Result:**  
 Users in sandbox accounts will not be able to launch `m5.large` EC2 instances.
@@ -139,12 +139,12 @@ Perform these steps in the **hub account**, not the organization management acco
 
 
 
-![architect](/images/Manager1.png "Architect")
+![architect](/resources/_gen/images/Manager1.png "Architect")
 
 - In **Hosted configuration versions**, choose **Create**.
 - Change **maxBudget** field to **50** (USD).
 
-![architect](/images/Manager2.png "Architect")
+![architect](/resources/_gen/images/Manager2.png "Architect")
 
 - Choose **Create hosted configuration version**.
 - Choose **Start deployment**.
@@ -181,7 +181,7 @@ This guide helps you create lease template for accounts that don't need manager 
 - In **Description** field, enter: `Basic account lease template`.
 - Uncheck **Approval required** box (users don't need manager approval when requesting this type of account).
 
-![architect](/images/Manager3.png "Architect")
+![architect](/resources/_gen/images/Manager3.png "Architect")
 
 - Choose **Next**.
 - In **Maximum budget** field, enter: `100`, choose **Next**.
@@ -197,7 +197,7 @@ This guide helps you create lease template for accounts that don't need manager 
 - Choose **Submit**.
 - Under **Lease Templates**, you will see the just created lease template.
 
-![architect](/images/Manager4.png "Architect")
+![architect](/resources/_gen/images/Manager4.png "Architect")
 
 
 ### Creating Advanced Lease Template
@@ -224,7 +224,7 @@ This section guides you to create lease template requiring manager approval. Thi
 - Choose **Submit**.
 - Under **Lease Templates**, you will see both created lease templates.
 
-![architect](/images/Manager5.png "Architect")
+![architect](/resources/_gen/images/Manager5.png "Architect")
 
 ### Next steps
 
@@ -257,18 +257,18 @@ Basic accounts will be automatically approved, allowing you immediate access to 
 - Choose **Basic lease template**, click **Next**.
 - Check **I accept the above terms of service**, click **Next**.
 
-![architect](/images/User1.png "Architect")
+![architect](/resources/_gen/images/User1.png "Architect")
 
 - In **Comments** section, enter reason (example: `Request for a basic account`).
 - Choose **Submit**.
 - In left navigation bar, choose **Home**. In **Account** section, click **Refresh** to update account status.
 
-![architect](/images/User2.png "Architect")
+![architect](/resources/_gen/images/User2.png "Architect")
 
 - When account has been granted, under **Access** section, choose **Login to account** for the newly added account.
 - Choose the role appearing in **Select a role** section to enter AWS Management Console.
 
-![architect](/images/User3.png "Architect")
+![architect](/resources/_gen/images/User3.png "Architect")
 
 #### 2. Check Service Control Policy (SCP) limits
 
@@ -281,14 +281,14 @@ You can check SCP effectiveness by trying to create a restricted EC2 instance.
 - Choose **Launch instances**.
 - In **Name** field, enter `test-scp`. Keep default Amazon Machine Image (AMI).
 
-![architect](/images/User4.png "Architect")
+![architect](/resources/_gen/images/User4.png "Architect")
 
 - In **Instance type** field, choose **m5.large** (this type is blocked by SCP).
 - In **Key pair**, choose **Proceed without a key pair**.
 - Keep other default settings, then choose **Launch instance**.
 - You will see error message due to SCP not allowing **m5.large** EC2 instance type creation.
 
-![architect](/images/User5.png "Architect")
+![architect](/resources/_gen/images/User5.png "Architect")
 
 #### 3. Request advanced account
 
@@ -315,9 +315,9 @@ Advanced accounts require manager approval before being granted access.
 - You will see two leases: one for basic account, one for advanced account.
 - Can choose lease and use **Actions** to terminate, suspend or update lease.
 
-![architect](/images/User6.png "Architect")
+![architect](/resources/_gen/images/User6.png "Architect")
 
-![architect](/images/User7.png "Architect")
+![architect](/resources/_gen/images/User7.png "Architect")
 
 #### 4. Summary of functions and user experience
 

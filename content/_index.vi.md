@@ -7,10 +7,6 @@ chapter = false
 
 # Xây dựng một không gian thực hành thoải mái sáng tạo và học tập trên AWS
 
-#### Tổng quan về Workshop
-
-# Giới thiệu về Innovation Sandbox on AWS Workshop
-
 ## Tổng quan về Workshop
 
 **Innovation Sandbox on AWS Workshop** là một hướng dẫn giúp các nhóm học tập hay công ty có một nơi để vọc vạch hay là thử nghiệm này kia mà không phải lo về bảo mật hay chi phí

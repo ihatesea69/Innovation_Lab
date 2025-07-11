@@ -12,21 +12,21 @@
     <title>Khởi tạo Load Balancer :: Triển khai Ứng dụng ShareNote với Auto Scaling Group</title>
 
     
-    <link href="/css/nucleus.css?1752249549" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1752249549" rel="stylesheet">
-    <link href="/css/hybrid.css?1752249549" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1752249549" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1752249549" rel="stylesheet">
-    <link href="/css/auto-complete.css?1752249549" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1752249549" rel="stylesheet">
-    <link href="/css/theme.css?1752249549" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1752249549" rel="stylesheet">
+    <link href="/css/nucleus.css?1752251807" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1752251807" rel="stylesheet">
+    <link href="/css/hybrid.css?1752251807" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1752251807" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1752251807" rel="stylesheet">
+    <link href="/css/auto-complete.css?1752251807" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1752251807" rel="stylesheet">
+    <link href="/css/theme.css?1752251807" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1752251807" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1752249549" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1752251807" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1752249549"></script>
+    <script src="/js/jquery-3.3.1.min.js?1752251807"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1752249549"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1752249549"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1752251807"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1752251807"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/\/vi";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1752249549"></script>
+<script type="text/javascript" src="/js/search.js?1752251807"></script>
 
     
   </div>
@@ -108,13 +108,13 @@
  
   
     
-    <li data-nav-id="/vi/2-deploy-the-solution/" title="Khởi tạo Launch Template" class="dd-item 
+    <li data-nav-id="/vi/2-deploy-the-solution/" title="Deploy the Solution" class="dd-item 
         
         
         
         ">
       <a href="/vi/2-deploy-the-solution/">
-          <b>2. </b>Khởi tạo Launch Template
+          <b>2. </b>Deploy the Solution
           
             <i class="fas fa-check read-icon"></i>
           
@@ -358,15 +358,13 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#sử-dụng-innovation-sandbox-trên-aws">Sử dụng Innovation Sandbox trên AWS</a></li>
-        <li><a href="#sử-dụng-với-vai-trò-administrator">Sử dụng với vai trò Administrator</a></li>
-        <li><a href="#sử-dụng-innovation-sandbox-on-aws-với-vai-trò-manager">Sử dụng Innovation Sandbox on AWS với vai trò Manager</a></li>
-        <li><a href="#chỉnh-sửa-thiết-lập-bằng-aws-appconfig">Chỉnh sửa thiết lập bằng AWS AppConfig</a></li>
-        <li><a href="#tạo-lease-template-mẫu-cấp-phát-tài-khoản">Tạo Lease Template (Mẫu cấp phát tài khoản)</a></li>
-        <li><a href="#tạo-lease-template-cơ-bản">Tạo Lease Template cơ bản</a></li>
-        <li><a href="#tạo-lease-template-nâng-cao">Tạo Lease Template nâng cao</a></li>
-        <li><a href="#bước-tiếp-theo">Bước tiếp theo</a></li>
-        <li><a href="#sử-dụng-innovation-sandbox-on-aws-với-vai-trò-end-user">Sử dụng Innovation Sandbox on AWS với vai trò End-User</a></li>
+        <li><a href="#sử-dụng-hệ-thống">Sử dụng hệ thống</a></li>
+        <li><a href="#vai-trò-administrator">Vai trò Administrator</a></li>
+        <li><a href="#vai-trò-manager">Vai trò Manager</a></li>
+        <li><a href="#tạo-lease-template">Tạo Lease Template</a></li>
+        <li><a href="#tạo-basic-template">Tạo Basic Template</a></li>
+        <li><a href="#tạo-advanced-template">Tạo Advanced Template</a></li>
+        <li><a href="#vai-trò-end-user">Vai trò End-User</a></li>
       </ul>
     </li>
   </ul>
@@ -394,68 +392,66 @@
 
 
 
-	<h3 id="sử-dụng-innovation-sandbox-trên-aws">Sử dụng Innovation Sandbox trên AWS</h3>
-<p>Sau khi đã triển khai đầy đủ các stack và cấu hình người dùng, bạn có thể bắt đầu sử dụng giải pháp Innovation Sandbox trên AWS. Dưới đây là hướng dẫn chi tiết cách sử dụng với vai trò <strong>administrator</strong>.</p>
-<h4 id="tổng-quan">Tổng quan</h4>
-<p>Giải pháp hỗ trợ ba vai trò sử dụng chính:</p>
+	<h3 id="sử-dụng-hệ-thống">Sử dụng hệ thống</h3>
+<p>Okay giờ đã setup xong hết rồi, chúng ta sẽ thử xài hệ thống với 3 vai trò khác nhau để xem nó hoạt động thế nào.</p>
+<h4 id="ba-vai-trò-chính">Ba vai trò chính</h4>
 <ul>
-<li><strong>Administrator (Quản trị viên)</strong></li>
-<li><strong>Manager (Quản lý)</strong></li>
-<li><strong>End user (Người dùng cuối)</strong></li>
+<li><strong>Administrator</strong> - quản trị viên, quyền cao nhất</li>
+<li><strong>Manager</strong> - quản lý, tạo template và approve request</li>
+<li><strong>End user</strong> - người dùng cuối, request tài khoản để xài</li>
 </ul>
-<p>Thời gian thực hành dự kiến: khoảng 30 phút.</p>
-<h3 id="sử-dụng-với-vai-trò-administrator">Sử dụng với vai trò Administrator</h3>
-<h4 id="1-truy-cập-innovation-sandbox-trên-aws">1. Truy cập Innovation Sandbox trên AWS</h4>
+<p>Dự kiến mất khoảng 30 phút để thử hết.</p>
+<h3 id="vai-trò-administrator">Vai trò Administrator</h3>
+<h4 id="1-đăng-nhập-vào-hệ-thống">1. Đăng nhập vào hệ thống</h4>
 <ul>
-<li>Lấy URL truy cập giải pháp (CloudFrontDistributionUrl đã lưu từ bước triển khai).</li>
-<li>Mở URL này trên trình duyệt.</li>
-<li>Đăng nhập bằng tài khoản administrator. Nếu là lần đầu đăng nhập, chọn <strong>Forgot password</strong> để thiết lập mật khẩu.</li>
+<li>Lấy URL từ CloudFrontDistributionUrl đã lưu lúc deploy</li>
+<li>Mở URL trên browser</li>
+<li>Đăng nhập bằng tài khoản admin. Lần đầu thì chọn <strong>Forgot password</strong> để set mật khẩu</li>
 </ul>
-<p><strong>Lưu ý:</strong><br>
-Nếu giao diện có hai tab <strong>Accounts</strong> và <strong>Applications</strong>, hãy chọn <strong>Applications</strong> để vào ứng dụng chính. Trang chào mừng sẽ xuất hiện.</p>
+<p><strong>Lưu ý:</strong> Nếu thấy hai tab <strong>Accounts</strong> và <strong>Applications</strong>, chọn <strong>Applications</strong> để vào app chính.</p>
 <p><img src="/resources/_gen/images/Anha1.png" alt="architect" title="Architect"></p>
-<h4 id="2-thêm-tài-khoản-để-cho-thuê-lease">2. Thêm tài khoản để cho thuê (lease)</h4>
+<h4 id="2-thêm-tài-khoản-cho-thuê">2. Thêm tài khoản cho thuê</h4>
 <ul>
-<li>Trong thanh điều hướng bên trái, dưới mục <strong>Administration</strong>, chọn <strong>Accounts</strong>.</li>
-<li>Nhấn <strong>Add accounts</strong>.</li>
-<li>Ở mục <strong>Select accounts</strong>, bạn sẽ thấy danh sách các tài khoản có sẵn. Nếu chưa có tài khoản nào, hãy đảm bảo các sandbox account đã được đưa vào OU <strong>Entry</strong> trong organizational unit có tên dạng <code>your-namespace_InnovationSandboxAccountPool</code>.</li>
-<li>Chọn một hoặc nhiều tài khoản muốn thêm, nhấn <strong>Next</strong> và sau đó <strong>Submit</strong>.</li>
+<li>Thanh điều hướng bên trái, <strong>Administration</strong> &gt; <strong>Accounts</strong></li>
+<li>Click <strong>Add accounts</strong></li>
+<li>Mục <strong>Select accounts</strong>, sẽ thấy danh sách tài khoản có sẵn. Nếu không có gì thì check lại xem sandbox account đã được move vào OU <strong>Entry</strong> chưa</li>
+<li>Chọn một vài tài khoản, <strong>Next</strong> rồi <strong>Submit</strong></li>
 </ul>
 <p><img src="/resources/_gen/images/Anha2.png" alt="architect" title="Architect"></p>
 <ul>
-<li>Quay lại mục <strong>Accounts</strong> để kiểm tra trạng thái các tài khoản đã thêm.</li>
+<li>Quay lại <strong>Accounts</strong> để check trạng thái</li>
 </ul>
-<h4 id="3-quản-lý-cài-đặt-hệ-thống">3. Quản lý cài đặt hệ thống</h4>
+<h4 id="3-quản-lý-cài-đặt">3. Quản lý cài đặt</h4>
 <ul>
-<li>Trong thanh điều hướng, dưới <strong>Administration</strong>, chọn <strong>Settings</strong>.</li>
-<li>Có ba tab chính:
+<li>Thanh điều hướng, <strong>Administration</strong> &gt; <strong>Settings</strong></li>
+<li>Có ba tab:
 <ul>
 <li><strong>General Settings</strong></li>
-<li><strong>Lease Settings</strong> (giới hạn ngân sách tối đa mặc định là $100 USD)</li>
+<li><strong>Lease Settings</strong> (ngân sách tối đa mặc định $100)</li>
 <li><strong>Clean Up Settings</strong></li>
 </ul>
 </li>
-<li>Để thay đổi các cài đặt này, bạn cần sử dụng <strong>AWS AppConfig</strong> (sẽ được hướng dẫn ở phần tiếp theo).</li>
+<li>Muốn đổi thì phải dùng <strong>AWS AppConfig</strong> (hướng dẫn ở phần sau)</li>
 </ul>
 <p><img src="/resources/_gen/images/Anha3.png" alt="architect" title="Architect"></p>
-<h4 id="4-tạo-service-control-policy-scp-giới-hạn-tài-nguyên">4. Tạo Service Control Policy (SCP) giới hạn tài nguyên</h4>
-<p>Ví dụ: Tạo SCP để ngăn người dùng sandbox khởi tạo EC2 instance loại <code>m5.large</code>.</p>
-<p><strong>Các bước thực hiện:</strong></p>
+<h4 id="4-tạo-service-control-policy-để-giới-hạn">4. Tạo Service Control Policy để giới hạn</h4>
+<p>Ví dụ: Tạo SCP để không cho user tạo EC2 instance loại <code>m5.large</code>.</p>
+<p><strong>Các bước:</strong></p>
 <ul>
-<li>Đăng nhập vào <strong>organization management account</strong> (tài khoản quản lý tổ chức).</li>
-<li>Mở <strong>AWS Organizations</strong>.</li>
-<li>Trong thanh điều hướng, chọn <strong>Policies</strong>.</li>
-<li>Dưới <strong>Supported policy types</strong>, chọn <strong>Service control policies</strong>.</li>
+<li>Đăng nhập <strong>organization management account</strong></li>
+<li>Mở <strong>AWS Organizations</strong></li>
+<li>Thanh điều hướng chọn <strong>Policies</strong></li>
+<li><strong>Supported policy types</strong> &gt; <strong>Service control policies</strong></li>
 </ul>
 <p><img src="/resources/_gen/images/Anha4.png" alt="architect" title="Architect"></p>
 <ul>
-<li>Nhấn <strong>Create policy</strong> và nhập:
+<li>Click <strong>Create policy</strong>:
 <ul>
 <li><strong>Policy name:</strong> RestrictEC2Instances</li>
 <li><strong>Policy description:</strong> This SCP restricts launching certain EC2 instance types.</li>
 </ul>
 </li>
-<li>Dán đoạn JSON sau vào policy editor:</li>
+<li>Dán JSON này vào policy editor:</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Version&#34;</span>: <span style="color:#e6db74">&#34;2012-10-17&#34;</span>,
@@ -475,227 +471,186 @@ Nếu giao diện có hai tab <strong>Accounts</strong> và <strong>Applications
 </span></span><span style="display:flex;"><span>  ]
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><ul>
-<li>Nhấn <strong>Create policy</strong> để lưu.</li>
-<li>Quay lại mục <strong>Policies</strong>, chọn policy vừa tạo.</li>
-<li>Chọn tab <strong>Targets</strong>, nhấn <strong>Attach</strong>.</li>
-<li>Chọn OU có tên <code>your-namespace_InnovationSandboxAccountPool</code> và nhấn <strong>Attach policy</strong>.</li>
-<li></li>
+<li><strong>Create policy</strong></li>
+<li>Quay lại <strong>Policies</strong>, chọn policy vừa tạo</li>
+<li>Tab <strong>Targets</strong>, click <strong>Attach</strong></li>
+<li>Chọn OU tên <code>your-namespace_InnovationSandboxAccountPool</code>, <strong>Attach policy</strong></li>
 </ul>
 <p><img src="/resources/_gen/images/Anha6.png" alt="architect" title="Architect"></p>
-<p><strong>Kết quả:</strong><br>
-Người dùng trong các sandbox account sẽ không thể khởi tạo EC2 instance loại <code>m5.large</code>.</p>
-<h4 id="tiếp-theo">Tiếp theo</h4>
+<p><strong>Kết quả:</strong> User trong sandbox account không thể tạo EC2 instance <code>m5.large</code> nữa.</p>
+<h3 id="vai-trò-manager">Vai trò Manager</h3>
+<p>Manager có thể chỉnh sửa cài đặt và tạo template cho user request tài khoản.</p>
+<h4 id="chỉnh-sửa-cài-đặt-bằng-appconfig">Chỉnh sửa cài đặt bằng AppConfig</h4>
+<p><strong>Lưu ý quan trọng:</strong> Làm ở <strong>tài khoản hub</strong>, không phải tài khoản quản lý. Đúng <strong>home Region</strong>.</p>
+<p><strong>Các bước:</strong></p>
 <ul>
-<li>Bạn có thể tiếp tục tìm hiểu cách thay đổi cài đặt hệ thống qua <strong>AWS AppConfig</strong> và cách sử dụng giải pháp với vai trò <strong>manager</strong> và <strong>end user</strong> trong các bước tiếp theo.</li>
-</ul>
-<p><strong>Lưu ý:</strong></p>
-<ul>
-<li>Các thao tác quản trị cần thực hiện đúng tài khoản và Region đã cấu hình.</li>
-<li>Đảm bảo các tài khoản sandbox đã được onboard vào đúng OU để xuất hiện trong danh sách cho thuê.</li>
-</ul>
-<hr>
-<h3 id="sử-dụng-innovation-sandbox-on-aws-với-vai-trò-manager">Sử dụng Innovation Sandbox on AWS với vai trò Manager</h3>
-<p>Giải pháp Innovation Sandbox on AWS hỗ trợ ba vai trò: <strong>administrator</strong>, <strong>manager</strong>, và <strong>end user</strong>. Phần này hướng dẫn chi tiết cách sử dụng giải pháp với vai trò <strong>manager</strong>.</p>
-<h4 id="tổng-quan-1">Tổng quan</h4>
-<p>Trong phần này, bạn sẽ thực hiện:</p>
-<ul>
-<li>Chỉnh sửa các thiết lập của Innovation Sandbox on AWS bằng AWS AppConfig.</li>
-<li>Tạo mẫu cấp phát tài khoản (lease template) cơ bản.</li>
-<li>Tạo mẫu cấp phát tài khoản nâng cao.</li>
-</ul>
-<h3 id="chỉnh-sửa-thiết-lập-bằng-aws-appconfig">Chỉnh sửa thiết lập bằng AWS AppConfig</h3>
-<p><strong>Lưu ý quan trọng:</strong><br>
-Thực hiện các bước này trong <strong>tài khoản hub</strong> (hub account), không phải tài khoản quản lý tổ chức. Đảm bảo bạn đang ở đúng <strong>home Region</strong> của tài khoản này.</p>
-<p><strong>Các bước chỉnh sửa thiết lập:</strong></p>
-<ul>
-<li>Đăng nhập vào tài khoản hub.</li>
-<li>Trên thanh tìm kiếm của console, nhập và chọn <strong>AWS AppConfig</strong>.</li>
-<li>Trong thanh điều hướng, dưới AWS AppConfig, chọn <strong>Applications</strong>.</li>
-<li>Chọn đường dẫn tới ứng dụng đã được tạo cho bạn.</li>
-<li>Dưới phần <strong>Configuration Profiles and Feature Flags</strong>, chọn đường dẫn có tên <strong>InnovationSandboxData-Config-GlobalConfigHostedConfiguration-ID</strong>.</li>
+<li>Đăng nhập tài khoản hub</li>
+<li>Thanh tìm kiếm console, nhập <strong>AWS AppConfig</strong></li>
+<li>Thanh điều hướng chọn <strong>Applications</strong></li>
+<li>Chọn app đã tạo</li>
+<li>Chọn <strong>InnovationSandboxData-Config-GlobalConfigHostedConfiguration-ID</strong></li>
 </ul>
 <p><img src="/resources/_gen/images/Manager1.png" alt="architect" title="Architect"></p>
 <ul>
-<li>Trong phần <strong>Hosted configuration versions</strong>, chọn <strong>Create</strong>.</li>
-<li>Thay đổi trường <strong>maxBudget</strong> thành <strong>50</strong> (USD).</li>
+<li><strong>Hosted configuration versions</strong> &gt; <strong>Create</strong></li>
+<li>Đổi <strong>maxBudget</strong> thành <strong>50</strong> (USD)</li>
 </ul>
 <p><img src="/resources/_gen/images/Manager2.png" alt="architect" title="Architect"></p>
 <ul>
-<li>Chọn <strong>Create hosted configuration version</strong>.</li>
-<li>Chọn <strong>Start deployment</strong>.</li>
-<li>Chọn phiên bản cấu hình vừa tạo, giữ nguyên các thiết lập mặc định còn lại và chọn <strong>Start deployment</strong>.</li>
+<li><strong>Create hosted configuration version</strong></li>
+<li><strong>Start deployment</strong></li>
+<li>Chọn phiên bản vừa tạo, giữ nguyên setting khác, <strong>Start deployment</strong></li>
 </ul>
-<h3 id="tạo-lease-template-mẫu-cấp-phát-tài-khoản">Tạo Lease Template (Mẫu cấp phát tài khoản)</h3>
-<h4 id="giới-thiệu-về-lease-template">Giới thiệu về Lease Template</h4>
-<p>Lease template là tập hợp các thông số và quy tắc định nghĩa cách người dùng truy cập và sử dụng tài nguyên trong môi trường Innovation Sandbox on AWS. Đây là bản mẫu để tạo các lease riêng lẻ (phiên truy cập có kiểm soát vào tài nguyên đám mây). Các thành phần chính của lease template gồm:</p>
+<h3 id="tạo-lease-template">Tạo Lease Template</h3>
+<h4 id="lease-template-là-gì">Lease Template là gì</h4>
+<p>Về cơ bản thì đây là bộ quy tắc định nghĩa user có thể xài tài nguyên thế nào:</p>
 <ul>
-<li><strong>Phân bổ tài nguyên:</strong> Định nghĩa ngân sách tối đa có thể sử dụng trong thời gian lease.</li>
-<li><strong>Thời lượng:</strong> Xác định thời gian tối đa một lease có thể hoạt động.</li>
-<li><strong>Quy trình phê duyệt:</strong> Xác định có cần quản lý phê duyệt trước khi cấp lease hay không.</li>
-<li><strong>Cảnh báo và ngưỡng:</strong> Thiết lập các cảnh báo dựa trên mức tiêu thụ ngân sách hoặc thời gian còn lại.</li>
+<li><strong>Ngân sách tối đa:</strong> Có thể tiêu bao nhiêu tiền</li>
+<li><strong>Thời gian:</strong> Được xài bao lâu</li>
+<li><strong>Approval:</strong> Có cần manager duyệt không</li>
+<li><strong>Cảnh báo:</strong> Báo khi sắp hết tiền hoặc thời gian</li>
 </ul>
-<p>Bạn sẽ tạo hai loại mẫu:</p>
+<p>Sẽ tạo hai loại:</p>
 <ul>
-<li><strong>Mẫu cơ bản (Basic):</strong> Ngân sách tối đa $25, phê duyệt tự động, phù hợp cho dự án nhỏ và kiểm thử thông thường.</li>
-<li><strong>Mẫu nâng cao (Advanced):</strong> Ngân sách tối đa $50, yêu cầu quản lý phê duyệt, phù hợp cho dự án lớn cần kiểm soát chặt chẽ hơn.</li>
+<li><strong>Basic:</strong> $25, tự động approve, cho test nhỏ</li>
+<li><strong>Advanced:</strong> $50, cần approve, cho dự án lớn</li>
 </ul>
-<h3 id="tạo-lease-template-cơ-bản">Tạo Lease Template cơ bản</h3>
-<p>Hướng dẫn này giúp bạn tạo mẫu lease cho các tài khoản không cần phê duyệt của quản lý. Mẫu này cho phép ngân sách tối đa $25, cảnh báo khi tiêu $15, thời lượng 168 giờ (1 tuần), cảnh báo trước khi hết hạn 24 giờ.</p>
-<p><strong>Các bước thực hiện:</strong></p>
+<h3 id="tạo-basic-template">Tạo Basic Template</h3>
+<p>Template này cho những request không cần duyệt. $25 tối đa, báo khi tiêu $15, dùng được 168 tiếng (1 tuần), báo trước 24 tiếng khi hết hạn.</p>
+<p><strong>Các bước:</strong></p>
 <ul>
-<li>Trên console Innovation Sandbox on AWS, chọn profile người dùng ở góc trên bên phải và chọn <strong>Sign out</strong>.</li>
-<li>Đăng nhập bằng tài khoản manager. Nếu là lần đầu đăng nhập, sử dụng chức năng <strong>Forgot password</strong>.</li>
-<li>Nếu màn hình hiển thị hai tab <strong>Accounts</strong> và <strong>Applications</strong>, chọn <strong>Applications</strong> để vào ứng dụng. Bạn sẽ thấy trang chào mừng của Innovation Sandbox.</li>
-<li>Trong thanh điều hướng, chọn <strong>Lease Templates</strong>.</li>
-<li>Chọn <strong>Add new lease template</strong>.</li>
-<li>Ở trường <strong>Name</strong>, nhập: <code>Basic</code>.</li>
-<li>Ở trường <strong>Description</strong>, nhập: <code>Basic account lease template</code>.</li>
-<li>Bỏ chọn ô <strong>Approval required</strong> (người dùng không cần quản lý phê duyệt khi yêu cầu loại tài khoản này).</li>
+<li>Console Innovation Sandbox, chọn profile góc trên phải &gt; <strong>Sign out</strong></li>
+<li>Đăng nhập bằng tài khoản manager. Lần đầu dùng <strong>Forgot password</strong></li>
+<li>Nếu có hai tab <strong>Accounts</strong> và <strong>Applications</strong>, chọn <strong>Applications</strong></li>
+<li>Thanh điều hướng chọn <strong>Lease Templates</strong></li>
+<li><strong>Add new lease template</strong></li>
+<li><strong>Name:</strong> <code>Basic</code></li>
+<li><strong>Description:</strong> <code>Basic account lease template</code></li>
+<li>Bỏ tick <strong>Approval required</strong> (không cần manager duyệt)</li>
 </ul>
 <p><img src="/resources/_gen/images/Manager3.png" alt="architect" title="Architect"></p>
 <ul>
-<li>Chọn <strong>Next</strong>.</li>
-<li>Ở trường <strong>Maximum budget</strong>, nhập: <code>100</code>, chọn <strong>Next</strong>.</li>
-<li>Nếu bạn đã chỉnh sửa AppConfig đúng, sẽ xuất hiện thông báo lỗi về ngân sách tối đa là $50. Đổi trường <strong>Maximum Budget Amount</strong> thành <code>25</code>.</li>
-<li>Dưới <strong>Budget Thresholds</strong>, chọn <strong>Add a threshold</strong>.
+<li><strong>Next</strong></li>
+<li><strong>Maximum budget:</strong> <code>100</code>, <strong>Next</strong></li>
+<li>Nếu đã chỉnh AppConfig đúng sẽ báo lỗi ngân sách tối đa $50. Đổi <strong>Maximum Budget Amount</strong> thành <code>25</code></li>
+<li><strong>Budget Thresholds</strong> &gt; <strong>Add a threshold</strong>:
 <ul>
-<li>Ở <strong>amount consumed</strong>, nhập <code>15</code>.</li>
-<li>Ở <strong>action</strong>, chọn <strong>Send Alert</strong>. Người dùng sẽ nhận cảnh báo khi tiêu $15, và tài khoản sẽ bị xóa khi tiêu hết $25.</li>
+<li><strong>amount consumed:</strong> <code>15</code></li>
+<li><strong>action:</strong> <strong>Send Alert</strong>. User sẽ nhận cảnh báo khi tiêu $15, xóa account khi tiêu hết $25</li>
 </ul>
 </li>
-<li>Chọn <strong>Next</strong>.</li>
-<li>Ở <strong>Maximum Duration</strong>, chọn <strong>Set a maximum duration</strong> và nhập <code>168</code>.</li>
-<li>Dưới <strong>Duration Thresholds</strong>, chọn <strong>Add a threshold</strong>.
+<li><strong>Next</strong></li>
+<li><strong>Maximum Duration</strong> &gt; <strong>Set a maximum duration</strong> &gt; <code>168</code></li>
+<li><strong>Duration Thresholds</strong> &gt; <strong>Add a threshold</strong>:
 <ul>
-<li>Ở <strong>remaining hours</strong>, nhập <code>24</code>.</li>
-<li>Ở <strong>action</strong>, chọn <strong>Send Alert</strong>. Người dùng sẽ nhận cảnh báo khi còn 24 giờ lease.</li>
+<li><strong>remaining hours:</strong> <code>24</code></li>
+<li><strong>action:</strong> <strong>Send Alert</strong>. Báo khi còn 24 tiếng</li>
 </ul>
 </li>
-<li>Chọn <strong>Submit</strong>.</li>
-<li>Dưới <strong>Lease Templates</strong>, bạn sẽ thấy mẫu lease vừa tạo.</li>
+<li><strong>Submit</strong></li>
 </ul>
 <p><img src="/resources/_gen/images/Manager4.png" alt="architect" title="Architect"></p>
-<h3 id="tạo-lease-template-nâng-cao">Tạo Lease Template nâng cao</h3>
-<p>Phần này hướng dẫn bạn tạo mẫu lease yêu cầu quản lý phê duyệt. Mẫu này có ngân sách tối đa $50, cảnh báo ở mức $40, thời lượng 168 giờ, cảnh báo trước khi hết hạn 24 giờ. Thích hợp cho dự án lớn cần giám sát kỹ hơn.</p>
-<p><strong>Các bước thực hiện:</strong></p>
+<h3 id="tạo-advanced-template">Tạo Advanced Template</h3>
+<p>Template này cần manager approve. $50 tối đa, báo ở $40, thời gian 168 tiếng, báo trước 24 tiếng.</p>
+<p><strong>Các bước:</strong></p>
 <ul>
-<li>Trong thanh điều hướng, chọn <strong>Lease Templates</strong>.</li>
-<li>Chọn <strong>Add new lease template</strong>.</li>
-<li>Ở trường <strong>Name</strong>, nhập: <code>Advanced</code>.</li>
-<li>Ở trường <strong>Description</strong>, nhập: <code>Advanced account lease template</code>.</li>
-<li>Giữ nguyên ô <strong>Approval required</strong> được chọn (người dùng cần quản lý phê duyệt khi yêu cầu loại tài khoản này).</li>
-<li>Chọn <strong>Next</strong>.</li>
-<li>Ở trường <strong>Maximum budget</strong>, nhập: <code>50</code>, chọn <strong>Next</strong>.</li>
-<li>Dưới <strong>Budget Thresholds</strong>, chọn <strong>Add a threshold</strong>.
+<li><strong>Lease Templates</strong> &gt; <strong>Add new lease template</strong></li>
+<li><strong>Name:</strong> <code>Advanced</code></li>
+<li><strong>Description:</strong> <code>Advanced account lease template</code></li>
+<li>Giữ nguyên <strong>Approval required</strong> (cần manager duyệt)</li>
+<li><strong>Next</strong></li>
+<li><strong>Maximum budget:</strong> <code>50</code>, <strong>Next</strong></li>
+<li><strong>Budget Thresholds</strong> &gt; <strong>Add a threshold</strong>:
 <ul>
-<li>Ở <strong>amount consumed</strong>, nhập <code>40</code>.</li>
-<li>Ở <strong>action</strong>, chọn <strong>Send Alert</strong>. Người dùng sẽ nhận cảnh báo khi tiêu $40, và tài khoản sẽ bị xóa khi tiêu hết $50.</li>
+<li><strong>amount consumed:</strong> <code>40</code></li>
+<li><strong>action:</strong> <strong>Send Alert</strong></li>
 </ul>
 </li>
-<li>Chọn <strong>Next</strong>.</li>
-<li>Ở <strong>Maximum Duration</strong>, chọn <strong>Set a maximum duration</strong> và nhập <code>168</code>.</li>
-<li>Dưới <strong>Duration Thresholds</strong>, chọn <strong>Add a threshold</strong>.
+<li><strong>Next</strong></li>
+<li><strong>Maximum Duration</strong> &gt; <strong>Set a maximum duration</strong> &gt; <code>168</code></li>
+<li><strong>Duration Thresholds</strong> &gt; <strong>Add a threshold</strong>:
 <ul>
-<li>Ở <strong>remaining hours</strong>, nhập <code>24</code>.</li>
-<li>Ở <strong>action</strong>, chọn <strong>Send Alert</strong>. Người dùng sẽ nhận cảnh báo khi còn 24 giờ lease.</li>
+<li><strong>remaining hours:</strong> <code>24</code></li>
+<li><strong>action:</strong> <strong>Send Alert</strong></li>
 </ul>
 </li>
-<li>Chọn <strong>Submit</strong>.</li>
-<li>Dưới <strong>Lease Templates</strong>, bạn sẽ thấy hai mẫu lease đã tạo.</li>
+<li><strong>Submit</strong></li>
 </ul>
 <p><img src="/resources/_gen/images/Manager5.png" alt="architect" title="Architect"></p>
-<h3 id="bước-tiếp-theo">Bước tiếp theo</h3>
-<p>Sau khi đã tạo hai lease template với vai trò manager, ở phần tiếp theo bạn sẽ:</p>
+<h3 id="vai-trò-end-user">Vai trò End-User</h3>
+<p>Giờ sẽ thử làm user thường, request tài khoản và xài.</p>
+<h4 id="1-request-tài-khoản-cơ-bản">1. Request tài khoản cơ bản</h4>
+<p>Tài khoản basic sẽ được approve tự động.</p>
+<p><strong>Các bước:</strong></p>
 <ul>
-<li>Đăng nhập vào Innovation Sandbox on AWS với tư cách người dùng cuối (end user).</li>
-<li>Yêu cầu tài khoản cơ bản:
-<ul>
-<li>Trải nghiệm quy trình phê duyệt tự động.</li>
-<li>Truy cập tài khoản sandbox vừa tạo.</li>
-</ul>
-</li>
-<li>Yêu cầu tài khoản nâng cao:
-<ul>
-<li>Gửi yêu cầu cần quản lý phê duyệt.</li>
-<li>Chờ quản lý xem xét và phê duyệt.</li>
-<li>Truy cập tài khoản sandbox đã được phê duyệt.</li>
-</ul>
-</li>
-<li>Quản lý và giám sát các tài khoản sandbox của bạn.</li>
-</ul>
-<h3 id="sử-dụng-innovation-sandbox-on-aws-với-vai-trò-end-user">Sử dụng Innovation Sandbox on AWS với vai trò End-User</h3>
-<p>Giải pháp Innovation Sandbox on AWS hỗ trợ ba vai trò: <strong>administrator</strong>, <strong>manager</strong> và <strong>end user</strong>. Dưới đây là hướng dẫn chi tiết cho người dùng cuối (end user) khi sử dụng hệ thống.</p>
-<h4 id="1-yêu-cầu-và-truy-cập-tài-khoản-aws-cơ-bản">1. Yêu cầu và truy cập tài khoản AWS cơ bản</h4>
-<p>Các tài khoản cơ bản (basic account) sẽ được phê duyệt tự động, cho phép bạn truy cập ngay vào tài nguyên AWS trong phạm vi giới hạn đã định.</p>
-<p><strong>Các bước thực hiện:</strong></p>
-<ul>
-<li>Trên giao diện Innovation Sandbox on AWS, chọn profile người dùng ở góc trên bên phải và chọn <strong>Sign out</strong>.</li>
-<li>Đăng nhập lại bằng thông tin của người dùng cuối (end user).</li>
-<li>Nếu màn hình có hai tab <strong>Accounts</strong> và <strong>Applications</strong>, chọn <strong>Applications</strong> để vào ứng dụng. Bạn sẽ thấy trang chào mừng của Innovation Sandbox.</li>
-<li>Chọn <strong>Request a new account</strong>.</li>
-<li>Chọn mẫu <strong>Basic lease template</strong>, nhấn <strong>Next</strong>.</li>
-<li>Đánh dấu <strong>I accept the above terms of service</strong>, nhấn <strong>Next</strong>.</li>
+<li>Giao diện Innovation Sandbox, chọn profile góc trên phải &gt; <strong>Sign out</strong></li>
+<li>Đăng nhập lại bằng tài khoản end user</li>
+<li>Nếu có hai tab thì chọn <strong>Applications</strong></li>
+<li><strong>Request a new account</strong></li>
+<li>Chọn <strong>Basic lease template</strong>, <strong>Next</strong></li>
+<li>Tick <strong>I accept the above terms of service</strong>, <strong>Next</strong></li>
 </ul>
 <p><img src="/resources/_gen/images/User1.png" alt="architect" title="Architect"></p>
 <ul>
-<li>Ở phần <strong>Comments</strong>, nhập lý do (ví dụ: <code>Request for a basic account</code>).</li>
-<li>Chọn <strong>Submit</strong>.</li>
-<li>Ở thanh điều hướng bên trái, chọn <strong>Home</strong>. Trong mục <strong>Account</strong>, nhấn <strong>Refresh</strong> để cập nhật trạng thái tài khoản.</li>
+<li><strong>Comments:</strong> nhập lý do (ví dụ: <code>Request for a basic account</code>)</li>
+<li><strong>Submit</strong></li>
+<li>Thanh điều hướng bên trái chọn <strong>Home</strong>. Mục <strong>Account</strong>, click <strong>Refresh</strong> để cập nhật</li>
 </ul>
 <p><img src="/resources/_gen/images/User2.png" alt="architect" title="Architect"></p>
 <ul>
-<li>Khi tài khoản đã được cấp, dưới mục <strong>Access</strong>, chọn <strong>Login to account</strong> cho tài khoản vừa thêm.</li>
-<li>Chọn vai trò (role) xuất hiện ở mục <strong>Select a role</strong> để vào AWS Management Console.</li>
+<li>Khi tài khoản được cấp, mục <strong>Access</strong> chọn <strong>Login to account</strong></li>
+<li>Chọn role ở <strong>Select a role</strong> để vào AWS Management Console</li>
 </ul>
 <p><img src="/resources/_gen/images/User3.png" alt="architect" title="Architect"></p>
-<h4 id="2-kiểm-tra-giới-hạn-service-control-policy-scp">2. Kiểm tra giới hạn Service Control Policy (SCP)</h4>
-<p>Bạn có thể kiểm tra hiệu lực của SCP bằng cách thử tạo một EC2 instance bị giới hạn.</p>
-<p><strong>Các bước kiểm tra:</strong></p>
+<h4 id="2-test-giới-hạn-scp">2. Test giới hạn SCP</h4>
+<p>Check xem SCP có hoạt động không bằng cách thử tạo EC2 instance bị cấm.</p>
+<p><strong>Các bước:</strong></p>
 <ul>
-<li>Trong AWS Management Console, nhập <strong>EC2</strong> vào thanh tìm kiếm và chọn dịch vụ.</li>
-<li>Ở thanh điều hướng bên trái, chọn <strong>Instances</strong>.</li>
-<li>Chọn <strong>Launch instances</strong>.</li>
-<li>Ở trường <strong>Name</strong>, nhập <code>test-scp</code>. Giữ nguyên Amazon Machine Image (AMI) mặc định.</li>
+<li>AWS Management Console, nhập <strong>EC2</strong> vào thanh tìm kiếm</li>
+<li>Thanh điều hướng bên trái chọn <strong>Instances</strong></li>
+<li><strong>Launch instances</strong></li>
+<li><strong>Name:</strong> <code>test-scp</code>. Giữ nguyên AMI mặc định</li>
 </ul>
 <p><img src="/resources/_gen/images/User4.png" alt="architect" title="Architect"></p>
 <ul>
-<li>Ở trường <strong>Instance type</strong>, chọn <strong>m5.large</strong> (loại này đã bị SCP chặn).</li>
-<li>Ở <strong>Key pair</strong>, chọn <strong>Proceed without a key pair</strong>.</li>
-<li>Giữ nguyên các thiết lập còn lại, sau đó chọn <strong>Launch instance</strong>.</li>
-<li>Bạn sẽ thấy thông báo lỗi do SCP không cho phép khởi tạo EC2 instance loại <strong>m5.large</strong>.</li>
+<li><strong>Instance type:</strong> chọn <strong>m5.large</strong> (loại này bị SCP chặn)</li>
+<li><strong>Key pair:</strong> <strong>Proceed without a key pair</strong></li>
+<li>Giữ nguyên setting khác, <strong>Launch instance</strong></li>
+<li>Sẽ thấy báo lỗi do SCP không cho tạo <strong>m5.large</strong></li>
 </ul>
 <p><img src="/resources/_gen/images/User5.png" alt="architect" title="Architect"></p>
-<h4 id="3-yêu-cầu-tài-khoản-nâng-cao-advanced-account">3. Yêu cầu tài khoản nâng cao (Advanced Account)</h4>
-<p>Các tài khoản nâng cao yêu cầu sự phê duyệt của manager trước khi được cấp quyền truy cập.</p>
-<p><strong>Các bước thực hiện:</strong></p>
+<h4 id="3-request-tài-khoản-nâng-cao">3. Request tài khoản nâng cao</h4>
+<p>Tài khoản advanced cần manager approve.</p>
+<p><strong>Các bước:</strong></p>
 <ul>
-<li>Quay lại giao diện Innovation Sandbox on AWS, đăng nhập với tư cách end user.</li>
-<li>Chọn <strong>Request a new account</strong>.</li>
-<li>Chọn mẫu <strong>Advanced lease template</strong>, nhấn <strong>Next</strong>.</li>
-<li>Đánh dấu <strong>I accept the above terms of service</strong>, nhấn <strong>Next</strong>.</li>
-<li>Ở phần <strong>Comments</strong>, nhập lý do (ví dụ: <code>Request for an advanced account</code>).</li>
-<li>Chọn <strong>Submit</strong>.</li>
+<li>Quay lại giao diện Innovation Sandbox, đăng nhập end user</li>
+<li><strong>Request a new account</strong></li>
+<li>Chọn <strong>Advanced lease template</strong>, <strong>Next</strong></li>
+<li>Tick <strong>I accept the above terms of service</strong>, <strong>Next</strong></li>
+<li><strong>Comments:</strong> nhập lý do (ví dụ: <code>Request for an advanced account</code>)</li>
+<li><strong>Submit</strong></li>
 </ul>
-<p><strong>Quy trình phê duyệt:</strong></p>
+<p><strong>Quy trình approve:</strong></p>
 <ul>
-<li>Đăng xuất khỏi Innovation Sandbox on AWS và đăng nhập bằng tài khoản manager.</li>
-<li>Ở trang chủ, bạn sẽ thấy yêu cầu đang chờ phê duyệt. Trong thanh điều hướng bên trái, chọn <strong>Approvals</strong>.</li>
-<li>Chọn yêu cầu, vào <strong>Actions</strong> và chọn <strong>Approve request</strong>.</li>
+<li>Đăng xuất, đăng nhập bằng tài khoản manager</li>
+<li>Trang chủ sẽ thấy request chờ duyệt. Thanh điều hướng chọn <strong>Approvals</strong></li>
+<li>Chọn request, <strong>Actions</strong> &gt; <strong>Approve request</strong></li>
 </ul>
 <p><strong>Quản lý lease:</strong></p>
 <ul>
-<li>Trong thanh điều hướng, chọn <strong>Leases</strong>.</li>
-<li>Bạn sẽ thấy hai lease: một cho tài khoản basic, một cho tài khoản advanced.</li>
-<li>Có thể chọn lease và dùng <strong>Actions</strong> để chấm dứt, tạm ngưng hoặc cập nhật lease.</li>
+<li>Thanh điều hướng chọn <strong>Leases</strong></li>
+<li>Sẽ thấy hai lease: basic và advanced</li>
+<li>Có thể chọn lease dùng <strong>Actions</strong> để terminate, suspend hoặc cập nhật</li>
 </ul>
 <p><img src="/resources/_gen/images/User6.png" alt="architect" title="Architect"></p>
 <p><img src="/resources/_gen/images/User7.png" alt="architect" title="Architect"></p>
-<h4 id="4-tổng-kết-chức-năng-và-trải-nghiệm-người-dùng">4. Tổng kết chức năng và trải nghiệm người dùng</h4>
+<h4 id="4-tổng-kết">4. Tổng kết</h4>
 <ul>
-<li><strong>Quản trị viên</strong>: Thiết lập hệ thống, tạo SCP để kiểm soát tài nguyên, quản lý tài khoản và cấu hình môi trường Innovation Sandbox, tích hợp với AWS AppConfig.</li>
-<li><strong>Manager</strong>: Cấu hình ngưỡng ngân sách, tạo lease template (Basic, Advanced), thiết lập quy trình phê duyệt, giám sát sử dụng tài nguyên.</li>
-<li><strong>End user</strong>: Yêu cầu và truy cập tài khoản AWS, kiểm thử hiệu lực SCP, sử dụng các loại tài khoản với quy trình phê duyệt phù hợp.</li>
+<li><strong>Administrator:</strong> Setup hệ thống, tạo SCP kiểm soát tài nguyên, quản lý tài khoản, tích hợp AppConfig</li>
+<li><strong>Manager:</strong> Cấu hình ngân sách, tạo lease template (Basic, Advanced), thiết lập quy trình approve, giám sát sử dụng</li>
+<li><strong>End user:</strong> Request và truy cập tài khoản AWS, test SCP, dùng các loại tài khoản với quy trình approve phù hợp</li>
 </ul>
+<p>Thế là xong, giờ bạn đã biết cách sử dụng Innovation Sandbox với cả 3 vai trò rồi!</p>
 
 
 
@@ -840,19 +795,19 @@ Thực hiện các bước này trong <strong>tài khoản hub</strong> (hub acc
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1752249549"></script>
-    <script src="/js/perfect-scrollbar.min.js?1752249549"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1752249549"></script>
-    <script src="/js/jquery.sticky.js?1752249549"></script>
-    <script src="/js/featherlight.min.js?1752249549"></script>
-    <script src="/js/highlight.pack.js?1752249549"></script>
+    <script src="/js/clipboard.min.js?1752251807"></script>
+    <script src="/js/perfect-scrollbar.min.js?1752251807"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1752251807"></script>
+    <script src="/js/jquery.sticky.js?1752251807"></script>
+    <script src="/js/featherlight.min.js?1752251807"></script>
+    <script src="/js/highlight.pack.js?1752251807"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1752249549"></script>
-    <script src="/js/learn.js?1752249549"></script>
-    <script src="/js/hugo-learn.js?1752249549"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1752251807"></script>
+    <script src="/js/learn.js?1752251807"></script>
+    <script src="/js/hugo-learn.js?1752251807"></script>
 
-    <link href="/mermaid/mermaid.css?1752249549" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1752249549"></script>
+    <link href="/mermaid/mermaid.css?1752251807" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1752251807"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

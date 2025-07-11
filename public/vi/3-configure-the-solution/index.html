@@ -12,21 +12,21 @@
     <title>Khởi tạo Target Group :: Triển khai Ứng dụng ShareNote với Auto Scaling Group</title>
 
     
-    <link href="/css/nucleus.css?1752249528" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1752249528" rel="stylesheet">
-    <link href="/css/hybrid.css?1752249528" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1752249528" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1752249528" rel="stylesheet">
-    <link href="/css/auto-complete.css?1752249528" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1752249528" rel="stylesheet">
-    <link href="/css/theme.css?1752249528" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1752249528" rel="stylesheet">
+    <link href="/css/nucleus.css?1752251807" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1752251807" rel="stylesheet">
+    <link href="/css/hybrid.css?1752251807" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1752251807" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1752251807" rel="stylesheet">
+    <link href="/css/auto-complete.css?1752251807" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1752251807" rel="stylesheet">
+    <link href="/css/theme.css?1752251807" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1752251807" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1752249528" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1752251807" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1752249528"></script>
+    <script src="/js/jquery-3.3.1.min.js?1752251807"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1752249528"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1752249528"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1752251807"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1752251807"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/\/vi";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1752249528"></script>
+<script type="text/javascript" src="/js/search.js?1752251807"></script>
 
     
   </div>
@@ -108,13 +108,13 @@
  
   
     
-    <li data-nav-id="/vi/2-deploy-the-solution/" title="Khởi tạo Launch Template" class="dd-item 
+    <li data-nav-id="/vi/2-deploy-the-solution/" title="Deploy the Solution" class="dd-item 
         
         
         
         ">
       <a href="/vi/2-deploy-the-solution/">
-          <b>2. </b>Khởi tạo Launch Template
+          <b>2. </b>Deploy the Solution
           
             <i class="fas fa-check read-icon"></i>
           
@@ -358,11 +358,11 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#cấu-hình-giải-pháp-configure-the-solution">Cấu hình Giải pháp (Configure the Solution)</a></li>
-        <li><a href="#thiết-lập-ứng-dụng-saml-20-cho-innovation-sandbox-trên-aws">Thiết lập Ứng dụng SAML 2.0 cho Innovation Sandbox trên AWS</a></li>
-        <li><a href="#cấu-hình-người-dùng-và-nhóm-trong-iam-identity-center">Cấu hình Người dùng và Nhóm trong IAM Identity Center</a></li>
-        <li><a href="#cấu-hình-ứng-dụng-web-với-aws-appconfig-và-aws-secrets-manager">Cấu hình Ứng dụng Web với AWS AppConfig và AWS Secrets Manager</a></li>
-        <li><a href="#onboard-sandbox-accounts-vào-innovation-sandbox-trên-aws">Onboard Sandbox Accounts vào Innovation Sandbox trên AWS</a></li>
+        <li><a href="#cấu-hình-hệ-thống">Cấu hình hệ thống</a></li>
+        <li><a href="#thiết-lập-saml-cho-innovation-sandbox">Thiết lập SAML cho Innovation Sandbox</a></li>
+        <li><a href="#cấu-hình-user-và-group">Cấu hình User và Group</a></li>
+        <li><a href="#cấu-hình-web-app-1">Cấu hình Web App</a></li>
+        <li><a href="#đưa-sandbox-account-vào-hệ-thống">Đưa Sandbox Account vào hệ thống</a></li>
       </ul>
     </li>
   </ul>
@@ -390,316 +390,292 @@
 
 
 
-	<h3 id="cấu-hình-giải-pháp-configure-the-solution">Cấu hình Giải pháp (Configure the Solution)</h3>
-<p>Sau khi chạy đủ các stack, bạn cần thực hiện các bước cấu hình để cho phép người dùng truy cập và chuẩn bị môi trường Innovation Sandbox trên AWS để xài nha.</p>
-<h4 id="tổng-quan-các-bước-cấu-hình">Tổng quan các bước cấu hình</h4>
+	<h3 id="cấu-hình-hệ-thống">Cấu hình hệ thống</h3>
+<p>Okay giờ các stack đã chạy xong rồi, nhưng chưa xài được đâu. Phải cấu hình thêm tí nữa mới cho user vào được.</p>
+<h4 id="cần-làm-gì">Cần làm gì</h4>
 <ul>
-<li>Thiết lập liên kết SAML 2.0 (SAML federation)</li>
-<li>Cấu hình người dùng AWS IAM Identity Center</li>
-<li>Cấu hình ứng dụng web</li>
-<li>Onboard (gắn kết) các tài khoản vào cấu trúc Innovation Sandbox</li>
+<li>Thiết lập SAML để đăng nhập</li>
+<li>Tạo user và nhóm trong IAM Identity Center</li>
+<li>Cấu hình web app</li>
+<li>Đưa các tài khoản sandbox vào đúng chỗ</li>
 </ul>
-<h4 id="thiết-lập-liên-kết-saml-20">Thiết lập liên kết SAML 2.0</h4>
-<p><strong>1. Cấu hình tích hợp SAML</strong></p>
+<h4 id="thiết-lập-saml">Thiết lập SAML</h4>
+<p><strong>1. Cấu hình SAML</strong></p>
 <ul>
-<li>Truy cập AWS IAM Identity Center trong tài khoản quản lý tổ chức.</li>
-<li>Chọn mục “Settings” và chuyển sang phần “Identity Source”.</li>
-<li>Chọn “External identity provider” để sử dụng SAML 2.0.</li>
+<li>Vào AWS IAM Identity Center ở tài khoản quản lý</li>
+<li>Chọn &ldquo;Settings&rdquo; rồi chuyển sang &ldquo;Identity Source&rdquo;</li>
+<li>Chọn &ldquo;External identity provider&rdquo; để dùng SAML 2.0</li>
 </ul>
-<p><strong>2. Tải về certification</strong></p>
+<p><strong>2. Tải certificate</strong></p>
 <ul>
-<li>Trong giao diện cấu hình SAML, tải về certificate (file .pem) của AWS IAM Identity Center.</li>
-<li>Lưu lại file này để sử dụng khi cấu hình trên hệ thống nhận dạng bên ngoài</li>
+<li>Ở giao diện SAML, tải file certificate (.pem) của AWS IAM Identity Center</li>
+<li>Lưu lại file này dùng sau</li>
 </ul>
-<h4 id="cấu-hình-người-dùng-aws-iam-identity-center">Cấu hình người dùng AWS IAM Identity Center</h4>
-<p><strong>1. Tạo và cấu hình nhóm (Groups)</strong></p>
+<h4 id="tạo-user-và-nhóm">Tạo user và nhóm</h4>
+<p><strong>1. Tạo nhóm</strong></p>
 <ul>
-<li>Trong IAM Identity Center, vào mục “Groups”.</li>
-<li>Tạo các nhóm phù hợp với vai trò sử dụng (ví dụ: Admin, Developer, Viewer&hellip;).</li>
-<li>Gán quyền truy cập (permission sets) tương ứng cho từng nhóm.</li>
+<li>Vào IAM Identity Center, chọn &ldquo;Groups&rdquo;</li>
+<li>Tạo các nhóm theo vai trò (Admin, Developer, Viewer&hellip;)</li>
+<li>Gán quyền cho từng nhóm</li>
 </ul>
-<p><strong>2. Thiết lập người dùng ban đầu</strong></p>
+<p><strong>2. Thêm user</strong></p>
 <ul>
-<li>Vào mục “Users” trong IAM Identity Center.</li>
-<li>Thêm mới người dùng hoặc đồng bộ từ hệ thống nhận dạng ngoài (nếu đã cấu hình SAML).</li>
-<li>Gán người dùng vào các nhóm đã tạo.</li>
+<li>Vào &ldquo;Users&rdquo; trong IAM Identity Center</li>
+<li>Thêm user mới hoặc sync từ hệ thống bên ngoài (nếu đã cấu hình SAML)</li>
+<li>Cho user vào nhóm phù hợp</li>
 </ul>
-<h4 id="cấu-hình-ứng-dụng-web">Cấu hình ứng dụng web</h4>
-<p><strong>1. Cập nhật cài đặt AWS AppConfig</strong></p>
+<h4 id="cấu-hình-web-app">Cấu hình web app</h4>
+<p><strong>1. Cập nhật AWS AppConfig</strong></p>
 <ul>
-<li>Truy cập AWS AppConfig trong tài khoản hub.</li>
-<li>Chọn ứng dụng Innovation Sandbox, cập nhật các thông số cấu hình cần thiết (ví dụ: endpoint, tham số môi trường, v.v.).</li>
-<li>Xác nhận các thông tin cấu hình đã phù hợp với môi trường triển khai.</li>
+<li>Vào AWS AppConfig ở tài khoản hub</li>
+<li>Chọn app Innovation Sandbox, cập nhật các tham số cần thiết</li>
+<li>Check lại thông tin có khớp với môi trường không</li>
 </ul>
-<p><strong>2. Cấu hình xác thực (Authentication)</strong></p>
+<p><strong>2. Cấu hình xác thực</strong></p>
 <ul>
-<li>Đảm bảo ứng dụng web sử dụng xác thực thông qua AWS IAM Identity Center.</li>
-<li>Kiểm tra lại thông tin kết nối SAML hoặc các tham số xác thực khác nếu có.</li>
+<li>Đảm bảo web app dùng IAM Identity Center để đăng nhập</li>
+<li>Kiểm tra thông tin kết nối SAML</li>
 </ul>
-<h4 id="onboard-các-tài-khoản">Onboard các tài khoản</h4>
-<p><strong>1. Di chuyển tài khoản vào cấu trúc Innovation Sandbox</strong></p>
+<h4 id="đưa-tài-khoản-vào-hệ-thống">Đưa tài khoản vào hệ thống</h4>
+<p><strong>1. Di chuyển tài khoản</strong></p>
 <ul>
-<li>Truy cập AWS Organizations bằng tài khoản quản lý.</li>
-<li>Di chuyển các tài khoản thành viên (hub, sandbox&hellip;) vào đúng organizational unit (OU) đã thiết kế cho Innovation Sandbox.</li>
+<li>Vào AWS Organizations bằng tài khoản quản lý</li>
+<li>Chuyển các tài khoản (hub, sandbox&hellip;) vào đúng OU đã thiết kế</li>
 </ul>
-<p><strong>2. Xác minh cấu hình tài khoản</strong></p>
+<p><strong>2. Kiểm tra lại</strong></p>
 <ul>
-<li>Kiểm tra lại trong AWS Organizations để đảm bảo các tài khoản đã nằm đúng vị trí trong cấu trúc OU.</li>
-<li>Đảm bảo các chính sách, quyền truy cập và cấu hình liên quan đã được áp dụng chính xác.</li>
+<li>Check trong AWS Organizations xem tài khoản đã ở đúng chỗ chưa</li>
+<li>Đảm bảo các policy và quyền đã được áp dụng đúng</li>
 </ul>
-<p><strong>Thời gian dự kiến:</strong> Khoảng 15 phút</p>
-<p>Thực hiện đầy đủ các bước trên sẽ giúp giải pháp Innovation Sandbox trên AWS sẵn sàng cho người dùng truy cập và sử dụng, đồng thời đảm bảo tuân thủ các yêu cầu quản trị, bảo mật của tổ chức.</p>
-<h3 id="thiết-lập-ứng-dụng-saml-20-cho-innovation-sandbox-trên-aws">Thiết lập Ứng dụng SAML 2.0 cho Innovation Sandbox trên AWS</h3>
-<p>Việc cấu hình tích hợp SAML 2.0 giữa AWS IAM Identity Center và Innovation Sandbox trên AWS giúp đảm bảo xác thực người dùng an toàn khi truy cập giao diện web của giải pháp.</p>
+<p><strong>Thời gian:</strong> Khoảng 15 phút</p>
+<p>Làm xong các bước này thì hệ thống mới sẵn sàng cho user vào xài được.</p>
+<h3 id="thiết-lập-saml-cho-innovation-sandbox">Thiết lập SAML cho Innovation Sandbox</h3>
+<p>Phần này hơi kỹ thuật tí, nhưng cần thiết để user đăng nhập được vào hệ thống một cách an toàn.</p>
 <h4 id="lưu-ý-quan-trọng">Lưu ý quan trọng</h4>
 <ul>
-<li>Thực hiện toàn bộ các bước dưới đây trong <strong>tài khoản quản lý tổ chức</strong> (organization management account) – nơi bạn đã cấu hình AWS IAM Identity Center.</li>
-<li>Đảm bảo bạn đang ở đúng <strong>home Region</strong> đã chọn cho toàn bộ hệ thống.</li>
+<li>Làm tất cả ở <strong>tài khoản quản lý tổ chức</strong> - nơi có IAM Identity Center</li>
+<li>Đảm bảo đang ở đúng <strong>home Region</strong> đã chọn</li>
 </ul>
-<h4 id="các-bước-cấu-hình">Các bước cấu hình</h4>
-<p><strong>1. Tạo ứng dụng SAML trong IAM Identity Center</strong></p>
+<h4 id="các-bước-làm">Các bước làm</h4>
+<p><strong>1. Tạo SAML app trong IAM Identity Center</strong></p>
 <ul>
-<li>Mở <strong>AWS IAM Identity Center console</strong> bằng tài khoản quản lý tổ chức.</li>
-<li>Trong thanh điều hướng, chọn <strong>Applications</strong>.</li>
-<li>Chuyển sang tab <strong>Customer managed</strong>.
-<img src="/resources/_gen/images/organiza.jpg" alt="architect" title="Architect"></li>
+<li>Mở <strong>AWS IAM Identity Center console</strong> bằng tài khoản quản lý</li>
+<li>Thanh điều hướng chọn <strong>Applications</strong></li>
+<li>Chuyển sang tab <strong>Customer managed</strong></li>
 </ul>
-<p><strong>2. Thêm ứng dụng mới</strong></p>
+<p><img src="/resources/_gen/images/organiza.jpg" alt="architect" title="Architect"></p>
+<p><strong>2. Thêm app mới</strong></p>
 <ul>
-<li>Chọn <strong>Add application</strong>.</li>
-<li>Chọn <strong>I have an application I want to set up</strong>.</li>
-<li>Chọn <strong>SAML 2.0</strong>, sau đó nhấn <strong>Next</strong>.</li>
+<li>Chọn <strong>Add application</strong></li>
+<li>Chọn <strong>I have an application I want to set up</strong></li>
+<li>Chọn <strong>SAML 2.0</strong>, rồi <strong>Next</strong></li>
 </ul>
 <p><img src="/resources/_gen/images/Buoc3.png" alt="architect" title="Architect"></p>
-<p><strong>3. Cấu hình ứng dụng</strong></p>
+<p><strong>3. Cấu hình app</strong></p>
 <ul>
-<li>Ở trang cấu hình, nhập <strong>Display name</strong> (ví dụ: MyISB app) và mô tả cho ứng dụng.</li>
-<li></li>
+<li>Trang cấu hình, nhập <strong>Display name</strong> (ví dụ: MyISB app) và mô tả</li>
 </ul>
 <p><img src="/resources/_gen/images/Buoc5.png" alt="architect" title="Architect"></p>
 <ul>
-<li>Trong phần <strong>IAM Identity Center metadata</strong>:
+<li>Phần <strong>IAM Identity Center metadata</strong>:
 <ul>
-<li>Tải về <strong>SAML metadata file</strong> (metadata của nhà cung cấp danh tính).</li>
-<li>Tải về <strong>certificate</strong> (chứng chỉ của nhà cung cấp danh tính).</li>
+<li>Tải <strong>SAML metadata file</strong></li>
+<li>Tải <strong>certificate</strong></li>
 </ul>
 </li>
 </ul>
 <p><img src="/resources/_gen/images/Buoc6.png" alt="architect" title="Architect"></p>
 <ul>
-<li>Ghi chú lại các <strong>Sign-in URL</strong> và <strong>Sign-out URL</strong> – sẽ cần dùng khi cấu hình ở tài khoản hub.</li>
+<li>Ghi lại <strong>Sign-in URL</strong> và <strong>Sign-out URL</strong> - cần dùng khi cấu hình ở tài khoản hub</li>
 </ul>
 <p><img src="/resources/_gen/images/Buoc7.png" alt="architect" title="Architect"></p>
-<p><strong>4. Nhập thông tin metadata cho ứng dụng</strong></p>
+<p><strong>4. Nhập thông tin metadata</strong></p>
 <ul>
-<li>
-<p>Ở phần <strong>Application metadata</strong>, chọn <strong>Manually type your metadata values</strong>.</p>
-</li>
-<li>
-<p>Nhập các giá trị sau:</p>
+<li>Phần <strong>Application metadata</strong>, chọn <strong>Manually type your metadata values</strong></li>
+<li>Nhập các giá trị:
 <table>
   <thead>
       <tr>
           <th>Trường</th>
-          <th>Giá trị nhập</th>
+          <th>Nhập gì</th>
       </tr>
   </thead>
   <tbody>
       <tr>
           <td>Application ACS URL</td>
-          <td><code>{ISB_WEB_URL}/api/auth/login/callback</code>  (Thay <code>{ISB_WEB_URL}</code> bằng CloudFrontDistributionUrl đã lưu, ví dụ: <code>https://duyXXXXXXXeh.cloudfront.net/api/auth/login/callback</code>)</td>
+          <td><code>{ISB_WEB_URL}/api/auth/login/callback</code> (Thay <code>{ISB_WEB_URL}</code> bằng CloudFrontDistributionUrl đã lưu)</td>
       </tr>
       <tr>
           <td>Application SAML audience</td>
-          <td>Giá trị định danh ứng dụng (có thể dùng tên namespace hoặc tên stack ban đầu, ví dụ: <code>Isb-dev-namespace-Audience</code>). Lưu lại giá trị này để cấu hình cho AppConfig ở tài khoản hub.</td>
-      </tr>
-      <tr>
-          <td><img src="/resources/_gen/images/Buoc8.png" alt="architect" title="Architect"></td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><strong>5. Hoàn tất cấu hình</strong></td>
-          <td></td>
+          <td>Tên định danh app (có thể dùng tên namespace, ví dụ: <code>Isb-dev-namespace-Audience</code>). Lưu lại để cấu hình AppConfig</td>
       </tr>
   </tbody>
 </table>
 </li>
-<li>
-<p>Nhấn <strong>Submit</strong>.</p>
-</li>
-<li>
-<p>Bạn sẽ nhận được thông báo xác nhận cấu hình thành công cho ứng dụng SAML.</p>
-</li>
-<li>
-<p>Lưu ý: Bạn cần cấu hình thêm <strong>attribute mappings</strong> cho IAM Identity Center để việc xác thực hoạt động đúng.</p>
-</li>
 </ul>
-<h4 id="thông-tin-cần-lưu-lại-cho-các-bước-cấu-hình-tiếp-theo">Thông tin cần lưu lại cho các bước cấu hình tiếp theo</h4>
+<p><img src="/resources/_gen/images/Buoc8.png" alt="architect" title="Architect"></p>
+<p><strong>5. Hoàn tất</strong></p>
 <ul>
-<li><strong>Sign-in URL</strong> (từ bước tải metadata)</li>
-<li><strong>Sign-out URL</strong> (từ bước tải metadata)</li>
-<li><strong>Audience value</strong> (giá trị đã nhập ở Application SAML audience)</li>
+<li>Nhấn <strong>Submit</strong></li>
+<li>Sẽ có thông báo cấu hình thành công</li>
+<li>Nhớ cấu hình thêm <strong>attribute mappings</strong> cho IAM Identity Center</li>
 </ul>
-<p>Các thông tin này sẽ được sử dụng trong quá trình cấu hình ứng dụng web và xác thực người dùng cho Innovation Sandbox trên AWS.</p>
-<h3 id="cấu-hình-người-dùng-và-nhóm-trong-iam-identity-center">Cấu hình Người dùng và Nhóm trong IAM Identity Center</h3>
-<p>Việc thiết lập người dùng và nhóm trong AWS IAM Identity Center giúp kiểm soát truy cập và phân quyền cho người dùng sử dụng giải pháp Innovation Sandbox trên AWS. Thực hiện các bước dưới đây trong <strong>tài khoản quản lý tổ chức</strong> (organization management account) và đúng <strong>home Region</strong> đã chọn.</p>
-<h4 id="1-ánh-xạ-thuộc-tính-ứng-dụng-map-application-attributes">1. Ánh xạ thuộc tính ứng dụng (Map application attributes)</h4>
+<h4 id="thông-tin-cần-lưu-lại">Thông tin cần lưu lại</h4>
 <ul>
-<li>Mở <strong>IAM Identity Center console</strong> trong tài khoản quản lý.</li>
-<li>Chọn <strong>Applications</strong> trong thanh điều hướng.</li>
-<li>Trong danh sách <strong>Customer managed applications</strong>, chọn ứng dụng đã tạo (ví dụ: MyISB app).</li>
-<li>Ở trang chi tiết ứng dụng, chọn <strong>Actions</strong> &gt; <strong>Edit attribute mappings</strong>.</li>
-<li>Trong ô thứ hai (&ldquo;Maps to this string value or user attribute in IAM Identity Center&rdquo;), nhập:
-<pre tabindex="0"><code>${user:email}
-</code></pre></li>
-<li>Ở cột thứ ba, chọn định dạng <strong>emailAddress</strong>.</li>
-<li>Nhấn <strong>Save changes</strong> để lưu cấu hình.</li>
+<li><strong>Sign-in URL</strong></li>
+<li><strong>Sign-out URL</strong></li>
+<li><strong>Audience value</strong></li>
 </ul>
-<h4 id="2-gán-nhóm-cho-ứng-dụng-assign-groups-to-your-application">2. Gán nhóm cho ứng dụng (Assign groups to your application)</h4>
+<p>Các thông tin này dùng để cấu hình web app và xác thực user.</p>
+<h3 id="cấu-hình-user-và-group">Cấu hình User và Group</h3>
+<p>Thiết lập user và nhóm để kiểm soát ai được vào và làm gì trong hệ thống. Làm ở <strong>tài khoản quản lý</strong> và đúng <strong>home Region</strong>.</p>
+<h4 id="1-map-thuộc-tính-app">1. Map thuộc tính app</h4>
 <ul>
-<li>Quay lại ứng dụng vừa cấu hình.</li>
-<li>Chọn <strong>Assign users and groups</strong>.</li>
-<li>Tìm và thêm cả ba nhóm đã được tạo bởi IDC stack:
+<li>Mở <strong>IAM Identity Center console</strong></li>
+<li>Chọn <strong>Applications</strong></li>
+<li>Chọn app vừa tạo (MyISB app)</li>
+<li>Trang chi tiết app, chọn <strong>Actions</strong> &gt; <strong>Edit attribute mappings</strong></li>
+<li>Ô thứ hai nhập: <code>${user:email}</code></li>
+<li>Cột thứ ba chọn <strong>emailAddress</strong></li>
+<li><strong>Save changes</strong></li>
+</ul>
+<h4 id="2-gán-nhóm-cho-app">2. Gán nhóm cho app</h4>
+<ul>
+<li>Quay lại app vừa cấu hình</li>
+<li>Chọn <strong>Assign users and groups</strong></li>
+<li>Tìm và thêm ba nhóm đã tạo bởi IDC stack:
 <ul>
 <li><code>{NAMESPACE}_IsbUsersGroup</code></li>
 <li><code>{NAMESPACE}_IsbManagersGroup</code></li>
 <li><code>{NAMESPACE}_IsbAdminsGroup</code></li>
 </ul>
 </li>
-<li>Chọn <strong>Assign</strong> để hoàn tất.</li>
+<li>Chọn <strong>Assign</strong></li>
 </ul>
-<h4 id="3-gán-nhóm-cho-người-dùng-assign-a-group-to-your-user">3. Gán nhóm cho người dùng (Assign a group to your user)</h4>
+<h4 id="3-cho-user-vào-nhóm">3. Cho user vào nhóm</h4>
 <ul>
-<li>Trong IAM Identity Center console, chọn <strong>Users</strong> ở thanh điều hướng.</li>
-<li>Trong danh sách người dùng, chọn người dùng muốn gán vào nhóm. Để thêm người dùng mới, chọn <strong>Add user</strong>.</li>
-<li>Chọn tab <strong>Groups</strong>, sau đó nhấn <strong>Add user to groups</strong>.</li>
-<li>Chọn một trong ba nhóm đã tạo:
+<li>IAM Identity Center console, chọn <strong>Users</strong></li>
+<li>Chọn user muốn gán nhóm (hoặc <strong>Add user</strong> để thêm mới)</li>
+<li>Tab <strong>Groups</strong>, nhấn <strong>Add user to groups</strong></li>
+<li>Chọn một trong ba nhóm:
 <ul>
 <li><code>{NAMESPACE}_IsbUsersGroup</code></li>
 <li><code>{NAMESPACE}_IsbManagersGroup</code></li>
 <li><code>{NAMESPACE}_IsbAdminsGroup</code></li>
 </ul>
 </li>
-<li>Nhấn <strong>Add user to 1 group</strong> để hoàn tất.</li>
+<li><strong>Add user to 1 group</strong></li>
 </ul>
 <p><img src="/resources/_gen/images/users-and-groups.png" alt="architect" title="Architect"></p>
-<p><strong>Lưu ý:</strong><br>
-Để kiểm thử đủ ba vai trò người dùng (user personas), hãy đảm bảo có ít nhất ba người dùng, mỗi người thuộc một nhóm khác nhau.</p>
-<p>Sau khi hoàn thành các bước trên, bạn đã cấu hình thành công người dùng và nhóm cho giải pháp Innovation Sandbox trên AWS. Tiếp theo, bạn sẽ tiến hành cấu hình ứng dụng web trên tài khoản hub.</p>
-<h3 id="cấu-hình-ứng-dụng-web-với-aws-appconfig-và-aws-secrets-manager">Cấu hình Ứng dụng Web với AWS AppConfig và AWS Secrets Manager</h3>
-<p>Việc cấu hình ứng dụng web Innovation Sandbox trên AWS giúp kích hoạt xác thực người dùng và thiết lập các thông số toàn cục cho ứng dụng. Các thao tác này cần được thực hiện trong <strong>tài khoản hub</strong> và đúng <strong>home Region</strong> đã chọn.</p>
+<p><strong>Lưu ý:</strong> Để test đủ ba vai trò, cần ít nhất ba user, mỗi người một nhóm khác nhau.</p>
+<h3 id="cấu-hình-web-app-1">Cấu hình Web App</h3>
+<p>Phần này kích hoạt đăng nhập và thiết lập các tham số cho app. Làm ở <strong>tài khoản hub</strong> và đúng <strong>home Region</strong>.</p>
 <h4 id="1-cấu-hình-aws-appconfig">1. Cấu hình AWS AppConfig</h4>
 <ul>
-<li><strong>Mở AWS AppConfig console</strong> trong tài khoản hub.</li>
-<li>Ở thanh điều hướng, chọn <strong>Applications</strong>.</li>
-<li>Chọn ứng dụng <strong>InnovationSandboxData-Config-Application-XXXXXXX</strong>.</li>
-<li>Chọn <strong>InnovationSandboxData-Config-GlobalConfigHostedConfiguration-XXXXX</strong> (configuration profile).</li>
-<li>Chọn <strong>Create</strong> để tạo một phiên bản cấu hình mới (hosted configuration version).</li>
+<li>Mở <strong>AWS AppConfig console</strong> ở tài khoản hub</li>
+<li>Thanh điều hướng chọn <strong>Applications</strong></li>
+<li>Chọn <strong>InnovationSandboxData-Config-Application-XXXXXXX</strong></li>
+<li>Chọn <strong>InnovationSandboxData-Config-GlobalConfigHostedConfiguration-XXXXX</strong></li>
+<li><strong>Create</strong> để tạo phiên bản cấu hình mới</li>
 </ul>
 <p><img src="/resources/_gen/images/appconfig.png" alt="architect" title="Architect"></p>
 <p><strong>Cập nhật cấu hình:</strong></p>
 <ul>
-<li>Đặt giá trị <code>maintenanceMode</code> thành <code>false</code> để mở ứng dụng cho người dùng.</li>
+<li>Đặt <code>maintenanceMode</code> thành <code>false</code> để mở app cho user</li>
 </ul>
-<p><strong>Trong phần <code>auth</code>, cập nhật các trường sau:</strong></p>
+<p><strong>Phần <code>auth</code>, cập nhật:</strong></p>
 <table>
   <thead>
       <tr>
           <th>Trường</th>
-          <th>Giá trị cập nhật</th>
+          <th>Cập nhật gì</th>
       </tr>
   </thead>
   <tbody>
       <tr>
           <td>idpSignInUrl</td>
-          <td>URL đăng nhập từ bước cấu hình SAML 2.0 Application</td>
+          <td>URL đăng nhập từ bước cấu hình SAML</td>
       </tr>
       <tr>
           <td>idpSignOutUrl</td>
-          <td>URL đăng xuất từ bước cấu hình SAML 2.0 Application</td>
+          <td>URL đăng xuất từ bước cấu hình SAML</td>
       </tr>
       <tr>
           <td>idpAudience</td>
-          <td>Audience ID từ bước cấu hình SAML 2.0 Application</td>
+          <td>Audience ID từ bước cấu hình SAML</td>
       </tr>
       <tr>
           <td>webAppUrl</td>
-          <td>CloudFront Distribution URL (Innovation Sandbox URL) từ Outputs tab của CloudFormation (tài khoản hub)</td>
+          <td>CloudFront Distribution URL từ Outputs tab CloudFormation (tài khoản hub)</td>
       </tr>
       <tr>
           <td>awsAccessPortalUrl</td>
-          <td>AWS Access Portal URL từ IAM Identity Center dashboard (tài khoản quản lý tổ chức)</td>
+          <td>AWS Access Portal URL từ IAM Identity Center dashboard (tài khoản quản lý)</td>
       </tr>
       <tr>
           <td>sessionDurationInMinutes</td>
-          <td>Thời lượng phiên đăng nhập, ví dụ: 240</td>
+          <td>Thời gian session, ví dụ: 240</td>
       </tr>
       <tr>
           <td>emailFrom</td>
-          <td>Địa chỉ email đăng nhập đã xác thực của bạn</td>
+          <td>Email đã xác thực của bạn</td>
       </tr>
   </tbody>
 </table>
 <ul>
-<li>Sau khi cập nhật, chọn <strong>Create hosted configuration version</strong>.</li>
-<li>Chọn <strong>Start Deployment</strong> và chọn phiên bản cấu hình vừa tạo.</li>
-<li>Chọn <strong>Start Deployment</strong> để áp dụng cấu hình mới.</li>
+<li><strong>Create hosted configuration version</strong></li>
+<li><strong>Start Deployment</strong> và chọn phiên bản vừa tạo</li>
+<li><strong>Start Deployment</strong> để áp dụng</li>
 </ul>
-<h4 id="2-cập-nhật-giá-trị-chứng-chỉ-trong-aws-secrets-manager">2. Cập nhật giá trị chứng chỉ trong AWS Secrets Manager</h4>
+<h4 id="2-cập-nhật-certificate-trong-secrets-manager">2. Cập nhật certificate trong Secrets Manager</h4>
 <ul>
-<li>Mở <strong>AWS Secrets Manager console</strong> trong tài khoản hub.</li>
-<li>Tìm và chọn secret:<br>
-<code>/InnovationSandbox//Auth/IDPCert</code></li>
-<li>Ở tab <strong>Overview</strong>, mục <strong>Secret value</strong>:
+<li>Mở <strong>AWS Secrets Manager console</strong> ở tài khoản hub</li>
+<li>Tìm secret: <code>/InnovationSandbox//Auth/IDPCert</code></li>
+<li>Tab <strong>Overview</strong>, mục <strong>Secret value</strong>:
 <ul>
-<li>Chọn <strong>Retrieve secret value</strong>.</li>
-<li>Chọn <strong>Edit</strong>.</li>
-<li>Chọn <strong>Plaintext</strong>.</li>
-<li>Chọn <strong>Edit</strong> lần nữa.</li>
-<li>Dán nội dung file chứng chỉ IAM Identity Center (.pem) đã tải về khi tạo ứng dụng SAML 2.0.</li>
-<li>Chọn <strong>Save</strong> để lưu lại giá trị mới.</li>
+<li><strong>Retrieve secret value</strong></li>
+<li><strong>Edit</strong></li>
+<li><strong>Plaintext</strong></li>
+<li><strong>Edit</strong> lần nữa</li>
+<li>Dán nội dung file certificate IAM Identity Center (.pem) đã tải</li>
+<li><strong>Save</strong></li>
 </ul>
 </li>
 </ul>
-<p><strong>Lưu ý:</strong></p>
-<ul>
-<li>Đảm bảo mọi giá trị đều chính xác và nhất quán với các thông tin đã lấy ở các bước cấu hình trước (SAML, CloudFront, IAM Identity Center).</li>
-<li>Việc cấu hình đúng giúp hệ thống xác thực và phân quyền người dùng hiệu quả, đồng thời đảm bảo ứng dụng web Innovation Sandbox trên AWS hoạt động ổn định và an toàn.</li>
-</ul>
-<h3 id="onboard-sandbox-accounts-vào-innovation-sandbox-trên-aws">Onboard Sandbox Accounts vào Innovation Sandbox trên AWS</h3>
-<p>Việc onboard các tài khoản sandbox là bước cấu hình cuối cùng để hoàn thiện giải pháp Innovation Sandbox trên AWS. Bước này giúp di chuyển các tài khoản AWS vào đúng cấu trúc tổ chức và áp dụng các kiểm soát cần thiết.</p>
+<p><strong>Lưu ý:</strong> Đảm bảo tất cả thông tin chính xác và nhất quán với các bước trước.</p>
+<h3 id="đưa-sandbox-account-vào-hệ-thống">Đưa Sandbox Account vào hệ thống</h3>
+<p>Bước cuối để hoàn thành cấu hình. Chuyển các tài khoản AWS vào đúng cấu trúc và áp dụng kiểm soát.</p>
 <h4 id="lưu-ý-quan-trọng-1">Lưu ý quan trọng</h4>
 <ul>
-<li>Thực hiện các bước này trong <strong>tài khoản quản lý tổ chức</strong> (organization management account) – nơi đã cấu hình AWS IAM Identity Center.</li>
-<li>Đảm bảo bạn đang ở đúng <strong>home Region</strong> đã chọn cho toàn bộ hệ thống.</li>
+<li>Làm ở <strong>tài khoản quản lý tổ chức</strong></li>
+<li>Đúng <strong>home Region</strong> đã chọn</li>
 </ul>
-<h4 id="các-bước-onboard-tài-khoản-sandbox">Các bước Onboard Tài khoản Sandbox</h4>
-<p><strong>1. Mở AWS Organizations console</strong></p>
+<h4 id="các-bước">Các bước</h4>
 <ul>
-<li>Đăng nhập vào AWS Management Console bằng tài khoản quản lý tổ chức.</li>
-<li>Mở <strong>AWS Organizations console</strong>.</li>
+<li>Đăng nhập AWS Management Console bằng tài khoản quản lý</li>
+<li>Mở <strong>AWS Organizations console</strong></li>
 </ul>
-<p><strong>2. Tìm và chọn các tài khoản cần di chuyển</strong></p>
+<p><strong>2. Tìm tài khoản cần chuyển</strong></p>
 <ul>
-<li>Chọn mục <strong>AWS accounts</strong>.</li>
-<li>Tìm các tài khoản bạn muốn chuyển vào môi trường sandbox. Có thể duyệt theo cấu trúc OU hoặc chọn <strong>List</strong> để xem danh sách tài khoản dạng phẳng.</li>
-<li><strong>Lưu ý:</strong> Không chọn tài khoản quản lý tổ chức hoặc tài khoản hub.</li>
+<li>Chọn <strong>AWS accounts</strong></li>
+<li>Tìm các tài khoản muốn chuyển vào môi trường sandbox</li>
+<li><strong>Lưu ý:</strong> Đừng chọn tài khoản quản lý hoặc tài khoản hub</li>
 </ul>
 <p><img src="/resources/_gen/images/account-onboarding.png" alt="architect" title="Architect"></p>
-<p><strong>3. Di chuyển tài khoản vào OU Entry</strong></p>
+<p><strong>3. Chuyển vào Entry OU</strong></p>
 <ul>
-<li>Đánh dấu chọn các tài khoản cần di chuyển.</li>
-<li>Tại menu <strong>Actions</strong> (hoặc menu thao tác tương ứng), chọn <strong>Move</strong> dưới mục AWS account.</li>
-<li>Trong hộp thoại <strong>Move AWS account</strong>, nhấn vào mũi tên cạnh OU của Innovation Sandbox on AWS (OU này đã được tạo khi triển khai AccountPool stack) để mở rộng và xem các OU con.</li>
-<li>Chọn <strong>Entry OU</strong> (OU con dùng cho sandbox accounts).</li>
-<li>Nhấn <strong>Move AWS accounts</strong> để xác nhận di chuyển.</li>
+<li>Chọn các tài khoản cần chuyển</li>
+<li>Menu <strong>Actions</strong>, chọn <strong>Move</strong></li>
+<li>Hộp thoại <strong>Move AWS account</strong>, click mũi tên cạnh Innovation Sandbox OU để mở rộng</li>
+<li>Chọn <strong>Entry OU</strong></li>
+<li><strong>Move AWS accounts</strong> để xác nhận</li>
 </ul>
 <h4 id="kết-quả">Kết quả</h4>
 <ul>
-<li>Các tài khoản sandbox đã được di chuyển vào đúng OU trong cấu trúc tổ chức Innovation Sandbox trên AWS.</li>
-<li>Các chính sách kiểm soát và cấu hình liên quan sẽ tự động được áp dụng cho các tài khoản này.</li>
+<li>Các tài khoản sandbox đã ở đúng vị trí trong cấu trúc Innovation Sandbox</li>
+<li>Các policy kiểm soát sẽ tự động áp dụng cho những tài khoản này</li>
 </ul>
-<p>Việc onboard đúng các tài khoản vào Entry OU đảm bảo môi trường sandbox hoạt động tách biệt, an toàn và tuân thủ các chính sách quản trị của tổ chức.</p>
+<p>Làm đúng bước này đảm bảo môi trường sandbox hoạt động riêng biệt, an toàn và tuân thủ chính sách tổ chức.</p>
 
 
 
@@ -831,7 +807,7 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/vi/2-deploy-the-solution/" title="Khởi tạo Launch Template"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/vi/2-deploy-the-solution/" title="Deploy the Solution"> <i class="fa fa-chevron-left"></i></a>
 		
 		
 			<a class="nav nav-next" href="/vi/4-use-the-solution/" title="Khởi tạo Load Balancer" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
@@ -844,19 +820,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1752249528"></script>
-    <script src="/js/perfect-scrollbar.min.js?1752249528"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1752249528"></script>
-    <script src="/js/jquery.sticky.js?1752249528"></script>
-    <script src="/js/featherlight.min.js?1752249528"></script>
-    <script src="/js/highlight.pack.js?1752249528"></script>
+    <script src="/js/clipboard.min.js?1752251807"></script>
+    <script src="/js/perfect-scrollbar.min.js?1752251807"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1752251807"></script>
+    <script src="/js/jquery.sticky.js?1752251807"></script>
+    <script src="/js/featherlight.min.js?1752251807"></script>
+    <script src="/js/highlight.pack.js?1752251807"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1752249528"></script>
-    <script src="/js/learn.js?1752249528"></script>
-    <script src="/js/hugo-learn.js?1752249528"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1752251807"></script>
+    <script src="/js/learn.js?1752251807"></script>
+    <script src="/js/hugo-learn.js?1752251807"></script>
 
-    <link href="/mermaid/mermaid.css?1752249528" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1752249528"></script>
+    <link href="/mermaid/mermaid.css?1752251807" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1752251807"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -12,21 +12,21 @@
     <title>Khởi tạo Auto Scaling Group :: Triển khai Ứng dụng ShareNote với Auto Scaling Group</title>
 
     
-    <link href="/css/nucleus.css?1752249579" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1752249579" rel="stylesheet">
-    <link href="/css/hybrid.css?1752249579" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1752249579" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1752249579" rel="stylesheet">
-    <link href="/css/auto-complete.css?1752249579" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1752249579" rel="stylesheet">
-    <link href="/css/theme.css?1752249579" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1752249579" rel="stylesheet">
+    <link href="/css/nucleus.css?1752251807" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1752251807" rel="stylesheet">
+    <link href="/css/hybrid.css?1752251807" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1752251807" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1752251807" rel="stylesheet">
+    <link href="/css/auto-complete.css?1752251807" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1752251807" rel="stylesheet">
+    <link href="/css/theme.css?1752251807" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1752251807" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1752249579" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1752251807" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1752249579"></script>
+    <script src="/js/jquery-3.3.1.min.js?1752251807"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1752249579"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1752249579"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1752251807"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1752251807"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/\/vi";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1752249579"></script>
+<script type="text/javascript" src="/js/search.js?1752251807"></script>
 
     
   </div>
@@ -108,13 +108,13 @@
  
   
     
-    <li data-nav-id="/vi/2-deploy-the-solution/" title="Khởi tạo Launch Template" class="dd-item 
+    <li data-nav-id="/vi/2-deploy-the-solution/" title="Deploy the Solution" class="dd-item 
         
         
         
         ">
       <a href="/vi/2-deploy-the-solution/">
-          <b>2. </b>Khởi tạo Launch Template
+          <b>2. </b>Deploy the Solution
           
             <i class="fas fa-check read-icon"></i>
           
@@ -354,7 +354,15 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#xóa-hết-khi-không-cần-nữa">Xóa hết khi không cần nữa</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -378,48 +386,40 @@
 
 
 
-	<p>Hướng dẫn Gỡ Bỏ Hoàn Toàn Innovation Sandbox on AWS
-Nếu bạn đã triển khai Innovation Sandbox on AWS trong môi trường thử nghiệm và cần xóa bỏ hoàn toàn, hãy thực hiện theo các bước dưới đây. Thời gian dự kiến: khoảng 15 phút.</p>
-<ol>
-<li>Xóa Hai CloudFormation Stack Đầu Tiên (Trên Hub Account)
-Đăng nhập vào hub account và đảm bảo đang ở đúng home Region.</li>
-</ol>
+	<h3 id="xóa-hết-khi-không-cần-nữa">Xóa hết khi không cần nữa</h3>
+<p>Nếu bạn đã thử xong rồi và muốn dọn dẹp sạch sẽ, làm theo các bước này. Dự kiến mất khoảng 15 phút.</p>
+<h4 id="1-xóa-hai-stack-đầu-ở-tài-khoản-hub">1. Xóa hai stack đầu (ở tài khoản hub)</h4>
+<p>Đăng nhập tài khoản hub, đảm bảo đúng home Region.</p>
 <p>Mở AWS CloudFormation console.</p>
-<p>Chọn stack compute (ví dụ: isb-compute), nhấn Delete.</p>
-<p>Chờ quá trình xóa hoàn tất.</p>
-<p>Tiếp tục chọn stack data (ví dụ: isb-data), nhấn Delete.</p>
-<p>Chờ quá trình xóa hoàn tất.</p>
-<ol start="2">
-<li>Xóa Cấu Hình Ứng Dụng IAM Identity Center (Trên Organization Management Account)
-Đăng nhập vào organization management account và đảm bảo đang ở đúng home Region.</li>
-</ol>
+<p>Chọn compute stack (ví dụ: isb-compute), click Delete.</p>
+<p>Đợi xóa xong.</p>
+<p>Tiếp tục chọn data stack (ví dụ: isb-data), click Delete.</p>
+<p>Đợi xóa xong.</p>
+<h4 id="2-xóa-cấu-hình-iam-identity-center-app-ở-tài-khoản-quản-lý">2. Xóa cấu hình IAM Identity Center App (ở tài khoản quản lý)</h4>
+<p>Đăng nhập tài khoản quản lý, đảm bảo đúng home Region.</p>
 <p>Mở IAM Identity Center console.</p>
-<p>Trong thanh điều hướng, chọn Applications.</p>
+<p>Thanh điều hướng chọn Applications.</p>
 <p>Chuyển sang tab Customer managed.</p>
-<p>Chọn ứng dụng Innovation Sandbox on AWS.</p>
+<p>Chọn app Innovation Sandbox on AWS.</p>
 <p>Vào Actions &gt; Remove.</p>
-<p>Xác nhận bằng cách nhập tên ứng dụng để hoàn tất việc xóa.</p>
-<ol start="3">
-<li>Xóa Các CloudFormation Stack Còn Lại (Trên Organization Management Account)
-Mở AWS CloudFormation console.</li>
-</ol>
-<p>Chọn stack IDC (ví dụ: isb-idc), nhấn Delete.</p>
-<p>Chờ quá trình xóa hoàn tất.</p>
-<p>Chọn stack AccountPool (ví dụ: isb-accountpool), nhấn Delete.</p>
-<p>Chờ quá trình xóa hoàn tất.</p>
-<ol start="4">
-<li>Đóng Các Tài Khoản Sandbox AWS (Tùy chọn)
-Lưu ý: Trước khi đóng tài khoản AWS, hãy đọc kỹ quy trình, điều kiện tiên quyết và ảnh hưởng của việc đóng tài khoản trong tài liệu hướng dẫn quản lý tài khoản AWS.</li>
-</ol>
-<p>Mở AWS Organizations console trong organization management account.</p>
-<p>Truy cập organizational unit dành cho Innovation Sandbox on AWS.</p>
+<p>Xác nhận bằng cách nhập tên app để hoàn tất.</p>
+<h4 id="3-xóa-hai-stack-còn-lại-ở-tài-khoản-quản-lý">3. Xóa hai stack còn lại (ở tài khoản quản lý)</h4>
+<p>Mở AWS CloudFormation console.</p>
+<p>Chọn IDC stack (ví dụ: isb-idc), click Delete.</p>
+<p>Đợi xóa xong.</p>
+<p>Chọn AccountPool stack (ví dụ: isb-accountpool), click Delete.</p>
+<p>Đợi xóa xong.</p>
+<h4 id="4-đóng-tài-khoản-aws-sandbox-tùy-chọn">4. Đóng tài khoản AWS Sandbox (tùy chọn)</h4>
+<p>Lưu ý: Trước khi đóng tài khoản AWS, đọc kỹ hướng dẫn và tác động của việc đóng tài khoản trong tài liệu AWS.</p>
+<p>Mở AWS Organizations console ở tài khoản quản lý.</p>
+<p>Truy cập organizational unit của Innovation Sandbox on AWS.</p>
 <p>Mở từng sub-organizational unit để tìm các tài khoản sandbox.</p>
 <p>Với mỗi tài khoản cần đóng:</p>
 <p>Chọn tài khoản.</p>
 <p>Vào Actions &gt; Close.</p>
 <p>Xác nhận bằng cách nhập AWS account ID.</p>
-<p>Hoàn tất!
-Bạn đã hoàn thành việc gỡ bỏ toàn bộ giải pháp Innovation Sandbox on AWS khỏi môi trường thử nghiệm.</p>
+<h4 id="xong">Xong!</h4>
+<p>Thế là đã dọn dẹp xong toàn bộ Innovation Sandbox on AWS khỏi môi trường thử nghiệm rồi.</p>
 
 
 
@@ -561,19 +561,19 @@ Bạn đã hoàn thành việc gỡ bỏ toàn bộ giải pháp Innovation Sand
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1752249579"></script>
-    <script src="/js/perfect-scrollbar.min.js?1752249579"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1752249579"></script>
-    <script src="/js/jquery.sticky.js?1752249579"></script>
-    <script src="/js/featherlight.min.js?1752249579"></script>
-    <script src="/js/highlight.pack.js?1752249579"></script>
+    <script src="/js/clipboard.min.js?1752251807"></script>
+    <script src="/js/perfect-scrollbar.min.js?1752251807"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1752251807"></script>
+    <script src="/js/jquery.sticky.js?1752251807"></script>
+    <script src="/js/featherlight.min.js?1752251807"></script>
+    <script src="/js/highlight.pack.js?1752251807"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1752249579"></script>
-    <script src="/js/learn.js?1752249579"></script>
-    <script src="/js/hugo-learn.js?1752249579"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1752251807"></script>
+    <script src="/js/learn.js?1752251807"></script>
+    <script src="/js/hugo-learn.js?1752251807"></script>
 
-    <link href="/mermaid/mermaid.css?1752249579" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1752249579"></script>
+    <link href="/mermaid/mermaid.css?1752251807" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1752251807"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

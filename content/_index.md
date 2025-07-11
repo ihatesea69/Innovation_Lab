@@ -7,9 +7,6 @@ chapter = false
 
 # Building a Comfortable Environment for Innovation and Learning on AWS
 
-#### Workshop Overview
-
-# Introduction to Innovation Sandbox on AWS Workshop
 
 ## Workshop Overview
 
@@ -18,7 +15,7 @@ chapter = false
 
 
 
-![architect](/images/high-level.png "Architect")
+![architect](/resources/_gen/images/high-level.png "Architect")
 ### Main Objectives
 
 
@@ -49,7 +46,7 @@ chapter = false
 | AWS Step Functions       | Manage sandbox account state according to logical processes                                           |
 | AWS accounts             | Sandbox accounts prepared and distributed to end users                                               |
 
-![Account LifeCycle](/images/sandbox-account-ou-lifecycle.png "a title")
+![Account LifeCycle](/resources/_gen/images/sandbox-account-ou-lifecycle.png "a title")
 
 ## Account Lifecycle
 

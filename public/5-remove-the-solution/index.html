@@ -9,24 +9,24 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Khởi tạo Auto Scaling Group :: Deploy ShareNote Application on Auto Scaling Group</title>
+    <title>5-Remove the Solution :: Deploy ShareNote Application on Auto Scaling Group</title>
 
     
-    <link href="/css/nucleus.css?1752249578" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1752249578" rel="stylesheet">
-    <link href="/css/hybrid.css?1752249578" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1752249578" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1752249578" rel="stylesheet">
-    <link href="/css/auto-complete.css?1752249578" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1752249578" rel="stylesheet">
-    <link href="/css/theme.css?1752249578" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1752249578" rel="stylesheet">
+    <link href="/css/nucleus.css?1752251806" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1752251806" rel="stylesheet">
+    <link href="/css/hybrid.css?1752251806" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1752251806" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1752251806" rel="stylesheet">
+    <link href="/css/auto-complete.css?1752251806" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1752251806" rel="stylesheet">
+    <link href="/css/theme.css?1752251806" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1752251806" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1752249578" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1752251806" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1752249578"></script>
+    <script src="/js/jquery-3.3.1.min.js?1752251806"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1752249578"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1752249578"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1752251806"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1752251806"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1752249578"></script>
+<script type="text/javascript" src="/js/search.js?1752251806"></script>
 
     
   </div>
@@ -82,13 +82,13 @@
  
   
     
-    <li data-nav-id="/1-prerequisite/" title="Các bước chuẩn bị" class="dd-item 
+    <li data-nav-id="/1-prerequisite/" title="Prerequisites" class="dd-item 
         
         
         
         ">
       <a href="/1-prerequisite/">
-          <b>1. </b>Các bước chuẩn bị
+          <b>1. </b>Prerequisites
           
             <i class="fas fa-check read-icon"></i>
           
@@ -108,13 +108,13 @@
  
   
     
-    <li data-nav-id="/2-deploy-the-solution/" title="Khởi tạo Launch Template" class="dd-item 
+    <li data-nav-id="/2-deploy-the-solution/" title="Deploy the Solution" class="dd-item 
         
         
         
         ">
       <a href="/2-deploy-the-solution/">
-          <b>2. </b>Khởi tạo Launch Template
+          <b>2. </b>Deploy the Solution
           
             <i class="fas fa-check read-icon"></i>
           
@@ -134,13 +134,13 @@
  
   
     
-    <li data-nav-id="/3-configure-the-solution/" title="Khởi tạo Target Group" class="dd-item 
+    <li data-nav-id="/3-configure-the-solution/" title="Configure the Solution" class="dd-item 
         
         
         
         ">
       <a href="/3-configure-the-solution/">
-          <b>3. </b>Khởi tạo Target Group
+          <b>3. </b>Configure the Solution
           
             <i class="fas fa-check read-icon"></i>
           
@@ -160,13 +160,13 @@
  
   
     
-    <li data-nav-id="/4-use-the-solution/" title="Khởi tạo Load Balancer" class="dd-item 
+    <li data-nav-id="/4-use-the-solution/" title="Use the Solution" class="dd-item 
         
         
         
         ">
       <a href="/4-use-the-solution/">
-          <b>4. </b>Khởi tạo Load Balancer
+          <b>4. </b>Use the Solution
           
             <i class="fas fa-check read-icon"></i>
           
@@ -186,13 +186,13 @@
  
   
     
-    <li data-nav-id="/5-remove-the-solution/" title="Khởi tạo Auto Scaling Group" class="dd-item 
+    <li data-nav-id="/5-remove-the-solution/" title="5-Remove the Solution" class="dd-item 
         
         active
         
         ">
       <a href="/5-remove-the-solution/">
-          <b>5. </b>Khởi tạo Auto Scaling Group
+          <b>5. </b>5-Remove the Solution
           
             <i class="fas fa-check read-icon"></i>
           
@@ -343,7 +343,7 @@
             
           
           
-            <a href='/'>Helllo</a> > Khởi tạo Auto Scaling Group
+            <a href='/'>Innovation Lab</a> > 5-Remove the Solution
           
         
           
@@ -358,7 +358,7 @@
   <ul>
     <li>
       <ul>
-        <li></li>
+        <li><a href="#complete-removal-guide-for-innovation-sandbox-on-aws">Complete Removal Guide for Innovation Sandbox on AWS</a></li>
       </ul>
     </li>
   </ul>
@@ -378,7 +378,7 @@
           
             <h1>
               
-              Khởi tạo Auto Scaling Group
+              5-Remove the Solution
             </h1>
           
 
@@ -386,82 +386,40 @@
 
 
 
-	<p>Ở phần này, chúng ta sẽ triển khai một Auto Scaling Group cho ứng dụng ShareNote để đảm bảo ứng dụng của chúng ta sẽ được triển khai với tính sẵn sàng cao, và có khả năng tăng số lượng EC2 instance khi người dùng truy cập vào hệ thống tăng.</p>
-<h4 id="tạo-autoscaling-group">Tạo AutoScaling Group</h4>
-<ol>
-<li>Truy cập vào <strong>EC2 Management Console</strong>.</li>
-<li>Ở thanh điều hướng bên trái, chọn <strong>Auto Scaling Groups</strong>.</li>
-<li>Ở trang <strong>Auto Scaling Groups</strong>, chọn <strong>Create an Auto Scaling group</strong>.</li>
-</ol>
-<p><img src="/images/asg/034.png?width=90pc" alt="Launch Template"></p>
-<ol start="4">
-<li>Bắt đầu với trang <strong>Choose launch template or configuration</strong>, thiết lập các thông tin như sau:</li>
-</ol>
-<ul>
-<li>Name: Nhập vào tên của Auto Scaling Group (VD: <strong>sharenote-asg</strong>)</li>
-<li>Launch template: Chọn launch template chúng ta đã tạo trước đó (VD: sharenote-template)</li>
-<li>Kéo màn hình xuống dưới và click <strong>Next</strong>.</li>
-</ul>
-<p><img src="/images/asg/035.png?width=90pc" alt="Launch Template"></p>
-<ol start="5">
-<li>Ở trang <strong>Configure settings</strong>:</li>
-</ol>
-<ul>
-<li>Mục <strong>Network</strong>, phần <strong>Subnets</strong>  Lựa chọn 2 subnet ở hai AZ  <strong>ap-northeast-1a</strong> và <strong>ap-northeast-1b</strong>.</li>
-<li>Kéo màn hình xuống dưới và click <strong>Next</strong>.</li>
-</ul>
-<p><img src="/images/asg/036.png?width=90pc" alt="Launch Template"></p>
-<ol start="6">
-<li>Ở trang <strong>Configure advanced options</strong>:
-<ul>
-<li>Mục <strong>Load balancing - optional</strong> click chọn <strong>Attach to an existing load balancer</strong>.</li>
-<li>Click chọn <strong>Choose from your load balancer target groups</strong>.</li>
-<li>Click chọn target group  mà chúng ta đã tạo trước đó. (VD: <strong>sharenote-tg</strong>)</li>
-<li>Kéo màn hình xuống dưới và click <strong>Next</strong>.</li>
-</ul>
-</li>
-</ol>
-<p><img src="/images/asg/037.png?width=90pc" alt="Launch Template"></p>
-<ol start="7">
-<li>Ở trang <strong>Configure group size and scaling policies</strong>:
-<ul>
-<li>Group size - optional:
-<ul>
-<li>Desired capacity: Nhập <strong>1</strong>. (Default)</li>
-<li>Minimum capacity: Nhập <strong>1</strong>. (Default)</li>
-<li>Maximum capacity: Nhập <strong>3</strong>.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<p><img src="/images/asg/038.png?width=90pc" alt="Launch Template"></p>
-<ol start="8">
-<li>Tại mục <strong>Scaling policies - optional:</strong> Lựa chọn trong bài thực hành này nhằm tạo điều kiện dễ dàng hơn cho bước kiểm tra được thực hiện tiếp theo. Bạn hoàn toàn có thể thiết lập chính sách scale tài nguyên theo nhu cầu của bạn.</li>
-</ol>
-<ul>
-<li>Chọn <strong>Target tracking scaling policy</strong>.</li>
-<li>Metric type: Chọn <strong>Application Load Balancer request count per target</strong>.</li>
-<li>Target group: Chọn target group mà chúng ta đã tạo (VD: <strong>sharenote-tg</strong>).</li>
-<li>Target value: Nhập <strong>30</strong>.</li>
-<li>Click <strong>Next</strong>.</li>
-</ul>
-<p><img src="/images/asg/039.png?width=90pc" alt="Launch Template"></p>
-<ol start="9">
-<li>Ở trang <strong>Add notifications</strong>, chọn <strong>Next</strong>.</li>
-<li>Ở trang <strong>Add tags</strong>, chọn <strong>Next</strong>.</li>
-<li>Ở trang <strong>Review</strong>, chọn <strong>Create Auto Scaling Group</strong></li>
-</ol>
-<p>Quá trình khởi tạo Auto Scaling Group sẽ được thực hiện, Auto Scaling Group vừa được tạo sẽ hiển thị trong danh sách, và bạn có thể chọn vào nó để xem thông tin chi tiết.</p>
-<p>Vhúng ta có thể theo dõi các EC2 instance hiện có trong Auto Scaling Group ở trang <strong>Instance management</strong>. Các instance có tình trạng <strong>InService</strong> là các instance đã sẵn sàng hoạt động.</p>
-<p><img src="/images/asg/040.png?width=90pc" alt="Launch Template"></p>
-<p>Đến đây, chúng ta đã hoàn thành việc triển khai ứng dụng Share Note với Auto Scaling Group và Elastic Load Balancer. Với mô hình này, bạn có thể triển khai ứng dụng của mình với tính sẵn sàng cao, dễ dàng mở rộng và cân bằng tải các yêu cầu từ người dùng.</p>
-<p>Ở bước kế tiếp, chúng ta sẽ thử nghiệm tính năng thêm EC2 Instance dựa trên việc tăng số lượng truy cập đến ứng dụng của chúng ta.</p>
-
-<div class="notices tip" ><p>Trước khi thực hiện bước kế tiếp hãy kiểm tra cấu hình Automatic scaling của Auto Scaling Group của chúng ta có giống như dưới đây không. Nếu quá trình tạo scaling policy bị lỗi, chúng ta có thể click <strong>Create dynamic scaling policy</strong> để tiến hành tạo lại scaling policy mới.</p>
-</div>
-
-<p><img src="/images/asg/041.png?width=90pc" alt="Launch Template"></p>
+	<h3 id="complete-removal-guide-for-innovation-sandbox-on-aws">Complete Removal Guide for Innovation Sandbox on AWS</h3>
+<p>If you have deployed Innovation Sandbox on AWS in a testing environment and need to completely remove it, follow the steps below. Estimated time: about 15 minutes.</p>
+<h4 id="1-delete-first-two-cloudformation-stacks-on-hub-account">1. Delete First Two CloudFormation Stacks (On Hub Account)</h4>
+<p>Log in to hub account and ensure you are in the correct home Region.</p>
+<p>Open AWS CloudFormation console.</p>
+<p>Choose compute stack (example: isb-compute), click Delete.</p>
+<p>Wait for deletion process to complete.</p>
+<p>Continue to choose data stack (example: isb-data), click Delete.</p>
+<p>Wait for deletion process to complete.</p>
+<h4 id="2-delete-iam-identity-center-application-configuration-on-organization-management-account">2. Delete IAM Identity Center Application Configuration (On Organization Management Account)</h4>
+<p>Log in to organization management account and ensure you are in the correct home Region.</p>
+<p>Open IAM Identity Center console.</p>
+<p>In navigation bar, choose Applications.</p>
+<p>Switch to Customer managed tab.</p>
+<p>Choose Innovation Sandbox on AWS application.</p>
+<p>Go to Actions &gt; Remove.</p>
+<p>Confirm by entering application name to complete deletion.</p>
+<h4 id="3-delete-remaining-cloudformation-stacks-on-organization-management-account">3. Delete Remaining CloudFormation Stacks (On Organization Management Account)</h4>
+<p>Open AWS CloudFormation console.</p>
+<p>Choose IDC stack (example: isb-idc), click Delete.</p>
+<p>Wait for deletion process to complete.</p>
+<p>Choose AccountPool stack (example: isb-accountpool), click Delete.</p>
+<p>Wait for deletion process to complete.</p>
+<h4 id="4-close-aws-sandbox-accounts-optional">4. Close AWS Sandbox Accounts (Optional)</h4>
+<p>Note: Before closing AWS accounts, carefully read the process, prerequisites and impacts of account closure in the AWS account management guidance documentation.</p>
+<p>Open AWS Organizations console in organization management account.</p>
+<p>Access organizational unit for Innovation Sandbox on AWS.</p>
+<p>Open each sub-organizational unit to find sandbox accounts.</p>
+<p>For each account to close:</p>
+<p>Choose the account.</p>
+<p>Go to Actions &gt; Close.</p>
+<p>Confirm by entering AWS account ID.</p>
+<h4 id="complete">Complete!</h4>
+<p>You have completed the complete removal of the Innovation Sandbox on AWS solution from your testing environment.</p>
 
 
 
@@ -590,10 +548,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/4-use-the-solution/" title="Khởi tạo Load Balancer"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/4-use-the-solution/" title="Use the Solution"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/1-prerequisite/" title="Các bước chuẩn bị" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/1-prerequisite/" title="Prerequisites" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -603,19 +561,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1752249579"></script>
-    <script src="/js/perfect-scrollbar.min.js?1752249579"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1752249579"></script>
-    <script src="/js/jquery.sticky.js?1752249579"></script>
-    <script src="/js/featherlight.min.js?1752249579"></script>
-    <script src="/js/highlight.pack.js?1752249579"></script>
+    <script src="/js/clipboard.min.js?1752251806"></script>
+    <script src="/js/perfect-scrollbar.min.js?1752251806"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1752251806"></script>
+    <script src="/js/jquery.sticky.js?1752251806"></script>
+    <script src="/js/featherlight.min.js?1752251806"></script>
+    <script src="/js/highlight.pack.js?1752251806"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1752249579"></script>
-    <script src="/js/learn.js?1752249579"></script>
-    <script src="/js/hugo-learn.js?1752249579"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1752251806"></script>
+    <script src="/js/learn.js?1752251806"></script>
+    <script src="/js/hugo-learn.js?1752251806"></script>
 
-    <link href="/mermaid/mermaid.css?1752249579" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1752249579"></script>
+    <link href="/mermaid/mermaid.css?1752251806" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1752251806"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

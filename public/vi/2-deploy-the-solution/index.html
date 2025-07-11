@@ -9,24 +9,24 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Khởi tạo Launch Template :: Triển khai Ứng dụng ShareNote với Auto Scaling Group</title>
+    <title>Deploy the Solution :: Triển khai Ứng dụng ShareNote với Auto Scaling Group</title>
 
     
-    <link href="/css/nucleus.css?1752249382" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1752249382" rel="stylesheet">
-    <link href="/css/hybrid.css?1752249382" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1752249382" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1752249382" rel="stylesheet">
-    <link href="/css/auto-complete.css?1752249382" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1752249382" rel="stylesheet">
-    <link href="/css/theme.css?1752249382" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1752249382" rel="stylesheet">
+    <link href="/css/nucleus.css?1752251941" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1752251941" rel="stylesheet">
+    <link href="/css/hybrid.css?1752251941" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1752251941" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1752251941" rel="stylesheet">
+    <link href="/css/auto-complete.css?1752251941" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1752251941" rel="stylesheet">
+    <link href="/css/theme.css?1752251941" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1752251941" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1752249382" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1752251941" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1752249382"></script>
+    <script src="/js/jquery-3.3.1.min.js?1752251941"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1752249382"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1752249382"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1752251941"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1752251941"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/\/vi";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1752249382"></script>
+<script type="text/javascript" src="/js/search.js?1752251941"></script>
 
     
   </div>
@@ -108,13 +108,13 @@
  
   
     
-    <li data-nav-id="/vi/2-deploy-the-solution/" title="Khởi tạo Launch Template" class="dd-item 
+    <li data-nav-id="/vi/2-deploy-the-solution/" title="Deploy the Solution" class="dd-item 
         
         active
         
         ">
       <a href="/vi/2-deploy-the-solution/">
-          <b>2. </b>Khởi tạo Launch Template
+          <b>2. </b>Deploy the Solution
           
             <i class="fas fa-check read-icon"></i>
           
@@ -343,7 +343,7 @@
             
           
           
-            <a href='/vi/'>Innovation Lab</a> > Khởi tạo Launch Template
+            <a href='/vi/'>Innovation Lab</a> > Deploy the Solution
           
         
           
@@ -358,7 +358,7 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#triển-khai-lab">Triển khai lab</a></li>
+        <li><a href="#triển-khai-giải-pháp-deploy-the-solution">Triển khai Giải pháp (Deploy the Solution)</a></li>
         <li><a href="#triển-khai-accountpool-stack">Triển khai AccountPool Stack</a></li>
         <li><a href="#triển-khai-idc-stack">Triển khai IDC Stack</a></li>
         <li><a href="#triển-khai-data-stack">Triển khai Data Stack</a></li>
@@ -382,7 +382,7 @@
           
             <h1>
               
-              Khởi tạo Launch Template
+              Deploy the Solution
             </h1>
           
 
@@ -390,17 +390,17 @@
 
 
 
-	<h3 id="triển-khai-lab">Triển khai lab</h3>
-<p>Cần chạy các stack theo đúng thứ tự và sử dụng chung một region</p>
+	<h3 id="triển-khai-giải-pháp-deploy-the-solution">Triển khai Giải pháp (Deploy the Solution)</h3>
+<p>Giải pháp Innovation Sandbox trên AWS sử dụng bốn stack AWS CloudFormation, cần được triển khai theo thứ tự nhất định. Mỗi stack phải được triển khai đúng tài khoản và vùng AWS (Region) đã chọn để đảm bảo hoạt động chính xác. Trong suốt quá trình triển khai, hãy sử dụng cùng một home Region đã xác định từ trước.</p>
 <h4 id="tổng-quan-về-các-stack-cloudformation">Tổng quan về các Stack CloudFormation</h4>
-<p>Gồm 4 stack</p>
+<p>Việc triển khai bao gồm bốn stack CloudFormation, mỗi stack xây dựng dựa trên stack trước đó:</p>
 <ul>
 <li>
 <p><strong>AccountPool Stack</strong></p>
 <ul>
 <li>Triển khai trên tài khoản quản lý tổ chức (organization management account)</li>
-<li>Tạo AWS Organization</li>
-<li>Thiết lập policies</li>
+<li>Tạo cấu trúc tổ chức AWS</li>
+<li>Thiết lập các chính sách và kiểm soát nền tảng</li>
 </ul>
 </li>
 <li>
@@ -430,8 +430,8 @@
 </ul>
 <h4 id="sơ-đồ-quan-hệ-giữa-các-stack">Sơ đồ quan hệ giữa các Stack</h4>
 <p>Mỗi stack CloudFormation có mối quan hệ phụ thuộc với các stack khác và được triển khai trên các tài khoản khác nhau, đảm bảo các thành phần của giải pháp hoạt động phối hợp.</p>
-<p><img src="/resources/_gen/images/stack-relationships.png" alt="architect" title="Architect"></p>
-<h4 id="template-cloudformation">Template CloudFormation</h4>
+<p><img src="/images/stack-relationships.png" alt="architect" title="Architect"></p>
+<h4 id="mẫu-template-cloudformation">Mẫu Template CloudFormation</h4>
 <p>Để triển khai giải pháp, sử dụng các đường dẫn template CloudFormation sau:</p>
 <table>
   <thead>
@@ -459,9 +459,20 @@
       </tr>
   </tbody>
 </table>
-<p>Lưu ý: Bài lab workshop đã lỗi thời nên phần compute có bị lỗi, nên chủ tus đã cập nhật template compute mới trên google drive mới cho mọi người</p>
+<h4 id="trước-khi-bắt-đầu">Trước khi bắt đầu</h4>
+<p>Trước khi triển khai, hãy đảm bảo bạn đã hoàn thành các bước sau:</p>
+<ul>
+<li>Hoàn thành tất cả các bước trong phần Yêu cầu trước (Prerequisites module)</li>
+<li>Đảm bảo có quyền truy cập vào cả hai tài khoản: tài khoản quản lý tổ chức (organization management account) và tài khoản hub
+<ul>
+<li>Tài khoản dùng để thiết lập AWS Organizations hoặc AWS Control Tower chính là tài khoản quản lý tổ chức</li>
+</ul>
+</li>
+</ul>
+<p><strong>Thời gian dự kiến:</strong> Khoảng 45 phút</p>
+<p>Việc triển khai đúng thứ tự và đúng tài khoản/vùng sẽ đảm bảo giải pháp Innovation Sandbox trên AWS hoạt động hiệu quả và tuân thủ các chính sách quản trị của tổ chức.</p>
 <h3 id="triển-khai-accountpool-stack">Triển khai AccountPool Stack</h3>
-<p>Triển khai AccountPool stack sẽ tạo cấu trúc tổ chức và các policy</p>
+<p>Triển khai AccountPool stack là bước đầu tiên trong tài khoản quản lý tổ chức (organization management account). Stack này sẽ tạo cấu trúc tổ chức và các chính sách nền tảng cần thiết cho giải pháp.</p>
 <h4 id="các-bước-triển-khai">Các bước triển khai</h4>
 <p><strong>Đăng nhập vào AWS Management Console</strong></p>
 <ul>
@@ -474,7 +485,7 @@
 <li><strong>HubAccountId:</strong> Đây là ID tài khoản AWS nơi bạn sẽ triển khai hai trong bốn stack. Để xem tất cả các tài khoản trong tổ chức, vào AWS Organizations trong console, chọn một tài khoản làm hub và ghi lại ID để sử dụng ở bước 5 và các bước sau.</li>
 <li><strong>ParentOuID:</strong> Đây là ID của root hoặc organizational unit (OU) nơi các OU của Innovation Sandbox sẽ được tạo. Để tìm ID này, mở AWS Organizations, cấu trúc tổ chức sẽ hiển thị ID dưới tên từng OU. Bạn cũng có thể dùng root organization ID.</li>
 </ul>
-<p><img src="/resources/_gen/images/organiza.jpg" alt="architect" title="Architect"></p>
+<p><img src="/images/organiza.jpg" alt="architect" title="Architect"></p>
 <p><strong>Khởi tạo stack</strong></p>
 <ul>
 <li>Mở AWS CloudFormation console.</li>
@@ -550,7 +561,7 @@
 </ul>
 <p>Bạn đã triển khai thành công stack đầu tiên. Tiếp tục với việc triển khai stack thứ hai theo hướng dẫn tiếp theo.</p>
 <h3 id="triển-khai-idc-stack">Triển khai IDC Stack</h3>
-<p>IDC (Identity Center) stack là có nhiệm vụ cấu hình tích hợp với AWS IAM Identity Center, đồng thời thiết lập quản lý truy cập cho lab.</p>
+<p>IDC (Identity Center) stack là thành phần thứ hai của giải pháp Innovation Sandbox trên AWS. Stack này được triển khai trên tài khoản quản lý tổ chức (organization management account) và có nhiệm vụ cấu hình tích hợp với AWS IAM Identity Center, đồng thời thiết lập quản lý truy cập cho giải pháp.</p>
 <h4 id="các-bước-triển-khai-1">Các bước triển khai</h4>
 <p><strong>1. Đăng nhập vào AWS Management Console</strong></p>
 <ul>
@@ -944,19 +955,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1752249382"></script>
-    <script src="/js/perfect-scrollbar.min.js?1752249382"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1752249382"></script>
-    <script src="/js/jquery.sticky.js?1752249382"></script>
-    <script src="/js/featherlight.min.js?1752249382"></script>
-    <script src="/js/highlight.pack.js?1752249382"></script>
+    <script src="/js/clipboard.min.js?1752251941"></script>
+    <script src="/js/perfect-scrollbar.min.js?1752251941"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1752251941"></script>
+    <script src="/js/jquery.sticky.js?1752251941"></script>
+    <script src="/js/featherlight.min.js?1752251941"></script>
+    <script src="/js/highlight.pack.js?1752251941"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1752249382"></script>
-    <script src="/js/learn.js?1752249382"></script>
-    <script src="/js/hugo-learn.js?1752249382"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1752251941"></script>
+    <script src="/js/learn.js?1752251941"></script>
+    <script src="/js/hugo-learn.js?1752251941"></script>
 
-    <link href="/mermaid/mermaid.css?1752249382" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1752249382"></script>
+    <link href="/mermaid/mermaid.css?1752251941" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1752251941"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

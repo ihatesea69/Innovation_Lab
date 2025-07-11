@@ -9,24 +9,24 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Các bước chuẩn bị :: Deploy ShareNote Application on Auto Scaling Group</title>
+    <title>Prerequisites :: Deploy ShareNote Application on Auto Scaling Group</title>
 
     
-    <link href="/css/nucleus.css?1752249578" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1752249578" rel="stylesheet">
-    <link href="/css/hybrid.css?1752249578" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1752249578" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1752249578" rel="stylesheet">
-    <link href="/css/auto-complete.css?1752249578" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1752249578" rel="stylesheet">
-    <link href="/css/theme.css?1752249578" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1752249578" rel="stylesheet">
+    <link href="/css/nucleus.css?1752251806" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1752251806" rel="stylesheet">
+    <link href="/css/hybrid.css?1752251806" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1752251806" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1752251806" rel="stylesheet">
+    <link href="/css/auto-complete.css?1752251806" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1752251806" rel="stylesheet">
+    <link href="/css/theme.css?1752251806" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1752251806" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1752249578" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1752251806" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1752249578"></script>
+    <script src="/js/jquery-3.3.1.min.js?1752251806"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1752249578"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1752249578"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1752251806"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1752251806"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1752249578"></script>
+<script type="text/javascript" src="/js/search.js?1752251806"></script>
 
     
   </div>
@@ -82,13 +82,13 @@
  
   
     
-    <li data-nav-id="/1-prerequisite/" title="Các bước chuẩn bị" class="dd-item 
+    <li data-nav-id="/1-prerequisite/" title="Prerequisites" class="dd-item 
         
         active
         
         ">
       <a href="/1-prerequisite/">
-          <b>1. </b>Các bước chuẩn bị
+          <b>1. </b>Prerequisites
           
             <i class="fas fa-check read-icon"></i>
           
@@ -108,13 +108,13 @@
  
   
     
-    <li data-nav-id="/2-deploy-the-solution/" title="Khởi tạo Launch Template" class="dd-item 
+    <li data-nav-id="/2-deploy-the-solution/" title="Deploy the Solution" class="dd-item 
         
         
         
         ">
       <a href="/2-deploy-the-solution/">
-          <b>2. </b>Khởi tạo Launch Template
+          <b>2. </b>Deploy the Solution
           
             <i class="fas fa-check read-icon"></i>
           
@@ -134,13 +134,13 @@
  
   
     
-    <li data-nav-id="/3-configure-the-solution/" title="Khởi tạo Target Group" class="dd-item 
+    <li data-nav-id="/3-configure-the-solution/" title="Configure the Solution" class="dd-item 
         
         
         
         ">
       <a href="/3-configure-the-solution/">
-          <b>3. </b>Khởi tạo Target Group
+          <b>3. </b>Configure the Solution
           
             <i class="fas fa-check read-icon"></i>
           
@@ -160,13 +160,13 @@
  
   
     
-    <li data-nav-id="/4-use-the-solution/" title="Khởi tạo Load Balancer" class="dd-item 
+    <li data-nav-id="/4-use-the-solution/" title="Use the Solution" class="dd-item 
         
         
         
         ">
       <a href="/4-use-the-solution/">
-          <b>4. </b>Khởi tạo Load Balancer
+          <b>4. </b>Use the Solution
           
             <i class="fas fa-check read-icon"></i>
           
@@ -186,13 +186,13 @@
  
   
     
-    <li data-nav-id="/5-remove-the-solution/" title="Khởi tạo Auto Scaling Group" class="dd-item 
+    <li data-nav-id="/5-remove-the-solution/" title="5-Remove the Solution" class="dd-item 
         
         
         
         ">
       <a href="/5-remove-the-solution/">
-          <b>5. </b>Khởi tạo Auto Scaling Group
+          <b>5. </b>5-Remove the Solution
           
             <i class="fas fa-check read-icon"></i>
           
@@ -343,7 +343,7 @@
             
           
           
-            <a href='/'>Helllo</a> > Các bước chuẩn bị
+            <a href='/'>Innovation Lab</a> > Prerequisites
           
         
           
@@ -356,7 +356,11 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#sơ-đồ-tổng-quan-bài-thực-hành">Sơ đồ tổng quan bài thực hành</a></li>
+    <li>
+      <ul>
+        <li><a href="#requirements-before-deploying-innovation-sandbox-on-aws">Requirements before deploying Innovation Sandbox on AWS</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
     </div>
@@ -374,7 +378,7 @@
           
             <h1>
               
-              Các bước chuẩn bị
+              Prerequisites
             </h1>
           
 
@@ -382,10 +386,129 @@
 
 
 
-	<h2 id="sơ-đồ-tổng-quan-bài-thực-hành">Sơ đồ tổng quan bài thực hành</h2>
-<p>Trong bài thực hành này, chúng ta cần chuẩn bị một số dịch vụ để có thể tiến hành triển khai ứng dụng ShareNote sử dụng Auto Scaling Group cùng với Elastic Load Balancer.
-Một cách tổng quan, chúng ta sẽ triển khai ứng dụng ShareNote theo kiến trúc như sau:</p>
-<p><img src="../../../images/1/0.png?width=40pc" alt="Diagram"></p>
+	<h3 id="requirements-before-deploying-innovation-sandbox-on-aws">Requirements before deploying Innovation Sandbox on AWS</h3>
+<h4 id="overview">Overview</h4>
+<p>To deploy the Innovation Sandbox solution on AWS, you need to prepare some basic steps for your AWS environment. These steps include:</p>
+<ul>
+<li>Identifying necessary AWS accounts</li>
+<li>Choosing AWS region</li>
+<li>Setting up AWS Organization</li>
+<li>Enabling the following:
+<ul>
+<li>AWS IAM Identity Center</li>
+<li>AWS Resource Access Manager (RAM)</li>
+<li>AWS CloudFormation StackSets</li>
+<li>Service Control Policies (SCPs)</li>
+</ul>
+</li>
+</ul>
+<p><strong>Estimated time:</strong> About 15-20 minutes (may take longer if you need to create new AWS accounts)</p>
+<h4 id="identifying-necessary-aws-accounts">Identifying necessary AWS accounts</h4>
+<ul>
+<li>Innovation Sandbox uses AWS Organizations features, helping you centrally manage and control your AWS environment when scaling.</li>
+<li>You need to choose an initial account (called the management account).</li>
+<li>There are two options for the initial account:
+<ul>
+<li>Use an existing AWS account</li>
+<li>Create a new AWS account</li>
+</ul>
+</li>
+</ul>
+<p><strong>Note:</strong></p>
+<ul>
+<li>If you already have an AWS organization: the initial account is the existing management account.</li>
+<li>If creating a new AWS organization: you can use an independent AWS account (which will become the management account) or create a new account for this role.</li>
+<li>This account will be the management account for your entire AWS organization.</li>
+</ul>
+<h4 id="choosing-aws-home-region">Choosing AWS home Region</h4>
+<ul>
+<li>All Innovation Sandbox components must be deployed in the same AWS region.</li>
+<li>The chosen region needs to meet:
+<ul>
+<li>Full support for required services: AWS Organizations, IAM Identity Center, CloudFormation, DynamoDB, Lambda, CloudWatch, Secrets Manager, AppConfig.</li>
+<li>Where IAM Identity Center has been enabled.</li>
+<li>Accessible to all users expected to use the solution.</li>
+</ul>
+</li>
+</ul>
+<p><strong>When choosing AWS region, consider:</strong></p>
+<ul>
+<li>Geographic location, distance to users, data storage requirements, network latency.</li>
+<li>Service costs and price differences between regions.</li>
+<li>Data transfer costs between regions.</li>
+<li>Price differences for each service.</li>
+</ul>
+<h4 id="setting-up-aws-organizations">Setting up AWS Organizations</h4>
+<ul>
+<li>
+<p>You need an AWS organization with at least 4 accounts:</p>
+<ul>
+<li>Management account</li>
+<li>Hub account</li>
+<li>Sandbox account 1</li>
+<li>Sandbox account 2</li>
+</ul>
+</li>
+<li>
+<p>You can add more sandbox accounts as needed.</p>
+</li>
+</ul>
+<p><strong>Steps to create a new AWS organization:</strong></p>
+<ul>
+<li>Log in to AWS Management Console with administrative rights.</li>
+<li>Open AWS Organizations console and choose &ldquo;Create an organization&rdquo;.</li>
+<li>Verify management email according to instructions sent to mailbox.</li>
+<li>Add member accounts:
+<ul>
+<li>Can create new accounts (provide name, root email, keep default IAM role).</li>
+<li>Or invite existing AWS accounts to the organization (by email or account ID).</li>
+</ul>
+</li>
+<li>Repeat until you have at least 4 accounts with the following structure:</li>
+</ul>
+<pre tabindex="0"><code>Root
+├── Management account
+├── Hub account
+├── Sandbox account 1
+└── Sandbox account 2
+</code></pre><p><img src="/resources/_gen/images/anh2.jpg" alt="architect" title="Architect"></p>
+<p><img src="/resources/_gen/images/Anh1.jpg" alt="architect" title="Architect"></p>
+<ul>
+<li>Check in the Settings section of AWS Organizations console:
+<ul>
+<li>Consolidated billing is enabled</li>
+<li>All features are enabled</li>
+</ul>
+</li>
+</ul>
+<h4 id="enabling-required-services">Enabling required services</h4>
+<p>Before deploying the solution, ensure the following services are enabled on the management account:</p>
+<ul>
+<li>
+<p><strong>AWS IAM Identity Center:</strong> Centralized access management for AWS accounts.</p>
+<ul>
+<li>Open IAM Identity Center in management account, check correct region, choose Enable.</li>
+</ul>
+</li>
+<li>
+<p><strong>AWS Resource Access Manager (RAM):</strong> Securely share AWS resources between accounts in the organization.</p>
+<ul>
+<li>Open RAM in management account, go to Settings, enable &ldquo;Enable sharing with AWS Organizations&rdquo;, save.</li>
+</ul>
+</li>
+<li>
+<p><strong>CloudFormation StackSets trusted access:</strong> Manage CloudFormation stacks across multiple accounts/regions.</p>
+<ul>
+<li>Open CloudFormation in management account, choose StackSets, enable &ldquo;Enable trusted access&rdquo;.</li>
+</ul>
+</li>
+<li>
+<p><strong>Service Control Policies (SCPs):</strong> Manage access permissions across the entire organization.</p>
+<ul>
+<li>Open AWS Organizations in management account, go to Policies, choose Service control policies, enable this feature.</li>
+</ul>
+</li>
+</ul>
 
 
 
@@ -514,10 +637,10 @@ Một cách tổng quan, chúng ta sẽ triển khai ứng dụng ShareNote theo
 	 
 	 
 		
-			<a class="nav nav-prev" href="/" title="Helllo"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/" title="Innovation Lab"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/2-deploy-the-solution/" title="Khởi tạo Launch Template" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/2-deploy-the-solution/" title="Deploy the Solution" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -527,19 +650,19 @@ Một cách tổng quan, chúng ta sẽ triển khai ứng dụng ShareNote theo
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1752249578"></script>
-    <script src="/js/perfect-scrollbar.min.js?1752249578"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1752249578"></script>
-    <script src="/js/jquery.sticky.js?1752249578"></script>
-    <script src="/js/featherlight.min.js?1752249578"></script>
-    <script src="/js/highlight.pack.js?1752249578"></script>
+    <script src="/js/clipboard.min.js?1752251806"></script>
+    <script src="/js/perfect-scrollbar.min.js?1752251806"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1752251806"></script>
+    <script src="/js/jquery.sticky.js?1752251806"></script>
+    <script src="/js/featherlight.min.js?1752251806"></script>
+    <script src="/js/highlight.pack.js?1752251806"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1752249578"></script>
-    <script src="/js/learn.js?1752249578"></script>
-    <script src="/js/hugo-learn.js?1752249578"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1752251806"></script>
+    <script src="/js/learn.js?1752251806"></script>
+    <script src="/js/hugo-learn.js?1752251806"></script>
 
-    <link href="/mermaid/mermaid.css?1752249578" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1752249578"></script>
+    <link href="/mermaid/mermaid.css?1752251806" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1752251806"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
