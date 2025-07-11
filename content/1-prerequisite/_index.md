@@ -79,9 +79,9 @@ Root
 ├── Sandbox account 1
 └── Sandbox account 2
 ```
-![architect](/resources/_gen/images/anh2.jpg "Architect")
+![architect](/images/anh2.jpg "Architect")
 
-![architect](/resources/_gen/images/Anh1.jpg "Architect")
+![architect](/images/Anh1.jpg "Architect")
 
 - Check in the Settings section of AWS Organizations console:
   - Consolidated billing is enabled

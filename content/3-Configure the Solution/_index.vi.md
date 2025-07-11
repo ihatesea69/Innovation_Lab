@@ -1,277 +1,266 @@
-+++
-title = "Configure the Solution"
-date = 2025
+﻿+++
+title = "Khá»Ÿi táº¡o Target Group"
+date = 2021
 weight = 3
 chapter = false
 pre = "<b>3. </b>"
 +++
 
-### Cấu hình Giải pháp (Configure the Solution)
+### Cáº¥u hÃ¬nh há»‡ thá»‘ng
 
-Sau khi chạy đủ các stack, bạn cần thực hiện các bước cấu hình để cho phép người dùng truy cập và chuẩn bị môi trường Innovation Sandbox trên AWS để xài nha.
+Okay giá» cÃ¡c stack Ä‘Ã£ cháº¡y xong rá»“i, nhÆ°ng chÆ°a xÃ i Ä‘Æ°á»£c Ä‘Ã¢u. Pháº£i cáº¥u hÃ¬nh thÃªm tÃ­ ná»¯a má»›i cho user vÃ o Ä‘Æ°á»£c.
 
-#### Tổng quan các bước cấu hình
+#### Cáº§n lÃ m gÃ¬
 
-- Thiết lập liên kết SAML 2.0 (SAML federation)
-- Cấu hình người dùng AWS IAM Identity Center
-- Cấu hình ứng dụng web
-- Onboard (gắn kết) các tài khoản vào cấu trúc Innovation Sandbox
+- Thiáº¿t láº­p SAML Ä‘á»ƒ Ä‘Äƒng nháº­p
+- Táº¡o user vÃ  nhÃ³m trong IAM Identity Center
+- Cáº¥u hÃ¬nh web app
+- ÄÆ°a cÃ¡c tÃ i khoáº£n sandbox vÃ o Ä‘Ãºng chá»—
 
-#### Thiết lập liên kết SAML 2.0
+#### Thiáº¿t láº­p SAML
 
-**1. Cấu hình tích hợp SAML**
+**1. Cáº¥u hÃ¬nh SAML**
 
-- Truy cập AWS IAM Identity Center trong tài khoản quản lý tổ chức.
-- Chọn mục “Settings” và chuyển sang phần “Identity Source”.
-- Chọn “External identity provider” để sử dụng SAML 2.0.
+- VÃ o AWS IAM Identity Center á»Ÿ tÃ i khoáº£n quáº£n lÃ½
+- Chá»n "Settings" rá»“i chuyá»ƒn sang "Identity Source"
+- Chá»n "External identity provider" Ä‘á»ƒ dÃ¹ng SAML 2.0
 
-**2. Tải về certification**
+**2. Táº£i certificate**
 
-- Trong giao diện cấu hình SAML, tải về certificate (file .pem) của AWS IAM Identity Center.
-- Lưu lại file này để sử dụng khi cấu hình trên hệ thống nhận dạng bên ngoài 
+- á»ž giao diá»‡n SAML, táº£i file certificate (.pem) cá»§a AWS IAM Identity Center
+- LÆ°u láº¡i file nÃ y dÃ¹ng sau
 
-#### Cấu hình người dùng AWS IAM Identity Center
+#### Táº¡o user vÃ  nhÃ³m
 
-**1. Tạo và cấu hình nhóm (Groups)**
+**1. Táº¡o nhÃ³m**
 
-- Trong IAM Identity Center, vào mục “Groups”.
-- Tạo các nhóm phù hợp với vai trò sử dụng (ví dụ: Admin, Developer, Viewer...).
-- Gán quyền truy cập (permission sets) tương ứng cho từng nhóm.
+- VÃ o IAM Identity Center, chá»n "Groups"
+- Táº¡o cÃ¡c nhÃ³m theo vai trÃ² (Admin, Developer, Viewer...)
+- GÃ¡n quyá»n cho tá»«ng nhÃ³m
 
-**2. Thiết lập người dùng ban đầu**
+**2. ThÃªm user**
 
-- Vào mục “Users” trong IAM Identity Center.
-- Thêm mới người dùng hoặc đồng bộ từ hệ thống nhận dạng ngoài (nếu đã cấu hình SAML).
-- Gán người dùng vào các nhóm đã tạo.
+- VÃ o "Users" trong IAM Identity Center
+- ThÃªm user má»›i hoáº·c sync tá»« há»‡ thá»‘ng bÃªn ngoÃ i (náº¿u Ä‘Ã£ cáº¥u hÃ¬nh SAML)
+- Cho user vÃ o nhÃ³m phÃ¹ há»£p
 
-#### Cấu hình ứng dụng web
+#### Cáº¥u hÃ¬nh web app
 
-**1. Cập nhật cài đặt AWS AppConfig**
+**1. Cáº­p nháº­t AWS AppConfig**
 
-- Truy cập AWS AppConfig trong tài khoản hub.
-- Chọn ứng dụng Innovation Sandbox, cập nhật các thông số cấu hình cần thiết (ví dụ: endpoint, tham số môi trường, v.v.).
-- Xác nhận các thông tin cấu hình đã phù hợp với môi trường triển khai.
+- VÃ o AWS AppConfig á»Ÿ tÃ i khoáº£n hub
+- Chá»n app Innovation Sandbox, cáº­p nháº­t cÃ¡c tham sá»‘ cáº§n thiáº¿t
+- Check láº¡i thÃ´ng tin cÃ³ khá»›p vá»›i mÃ´i trÆ°á»ng khÃ´ng
 
-**2. Cấu hình xác thực (Authentication)**
+**2. Cáº¥u hÃ¬nh xÃ¡c thá»±c**
 
-- Đảm bảo ứng dụng web sử dụng xác thực thông qua AWS IAM Identity Center.
-- Kiểm tra lại thông tin kết nối SAML hoặc các tham số xác thực khác nếu có.
+- Äáº£m báº£o web app dÃ¹ng IAM Identity Center Ä‘á»ƒ Ä‘Äƒng nháº­p
+- Kiá»ƒm tra thÃ´ng tin káº¿t ná»‘i SAML
 
-#### Onboard các tài khoản
+#### ÄÆ°a tÃ i khoáº£n vÃ o há»‡ thá»‘ng
 
-**1. Di chuyển tài khoản vào cấu trúc Innovation Sandbox**
+**1. Di chuyá»ƒn tÃ i khoáº£n**
 
-- Truy cập AWS Organizations bằng tài khoản quản lý.
-- Di chuyển các tài khoản thành viên (hub, sandbox...) vào đúng organizational unit (OU) đã thiết kế cho Innovation Sandbox.
+- VÃ o AWS Organizations báº±ng tÃ i khoáº£n quáº£n lÃ½
+- Chuyá»ƒn cÃ¡c tÃ i khoáº£n (hub, sandbox...) vÃ o Ä‘Ãºng OU Ä‘Ã£ thiáº¿t káº¿
 
-**2. Xác minh cấu hình tài khoản**
+**2. Kiá»ƒm tra láº¡i**
 
-- Kiểm tra lại trong AWS Organizations để đảm bảo các tài khoản đã nằm đúng vị trí trong cấu trúc OU.
-- Đảm bảo các chính sách, quyền truy cập và cấu hình liên quan đã được áp dụng chính xác.
+- Check trong AWS Organizations xem tÃ i khoáº£n Ä‘Ã£ á»Ÿ Ä‘Ãºng chá»— chÆ°a
+- Äáº£m báº£o cÃ¡c policy vÃ  quyá»n Ä‘Ã£ Ä‘Æ°á»£c Ã¡p dá»¥ng Ä‘Ãºng
 
-**Thời gian dự kiến:** Khoảng 15 phút
+**Thá»i gian:** Khoáº£ng 15 phÃºt
 
-Thực hiện đầy đủ các bước trên sẽ giúp giải pháp Innovation Sandbox trên AWS sẵn sàng cho người dùng truy cập và sử dụng, đồng thời đảm bảo tuân thủ các yêu cầu quản trị, bảo mật của tổ chức.
+LÃ m xong cÃ¡c bÆ°á»›c nÃ y thÃ¬ há»‡ thá»‘ng má»›i sáºµn sÃ ng cho user vÃ o xÃ i Ä‘Æ°á»£c.
 
-### Thiết lập Ứng dụng SAML 2.0 cho Innovation Sandbox trên AWS
+### Thiáº¿t láº­p SAML cho Innovation Sandbox
 
-Việc cấu hình tích hợp SAML 2.0 giữa AWS IAM Identity Center và Innovation Sandbox trên AWS giúp đảm bảo xác thực người dùng an toàn khi truy cập giao diện web của giải pháp.
+Pháº§n nÃ y hÆ¡i ká»¹ thuáº­t tÃ­, nhÆ°ng cáº§n thiáº¿t Ä‘á»ƒ user Ä‘Äƒng nháº­p Ä‘Æ°á»£c vÃ o há»‡ thá»‘ng má»™t cÃ¡ch an toÃ n.
 
-#### Lưu ý quan trọng
+#### LÆ°u Ã½ quan trá»ng
 
-- Thực hiện toàn bộ các bước dưới đây trong **tài khoản quản lý tổ chức** (organization management account) – nơi bạn đã cấu hình AWS IAM Identity Center.
-- Đảm bảo bạn đang ở đúng **home Region** đã chọn cho toàn bộ hệ thống.
+- LÃ m táº¥t cáº£ á»Ÿ **tÃ i khoáº£n quáº£n lÃ½ tá»• chá»©c** - nÆ¡i cÃ³ IAM Identity Center
+- Äáº£m báº£o Ä‘ang á»Ÿ Ä‘Ãºng **home Region** Ä‘Ã£ chá»n
 
-#### Các bước cấu hình
+#### CÃ¡c bÆ°á»›c lÃ m
 
-**1. Tạo ứng dụng SAML trong IAM Identity Center**
+**1. Táº¡o SAML app trong IAM Identity Center**
 
-- Mở **AWS IAM Identity Center console** bằng tài khoản quản lý tổ chức.
-- Trong thanh điều hướng, chọn **Applications**.
-- Chuyển sang tab **Customer managed**.
-![architect](/resources/_gen/images/organiza.jpg "Architect")
+- Má»Ÿ **AWS IAM Identity Center console** báº±ng tÃ i khoáº£n quáº£n lÃ½
+- Thanh Ä‘iá»u hÆ°á»›ng chá»n **Applications**
+- Chuyá»ƒn sang tab **Customer managed**
 
-**2. Thêm ứng dụng mới**
+![architect](/images/organiza.jpg "Architect")
 
-- Chọn **Add application**.
-- Chọn **I have an application I want to set up**.
-- Chọn **SAML 2.0**, sau đó nhấn **Next**.
+**2. ThÃªm app má»›i**
 
-![architect](/resources/_gen/images/Buoc3.png "Architect")
+- Chá»n **Add application**
+- Chá»n **I have an application I want to set up**
+- Chá»n **SAML 2.0**, rá»“i **Next**
 
-**3. Cấu hình ứng dụng**
+![architect](/images/Buoc3.png "Architect")
 
-- Ở trang cấu hình, nhập **Display name** (ví dụ: MyISB app) và mô tả cho ứng dụng.
-- 
-![architect](/resources/_gen/images/Buoc5.png "Architect")
+**3. Cáº¥u hÃ¬nh app**
 
-- Trong phần **IAM Identity Center metadata**:
-  - Tải về **SAML metadata file** (metadata của nhà cung cấp danh tính).
-  - Tải về **certificate** (chứng chỉ của nhà cung cấp danh tính).
+- Trang cáº¥u hÃ¬nh, nháº­p **Display name** (vÃ­ dá»¥: MyISB app) vÃ  mÃ´ táº£
 
-![architect](/resources/_gen/images/Buoc6.png "Architect")
+![architect](/images/Buoc5.png "Architect")
 
+- Pháº§n **IAM Identity Center metadata**:
+  - Táº£i **SAML metadata file** 
+  - Táº£i **certificate**
 
-- Ghi chú lại các **Sign-in URL** và **Sign-out URL** – sẽ cần dùng khi cấu hình ở tài khoản hub.
+![architect](/images/Buoc6.png "Architect")
 
-![architect](/resources/_gen/images/Buoc7.png "Architect")
+- Ghi láº¡i **Sign-in URL** vÃ  **Sign-out URL** - cáº§n dÃ¹ng khi cáº¥u hÃ¬nh á»Ÿ tÃ i khoáº£n hub
 
-**4. Nhập thông tin metadata cho ứng dụng**
+![architect](/images/Buoc7.png "Architect")
 
-- Ở phần **Application metadata**, chọn **Manually type your metadata values**.
-- Nhập các giá trị sau:
+**4. Nháº­p thÃ´ng tin metadata**
 
-  | Trường                  | Giá trị nhập                                                                                          |
-  |-------------------------|-------------------------------------------------------------------------------------------------------|
-  | Application ACS URL     | `{ISB_WEB_URL}/api/auth/login/callback`  (Thay `{ISB_WEB_URL}` bằng CloudFrontDistributionUrl đã lưu, ví dụ: `https://duyXXXXXXXeh.cloudfront.net/api/auth/login/callback`) |
-  | Application SAML audience | Giá trị định danh ứng dụng (có thể dùng tên namespace hoặc tên stack ban đầu, ví dụ: `Isb-dev-namespace-Audience`). Lưu lại giá trị này để cấu hình cho AppConfig ở tài khoản hub. |
-![architect](/resources/_gen/images/Buoc8.png "Architect")
-**5. Hoàn tất cấu hình**
+- Pháº§n **Application metadata**, chá»n **Manually type your metadata values**
+- Nháº­p cÃ¡c giÃ¡ trá»‹:
 
-- Nhấn **Submit**.
-- Bạn sẽ nhận được thông báo xác nhận cấu hình thành công cho ứng dụng SAML.
-- Lưu ý: Bạn cần cấu hình thêm **attribute mappings** cho IAM Identity Center để việc xác thực hoạt động đúng.
+  | TrÆ°á»ng                  | Nháº­p gÃ¬                                                                                          |
+  |-------------------------|--------------------------------------------------------------------------------------------------|
+  | Application ACS URL     | `{ISB_WEB_URL}/api/auth/login/callback` (Thay `{ISB_WEB_URL}` báº±ng CloudFrontDistributionUrl Ä‘Ã£ lÆ°u) |
+  | Application SAML audience | TÃªn Ä‘á»‹nh danh app (cÃ³ thá»ƒ dÃ¹ng tÃªn namespace, vÃ­ dá»¥: `Isb-dev-namespace-Audience`). LÆ°u láº¡i Ä‘á»ƒ cáº¥u hÃ¬nh AppConfig |
 
-#### Thông tin cần lưu lại cho các bước cấu hình tiếp theo
+![architect](/images/Buoc8.png "Architect")
 
-- **Sign-in URL** (từ bước tải metadata)
-- **Sign-out URL** (từ bước tải metadata)
-- **Audience value** (giá trị đã nhập ở Application SAML audience)
+**5. HoÃ n táº¥t**
 
-Các thông tin này sẽ được sử dụng trong quá trình cấu hình ứng dụng web và xác thực người dùng cho Innovation Sandbox trên AWS.
+- Nháº¥n **Submit**
+- Sáº½ cÃ³ thÃ´ng bÃ¡o cáº¥u hÃ¬nh thÃ nh cÃ´ng
+- Nhá»› cáº¥u hÃ¬nh thÃªm **attribute mappings** cho IAM Identity Center
 
-### Cấu hình Người dùng và Nhóm trong IAM Identity Center
+#### ThÃ´ng tin cáº§n lÆ°u láº¡i
 
-Việc thiết lập người dùng và nhóm trong AWS IAM Identity Center giúp kiểm soát truy cập và phân quyền cho người dùng sử dụng giải pháp Innovation Sandbox trên AWS. Thực hiện các bước dưới đây trong **tài khoản quản lý tổ chức** (organization management account) và đúng **home Region** đã chọn.
+- **Sign-in URL** 
+- **Sign-out URL** 
+- **Audience value** 
 
-#### 1. Ánh xạ thuộc tính ứng dụng (Map application attributes)
+CÃ¡c thÃ´ng tin nÃ y dÃ¹ng Ä‘á»ƒ cáº¥u hÃ¬nh web app vÃ  xÃ¡c thá»±c user.
 
-- Mở **IAM Identity Center console** trong tài khoản quản lý.
-- Chọn **Applications** trong thanh điều hướng.
-- Trong danh sách **Customer managed applications**, chọn ứng dụng đã tạo (ví dụ: MyISB app).
-- Ở trang chi tiết ứng dụng, chọn **Actions** > **Edit attribute mappings**.
-- Trong ô thứ hai ("Maps to this string value or user attribute in IAM Identity Center"), nhập:  
-  ```
-  ${user:email}
-  ```
-- Ở cột thứ ba, chọn định dạng **emailAddress**.
-- Nhấn **Save changes** để lưu cấu hình.
+### Cáº¥u hÃ¬nh User vÃ  Group
 
-#### 2. Gán nhóm cho ứng dụng (Assign groups to your application)
+Thiáº¿t láº­p user vÃ  nhÃ³m Ä‘á»ƒ kiá»ƒm soÃ¡t ai Ä‘Æ°á»£c vÃ o vÃ  lÃ m gÃ¬ trong há»‡ thá»‘ng. LÃ m á»Ÿ **tÃ i khoáº£n quáº£n lÃ½** vÃ  Ä‘Ãºng **home Region**.
 
-- Quay lại ứng dụng vừa cấu hình.
-- Chọn **Assign users and groups**.
-- Tìm và thêm cả ba nhóm đã được tạo bởi IDC stack:
+#### 1. Map thuá»™c tÃ­nh app
+
+- Má»Ÿ **IAM Identity Center console**
+- Chá»n **Applications** 
+- Chá»n app vá»«a táº¡o (MyISB app)
+- Trang chi tiáº¿t app, chá»n **Actions** > **Edit attribute mappings**
+- Ã” thá»© hai nháº­p: `${user:email}`
+- Cá»™t thá»© ba chá»n **emailAddress**
+- **Save changes**
+
+#### 2. GÃ¡n nhÃ³m cho app
+
+- Quay láº¡i app vá»«a cáº¥u hÃ¬nh
+- Chá»n **Assign users and groups**
+- TÃ¬m vÃ  thÃªm ba nhÃ³m Ä‘Ã£ táº¡o bá»Ÿi IDC stack:
   - `{NAMESPACE}_IsbUsersGroup`
   - `{NAMESPACE}_IsbManagersGroup`
   - `{NAMESPACE}_IsbAdminsGroup`
-- Chọn **Assign** để hoàn tất.
+- Chá»n **Assign**
 
-#### 3. Gán nhóm cho người dùng (Assign a group to your user)
+#### 3. Cho user vÃ o nhÃ³m
 
-- Trong IAM Identity Center console, chọn **Users** ở thanh điều hướng.
-- Trong danh sách người dùng, chọn người dùng muốn gán vào nhóm. Để thêm người dùng mới, chọn **Add user**.
-- Chọn tab **Groups**, sau đó nhấn **Add user to groups**.
-- Chọn một trong ba nhóm đã tạo:
+- IAM Identity Center console, chá»n **Users**
+- Chá»n user muá»‘n gÃ¡n nhÃ³m (hoáº·c **Add user** Ä‘á»ƒ thÃªm má»›i)
+- Tab **Groups**, nháº¥n **Add user to groups**
+- Chá»n má»™t trong ba nhÃ³m:
   - `{NAMESPACE}_IsbUsersGroup`
   - `{NAMESPACE}_IsbManagersGroup`
   - `{NAMESPACE}_IsbAdminsGroup`
-- Nhấn **Add user to 1 group** để hoàn tất.
+- **Add user to 1 group**
 
-![architect](/resources/_gen/images/users-and-groups.png "Architect")
+![architect](/images/users-and-groups.png "Architect")
 
-**Lưu ý:**  
-Để kiểm thử đủ ba vai trò người dùng (user personas), hãy đảm bảo có ít nhất ba người dùng, mỗi người thuộc một nhóm khác nhau.
+**LÆ°u Ã½:** Äá»ƒ test Ä‘á»§ ba vai trÃ², cáº§n Ã­t nháº¥t ba user, má»—i ngÆ°á»i má»™t nhÃ³m khÃ¡c nhau.
 
-Sau khi hoàn thành các bước trên, bạn đã cấu hình thành công người dùng và nhóm cho giải pháp Innovation Sandbox trên AWS. Tiếp theo, bạn sẽ tiến hành cấu hình ứng dụng web trên tài khoản hub.
+### Cáº¥u hÃ¬nh Web App
 
-### Cấu hình Ứng dụng Web với AWS AppConfig và AWS Secrets Manager
+Pháº§n nÃ y kÃ­ch hoáº¡t Ä‘Äƒng nháº­p vÃ  thiáº¿t láº­p cÃ¡c tham sá»‘ cho app. LÃ m á»Ÿ **tÃ i khoáº£n hub** vÃ  Ä‘Ãºng **home Region**.
 
-Việc cấu hình ứng dụng web Innovation Sandbox trên AWS giúp kích hoạt xác thực người dùng và thiết lập các thông số toàn cục cho ứng dụng. Các thao tác này cần được thực hiện trong **tài khoản hub** và đúng **home Region** đã chọn.
+#### 1. Cáº¥u hÃ¬nh AWS AppConfig
 
-#### 1. Cấu hình AWS AppConfig
+- Má»Ÿ **AWS AppConfig console** á»Ÿ tÃ i khoáº£n hub
+- Thanh Ä‘iá»u hÆ°á»›ng chá»n **Applications**
+- Chá»n **InnovationSandboxData-Config-Application-XXXXXXX**
+- Chá»n **InnovationSandboxData-Config-GlobalConfigHostedConfiguration-XXXXX**
+- **Create** Ä‘á»ƒ táº¡o phiÃªn báº£n cáº¥u hÃ¬nh má»›i
 
-- **Mở AWS AppConfig console** trong tài khoản hub.
-- Ở thanh điều hướng, chọn **Applications**.
-- Chọn ứng dụng **InnovationSandboxData-Config-Application-XXXXXXX**.
-- Chọn **InnovationSandboxData-Config-GlobalConfigHostedConfiguration-XXXXX** (configuration profile).
-- Chọn **Create** để tạo một phiên bản cấu hình mới (hosted configuration version).
+![architect](/images/appconfig.png "Architect")
 
+**Cáº­p nháº­t cáº¥u hÃ¬nh:**
+- Äáº·t `maintenanceMode` thÃ nh `false` Ä‘á»ƒ má»Ÿ app cho user
 
-![architect](/resources/_gen/images/appconfig.png "Architect")
+**Pháº§n `auth`, cáº­p nháº­t:**
 
-**Cập nhật cấu hình:**
-- Đặt giá trị `maintenanceMode` thành `false` để mở ứng dụng cho người dùng.
+| TrÆ°á»ng              | Cáº­p nháº­t gÃ¬                                                                                       |
+|---------------------|---------------------------------------------------------------------------------------------------|
+| idpSignInUrl        | URL Ä‘Äƒng nháº­p tá»« bÆ°á»›c cáº¥u hÃ¬nh SAML                                                              |
+| idpSignOutUrl       | URL Ä‘Äƒng xuáº¥t tá»« bÆ°á»›c cáº¥u hÃ¬nh SAML                                                              |
+| idpAudience         | Audience ID tá»« bÆ°á»›c cáº¥u hÃ¬nh SAML                                                                |
+| webAppUrl           | CloudFront Distribution URL tá»« Outputs tab CloudFormation (tÃ i khoáº£n hub)                       |
+| awsAccessPortalUrl  | AWS Access Portal URL tá»« IAM Identity Center dashboard (tÃ i khoáº£n quáº£n lÃ½)                      |
+| sessionDurationInMinutes | Thá»i gian session, vÃ­ dá»¥: 240                                                               |
+| emailFrom           | Email Ä‘Ã£ xÃ¡c thá»±c cá»§a báº¡n                                                                         |
 
-**Trong phần `auth`, cập nhật các trường sau:**
+- **Create hosted configuration version**
+- **Start Deployment** vÃ  chá»n phiÃªn báº£n vá»«a táº¡o
+- **Start Deployment** Ä‘á»ƒ Ã¡p dá»¥ng
 
-| Trường              | Giá trị cập nhật                                                                                       |
-|---------------------|-------------------------------------------------------------------------------------------------------|
-| idpSignInUrl        | URL đăng nhập từ bước cấu hình SAML 2.0 Application                                                  |
-| idpSignOutUrl       | URL đăng xuất từ bước cấu hình SAML 2.0 Application                                                  |
-| idpAudience         | Audience ID từ bước cấu hình SAML 2.0 Application                                                    |
-| webAppUrl           | CloudFront Distribution URL (Innovation Sandbox URL) từ Outputs tab của CloudFormation (tài khoản hub)|
-| awsAccessPortalUrl  | AWS Access Portal URL từ IAM Identity Center dashboard (tài khoản quản lý tổ chức)                   |
-| sessionDurationInMinutes | Thời lượng phiên đăng nhập, ví dụ: 240                                                           |
-| emailFrom           | Địa chỉ email đăng nhập đã xác thực của bạn                                                           |
+#### 2. Cáº­p nháº­t certificate trong Secrets Manager
 
-- Sau khi cập nhật, chọn **Create hosted configuration version**.
-- Chọn **Start Deployment** và chọn phiên bản cấu hình vừa tạo.
-- Chọn **Start Deployment** để áp dụng cấu hình mới.
+- Má»Ÿ **AWS Secrets Manager console** á»Ÿ tÃ i khoáº£n hub
+- TÃ¬m secret: `/InnovationSandbox//Auth/IDPCert`
+- Tab **Overview**, má»¥c **Secret value**:
+  - **Retrieve secret value**
+  - **Edit**
+  - **Plaintext**
+  - **Edit** láº§n ná»¯a
+  - DÃ¡n ná»™i dung file certificate IAM Identity Center (.pem) Ä‘Ã£ táº£i
+  - **Save**
 
-#### 2. Cập nhật giá trị chứng chỉ trong AWS Secrets Manager
+**LÆ°u Ã½:** Äáº£m báº£o táº¥t cáº£ thÃ´ng tin chÃ­nh xÃ¡c vÃ  nháº¥t quÃ¡n vá»›i cÃ¡c bÆ°á»›c trÆ°á»›c.
 
-- Mở **AWS Secrets Manager console** trong tài khoản hub.
-- Tìm và chọn secret:  
-  `/InnovationSandbox//Auth/IDPCert`
-- Ở tab **Overview**, mục **Secret value**:
-  - Chọn **Retrieve secret value**.
-  - Chọn **Edit**.
-  - Chọn **Plaintext**.
-  - Chọn **Edit** lần nữa.
-  - Dán nội dung file chứng chỉ IAM Identity Center (.pem) đã tải về khi tạo ứng dụng SAML 2.0.
-  - Chọn **Save** để lưu lại giá trị mới.
+### ÄÆ°a Sandbox Account vÃ o há»‡ thá»‘ng
 
-**Lưu ý:**  
-- Đảm bảo mọi giá trị đều chính xác và nhất quán với các thông tin đã lấy ở các bước cấu hình trước (SAML, CloudFront, IAM Identity Center).
-- Việc cấu hình đúng giúp hệ thống xác thực và phân quyền người dùng hiệu quả, đồng thời đảm bảo ứng dụng web Innovation Sandbox trên AWS hoạt động ổn định và an toàn.
+BÆ°á»›c cuá»‘i Ä‘á»ƒ hoÃ n thÃ nh cáº¥u hÃ¬nh. Chuyá»ƒn cÃ¡c tÃ i khoáº£n AWS vÃ o Ä‘Ãºng cáº¥u trÃºc vÃ  Ã¡p dá»¥ng kiá»ƒm soÃ¡t.
 
-### Onboard Sandbox Accounts vào Innovation Sandbox trên AWS
+#### LÆ°u Ã½ quan trá»ng
 
-Việc onboard các tài khoản sandbox là bước cấu hình cuối cùng để hoàn thiện giải pháp Innovation Sandbox trên AWS. Bước này giúp di chuyển các tài khoản AWS vào đúng cấu trúc tổ chức và áp dụng các kiểm soát cần thiết.
+- LÃ m á»Ÿ **tÃ i khoáº£n quáº£n lÃ½ tá»• chá»©c**
+- ÄÃºng **home Region** Ä‘Ã£ chá»n
 
-#### Lưu ý quan trọng
+#### CÃ¡c bÆ°á»›c
 
-- Thực hiện các bước này trong **tài khoản quản lý tổ chức** (organization management account) – nơi đã cấu hình AWS IAM Identity Center.
-- Đảm bảo bạn đang ở đúng **home Region** đã chọn cho toàn bộ hệ thống.
+- ÄÄƒng nháº­p AWS Management Console báº±ng tÃ i khoáº£n quáº£n lÃ½
+- Má»Ÿ **AWS Organizations console**
 
-#### Các bước Onboard Tài khoản Sandbox
+**2. TÃ¬m tÃ i khoáº£n cáº§n chuyá»ƒn**
 
-**1. Mở AWS Organizations console**
+- Chá»n **AWS accounts**
+- TÃ¬m cÃ¡c tÃ i khoáº£n muá»‘n chuyá»ƒn vÃ o mÃ´i trÆ°á»ng sandbox
+- **LÆ°u Ã½:** Äá»«ng chá»n tÃ i khoáº£n quáº£n lÃ½ hoáº·c tÃ i khoáº£n hub
 
-- Đăng nhập vào AWS Management Console bằng tài khoản quản lý tổ chức.
-- Mở **AWS Organizations console**.
+![architect](/images/account-onboarding.png "Architect")
 
+**3. Chuyá»ƒn vÃ o Entry OU**
 
-**2. Tìm và chọn các tài khoản cần di chuyển**
+- Chá»n cÃ¡c tÃ i khoáº£n cáº§n chuyá»ƒn
+- Menu **Actions**, chá»n **Move** 
+- Há»™p thoáº¡i **Move AWS account**, click mÅ©i tÃªn cáº¡nh Innovation Sandbox OU Ä‘á»ƒ má»Ÿ rá»™ng
+- Chá»n **Entry OU**
+- **Move AWS accounts** Ä‘á»ƒ xÃ¡c nháº­n
 
-- Chọn mục **AWS accounts**.
-- Tìm các tài khoản bạn muốn chuyển vào môi trường sandbox. Có thể duyệt theo cấu trúc OU hoặc chọn **List** để xem danh sách tài khoản dạng phẳng.
-- **Lưu ý:** Không chọn tài khoản quản lý tổ chức hoặc tài khoản hub.
-  
-![architect](/resources/_gen/images/account-onboarding.png "Architect")
+#### Káº¿t quáº£
 
-**3. Di chuyển tài khoản vào OU Entry**
+- CÃ¡c tÃ i khoáº£n sandbox Ä‘Ã£ á»Ÿ Ä‘Ãºng vá»‹ trÃ­ trong cáº¥u trÃºc Innovation Sandbox
+- CÃ¡c policy kiá»ƒm soÃ¡t sáº½ tá»± Ä‘á»™ng Ã¡p dá»¥ng cho nhá»¯ng tÃ i khoáº£n nÃ y
 
-- Đánh dấu chọn các tài khoản cần di chuyển.
-- Tại menu **Actions** (hoặc menu thao tác tương ứng), chọn **Move** dưới mục AWS account.
-- Trong hộp thoại **Move AWS account**, nhấn vào mũi tên cạnh OU của Innovation Sandbox on AWS (OU này đã được tạo khi triển khai AccountPool stack) để mở rộng và xem các OU con.
-- Chọn **Entry OU** (OU con dùng cho sandbox accounts).
-- Nhấn **Move AWS accounts** để xác nhận di chuyển.
-
-#### Kết quả
-
-- Các tài khoản sandbox đã được di chuyển vào đúng OU trong cấu trúc tổ chức Innovation Sandbox trên AWS.
-- Các chính sách kiểm soát và cấu hình liên quan sẽ tự động được áp dụng cho các tài khoản này.
-
-Việc onboard đúng các tài khoản vào Entry OU đảm bảo môi trường sandbox hoạt động tách biệt, an toàn và tuân thủ các chính sách quản trị của tổ chức.
+LÃ m Ä‘Ãºng bÆ°á»›c nÃ y Ä‘áº£m báº£o mÃ´i trÆ°á»ng sandbox hoáº¡t Ä‘á»™ng riÃªng biá»‡t, an toÃ n vÃ  tuÃ¢n thá»§ chÃ­nh sÃ¡ch tá»• chá»©c.

@@ -1,77 +1,74 @@
-+++
-title = "Use the Solutionr"
-date = 2025
+﻿+++
+title = "Khá»Ÿi táº¡o Load Balancer"
+date = 2020
 weight = 4
 chapter = false
 pre = "<b>4. </b>"
 +++
 
-### Sử dụng Innovation Sandbox trên AWS
+### Sá»­ dá»¥ng há»‡ thá»‘ng
 
-Sau khi đã triển khai đầy đủ các stack và cấu hình người dùng, bạn có thể bắt đầu sử dụng giải pháp Innovation Sandbox trên AWS. Dưới đây là hướng dẫn chi tiết cách sử dụng với vai trò **administrator**.
+Okay giá» Ä‘Ã£ setup xong háº¿t rá»“i, chÃºng ta sáº½ thá»­ xÃ i há»‡ thá»‘ng vá»›i 3 vai trÃ² khÃ¡c nhau Ä‘á»ƒ xem nÃ³ hoáº¡t Ä‘á»™ng tháº¿ nÃ o.
 
-#### Tổng quan
+#### Ba vai trÃ² chÃ­nh
 
-Giải pháp hỗ trợ ba vai trò sử dụng chính:
+- **Administrator** - quáº£n trá»‹ viÃªn, quyá»n cao nháº¥t
+- **Manager** - quáº£n lÃ½, táº¡o template vÃ  approve request  
+- **End user** - ngÆ°á»i dÃ¹ng cuá»‘i, request tÃ i khoáº£n Ä‘á»ƒ xÃ i
 
-- **Administrator (Quản trị viên)**
-- **Manager (Quản lý)**
-- **End user (Người dùng cuối)**
+Dá»± kiáº¿n máº¥t khoáº£ng 30 phÃºt Ä‘á»ƒ thá»­ háº¿t.
 
-Thời gian thực hành dự kiến: khoảng 30 phút.
+### Vai trÃ² Administrator
 
-### Sử dụng với vai trò Administrator
+#### 1. ÄÄƒng nháº­p vÃ o há»‡ thá»‘ng
 
-#### 1. Truy cập Innovation Sandbox trên AWS
+- Láº¥y URL tá»« CloudFrontDistributionUrl Ä‘Ã£ lÆ°u lÃºc deploy
+- Má»Ÿ URL trÃªn browser
+- ÄÄƒng nháº­p báº±ng tÃ i khoáº£n admin. Láº§n Ä‘áº§u thÃ¬ chá»n **Forgot password** Ä‘á»ƒ set máº­t kháº©u
 
-- Lấy URL truy cập giải pháp (CloudFrontDistributionUrl đã lưu từ bước triển khai).
-- Mở URL này trên trình duyệt.
-- Đăng nhập bằng tài khoản administrator. Nếu là lần đầu đăng nhập, chọn **Forgot password** để thiết lập mật khẩu.
+**LÆ°u Ã½:** Náº¿u tháº¥y hai tab **Accounts** vÃ  **Applications**, chá»n **Applications** Ä‘á»ƒ vÃ o app chÃ­nh.
 
-**Lưu ý:**  
-Nếu giao diện có hai tab **Accounts** và **Applications**, hãy chọn **Applications** để vào ứng dụng chính. Trang chào mừng sẽ xuất hiện.
+![architect](/images/Anha1.png "Architect")
 
-![architect](/resources/_gen/images/Anha1.png "Architect")
+#### 2. ThÃªm tÃ i khoáº£n cho thuÃª
 
-#### 2. Thêm tài khoản để cho thuê (lease)
+- Thanh Ä‘iá»u hÆ°á»›ng bÃªn trÃ¡i, **Administration** > **Accounts**
+- Click **Add accounts**
+- Má»¥c **Select accounts**, sáº½ tháº¥y danh sÃ¡ch tÃ i khoáº£n cÃ³ sáºµn. Náº¿u khÃ´ng cÃ³ gÃ¬ thÃ¬ check láº¡i xem sandbox account Ä‘Ã£ Ä‘Æ°á»£c move vÃ o OU **Entry** chÆ°a
+- Chá»n má»™t vÃ i tÃ i khoáº£n, **Next** rá»“i **Submit**
 
-- Trong thanh điều hướng bên trái, dưới mục **Administration**, chọn **Accounts**.
-- Nhấn **Add accounts**.
-- Ở mục **Select accounts**, bạn sẽ thấy danh sách các tài khoản có sẵn. Nếu chưa có tài khoản nào, hãy đảm bảo các sandbox account đã được đưa vào OU **Entry** trong organizational unit có tên dạng `your-namespace_InnovationSandboxAccountPool`.
-- Chọn một hoặc nhiều tài khoản muốn thêm, nhấn **Next** và sau đó **Submit**.
+![architect](/images/Anha2.png "Architect")
 
-![architect](/resources/_gen/images/Anha2.png "Architect")
+- Quay láº¡i **Accounts** Ä‘á»ƒ check tráº¡ng thÃ¡i
 
-- Quay lại mục **Accounts** để kiểm tra trạng thái các tài khoản đã thêm.
+#### 3. Quáº£n lÃ½ cÃ i Ä‘áº·t
 
-#### 3. Quản lý cài đặt hệ thống
-
-- Trong thanh điều hướng, dưới **Administration**, chọn **Settings**.
-- Có ba tab chính:
+- Thanh Ä‘iá»u hÆ°á»›ng, **Administration** > **Settings**
+- CÃ³ ba tab:
   - **General Settings**
-  - **Lease Settings** (giới hạn ngân sách tối đa mặc định là $100 USD)
+  - **Lease Settings** (ngÃ¢n sÃ¡ch tá»‘i Ä‘a máº·c Ä‘á»‹nh $100)
   - **Clean Up Settings**
-- Để thay đổi các cài đặt này, bạn cần sử dụng **AWS AppConfig** (sẽ được hướng dẫn ở phần tiếp theo).
+- Muá»‘n Ä‘á»•i thÃ¬ pháº£i dÃ¹ng **AWS AppConfig** (hÆ°á»›ng dáº«n á»Ÿ pháº§n sau)
 
-![architect](/resources/_gen/images/Anha3.png "Architect")
+![architect](/images/Anha3.png "Architect")
 
-#### 4. Tạo Service Control Policy (SCP) giới hạn tài nguyên
+#### 4. Táº¡o Service Control Policy Ä‘á»ƒ giá»›i háº¡n
 
-Ví dụ: Tạo SCP để ngăn người dùng sandbox khởi tạo EC2 instance loại `m5.large`.
+VÃ­ dá»¥: Táº¡o SCP Ä‘á»ƒ khÃ´ng cho user táº¡o EC2 instance loáº¡i `m5.large`.
 
-**Các bước thực hiện:**
+**CÃ¡c bÆ°á»›c:**
 
-- Đăng nhập vào **organization management account** (tài khoản quản lý tổ chức).
-- Mở **AWS Organizations**.
-- Trong thanh điều hướng, chọn **Policies**.
-- Dưới **Supported policy types**, chọn **Service control policies**.
+- ÄÄƒng nháº­p **organization management account**
+- Má»Ÿ **AWS Organizations**
+- Thanh Ä‘iá»u hÆ°á»›ng chá»n **Policies**
+- **Supported policy types** > **Service control policies**
 
-![architect](/resources/_gen/images/Anha4.png "Architect")
+![architect](/images/Anha4.png "Architect")
 
-- Nhấn **Create policy** và nhập:
+- Click **Create policy**:
   - **Policy name:** RestrictEC2Instances
   - **Policy description:** This SCP restricts launching certain EC2 instance types.
-- Dán đoạn JSON sau vào policy editor:
+- DÃ¡n JSON nÃ y vÃ o policy editor:
 
 ```json
 {
@@ -93,238 +90,199 @@ Ví dụ: Tạo SCP để ngăn người dùng sandbox khởi tạo EC2 instance
 }
 ```
 
-- Nhấn **Create policy** để lưu.
-- Quay lại mục **Policies**, chọn policy vừa tạo.
-- Chọn tab **Targets**, nhấn **Attach**.
-- Chọn OU có tên `your-namespace_InnovationSandboxAccountPool` và nhấn **Attach policy**.
-- 
-![architect](/resources/_gen/images/Anha6.png "Architect")
+- **Create policy**
+- Quay láº¡i **Policies**, chá»n policy vá»«a táº¡o
+- Tab **Targets**, click **Attach**
+- Chá»n OU tÃªn `your-namespace_InnovationSandboxAccountPool`, **Attach policy**
 
-**Kết quả:**  
-Người dùng trong các sandbox account sẽ không thể khởi tạo EC2 instance loại `m5.large`.
+![architect](/images/Anha6.png "Architect")
 
-#### Tiếp theo
+**Káº¿t quáº£:** User trong sandbox account khÃ´ng thá»ƒ táº¡o EC2 instance `m5.large` ná»¯a.
 
-- Bạn có thể tiếp tục tìm hiểu cách thay đổi cài đặt hệ thống qua **AWS AppConfig** và cách sử dụng giải pháp với vai trò **manager** và **end user** trong các bước tiếp theo.
+### Vai trÃ² Manager
 
-**Lưu ý:**  
-- Các thao tác quản trị cần thực hiện đúng tài khoản và Region đã cấu hình.
-- Đảm bảo các tài khoản sandbox đã được onboard vào đúng OU để xuất hiện trong danh sách cho thuê.
+Manager cÃ³ thá»ƒ chá»‰nh sá»­a cÃ i Ä‘áº·t vÃ  táº¡o template cho user request tÃ i khoáº£n.
 
-------------------------
-### Sử dụng Innovation Sandbox on AWS với vai trò Manager
+#### Chá»‰nh sá»­a cÃ i Ä‘áº·t báº±ng AppConfig
 
-Giải pháp Innovation Sandbox on AWS hỗ trợ ba vai trò: **administrator**, **manager**, và **end user**. Phần này hướng dẫn chi tiết cách sử dụng giải pháp với vai trò **manager**.
+**LÆ°u Ã½ quan trá»ng:** LÃ m á»Ÿ **tÃ i khoáº£n hub**, khÃ´ng pháº£i tÃ i khoáº£n quáº£n lÃ½. ÄÃºng **home Region**.
 
-#### Tổng quan
+**CÃ¡c bÆ°á»›c:**
 
-Trong phần này, bạn sẽ thực hiện:
+- ÄÄƒng nháº­p tÃ i khoáº£n hub
+- Thanh tÃ¬m kiáº¿m console, nháº­p **AWS AppConfig**
+- Thanh Ä‘iá»u hÆ°á»›ng chá»n **Applications**
+- Chá»n app Ä‘Ã£ táº¡o
+- Chá»n **InnovationSandboxData-Config-GlobalConfigHostedConfiguration-ID**
 
-- Chỉnh sửa các thiết lập của Innovation Sandbox on AWS bằng AWS AppConfig.
-- Tạo mẫu cấp phát tài khoản (lease template) cơ bản.
-- Tạo mẫu cấp phát tài khoản nâng cao.
+![architect](/images/Manager1.png "Architect")
 
-### Chỉnh sửa thiết lập bằng AWS AppConfig
+- **Hosted configuration versions** > **Create**
+- Äá»•i **maxBudget** thÃ nh **50** (USD)
 
-**Lưu ý quan trọng:**  
-Thực hiện các bước này trong **tài khoản hub** (hub account), không phải tài khoản quản lý tổ chức. Đảm bảo bạn đang ở đúng **home Region** của tài khoản này.
+![architect](/images/Manager2.png "Architect")
 
-**Các bước chỉnh sửa thiết lập:**
+- **Create hosted configuration version**
+- **Start deployment**
+- Chá»n phiÃªn báº£n vá»«a táº¡o, giá»¯ nguyÃªn setting khÃ¡c, **Start deployment**
 
-- Đăng nhập vào tài khoản hub.
-- Trên thanh tìm kiếm của console, nhập và chọn **AWS AppConfig**.
-- Trong thanh điều hướng, dưới AWS AppConfig, chọn **Applications**.
-- Chọn đường dẫn tới ứng dụng đã được tạo cho bạn.
-- Dưới phần **Configuration Profiles and Feature Flags**, chọn đường dẫn có tên **InnovationSandboxData-Config-GlobalConfigHostedConfiguration-ID**.
+### Táº¡o Lease Template
 
+#### Lease Template lÃ  gÃ¬
 
+Vá» cÆ¡ báº£n thÃ¬ Ä‘Ã¢y lÃ  bá»™ quy táº¯c Ä‘á»‹nh nghÄ©a user cÃ³ thá»ƒ xÃ i tÃ i nguyÃªn tháº¿ nÃ o:
 
-![architect](/resources/_gen/images/Manager1.png "Architect")
+- **NgÃ¢n sÃ¡ch tá»‘i Ä‘a:** CÃ³ thá»ƒ tiÃªu bao nhiÃªu tiá»n
+- **Thá»i gian:** ÄÆ°á»£c xÃ i bao lÃ¢u
+- **Approval:** CÃ³ cáº§n manager duyá»‡t khÃ´ng
+- **Cáº£nh bÃ¡o:** BÃ¡o khi sáº¯p háº¿t tiá»n hoáº·c thá»i gian
 
-- Trong phần **Hosted configuration versions**, chọn **Create**.
-- Thay đổi trường **maxBudget** thành **50** (USD).
+Sáº½ táº¡o hai loáº¡i:
+- **Basic:** $25, tá»± Ä‘á»™ng approve, cho test nhá»
+- **Advanced:** $50, cáº§n approve, cho dá»± Ã¡n lá»›n
 
-![architect](/resources/_gen/images/Manager2.png "Architect")
+### Táº¡o Basic Template
 
-- Chọn **Create hosted configuration version**.
-- Chọn **Start deployment**.
-- Chọn phiên bản cấu hình vừa tạo, giữ nguyên các thiết lập mặc định còn lại và chọn **Start deployment**.
+Template nÃ y cho nhá»¯ng request khÃ´ng cáº§n duyá»‡t. $25 tá»‘i Ä‘a, bÃ¡o khi tiÃªu $15, dÃ¹ng Ä‘Æ°á»£c 168 tiáº¿ng (1 tuáº§n), bÃ¡o trÆ°á»›c 24 tiáº¿ng khi háº¿t háº¡n.
 
-### Tạo Lease Template (Mẫu cấp phát tài khoản)
+**CÃ¡c bÆ°á»›c:**
 
-#### Giới thiệu về Lease Template
+- Console Innovation Sandbox, chá»n profile gÃ³c trÃªn pháº£i > **Sign out**
+- ÄÄƒng nháº­p báº±ng tÃ i khoáº£n manager. Láº§n Ä‘áº§u dÃ¹ng **Forgot password**
+- Náº¿u cÃ³ hai tab **Accounts** vÃ  **Applications**, chá»n **Applications**
+- Thanh Ä‘iá»u hÆ°á»›ng chá»n **Lease Templates**
+- **Add new lease template**
+- **Name:** `Basic`
+- **Description:** `Basic account lease template`
+- Bá» tick **Approval required** (khÃ´ng cáº§n manager duyá»‡t)
 
-Lease template là tập hợp các thông số và quy tắc định nghĩa cách người dùng truy cập và sử dụng tài nguyên trong môi trường Innovation Sandbox on AWS. Đây là bản mẫu để tạo các lease riêng lẻ (phiên truy cập có kiểm soát vào tài nguyên đám mây). Các thành phần chính của lease template gồm:
+![architect](/images/Manager3.png "Architect")
 
-- **Phân bổ tài nguyên:** Định nghĩa ngân sách tối đa có thể sử dụng trong thời gian lease.
-- **Thời lượng:** Xác định thời gian tối đa một lease có thể hoạt động.
-- **Quy trình phê duyệt:** Xác định có cần quản lý phê duyệt trước khi cấp lease hay không.
-- **Cảnh báo và ngưỡng:** Thiết lập các cảnh báo dựa trên mức tiêu thụ ngân sách hoặc thời gian còn lại.
+- **Next**
+- **Maximum budget:** `100`, **Next**
+- Náº¿u Ä‘Ã£ chá»‰nh AppConfig Ä‘Ãºng sáº½ bÃ¡o lá»—i ngÃ¢n sÃ¡ch tá»‘i Ä‘a $50. Äá»•i **Maximum Budget Amount** thÃ nh `25`
+- **Budget Thresholds** > **Add a threshold**:
+  - **amount consumed:** `15`
+  - **action:** **Send Alert**. User sáº½ nháº­n cáº£nh bÃ¡o khi tiÃªu $15, xÃ³a account khi tiÃªu háº¿t $25
+- **Next**
+- **Maximum Duration** > **Set a maximum duration** > `168`
+- **Duration Thresholds** > **Add a threshold**:
+  - **remaining hours:** `24`
+  - **action:** **Send Alert**. BÃ¡o khi cÃ²n 24 tiáº¿ng
+- **Submit**
 
-Bạn sẽ tạo hai loại mẫu:
+![architect](/images/Manager4.png "Architect")
 
-- **Mẫu cơ bản (Basic):** Ngân sách tối đa $25, phê duyệt tự động, phù hợp cho dự án nhỏ và kiểm thử thông thường.
-- **Mẫu nâng cao (Advanced):** Ngân sách tối đa $50, yêu cầu quản lý phê duyệt, phù hợp cho dự án lớn cần kiểm soát chặt chẽ hơn.
+### Táº¡o Advanced Template
 
-### Tạo Lease Template cơ bản
+Template nÃ y cáº§n manager approve. $50 tá»‘i Ä‘a, bÃ¡o á»Ÿ $40, thá»i gian 168 tiáº¿ng, bÃ¡o trÆ°á»›c 24 tiáº¿ng.
 
-Hướng dẫn này giúp bạn tạo mẫu lease cho các tài khoản không cần phê duyệt của quản lý. Mẫu này cho phép ngân sách tối đa $25, cảnh báo khi tiêu $15, thời lượng 168 giờ (1 tuần), cảnh báo trước khi hết hạn 24 giờ.
+**CÃ¡c bÆ°á»›c:**
 
-**Các bước thực hiện:**
+- **Lease Templates** > **Add new lease template**
+- **Name:** `Advanced`
+- **Description:** `Advanced account lease template`
+- Giá»¯ nguyÃªn **Approval required** (cáº§n manager duyá»‡t)
+- **Next**
+- **Maximum budget:** `50`, **Next**
+- **Budget Thresholds** > **Add a threshold**:
+  - **amount consumed:** `40`
+  - **action:** **Send Alert**
+- **Next**
+- **Maximum Duration** > **Set a maximum duration** > `168`
+- **Duration Thresholds** > **Add a threshold**:
+  - **remaining hours:** `24`
+  - **action:** **Send Alert**
+- **Submit**
 
-- Trên console Innovation Sandbox on AWS, chọn profile người dùng ở góc trên bên phải và chọn **Sign out**.
-- Đăng nhập bằng tài khoản manager. Nếu là lần đầu đăng nhập, sử dụng chức năng **Forgot password**.
-- Nếu màn hình hiển thị hai tab **Accounts** và **Applications**, chọn **Applications** để vào ứng dụng. Bạn sẽ thấy trang chào mừng của Innovation Sandbox.
-- Trong thanh điều hướng, chọn **Lease Templates**.
-- Chọn **Add new lease template**.
-- Ở trường **Name**, nhập: `Basic`.
-- Ở trường **Description**, nhập: `Basic account lease template`.
-- Bỏ chọn ô **Approval required** (người dùng không cần quản lý phê duyệt khi yêu cầu loại tài khoản này).
+![architect](/images/Manager5.png "Architect")
 
-![architect](/resources/_gen/images/Manager3.png "Architect")
+### Vai trÃ² End-User
 
-- Chọn **Next**.
-- Ở trường **Maximum budget**, nhập: `100`, chọn **Next**.
-- Nếu bạn đã chỉnh sửa AppConfig đúng, sẽ xuất hiện thông báo lỗi về ngân sách tối đa là $50. Đổi trường **Maximum Budget Amount** thành `25`.
-- Dưới **Budget Thresholds**, chọn **Add a threshold**.
-  - Ở **amount consumed**, nhập `15`.
-  - Ở **action**, chọn **Send Alert**. Người dùng sẽ nhận cảnh báo khi tiêu $15, và tài khoản sẽ bị xóa khi tiêu hết $25.
-- Chọn **Next**.
-- Ở **Maximum Duration**, chọn **Set a maximum duration** và nhập `168`.
-- Dưới **Duration Thresholds**, chọn **Add a threshold**.
-  - Ở **remaining hours**, nhập `24`.
-  - Ở **action**, chọn **Send Alert**. Người dùng sẽ nhận cảnh báo khi còn 24 giờ lease.
-- Chọn **Submit**.
-- Dưới **Lease Templates**, bạn sẽ thấy mẫu lease vừa tạo.
+Giá» sáº½ thá»­ lÃ m user thÆ°á»ng, request tÃ i khoáº£n vÃ  xÃ i.
 
-![architect](/resources/_gen/images/Manager4.png "Architect")
+#### 1. Request tÃ i khoáº£n cÆ¡ báº£n
 
+TÃ i khoáº£n basic sáº½ Ä‘Æ°á»£c approve tá»± Ä‘á»™ng.
 
-### Tạo Lease Template nâng cao
+**CÃ¡c bÆ°á»›c:**
 
-Phần này hướng dẫn bạn tạo mẫu lease yêu cầu quản lý phê duyệt. Mẫu này có ngân sách tối đa $50, cảnh báo ở mức $40, thời lượng 168 giờ, cảnh báo trước khi hết hạn 24 giờ. Thích hợp cho dự án lớn cần giám sát kỹ hơn.
+- Giao diá»‡n Innovation Sandbox, chá»n profile gÃ³c trÃªn pháº£i > **Sign out**
+- ÄÄƒng nháº­p láº¡i báº±ng tÃ i khoáº£n end user
+- Náº¿u cÃ³ hai tab thÃ¬ chá»n **Applications**
+- **Request a new account**
+- Chá»n **Basic lease template**, **Next**
+- Tick **I accept the above terms of service**, **Next**
 
-**Các bước thực hiện:**
+![architect](/images/User1.png "Architect")
 
-- Trong thanh điều hướng, chọn **Lease Templates**.
-- Chọn **Add new lease template**.
-- Ở trường **Name**, nhập: `Advanced`.
-- Ở trường **Description**, nhập: `Advanced account lease template`.
-- Giữ nguyên ô **Approval required** được chọn (người dùng cần quản lý phê duyệt khi yêu cầu loại tài khoản này).
-- Chọn **Next**.
-- Ở trường **Maximum budget**, nhập: `50`, chọn **Next**.
-- Dưới **Budget Thresholds**, chọn **Add a threshold**.
-  - Ở **amount consumed**, nhập `40`.
-  - Ở **action**, chọn **Send Alert**. Người dùng sẽ nhận cảnh báo khi tiêu $40, và tài khoản sẽ bị xóa khi tiêu hết $50.
-- Chọn **Next**.
-- Ở **Maximum Duration**, chọn **Set a maximum duration** và nhập `168`.
-- Dưới **Duration Thresholds**, chọn **Add a threshold**.
-  - Ở **remaining hours**, nhập `24`.
-  - Ở **action**, chọn **Send Alert**. Người dùng sẽ nhận cảnh báo khi còn 24 giờ lease.
-- Chọn **Submit**.
-- Dưới **Lease Templates**, bạn sẽ thấy hai mẫu lease đã tạo.
+- **Comments:** nháº­p lÃ½ do (vÃ­ dá»¥: `Request for a basic account`)
+- **Submit**
+- Thanh Ä‘iá»u hÆ°á»›ng bÃªn trÃ¡i chá»n **Home**. Má»¥c **Account**, click **Refresh** Ä‘á»ƒ cáº­p nháº­t
 
-![architect](/resources/_gen/images/Manager5.png "Architect")
+![architect](/images/User2.png "Architect")
 
-### Bước tiếp theo
+- Khi tÃ i khoáº£n Ä‘Æ°á»£c cáº¥p, má»¥c **Access** chá»n **Login to account**
+- Chá»n role á»Ÿ **Select a role** Ä‘á»ƒ vÃ o AWS Management Console
 
-Sau khi đã tạo hai lease template với vai trò manager, ở phần tiếp theo bạn sẽ:
+![architect](/images/User3.png "Architect")
 
-- Đăng nhập vào Innovation Sandbox on AWS với tư cách người dùng cuối (end user).
-- Yêu cầu tài khoản cơ bản:
-  - Trải nghiệm quy trình phê duyệt tự động.
-  - Truy cập tài khoản sandbox vừa tạo.
-- Yêu cầu tài khoản nâng cao:
-  - Gửi yêu cầu cần quản lý phê duyệt.
-  - Chờ quản lý xem xét và phê duyệt.
-  - Truy cập tài khoản sandbox đã được phê duyệt.
-- Quản lý và giám sát các tài khoản sandbox của bạn.
+#### 2. Test giá»›i háº¡n SCP
 
-### Sử dụng Innovation Sandbox on AWS với vai trò End-User
+Check xem SCP cÃ³ hoáº¡t Ä‘á»™ng khÃ´ng báº±ng cÃ¡ch thá»­ táº¡o EC2 instance bá»‹ cáº¥m.
 
-Giải pháp Innovation Sandbox on AWS hỗ trợ ba vai trò: **administrator**, **manager** và **end user**. Dưới đây là hướng dẫn chi tiết cho người dùng cuối (end user) khi sử dụng hệ thống.
+**CÃ¡c bÆ°á»›c:**
 
-#### 1. Yêu cầu và truy cập tài khoản AWS cơ bản
+- AWS Management Console, nháº­p **EC2** vÃ o thanh tÃ¬m kiáº¿m
+- Thanh Ä‘iá»u hÆ°á»›ng bÃªn trÃ¡i chá»n **Instances**
+- **Launch instances**
+- **Name:** `test-scp`. Giá»¯ nguyÃªn AMI máº·c Ä‘á»‹nh
 
-Các tài khoản cơ bản (basic account) sẽ được phê duyệt tự động, cho phép bạn truy cập ngay vào tài nguyên AWS trong phạm vi giới hạn đã định.
+![architect](/images/User4.png "Architect")
 
-**Các bước thực hiện:**
+- **Instance type:** chá»n **m5.large** (loáº¡i nÃ y bá»‹ SCP cháº·n)
+- **Key pair:** **Proceed without a key pair**
+- Giá»¯ nguyÃªn setting khÃ¡c, **Launch instance**
+- Sáº½ tháº¥y bÃ¡o lá»—i do SCP khÃ´ng cho táº¡o **m5.large**
 
-- Trên giao diện Innovation Sandbox on AWS, chọn profile người dùng ở góc trên bên phải và chọn **Sign out**.
-- Đăng nhập lại bằng thông tin của người dùng cuối (end user).
-- Nếu màn hình có hai tab **Accounts** và **Applications**, chọn **Applications** để vào ứng dụng. Bạn sẽ thấy trang chào mừng của Innovation Sandbox.
-- Chọn **Request a new account**.
-- Chọn mẫu **Basic lease template**, nhấn **Next**.
-- Đánh dấu **I accept the above terms of service**, nhấn **Next**.
+![architect](/images/User5.png "Architect")
 
-![architect](/resources/_gen/images/User1.png "Architect")
+#### 3. Request tÃ i khoáº£n nÃ¢ng cao
 
-- Ở phần **Comments**, nhập lý do (ví dụ: `Request for a basic account`).
-- Chọn **Submit**.
-- Ở thanh điều hướng bên trái, chọn **Home**. Trong mục **Account**, nhấn **Refresh** để cập nhật trạng thái tài khoản.
+TÃ i khoáº£n advanced cáº§n manager approve.
 
-![architect](/resources/_gen/images/User2.png "Architect")
+**CÃ¡c bÆ°á»›c:**
 
-- Khi tài khoản đã được cấp, dưới mục **Access**, chọn **Login to account** cho tài khoản vừa thêm.
-- Chọn vai trò (role) xuất hiện ở mục **Select a role** để vào AWS Management Console.
+- Quay láº¡i giao diá»‡n Innovation Sandbox, Ä‘Äƒng nháº­p end user
+- **Request a new account**
+- Chá»n **Advanced lease template**, **Next**
+- Tick **I accept the above terms of service**, **Next**
+- **Comments:** nháº­p lÃ½ do (vÃ­ dá»¥: `Request for an advanced account`)
+- **Submit**
 
-![architect](/resources/_gen/images/User3.png "Architect")
+**Quy trÃ¬nh approve:**
 
-#### 2. Kiểm tra giới hạn Service Control Policy (SCP)
+- ÄÄƒng xuáº¥t, Ä‘Äƒng nháº­p báº±ng tÃ i khoáº£n manager
+- Trang chá»§ sáº½ tháº¥y request chá» duyá»‡t. Thanh Ä‘iá»u hÆ°á»›ng chá»n **Approvals**
+- Chá»n request, **Actions** > **Approve request**
 
-Bạn có thể kiểm tra hiệu lực của SCP bằng cách thử tạo một EC2 instance bị giới hạn.
+**Quáº£n lÃ½ lease:**
 
-**Các bước kiểm tra:**
+- Thanh Ä‘iá»u hÆ°á»›ng chá»n **Leases**
+- Sáº½ tháº¥y hai lease: basic vÃ  advanced
+- CÃ³ thá»ƒ chá»n lease dÃ¹ng **Actions** Ä‘á»ƒ terminate, suspend hoáº·c cáº­p nháº­t
 
-- Trong AWS Management Console, nhập **EC2** vào thanh tìm kiếm và chọn dịch vụ.
-- Ở thanh điều hướng bên trái, chọn **Instances**.
-- Chọn **Launch instances**.
-- Ở trường **Name**, nhập `test-scp`. Giữ nguyên Amazon Machine Image (AMI) mặc định.
+![architect](/images/User6.png "Architect")
 
-![architect](/resources/_gen/images/User4.png "Architect")
+![architect](/images/User7.png "Architect")
 
-- Ở trường **Instance type**, chọn **m5.large** (loại này đã bị SCP chặn).
-- Ở **Key pair**, chọn **Proceed without a key pair**.
-- Giữ nguyên các thiết lập còn lại, sau đó chọn **Launch instance**.
-- Bạn sẽ thấy thông báo lỗi do SCP không cho phép khởi tạo EC2 instance loại **m5.large**.
+#### 4. Tá»•ng káº¿t
 
+- **Administrator:** Setup há»‡ thá»‘ng, táº¡o SCP kiá»ƒm soÃ¡t tÃ i nguyÃªn, quáº£n lÃ½ tÃ i khoáº£n, tÃ­ch há»£p AppConfig
+- **Manager:** Cáº¥u hÃ¬nh ngÃ¢n sÃ¡ch, táº¡o lease template (Basic, Advanced), thiáº¿t láº­p quy trÃ¬nh approve, giÃ¡m sÃ¡t sá»­ dá»¥ng
+- **End user:** Request vÃ  truy cáº­p tÃ i khoáº£n AWS, test SCP, dÃ¹ng cÃ¡c loáº¡i tÃ i khoáº£n vá»›i quy trÃ¬nh approve phÃ¹ há»£p
 
-![architect](/resources/_gen/images/User5.png "Architect")
-
-#### 3. Yêu cầu tài khoản nâng cao (Advanced Account)
-
-Các tài khoản nâng cao yêu cầu sự phê duyệt của manager trước khi được cấp quyền truy cập.
-
-**Các bước thực hiện:**
-
-- Quay lại giao diện Innovation Sandbox on AWS, đăng nhập với tư cách end user.
-- Chọn **Request a new account**.
-- Chọn mẫu **Advanced lease template**, nhấn **Next**.
-- Đánh dấu **I accept the above terms of service**, nhấn **Next**.
-- Ở phần **Comments**, nhập lý do (ví dụ: `Request for an advanced account`).
-- Chọn **Submit**.
-
-**Quy trình phê duyệt:**
-
-- Đăng xuất khỏi Innovation Sandbox on AWS và đăng nhập bằng tài khoản manager.
-- Ở trang chủ, bạn sẽ thấy yêu cầu đang chờ phê duyệt. Trong thanh điều hướng bên trái, chọn **Approvals**.
-- Chọn yêu cầu, vào **Actions** và chọn **Approve request**.
-
-**Quản lý lease:**
-
-- Trong thanh điều hướng, chọn **Leases**.
-- Bạn sẽ thấy hai lease: một cho tài khoản basic, một cho tài khoản advanced.
-- Có thể chọn lease và dùng **Actions** để chấm dứt, tạm ngưng hoặc cập nhật lease.
-
-![architect](/resources/_gen/images/User6.png "Architect")
-
-![architect](/resources/_gen/images/User7.png "Architect")
-
-#### 4. Tổng kết chức năng và trải nghiệm người dùng
-
-- **Quản trị viên**: Thiết lập hệ thống, tạo SCP để kiểm soát tài nguyên, quản lý tài khoản và cấu hình môi trường Innovation Sandbox, tích hợp với AWS AppConfig.
-- **Manager**: Cấu hình ngưỡng ngân sách, tạo lease template (Basic, Advanced), thiết lập quy trình phê duyệt, giám sát sử dụng tài nguyên.
-- **End user**: Yêu cầu và truy cập tài khoản AWS, kiểm thử hiệu lực SCP, sử dụng các loại tài khoản với quy trình phê duyệt phù hợp.
+Tháº¿ lÃ  xong, giá» báº¡n Ä‘Ã£ biáº¿t cÃ¡ch sá»­ dá»¥ng Innovation Sandbox vá»›i cáº£ 3 vai trÃ² rá»“i!
 
 
 

@@ -1,59 +1,64 @@
 +++
-title = "5-Remove the Solution"
-date = 2025
+title = "Khởi tạo Auto Scaling Group"
+date = 2020
 weight = 5
 chapter = false
 pre = "<b>5. </b>"
 +++
 
-Hướng dẫn Gỡ Bỏ Hoàn Toàn Innovation Sandbox on AWS
-Nếu bạn đã triển khai Innovation Sandbox on AWS trong môi trường thử nghiệm và cần xóa bỏ hoàn toàn, hãy thực hiện theo các bước dưới đây. Thời gian dự kiến: khoảng 15 phút.
+### Xóa hết khi không cần nữa
 
-1. Xóa Hai CloudFormation Stack Đầu Tiên (Trên Hub Account)
-Đăng nhập vào hub account và đảm bảo đang ở đúng home Region.
+Nếu bạn đã thử xong rồi và muốn dọn dẹp sạch sẽ, làm theo các bước này. Dự kiến mất khoảng 15 phút.
+
+#### 1. Xóa hai stack đầu (ở tài khoản hub)
+
+Đăng nhập tài khoản hub, đảm bảo đúng home Region.
 
 Mở AWS CloudFormation console.
 
-Chọn stack compute (ví dụ: isb-compute), nhấn Delete.
+Chọn compute stack (ví dụ: isb-compute), click Delete.
 
-Chờ quá trình xóa hoàn tất.
+Đợi xóa xong.
 
-Tiếp tục chọn stack data (ví dụ: isb-data), nhấn Delete.
+Tiếp tục chọn data stack (ví dụ: isb-data), click Delete.
 
-Chờ quá trình xóa hoàn tất.
+Đợi xóa xong.
 
-2. Xóa Cấu Hình Ứng Dụng IAM Identity Center (Trên Organization Management Account)
-Đăng nhập vào organization management account và đảm bảo đang ở đúng home Region.
+#### 2. Xóa cấu hình IAM Identity Center App (ở tài khoản quản lý)
+
+Đăng nhập tài khoản quản lý, đảm bảo đúng home Region.
 
 Mở IAM Identity Center console.
 
-Trong thanh điều hướng, chọn Applications.
+Thanh điều hướng chọn Applications.
 
 Chuyển sang tab Customer managed.
 
-Chọn ứng dụng Innovation Sandbox on AWS.
+Chọn app Innovation Sandbox on AWS.
 
 Vào Actions > Remove.
 
-Xác nhận bằng cách nhập tên ứng dụng để hoàn tất việc xóa.
+Xác nhận bằng cách nhập tên app để hoàn tất.
 
-3. Xóa Các CloudFormation Stack Còn Lại (Trên Organization Management Account)
+#### 3. Xóa hai stack còn lại (ở tài khoản quản lý)
+
 Mở AWS CloudFormation console.
 
-Chọn stack IDC (ví dụ: isb-idc), nhấn Delete.
+Chọn IDC stack (ví dụ: isb-idc), click Delete.
 
-Chờ quá trình xóa hoàn tất.
+Đợi xóa xong.
 
-Chọn stack AccountPool (ví dụ: isb-accountpool), nhấn Delete.
+Chọn AccountPool stack (ví dụ: isb-accountpool), click Delete.
 
-Chờ quá trình xóa hoàn tất.
+Đợi xóa xong.
 
-4. Đóng Các Tài Khoản Sandbox AWS (Tùy chọn)
-Lưu ý: Trước khi đóng tài khoản AWS, hãy đọc kỹ quy trình, điều kiện tiên quyết và ảnh hưởng của việc đóng tài khoản trong tài liệu hướng dẫn quản lý tài khoản AWS.
+#### 4. Đóng tài khoản AWS Sandbox (tùy chọn)
 
-Mở AWS Organizations console trong organization management account.
+Lưu ý: Trước khi đóng tài khoản AWS, đọc kỹ hướng dẫn và tác động của việc đóng tài khoản trong tài liệu AWS.
 
-Truy cập organizational unit dành cho Innovation Sandbox on AWS.
+Mở AWS Organizations console ở tài khoản quản lý.
+
+Truy cập organizational unit của Innovation Sandbox on AWS.
 
 Mở từng sub-organizational unit để tìm các tài khoản sandbox.
 
@@ -65,5 +70,6 @@ Vào Actions > Close.
 
 Xác nhận bằng cách nhập AWS account ID.
 
-Hoàn tất!
-Bạn đã hoàn thành việc gỡ bỏ toàn bộ giải pháp Innovation Sandbox on AWS khỏi môi trường thử nghiệm.
+#### Xong!
+
+Thế là đã dọn dẹp xong toàn bộ Innovation Sandbox on AWS khỏi môi trường thử nghiệm rồi.
