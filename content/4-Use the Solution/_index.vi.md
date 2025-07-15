@@ -1,74 +1,74 @@
 +++
-title = "Use the Solutio"
+title = "Use the Solution"
 date = 2025
 weight = 4
 chapter = false
 pre = "<b>4. </b>"
 +++
 
-### S? d?ng h? th?ng
+### Sử dụng hệ thống
 
-Okay gi? d� setup xong h?t r?i, ch�ng ta s? th? x�i h? th?ng v?i 3 vai tr� kh�c nhau d? xem n� ho?t d?ng th? n�o.
+Okay giờ đã setup xong hết rồi, chúng ta sẽ thử xài hệ thống với 3 vai trò khác nhau để xem nó hoạt động thế nào.
 
-#### Ba vai tr� ch�nh
+#### Ba vai trò chính
 
-- **Administrator** - qu?n tr? vi�n, quy?n cao nh?t
-- **Manager** - qu?n l�, t?o template v� approve request  
-- **End user** - ngu?i d�ng cu?i, request t�i kho?n d? x�i
+- **Administrator** - quản trị viên, quyền cao nhất
+- **Manager** - quản lý, tạo template và approve request  
+- **End user** - người dùng cuối, request tài khoản để xài
 
-D? ki?n m?t kho?ng 30 ph�t d? th? h?t.
+Dự kiến mất khoảng 30 phút để thử hết.
 
-### Vai tr� Administrator
+### Vai trò Administrator
 
-#### 1. �ang nh?p v�o h? th?ng
+#### 1. Đăng nhập vào hệ thống
 
-- L?y URL t? CloudFrontDistributionUrl d� luu l�c deploy
-- M? URL tr�n browser
-- �ang nh?p b?ng t�i kho?n admin. L?n d?u th� ch?n **Forgot password** d? set m?t kh?u
+- Lấy URL từ CloudFrontDistributionUrl đã lưu lúc deploy
+- Mở URL trên browser
+- Đăng nhập bằng tài khoản admin. Lần đầu thì chọn **Forgot password** để set mật khẩu
 
-**Luu �:** N?u th?y hai tab **Accounts** v� **Applications**, ch?n **Applications** d? v�o app ch�nh.
+**Lưu ý:** Nếu thấy hai tab **Accounts** và **Applications**, chọn **Applications** để vào app chính.
 
-![architect](/images/Anha1.png "Architect")
+![architect](../images/1/Anh1.jpg "Architect")
 
-#### 2. Th�m t�i kho?n cho thu�
+#### 2. Thêm tài khoản cho thuê
 
-- Thanh di?u hu?ng b�n tr�i, **Administration** > **Accounts**
+- Thanh điều hướng bên trái, **Administration** > **Accounts**
 - Click **Add accounts**
-- M?c **Select accounts**, s? th?y danh s�ch t�i kho?n c� s?n. N?u kh�ng c� g� th� check l?i xem sandbox account d� du?c move v�o OU **Entry** chua
-- Ch?n m?t v�i t�i kho?n, **Next** r?i **Submit**
+- Mục **Select accounts**, sẽ thấy danh sách tài khoản có sẵn. Nếu không có gì thì check lại xem sandbox account đã được move vào OU **Entry** chưa
+- Chọn một vài tài khoản, **Next** rồi **Submit**
 
-![architect](/images/Anha2.png "Architect")
+![architect](../images/1/anh2.jpg "Architect")
 
-- Quay l?i **Accounts** d? check tr?ng th�i
+- Quay lại **Accounts** để check trạng thái
 
-#### 3. Qu?n l� c�i d?t
+#### 3. Quản lý cài đặt
 
-- Thanh di?u hu?ng, **Administration** > **Settings**
-- C� ba tab:
+- Thanh điều hướng, **Administration** > **Settings**
+- Có ba tab:
   - **General Settings**
-  - **Lease Settings** (ng�n s�ch t?i da m?c d?nh $100)
+  - **Lease Settings** (ngân sách tối đa mặc định $100)
   - **Clean Up Settings**
-- Mu?n d?i th� ph?i d�ng **AWS AppConfig** (hu?ng d?n ? ph?n sau)
+- Muốn đổi thì phải dùng **AWS AppConfig** (hướng dẫn ở phần sau)
 
-![architect](/images/Anha3.png "Architect")
+![architect](../images/1/Anha3.png "Architect")
 
-#### 4. T?o Service Control Policy d? gi?i h?n
+#### 4. Tạo Service Control Policy để giới hạn
 
-V� d?: T?o SCP d? kh�ng cho user t?o EC2 instance lo?i `m5.large`.
+Ví dụ: Tạo SCP để không cho user tạo EC2 instance loại `m5.large`.
 
-**C�c bu?c:**
+**Các bước:**
 
-- �ang nh?p **organization management account**
-- M? **AWS Organizations**
-- Thanh di?u hu?ng ch?n **Policies**
+- Đăng nhập **organization management account**
+- Mở **AWS Organizations**
+- Thanh điều hướng chọn **Policies**
 - **Supported policy types** > **Service control policies**
 
-![architect](/images/Anha4.png "Architect")
+![architect](../images/1/Anha4.png "Architect")
 
 - Click **Create policy**:
   - **Policy name:** RestrictEC2Instances
   - **Policy description:** This SCP restricts launching certain EC2 instance types.
-- D�n JSON n�y v�o policy editor:
+- Dán JSON này vào policy editor:
 
 ```json
 {
@@ -91,98 +91,98 @@ V� d?: T?o SCP d? kh�ng cho user t?o EC2 instance lo?i `m5.large`.
 ```
 
 - **Create policy**
-- Quay l?i **Policies**, ch?n policy v?a t?o
+- Quay lại **Policies**, chọn policy vừa tạo
 - Tab **Targets**, click **Attach**
-- Ch?n OU t�n `your-namespace_InnovationSandboxAccountPool`, **Attach policy**
+- Chọn OU tên `your-namespace_InnovationSandboxAccountPool`, **Attach policy**
 
-![architect](/images/Anha6.png "Architect")
+![architect](../images/1/Anha6.png "Architect")
 
-**K?t qu?:** User trong sandbox account kh�ng th? t?o EC2 instance `m5.large` n?a.
+**Kết quả:** User trong sandbox account không thể tạo EC2 instance `m5.large` nữa.
 
-### Vai tr� Manager
+### Vai trò Manager
 
-Manager c� th? ch?nh s?a c�i d?t v� t?o template cho user request t�i kho?n.
+Manager có thể chỉnh sửa cài đặt và tạo template cho user request tài khoản.
 
-#### Ch?nh s?a c�i d?t b?ng AppConfig
+#### Chỉnh sửa cài đặt bằng AppConfig
 
-**Luu � quan tr?ng:** L�m ? **t�i kho?n hub**, kh�ng ph?i t�i kho?n qu?n l�. ��ng **home Region**.
+**Lưu ý quan trọng:** Làm ở **tài khoản hub**, không phải tài khoản quản lý. Đúng **home Region**.
 
-**C�c bu?c:**
+**Các bước:**
 
-- �ang nh?p t�i kho?n hub
-- Thanh t�m ki?m console, nh?p **AWS AppConfig**
-- Thanh di?u hu?ng ch?n **Applications**
-- Ch?n app d� t?o
-- Ch?n **InnovationSandboxData-Config-GlobalConfigHostedConfiguration-ID**
+- Đăng nhập tài khoản hub
+- Thanh tìm kiếm console, nhập **AWS AppConfig**
+- Thanh điều hướng chọn **Applications**
+- Chọn app đã tạo
+- Chọn **InnovationSandboxData-Config-GlobalConfigHostedConfiguration-ID**
 
-![architect](/images/Manager1.png "Architect")
+![architect](../images/1/Manager1.png "Architect")
 
 - **Hosted configuration versions** > **Create**
-- �?i **maxBudget** th�nh **50** (USD)
+- Đổi **maxBudget** thành **50** (USD)
 
-![architect](/images/Manager2.png "Architect")
+![architect](../images/1/Manager2.png "Architect")
 
 - **Create hosted configuration version**
 - **Start deployment**
-- Ch?n phi�n b?n v?a t?o, gi? nguy�n setting kh�c, **Start deployment**
+- Chọn phiên bản vừa tạo, giữ nguyên setting khác, **Start deployment**
 
-### T?o Lease Template
+### Tạo Lease Template
 
-#### Lease Template l� g�
+#### Lease Template là gì
 
-V? co b?n th� d�y l� b? quy t?c d?nh nghia user c� th? x�i t�i nguy�n th? n�o:
+Về cơ bản thì đây là bộ quy tắc định nghĩa user có thể xài tài nguyên thế nào:
 
-- **Ng�n s�ch t?i da:** C� th? ti�u bao nhi�u ti?n
-- **Th?i gian:** �u?c x�i bao l�u
-- **Approval:** C� c?n manager duy?t kh�ng
-- **C?nh b�o:** B�o khi s?p h?t ti?n ho?c th?i gian
+- **Ngân sách tối đa:** Có thể tiêu bao nhiều tiền
+- **Thời gian:** Được xài bao lâu
+- **Approval:** Có cần manager duyệt không
+- **Cảnh báo:** Báo khi sắp hết tiền hoặc thời gian
 
-S? t?o hai lo?i:
-- **Basic:** $25, t? d?ng approve, cho test nh?
-- **Advanced:** $50, c?n approve, cho d? �n l?n
+Sẽ tạo hai loại:
+- **Basic:** $25, tự động approve, cho test nhẹ
+- **Advanced:** $50, cần approve, cho dự án lớn
 
-### T?o Basic Template
+### Tạo Basic Template
 
-Template n�y cho nh?ng request kh�ng c?n duy?t. $25 t?i da, b�o khi ti�u $15, d�ng du?c 168 ti?ng (1 tu?n), b�o tru?c 24 ti?ng khi h?t h?n.
+Template này cho những request không cần duyệt. $25 tối đa, báo khi tiêu $15, dùng được 168 tiếng (1 tuần), báo trước 24 tiếng khi hết hạn.
 
-**C�c bu?c:**
+**Các bước:**
 
-- Console Innovation Sandbox, ch?n profile g�c tr�n ph?i > **Sign out**
-- �ang nh?p b?ng t�i kho?n manager. L?n d?u d�ng **Forgot password**
-- N?u c� hai tab **Accounts** v� **Applications**, ch?n **Applications**
-- Thanh di?u hu?ng ch?n **Lease Templates**
+- Console Innovation Sandbox, chọn profile góc trên phải > **Sign out**
+- Đăng nhập bằng tài khoản manager. Lần đầu dùng **Forgot password**
+- Nếu có hai tab **Accounts** và **Applications**, chọn **Applications**
+- Thanh điều hướng chọn **Lease Templates**
 - **Add new lease template**
 - **Name:** `Basic`
 - **Description:** `Basic account lease template`
-- B? tick **Approval required** (kh�ng c?n manager duy?t)
+- Bỏ tick **Approval required** (không cần manager duyệt)
 
-![architect](/images/Manager3.png "Architect")
+![architect](../images/1/Manager3.png "Architect")
 
 - **Next**
 - **Maximum budget:** `100`, **Next**
-- N?u d� ch?nh AppConfig d�ng s? b�o l?i ng�n s�ch t?i da $50. �?i **Maximum Budget Amount** th�nh `25`
+- Nếu đã chỉnh AppConfig đúng sẽ báo lỗi ngân sách tối đa $50. Đổi **Maximum Budget Amount** thành `25`
 - **Budget Thresholds** > **Add a threshold**:
   - **amount consumed:** `15`
-  - **action:** **Send Alert**. User s? nh?n c?nh b�o khi ti�u $15, x�a account khi ti�u h?t $25
+  - **action:** **Send Alert**. User sẽ nhận cảnh báo khi tiêu $15, xóa account khi tiêu hết $25
 - **Next**
 - **Maximum Duration** > **Set a maximum duration** > `168`
 - **Duration Thresholds** > **Add a threshold**:
   - **remaining hours:** `24`
-  - **action:** **Send Alert**. B�o khi c�n 24 ti?ng
+  - **action:** **Send Alert**. Báo khi còn 24 tiếng
 - **Submit**
 
-![architect](/images/Manager4.png "Architect")
+![architect](../images/1/Manager4.png "Architect")
 
-### T?o Advanced Template
+### Tạo Advanced Template
 
-Template n�y c?n manager approve. $50 t?i da, b�o ? $40, th?i gian 168 ti?ng, b�o tru?c 24 ti?ng.
+Template này cần manager approve. $50 tối đa, báo ở $40, thời gian 168 tiếng, báo trước 24 tiếng.
 
-**C�c bu?c:**
+**Các bước:**
 
 - **Lease Templates** > **Add new lease template**
 - **Name:** `Advanced`
 - **Description:** `Advanced account lease template`
-- Gi? nguy�n **Approval required** (c?n manager duy?t)
+- Giữ nguyên **Approval required** (cần manager duyệt)
 - **Next**
 - **Maximum budget:** `50`, **Next**
 - **Budget Thresholds** > **Add a threshold**:
@@ -195,94 +195,94 @@ Template n�y c?n manager approve. $50 t?i da, b�o ? $40, th?i gian 168 ti?ng, b�
   - **action:** **Send Alert**
 - **Submit**
 
-![architect](/images/Manager5.png "Architect")
+![architect](../images/1/Manager5.png "Architect")
 
-### Vai tr� End-User
+### Vai trò End-User
 
-Gi? s? th? l�m user thu?ng, request t�i kho?n v� x�i.
+Giờ sẽ thử làm user thường, request tài khoản và xài.
 
-#### 1. Request t�i kho?n co b?n
+#### 1. Request tài khoản cơ bản
 
-T�i kho?n basic s? du?c approve t? d?ng.
+Tài khoản basic sẽ được approve tự động.
 
-**C�c bu?c:**
+**Các bước:**
 
-- Giao di?n Innovation Sandbox, ch?n profile g�c tr�n ph?i > **Sign out**
-- �ang nh?p l?i b?ng t�i kho?n end user
-- N?u c� hai tab th� ch?n **Applications**
+- Giao diện Innovation Sandbox, chọn profile góc trên phải > **Sign out**
+- Đăng nhập lại bằng tài khoản end user
+- Nếu có hai tab thì chọn **Applications**
 - **Request a new account**
-- Ch?n **Basic lease template**, **Next**
+- Chọn **Basic lease template**, **Next**
 - Tick **I accept the above terms of service**, **Next**
 
-![architect](/images/User1.png "Architect")
+![architect](../images/1/User1.png "Architect")
 
-- **Comments:** nh?p l� do (v� d?: `Request for a basic account`)
+- **Comments:** nhập lý do (ví dụ: `Request for a basic account`)
 - **Submit**
-- Thanh di?u hu?ng b�n tr�i ch?n **Home**. M?c **Account**, click **Refresh** d? c?p nh?t
+- Thanh điều hướng bên trái chọn **Home**. Mục **Account**, click **Refresh** để cập nhật
 
-![architect](/images/User2.png "Architect")
+![architect](../images/1/User2.png "Architect")
 
-- Khi t�i kho?n du?c c?p, m?c **Access** ch?n **Login to account**
-- Ch?n role ? **Select a role** d? v�o AWS Management Console
+- Khi tài khoản được cấp, mục **Access** chọn **Login to account**
+- Chọn role ở **Select a role** để vào AWS Management Console
 
-![architect](/images/User3.png "Architect")
+![architect](../images/1/User3.png "Architect")
 
-#### 2. Test gi?i h?n SCP
+#### 2. Test giới hạn SCP
 
-Check xem SCP c� ho?t d?ng kh�ng b?ng c�ch th? t?o EC2 instance b? c?m.
+Check xem SCP có hoạt động không bằng cách thử tạo EC2 instance bị cấm.
 
-**C�c bu?c:**
+**Các bước:**
 
-- AWS Management Console, nh?p **EC2** v�o thanh t�m ki?m
-- Thanh di?u hu?ng b�n tr�i ch?n **Instances**
+- AWS Management Console, nhập **EC2** vào thanh tìm kiếm
+- Thanh điều hướng bên trái chọn **Instances**
 - **Launch instances**
-- **Name:** `test-scp`. Gi? nguy�n AMI m?c d?nh
+- **Name:** `test-scp`. Giữ nguyên AMI mặc định
 
-![architect](/images/User4.png "Architect")
+![architect](../images/1/User4.png "Architect")
 
-- **Instance type:** ch?n **m5.large** (lo?i n�y b? SCP ch?n)
+- **Instance type:** chọn **m5.large** (loại này bị SCP chặn)
 - **Key pair:** **Proceed without a key pair**
-- Gi? nguy�n setting kh�c, **Launch instance**
-- S? th?y b�o l?i do SCP kh�ng cho t?o **m5.large**
+- Giữ nguyên setting khác, **Launch instance**
+- Sẽ thấy báo lỗi do SCP không cho tạo **m5.large**
 
-![architect](/images/User5.png "Architect")
+![architect](../images/1/User5.png "Architect")
 
-#### 3. Request t�i kho?n n�ng cao
+#### 3. Request tài khoản nâng cao
 
-T�i kho?n advanced c?n manager approve.
+Tài khoản advanced cần manager approve.
 
-**C�c bu?c:**
+**Các bước:**
 
-- Quay l?i giao di?n Innovation Sandbox, dang nh?p end user
+- Quay lại giao diện Innovation Sandbox, đăng nhập end user
 - **Request a new account**
-- Ch?n **Advanced lease template**, **Next**
+- Chọn **Advanced lease template**, **Next**
 - Tick **I accept the above terms of service**, **Next**
-- **Comments:** nh?p l� do (v� d?: `Request for an advanced account`)
+- **Comments:** nhập lý do (ví dụ: `Request for an advanced account`)
 - **Submit**
 
-**Quy tr�nh approve:**
+**Quy trình approve:**
 
-- �ang xu?t, dang nh?p b?ng t�i kho?n manager
-- Trang ch? s? th?y request ch? duy?t. Thanh di?u hu?ng ch?n **Approvals**
-- Ch?n request, **Actions** > **Approve request**
+- Đăng xuất, đăng nhập bằng tài khoản manager
+- Trang chủ sẽ thấy request chờ duyệt. Thanh điều hướng chọn **Approvals**
+- Chọn request, **Actions** > **Approve request**
 
-**Qu?n l� lease:**
+**Quản lý lease:**
 
-- Thanh di?u hu?ng ch?n **Leases**
-- S? th?y hai lease: basic v� advanced
-- C� th? ch?n lease d�ng **Actions** d? terminate, suspend ho?c c?p nh?t
+- Thanh điều hướng chọn **Leases**
+- Sẽ thấy hai lease: basic và advanced
+- Có thể chọn lease dùng **Actions** để terminate, suspend hoặc cập nhật
 
-![architect](/images/User6.png "Architect")
+![architect](../images/1/User6.png "Architect")
 
-![architect](/images/User7.png "Architect")
+![architect](../images/1/User7.png "Architect")
 
-#### 4. T?ng k?t
+#### 4. Tổng kết
 
-- **Administrator:** Setup h? th?ng, t?o SCP ki?m so�t t�i nguy�n, qu?n l� t�i kho?n, t�ch h?p AppConfig
-- **Manager:** C?u h�nh ng�n s�ch, t?o lease template (Basic, Advanced), thi?t l?p quy tr�nh approve, gi�m s�t s? d?ng
-- **End user:** Request v� truy c?p t�i kho?n AWS, test SCP, d�ng c�c lo?i t�i kho?n v?i quy tr�nh approve ph� h?p
+- **Administrator:** Setup hệ thống, tạo SCP kiểm soát tài nguyên, quản lý tài khoản, tích hợp AppConfig
+- **Manager:** Cấu hình ngân sách, tạo lease template (Basic, Advanced), thiết lập quy trình approve, giám sát sử dụng
+- **End user:** Request và truy cập tài khoản AWS, test SCP, dùng các loại tài khoản với quy trình approve phù hợp
 
-Th? l� xong, gi? b?n d� bi?t c�ch s? d?ng Innovation Sandbox v?i c? 3 vai tr� r?i!
+Thế là xong, giờ bạn đã biết cách sử dụng Innovation Sandbox với cả 3 vai trò rồi!
 
 
 
