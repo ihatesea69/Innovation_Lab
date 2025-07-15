@@ -1,4 +1,4 @@
-﻿+++
++++
 title = "Configure the Solution"
 date = 2025
 weight = 3
@@ -6,261 +6,261 @@ chapter = false
 pre = "<b>3. </b>"
 +++
 
-### Cấu hình hệ thống
+### C?u h�nh h? th?ng
 
-Okay giờ các stack đã chạy xong rồi, nhưng chưa xài được đâu. Phải cấu hình thêm tí nữa mới cho user vào được.
+Okay gi? c�c stack d� ch?y xong r?i, nhung chua x�i du?c d�u. Ph?i c?u h�nh th�m t� n?a m?i cho user v�o du?c.
 
-#### Cần làm gì
+#### C?n l�m g�
 
-- Thiết lập SAML để đăng nhập
-- Tạo user và nhóm trong IAM Identity Center
-- Cấu hình web app
-- Đưa các tài khoản sandbox vào đúng chỗ
+- Thi?t l?p SAML d? dang nh?p
+- T?o user v� nh�m trong IAM Identity Center
+- C?u h�nh web app
+- �ua c�c t�i kho?n sandbox v�o d�ng ch?
 
-#### Thiết lập SAML
+#### Thi?t l?p SAML
 
-**1. Cấu hình SAML**
+**1. C?u h�nh SAML**
 
-- Vào AWS IAM Identity Center ở tài khoản quản lý
-- Chọn "Settings" rồi chuyển sang "Identity Source"
-- Chọn "External identity provider" để dùng SAML 2.0
+- V�o AWS IAM Identity Center ? t�i kho?n qu?n l�
+- Ch?n "Settings" r?i chuy?n sang "Identity Source"
+- Ch?n "External identity provider" d? d�ng SAML 2.0
 
-**2. Tải certificate**
+**2. T?i certificate**
 
-- Ở giao diện SAML, tải file certificate (.pem) của AWS IAM Identity Center
-- Lưu lại file này dùng sau
+- ? giao di?n SAML, t?i file certificate (.pem) c?a AWS IAM Identity Center
+- Luu l?i file n�y d�ng sau
 
-#### Tạo user và nhóm
+#### T?o user v� nh�m
 
-**1. Tạo nhóm**
+**1. T?o nh�m**
 
-- Vào IAM Identity Center, chọn "Groups"
-- Tạo các nhóm theo vai trò (Admin, Developer, Viewer...)
-- Gán quyền cho từng nhóm
+- V�o IAM Identity Center, ch?n "Groups"
+- T?o c�c nh�m theo vai tr� (Admin, Developer, Viewer...)
+- G�n quy?n cho t?ng nh�m
 
-**2. Thêm user**
+**2. Th�m user**
 
-- Vào "Users" trong IAM Identity Center
-- Thêm user mới hoặc sync từ hệ thống bên ngoài (nếu đã cấu hình SAML)
-- Cho user vào nhóm phù hợp
+- V�o "Users" trong IAM Identity Center
+- Th�m user m?i ho?c sync t? h? th?ng b�n ngo�i (n?u d� c?u h�nh SAML)
+- Cho user v�o nh�m ph� h?p
 
-#### Cấu hình web app
+#### C?u h�nh web app
 
-**1. Cập nhật AWS AppConfig**
+**1. C?p nh?t AWS AppConfig**
 
-- Vào AWS AppConfig ở tài khoản hub
-- Chọn app Innovation Sandbox, cập nhật các tham số cần thiết
-- Check lại thông tin có khớp với môi trường không
+- V�o AWS AppConfig ? t�i kho?n hub
+- Ch?n app Innovation Sandbox, c?p nh?t c�c tham s? c?n thi?t
+- Check l?i th�ng tin c� kh?p v?i m�i tru?ng kh�ng
 
-**2. Cấu hình xác thực**
+**2. C?u h�nh x�c th?c**
 
-- Đảm bảo web app dùng IAM Identity Center để đăng nhập
-- Kiểm tra thông tin kết nối SAML
+- �?m b?o web app d�ng IAM Identity Center d? dang nh?p
+- Ki?m tra th�ng tin k?t n?i SAML
 
-#### Đưa tài khoản vào hệ thống
+#### �ua t�i kho?n v�o h? th?ng
 
-**1. Di chuyển tài khoản**
+**1. Di chuy?n t�i kho?n**
 
-- Vào AWS Organizations bằng tài khoản quản lý
-- Chuyển các tài khoản (hub, sandbox...) vào đúng OU đã thiết kế
+- V�o AWS Organizations b?ng t�i kho?n qu?n l�
+- Chuy?n c�c t�i kho?n (hub, sandbox...) v�o d�ng OU d� thi?t k?
 
-**2. Kiểm tra lại**
+**2. Ki?m tra l?i**
 
-- Check trong AWS Organizations xem tài khoản đã ở đúng chỗ chưa
-- Đảm bảo các policy và quyền đã được áp dụng đúng
+- Check trong AWS Organizations xem t�i kho?n d� ? d�ng ch? chua
+- �?m b?o c�c policy v� quy?n d� du?c �p d?ng d�ng
 
-**Thời gian:** Khoảng 15 phút
+**Th?i gian:** Kho?ng 15 ph�t
 
-Làm xong các bước này thì hệ thống mới sẵn sàng cho user vào xài được.
+L�m xong c�c bu?c n�y th� h? th?ng m?i s?n s�ng cho user v�o x�i du?c.
 
-### Thiết lập SAML cho Innovation Sandbox
+### Thi?t l?p SAML cho Innovation Sandbox
 
-Phần này hơi kỹ thuật tí, nhưng cần thiết để user đăng nhập được vào hệ thống một cách an toàn.
+Ph?n n�y hoi k? thu?t t�, nhung c?n thi?t d? user dang nh?p du?c v�o h? th?ng m?t c�ch an to�n.
 
-#### Lưu ý quan trọng
+#### Luu � quan tr?ng
 
-- Làm tất cả ở **tài khoản quản lý tổ chức** - nơi có IAM Identity Center
-- Đảm bảo đang ở đúng **home Region** đã chọn
+- L�m t?t c? ? **t�i kho?n qu?n l� t? ch?c** - noi c� IAM Identity Center
+- �?m b?o dang ? d�ng **home Region** d� ch?n
 
-#### Các bước làm
+#### C�c bu?c l�m
 
-**1. Tạo SAML app trong IAM Identity Center**
+**1. T?o SAML app trong IAM Identity Center**
 
-- Mở **AWS IAM Identity Center console** bằng tài khoản quản lý
-- Thanh điều hướng chọn **Applications**
-- Chuyển sang tab **Customer managed**
+- M? **AWS IAM Identity Center console** b?ng t�i kho?n qu?n l�
+- Thanh di?u hu?ng ch?n **Applications**
+- Chuy?n sang tab **Customer managed**
 
-![architect](/images/organiza.jpg "Architect")
+![architect](../images/organiza.jpg "Architect")
 
-**2. Thêm app mới**
+**2. Th�m app m?i**
 
-- Chọn **Add application**
-- Chọn **I have an application I want to set up**
-- Chọn **SAML 2.0**, rồi **Next**
+- Ch?n **Add application**
+- Ch?n **I have an application I want to set up**
+- Ch?n **SAML 2.0**, r?i **Next**
 
-![architect](/images/Buoc3.png "Architect")
+![architect](../images/Buoc3.png "Architect")
 
-**3. Cấu hình app**
+**3. C?u h�nh app**
 
-- Trang cấu hình, nhập **Display name** (ví dụ: MyISB app) và mô tả
+- Trang c?u h�nh, nh?p **Display name** (v� d?: MyISB app) v� m� t?
 
-![architect](/images/Buoc5.png "Architect")
+![architect](../images/Buoc5.png "Architect")
 
-- Phần **IAM Identity Center metadata**:
-  - Tải **SAML metadata file** 
-  - Tải **certificate**
+- Ph?n **IAM Identity Center metadata**:
+  - T?i **SAML metadata file** 
+  - T?i **certificate**
 
-![architect](/images/Buoc6.png "Architect")
+![architect](../images/Buoc6.png "Architect")
 
-- Ghi lại **Sign-in URL** và **Sign-out URL** - cần dùng khi cấu hình ở tài khoản hub
+- Ghi l?i **Sign-in URL** v� **Sign-out URL** - c?n d�ng khi c?u h�nh ? t�i kho?n hub
 
-![architect](/images/Buoc7.png "Architect")
+![architect](../images/Buoc7.png "Architect")
 
-**4. Nhập thông tin metadata**
+**4. Nh?p th�ng tin metadata**
 
-- Phần **Application metadata**, chọn **Manually type your metadata values**
-- Nhập các giá trị:
+- Ph?n **Application metadata**, ch?n **Manually type your metadata values**
+- Nh?p c�c gi� tr?:
 
-  | Trường                  | Nhập gì                                                                                          |
+  | Tru?ng                  | Nh?p g�                                                                                          |
   |-------------------------|--------------------------------------------------------------------------------------------------|
-  | Application ACS URL     | `{ISB_WEB_URL}/api/auth/login/callback` (Thay `{ISB_WEB_URL}` bằng CloudFrontDistributionUrl đã lưu) |
-  | Application SAML audience | Tên định danh app (có thể dùng tên namespace, ví dụ: `Isb-dev-namespace-Audience`). Lưu lại để cấu hình AppConfig |
+  | Application ACS URL     | `{ISB_WEB_URL}/api/auth/login/callback` (Thay `{ISB_WEB_URL}` b?ng CloudFrontDistributionUrl d� luu) |
+  | Application SAML audience | T�n d?nh danh app (c� th? d�ng t�n namespace, v� d?: `Isb-dev-namespace-Audience`). Luu l?i d? c?u h�nh AppConfig |
 
-![architect](/images/Buoc8.png "Architect")
+![architect](../images/Buoc8.png "Architect")
 
-**5. Hoàn tất**
+**5. Ho�n t?t**
 
-- Nhấn **Submit**
-- Sẽ có thông báo cấu hình thành công
-- Nhớ cấu hình thêm **attribute mappings** cho IAM Identity Center
+- Nh?n **Submit**
+- S? c� th�ng b�o c?u h�nh th�nh c�ng
+- Nh? c?u h�nh th�m **attribute mappings** cho IAM Identity Center
 
-#### Thông tin cần lưu lại
+#### Th�ng tin c?n luu l?i
 
 - **Sign-in URL** 
 - **Sign-out URL** 
 - **Audience value** 
 
-Các thông tin này dùng để cấu hình web app và xác thực user.
+C�c th�ng tin n�y d�ng d? c?u h�nh web app v� x�c th?c user.
 
-### Cấu hình User và Group
+### C?u h�nh User v� Group
 
-Thiết lập user và nhóm để kiểm soát ai được vào và làm gì trong hệ thống. Làm ở **tài khoản quản lý** và đúng **home Region**.
+Thi?t l?p user v� nh�m d? ki?m so�t ai du?c v�o v� l�m g� trong h? th?ng. L�m ? **t�i kho?n qu?n l�** v� d�ng **home Region**.
 
-#### 1. Map thuộc tính app
+#### 1. Map thu?c t�nh app
 
-- Mở **IAM Identity Center console**
-- Chọn **Applications** 
-- Chọn app vừa tạo (MyISB app)
-- Trang chi tiết app, chọn **Actions** > **Edit attribute mappings**
-- Ô thứ hai nhập: `${user:email}`
-- Cột thứ ba chọn **emailAddress**
+- M? **IAM Identity Center console**
+- Ch?n **Applications** 
+- Ch?n app v?a t?o (MyISB app)
+- Trang chi ti?t app, ch?n **Actions** > **Edit attribute mappings**
+- � th? hai nh?p: `${user:email}`
+- C?t th? ba ch?n **emailAddress**
 - **Save changes**
 
-#### 2. Gán nhóm cho app
+#### 2. G�n nh�m cho app
 
-- Quay lại app vừa cấu hình
-- Chọn **Assign users and groups**
-- Tìm và thêm ba nhóm đã tạo bởi IDC stack:
+- Quay l?i app v?a c?u h�nh
+- Ch?n **Assign users and groups**
+- T�m v� th�m ba nh�m d� t?o b?i IDC stack:
   - `{NAMESPACE}_IsbUsersGroup`
   - `{NAMESPACE}_IsbManagersGroup`
   - `{NAMESPACE}_IsbAdminsGroup`
-- Chọn **Assign**
+- Ch?n **Assign**
 
-#### 3. Cho user vào nhóm
+#### 3. Cho user v�o nh�m
 
-- IAM Identity Center console, chọn **Users**
-- Chọn user muốn gán nhóm (hoặc **Add user** để thêm mới)
-- Tab **Groups**, nhấn **Add user to groups**
-- Chọn một trong ba nhóm:
+- IAM Identity Center console, ch?n **Users**
+- Ch?n user mu?n g�n nh�m (ho?c **Add user** d? th�m m?i)
+- Tab **Groups**, nh?n **Add user to groups**
+- Ch?n m?t trong ba nh�m:
   - `{NAMESPACE}_IsbUsersGroup`
   - `{NAMESPACE}_IsbManagersGroup`
   - `{NAMESPACE}_IsbAdminsGroup`
 - **Add user to 1 group**
 
-![architect](/images/users-and-groups.png "Architect")
+![architect](../images/users-and-groups.png "Architect")
 
-**Lưu ý:** Để test đủ ba vai trò, cần ít nhất ba user, mỗi người một nhóm khác nhau.
+**Luu �:** �? test d? ba vai tr�, c?n �t nh?t ba user, m?i ngu?i m?t nh�m kh�c nhau.
 
-### Cấu hình Web App
+### C?u h�nh Web App
 
-Phần này kích hoạt đăng nhập và thiết lập các tham số cho app. Làm ở **tài khoản hub** và đúng **home Region**.
+Ph?n n�y k�ch ho?t dang nh?p v� thi?t l?p c�c tham s? cho app. L�m ? **t�i kho?n hub** v� d�ng **home Region**.
 
-#### 1. Cấu hình AWS AppConfig
+#### 1. C?u h�nh AWS AppConfig
 
-- Mở **AWS AppConfig console** ở tài khoản hub
-- Thanh điều hướng chọn **Applications**
-- Chọn **InnovationSandboxData-Config-Application-XXXXXXX**
-- Chọn **InnovationSandboxData-Config-GlobalConfigHostedConfiguration-XXXXX**
-- **Create** để tạo phiên bản cấu hình mới
+- M? **AWS AppConfig console** ? t�i kho?n hub
+- Thanh di?u hu?ng ch?n **Applications**
+- Ch?n **InnovationSandboxData-Config-Application-XXXXXXX**
+- Ch?n **InnovationSandboxData-Config-GlobalConfigHostedConfiguration-XXXXX**
+- **Create** d? t?o phi�n b?n c?u h�nh m?i
 
-![architect](/images/appconfig.png "Architect")
+![architect](../images/appconfig.png "Architect")
 
-**Cập nhật cấu hình:**
-- Đặt `maintenanceMode` thành `false` để mở app cho user
+**C?p nh?t c?u h�nh:**
+- �?t `maintenanceMode` th�nh `false` d? m? app cho user
 
-**Phần `auth`, cập nhật:**
+**Ph?n `auth`, c?p nh?t:**
 
-| Trường              | Cập nhật gì                                                                                       |
+| Tru?ng              | C?p nh?t g�                                                                                       |
 |---------------------|---------------------------------------------------------------------------------------------------|
-| idpSignInUrl        | URL đăng nhập từ bước cấu hình SAML                                                              |
-| idpSignOutUrl       | URL đăng xuất từ bước cấu hình SAML                                                              |
-| idpAudience         | Audience ID từ bước cấu hình SAML                                                                |
-| webAppUrl           | CloudFront Distribution URL từ Outputs tab CloudFormation (tài khoản hub)                       |
-| awsAccessPortalUrl  | AWS Access Portal URL từ IAM Identity Center dashboard (tài khoản quản lý)                      |
-| sessionDurationInMinutes | Thời gian session, ví dụ: 240                                                               |
-| emailFrom           | Email đã xác thực của bạn                                                                         |
+| idpSignInUrl        | URL dang nh?p t? bu?c c?u h�nh SAML                                                              |
+| idpSignOutUrl       | URL dang xu?t t? bu?c c?u h�nh SAML                                                              |
+| idpAudience         | Audience ID t? bu?c c?u h�nh SAML                                                                |
+| webAppUrl           | CloudFront Distribution URL t? Outputs tab CloudFormation (t�i kho?n hub)                       |
+| awsAccessPortalUrl  | AWS Access Portal URL t? IAM Identity Center dashboard (t�i kho?n qu?n l�)                      |
+| sessionDurationInMinutes | Th?i gian session, v� d?: 240                                                               |
+| emailFrom           | Email d� x�c th?c c?a b?n                                                                         |
 
 - **Create hosted configuration version**
-- **Start Deployment** và chọn phiên bản vừa tạo
-- **Start Deployment** để áp dụng
+- **Start Deployment** v� ch?n phi�n b?n v?a t?o
+- **Start Deployment** d? �p d?ng
 
-#### 2. Cập nhật certificate trong Secrets Manager
+#### 2. C?p nh?t certificate trong Secrets Manager
 
-- Mở **AWS Secrets Manager console** ở tài khoản hub
-- Tìm secret: `/InnovationSandbox//Auth/IDPCert`
-- Tab **Overview**, mục **Secret value**:
+- M? **AWS Secrets Manager console** ? t�i kho?n hub
+- T�m secret: `/InnovationSandbox//Auth/IDPCert`
+- Tab **Overview**, m?c **Secret value**:
   - **Retrieve secret value**
   - **Edit**
   - **Plaintext**
-  - **Edit** lần nữa
-  - Dán nội dung file certificate IAM Identity Center (.pem) đã tải
+  - **Edit** l?n n?a
+  - D�n n?i dung file certificate IAM Identity Center (.pem) d� t?i
   - **Save**
 
-**Lưu ý:** Đảm bảo tất cả thông tin chính xác và nhất quán với các bước trước.
+**Luu �:** �?m b?o t?t c? th�ng tin ch�nh x�c v� nh?t qu�n v?i c�c bu?c tru?c.
 
-### Đưa Sandbox Account vào hệ thống
+### �ua Sandbox Account v�o h? th?ng
 
-Bước cuối để hoàn thành cấu hình. Chuyển các tài khoản AWS vào đúng cấu trúc và áp dụng kiểm soát.
+Bu?c cu?i d? ho�n th�nh c?u h�nh. Chuy?n c�c t�i kho?n AWS v�o d�ng c?u tr�c v� �p d?ng ki?m so�t.
 
-#### Lưu ý quan trọng
+#### Luu � quan tr?ng
 
-- Làm ở **tài khoản quản lý tổ chức**
-- Đúng **home Region** đã chọn
+- L�m ? **t�i kho?n qu?n l� t? ch?c**
+- ��ng **home Region** d� ch?n
 
-#### Các bước
+#### C�c bu?c
 
-- Đăng nhập AWS Management Console bằng tài khoản quản lý
-- Mở **AWS Organizations console**
+- �ang nh?p AWS Management Console b?ng t�i kho?n qu?n l�
+- M? **AWS Organizations console**
 
-**2. Tìm tài khoản cần chuyển**
+**2. T�m t�i kho?n c?n chuy?n**
 
-- Chọn **AWS accounts**
-- Tìm các tài khoản muốn chuyển vào môi trường sandbox
-- **Lưu ý:** Đừng chọn tài khoản quản lý hoặc tài khoản hub
+- Ch?n **AWS accounts**
+- T�m c�c t�i kho?n mu?n chuy?n v�o m�i tru?ng sandbox
+- **Luu �:** �?ng ch?n t�i kho?n qu?n l� ho?c t�i kho?n hub
 
-![architect](/images/account-onboarding.png "Architect")
+![architect](../images/account-onboarding.png "Architect")
 
-**3. Chuyển vào Entry OU**
+**3. Chuy?n v�o Entry OU**
 
-- Chọn các tài khoản cần chuyển
-- Menu **Actions**, chọn **Move** 
-- Hộp thoại **Move AWS account**, click mũi tên cạnh Innovation Sandbox OU để mở rộng
-- Chọn **Entry OU**
-- **Move AWS accounts** để xác nhận
+- Ch?n c�c t�i kho?n c?n chuy?n
+- Menu **Actions**, ch?n **Move** 
+- H?p tho?i **Move AWS account**, click mui t�n c?nh Innovation Sandbox OU d? m? r?ng
+- Ch?n **Entry OU**
+- **Move AWS accounts** d? x�c nh?n
 
-#### Kết quả
+#### K?t qu?
 
-- Các tài khoản sandbox đã ở đúng vị trí trong cấu trúc Innovation Sandbox
-- Các policy kiểm soát sẽ tự động áp dụng cho những tài khoản này
+- C�c t�i kho?n sandbox d� ? d�ng v? tr� trong c?u tr�c Innovation Sandbox
+- C�c policy ki?m so�t s? t? d?ng �p d?ng cho nh?ng t�i kho?n n�y
 
-Làm đúng bước này đảm bảo môi trường sandbox hoạt động riêng biệt, an toàn và tuân thủ chính sách tổ chức.
+L�m d�ng bu?c n�y d?m b?o m�i tru?ng sandbox ho?t d?ng ri�ng bi?t, an to�n v� tu�n th? ch�nh s�ch t? ch?c.

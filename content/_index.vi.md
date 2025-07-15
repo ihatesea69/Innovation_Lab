@@ -14,7 +14,7 @@ chapter = false
 
 
 
-![architect](/images/high-level.png "Architect")
+![architect](../images/high-level.png "Architect")
 ### Mục đích chính
 
 
@@ -45,7 +45,7 @@ chapter = false
 | AWS Step Functions       | Quản lý trạng thái tài khoản sandbox theo quy trình logic                                     |
 | AWS accounts             | Tài khoản sandbox được chuẩn bị và phân phối đến người dùng cuối                              |
 
-![Account LifeCycle](/images/sandbox-account-ou-lifecycle.png "a title")
+![Account LifeCycle](../images/sandbox-account-ou-lifecycle.png "a title")
 
 ## Chu trình tài khoản (Account Lifecycle)
 
