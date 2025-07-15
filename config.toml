@@ -1,7 +1,7 @@
 # Change the default theme to be use when building the site with Hugo
 theme = "hugo-theme-learn"
 baseURL = ""
-relativeURLs = true
+canonifyURLs = true
 
 # For search functionality
 [outputs]

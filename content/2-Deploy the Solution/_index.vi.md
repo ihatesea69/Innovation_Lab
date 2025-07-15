@@ -38,7 +38,7 @@ Việc triển khai bao gồm bốn stack CloudFormation, mỗi stack xây dựn
 
 Mỗi stack CloudFormation có mối quan hệ phụ thuộc với các stack khác và được triển khai trên các tài khoản khác nhau, đảm bảo các thành phần của giải pháp hoạt động phối hợp.
 
-![architect](../images/stack-relationships.png "Architect")
+![architect](/images/stack-relationships.png "Architect")
 
 #### Mẫu Template CloudFormation
 
@@ -80,7 +80,7 @@ Triển khai AccountPool stack là bước đầu tiên trong tài khoản quả
 - **HubAccountId:** Đây là ID tài khoản AWS nơi bạn sẽ triển khai hai trong bốn stack. Để xem tất cả các tài khoản trong tổ chức, vào AWS Organizations trong console, chọn một tài khoản làm hub và ghi lại ID để sử dụng ở bước 5 và các bước sau.
 - **ParentOuID:** Đây là ID của root hoặc organizational unit (OU) nơi các OU của Innovation Sandbox sẽ được tạo. Để tìm ID này, mở AWS Organizations, cấu trúc tổ chức sẽ hiển thị ID dưới tên từng OU. Bạn cũng có thể dùng root organization ID.
 
-![architect](../images/organiza.jpg "Architect")
+![architect](/images/organiza.jpg "Architect")
 
 **Khởi tạo stack**
 

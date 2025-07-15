@@ -89,7 +89,7 @@ Configuring SAML 2.0 integration between AWS IAM Identity Center and Innovation 
 - Open **AWS IAM Identity Center console** with organization management account.
 - In navigation bar, choose **Applications**.
 - Switch to **Customer managed** tab.
-![architect](../images/organiza.jpg "Architect")
+![architect](/images/organiza.jpg "Architect")
 
 **2. Add new application**
 
@@ -97,24 +97,24 @@ Configuring SAML 2.0 integration between AWS IAM Identity Center and Innovation 
 - Choose **I have an application I want to set up**.
 - Choose **SAML 2.0**, then click **Next**.
 
-![architect](../images/Buoc3.png "Architect")
+![architect](/images/Buoc3.png "Architect")
 
 **3. Configure application**
 
 - On configuration page, enter **Display name** (example: MyISB app) and description for application.
 - 
-![architect](../images/Buoc5.png "Architect")
+![architect](/images/Buoc5.png "Architect")
 
 - In **IAM Identity Center metadata** section:
   - Download **SAML metadata file** (identity provider metadata).
   - Download **certificate** (identity provider certificate).
 
-![architect](../images/Buoc6.png "Architect")
+![architect](/images/Buoc6.png "Architect")
 
 
 - Note the **Sign-in URL** and **Sign-out URL** – will be needed when configuring on hub account.
 
-![architect](../images/Buoc7.png "Architect")
+![architect](/images/Buoc7.png "Architect")
 
 **4. Enter metadata information for application**
 
@@ -125,7 +125,7 @@ Configuring SAML 2.0 integration between AWS IAM Identity Center and Innovation 
   |-------------------------|-------------------------------------------------------------------------------------------------------|
   | Application ACS URL     | `{ISB_WEB_URL}/api/auth/login/callback`  (Replace `{ISB_WEB_URL}` with saved CloudFrontDistributionUrl, example: `https://duyXXXXXXXeh.cloudfront.net/api/auth/login/callback`) |
   | Application SAML audience | Application identifier value (can use namespace name or initial stack name, example: `Isb-dev-namespace-Audience`). Save this value to configure AppConfig on hub account. |
-![architect](../images/Buoc8.png "Architect")
+![architect](/images/Buoc8.png "Architect")
 **5. Complete configuration**
 
 - Click **Submit**.
@@ -178,7 +178,7 @@ Setting up users and groups in AWS IAM Identity Center helps control access and 
   - `{NAMESPACE}_IsbAdminsGroup`
 - Click **Add user to 1 group** to complete.
 
-![architect](../images/users-and-groups.png "Architect")
+![architect](/images/users-and-groups.png "Architect")
 
 **Note:**  
 To test all three user roles (user personas), ensure you have at least three users, each belonging to a different group.
@@ -198,7 +198,7 @@ Configuring the Innovation Sandbox on AWS web application helps activate user au
 - Choose **Create** to create a new hosted configuration version.
 
 
-![architect](../images/appconfig.png "Architect")
+![architect](/images/appconfig.png "Architect")
 
 **Update configuration:**
 - Set `maintenanceMode` value to `false` to open application for users.
@@ -257,7 +257,7 @@ Onboarding sandbox accounts is the final configuration step to complete the Inno
 - Find the accounts you want to move into sandbox environment. You can browse by OU structure or choose **List** to see flat account list.
 - **Note:** Do not select organization management account or hub account.
   
-![architect](../images/account-onboarding.png "Architect")
+![architect](/images/account-onboarding.png "Architect")
 
 **3. Move accounts to Entry OU**
 

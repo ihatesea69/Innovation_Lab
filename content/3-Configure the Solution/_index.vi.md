@@ -90,7 +90,7 @@ Ph?n này hoi k? thu?t tí, nhung c?n thi?t d? user dang nh?p du?c vào h? th?ng m?
 - Thanh di?u hu?ng ch?n **Applications**
 - Chuy?n sang tab **Customer managed**
 
-![architect](../images/organiza.jpg "Architect")
+![architect](/images/organiza.jpg "Architect")
 
 **2. Thêm app m?i**
 
@@ -98,23 +98,23 @@ Ph?n này hoi k? thu?t tí, nhung c?n thi?t d? user dang nh?p du?c vào h? th?ng m?
 - Ch?n **I have an application I want to set up**
 - Ch?n **SAML 2.0**, r?i **Next**
 
-![architect](../images/Buoc3.png "Architect")
+![architect](/images/Buoc3.png "Architect")
 
 **3. C?u hình app**
 
 - Trang c?u hình, nh?p **Display name** (ví d?: MyISB app) và mô t?
 
-![architect](../images/Buoc5.png "Architect")
+![architect](/images/Buoc5.png "Architect")
 
 - Ph?n **IAM Identity Center metadata**:
   - T?i **SAML metadata file** 
   - T?i **certificate**
 
-![architect](../images/Buoc6.png "Architect")
+![architect](/images/Buoc6.png "Architect")
 
 - Ghi l?i **Sign-in URL** và **Sign-out URL** - c?n dùng khi c?u hình ? tài kho?n hub
 
-![architect](../images/Buoc7.png "Architect")
+![architect](/images/Buoc7.png "Architect")
 
 **4. Nh?p thông tin metadata**
 
@@ -126,7 +126,7 @@ Ph?n này hoi k? thu?t tí, nhung c?n thi?t d? user dang nh?p du?c vào h? th?ng m?
   | Application ACS URL     | `{ISB_WEB_URL}/api/auth/login/callback` (Thay `{ISB_WEB_URL}` b?ng CloudFrontDistributionUrl dã luu) |
   | Application SAML audience | Tên d?nh danh app (có th? dùng tên namespace, ví d?: `Isb-dev-namespace-Audience`). Luu l?i d? c?u hình AppConfig |
 
-![architect](../images/Buoc8.png "Architect")
+![architect](/images/Buoc8.png "Architect")
 
 **5. Hoàn t?t**
 
@@ -177,7 +177,7 @@ Thi?t l?p user và nhóm d? ki?m soát ai du?c vào và làm gì trong h? th?ng. Làm ? 
   - `{NAMESPACE}_IsbAdminsGroup`
 - **Add user to 1 group**
 
-![architect](../images/users-and-groups.png "Architect")
+![architect](/images/users-and-groups.png "Architect")
 
 **Luu ý:** Ð? test d? ba vai trò, c?n ít nh?t ba user, m?i ngu?i m?t nhóm khác nhau.
 
@@ -193,7 +193,7 @@ Ph?n này kích ho?t dang nh?p và thi?t l?p các tham s? cho app. Làm ? **tài kho?n
 - Ch?n **InnovationSandboxData-Config-GlobalConfigHostedConfiguration-XXXXX**
 - **Create** d? t?o phiên b?n c?u hình m?i
 
-![architect](../images/appconfig.png "Architect")
+![architect](/images/appconfig.png "Architect")
 
 **C?p nh?t c?u hình:**
 - Ð?t `maintenanceMode` thành `false` d? m? app cho user
@@ -248,7 +248,7 @@ Bu?c cu?i d? hoàn thành c?u hình. Chuy?n các tài kho?n AWS vào dúng c?u trúc và 
 - Tìm các tài kho?n mu?n chuy?n vào môi tru?ng sandbox
 - **Luu ý:** Ð?ng ch?n tài kho?n qu?n lý ho?c tài kho?n hub
 
-![architect](../images/account-onboarding.png "Architect")
+![architect](/images/account-onboarding.png "Architect")
 
 **3. Chuy?n vào Entry OU**
 

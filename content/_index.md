@@ -15,7 +15,7 @@ chapter = false
 
 
 
-![architect](images/high-level.png "Architect")
+![architect](/images/high-level.png "Architect")
 ### Main Objectives
 
 

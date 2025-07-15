@@ -1,12 +1,1 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Deploy the Solution on Deploy ShareNote Application on Auto Scaling Group</title>
-    <link>//localhost:1313/2-deploy-the-solution/</link>
-    <description>Recent content in Deploy the Solution on Deploy ShareNote Application on Auto Scaling Group</description>
-    <generator>Hugo</generator>
-    <language>en</language>
-    <lastBuildDate></lastBuildDate>
-    <atom:link href="//localhost:1313/2-deploy-the-solution/index.xml" rel="self" type="application/rss+xml" />
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Deploy the Solution on Deploy ShareNote Application on Auto Scaling Group</title><link>/2-deploy-the-solution/</link><description>Recent content in Deploy the Solution on Deploy ShareNote Application on Auto Scaling Group</description><generator>Hugo</generator><language>en</language><lastBuildDate/><atom:link href="/2-deploy-the-solution/index.xml" rel="self" type="application/rss+xml"/></channel></rss>

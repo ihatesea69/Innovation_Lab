@@ -37,7 +37,7 @@ Consists of 4 stacks
 
 Each CloudFormation stack has dependencies with other stacks and is deployed on different accounts, ensuring solution components work in coordination.
 
-![architect](../images/stack-relationships.png "Architect")
+![architect](/images/stack-relationships.png "Architect")
 
 #### CloudFormation Templates
 
@@ -71,7 +71,7 @@ Deploying the AccountPool stack will create the organization structure and polic
 - **HubAccountId:** This is the AWS account ID where you will deploy two of the four stacks. To see all accounts in the organization, go to AWS Organizations in the console, choose an account as hub and note the ID for use in step 5 and subsequent steps.
 - **ParentOuID:** This is the ID of the root or organizational unit (OU) where Innovation Sandbox OUs will be created. To find this ID, open AWS Organizations, the organization structure will display the ID under each OU name. You can also use the root organization ID.
 
-![architect](../images/organiza.jpg "Architect")
+![architect](/images/organiza.jpg "Architect")
 
 **Initialize stack**
 
