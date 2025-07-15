@@ -13,14 +13,14 @@ home = [ "HTML", "RSS", "JSON"]
   # Git hub repo link
   editURL = ""
   description = ""
-  author = "journeyoftheaverageguy@gmail.com"
+  author = "hieunghiwork123@gmail.com"
   showVisitedLinks = true
   disableBreadcrumb = false
   disableNextPrev = false
   
 [Languages]
 [Languages.en]
-title = "Deploy ShareNote Application on Auto Scaling Group"
+title = "Deploy Innovation Lab"
 weight = 1
 languageName = "English"
 
@@ -37,7 +37,7 @@ url = "https://www.facebook.com/groups/660548818043427/"
 weight = 20
 
 [Languages.vi]
-title = "Triển khai Ứng dụng ShareNote với Auto Scaling Group"
+title = "Triển khai Innovation Lab"
 weight = 2
 languageName = "Tiếng Việt"
 

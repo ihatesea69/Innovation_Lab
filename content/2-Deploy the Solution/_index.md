@@ -6,42 +6,43 @@ chapter = false
 pre = "<b>2. </b>"
 +++
 
-### Deploying the lab
-Need to run the stacks in the correct order and use the same region
+### Deploy the Solution
+
+The Innovation Sandbox on AWS solution uses four AWS CloudFormation stacks that need to be deployed in a specific order. Each stack must be deployed to the correct account and AWS Region to ensure proper operation. Throughout the deployment process, use the same home Region identified earlier.
 
 #### Overview of CloudFormation Stacks
 
-Consists of 4 stacks
+The deployment consists of four CloudFormation stacks, each building on the previous one:
 
 - **AccountPool Stack**
-  - Deploy on organization management account
-  - Create AWS Organization
-  - Set up policies
+  - Deployed on the organization management account
+  - Creates the AWS organization structure
+  - Sets up platform policies and controls
 
 - **IDC Stack**
-  - Deploy on organization management account
-  - Configure AWS IAM Identity Center integration
-  - Set up identity and access management
+  - Deployed on the organization management account
+  - Configures AWS IAM Identity Center integration
+  - Sets up identity and access management
 
 - **Data Stack**
-  - Deploy on hub account
-  - Deploy storage and data management components
-  - Configure backend services
+  - Deployed on the hub account
+  - Deploys data storage and management components
+  - Configures backend services
 
 - **Compute Stack**
-  - Deploy on hub account
-  - Set up solution infrastructure
-  - Create web interface and processing components
+  - Deployed on the hub account
+  - Sets up the solution infrastructure
+  - Creates the web interface and processing components
 
-#### Relationship diagram between Stacks
+#### Stack Relationship Diagram
 
-Each CloudFormation stack has dependencies with other stacks and is deployed on different accounts, ensuring solution components work in coordination.
+Each CloudFormation stack has a dependency relationship with other stacks and is deployed on different accounts, ensuring the solution's components work together.
 
 ![architect](/images/stack-relationships.png "Architect")
 
 #### CloudFormation Templates
 
-To deploy the solution, use the following CloudFormation template URLs:
+To deploy the solution, use the following CloudFormation template URLs (The original AWS workshop had some errors with the Compute Stack, so the author has replaced it with a drive link containing the new stack. If this link is broken, please contact hieunghiwork123@gmail.com):
 
 | Stack         | Template URL                                                                                              |
 |---------------|----------------------------------------------------------------------------------------------------------|
@@ -50,51 +51,59 @@ To deploy the solution, use the following CloudFormation template URLs:
 | Data          | https://solutions-reference.s3.us-east-1.amazonaws.com/innovation-sandbox-on-aws/latest/InnovationSandbox-Data.template        |
 | Compute       | https://drive.google.com/file/d/1oJ9DeANLgpscQSEGuO_gk7rxiDSTWf-_/view?usp=sharing     |
 
-Note: The lab workshop has become outdated so the compute part has errors, so the host has updated a new compute template on Google Drive for everyone
+#### Before you begin
 
+Before deployment, ensure you have completed the following steps:
 
+- Complete all steps in the Prerequisites module
+- Ensure you have access to both the organization management account and the hub account
+  - The account used to set up AWS Organizations or AWS Control Tower is the organization management account
 
-### Deploying AccountPool Stack
+**Estimated time:** About 45 minutes
 
-Deploying the AccountPool stack will create the organization structure and policies
+Deploying in the correct order and to the correct account/region will ensure the Innovation Sandbox on AWS solution operates effectively and complies with organizational governance policies.
 
-#### Deployment steps
+### Deploying the AccountPool Stack
 
-**Log in to AWS Management Console**
+Deploying the AccountPool stack is the first step in the organization management account. This stack creates the organization structure and foundational policies needed for the solution.
 
-- Open AWS Management Console.
+#### Deployment Steps
+
+**Log in to the AWS Management Console**
+
+- Open the AWS Management Console.
 - Log in with your organization management account.
-- Switch to the chosen home Region.
+- Switch to your chosen home Region.
 
 **Gather necessary information**
 
-- **HubAccountId:** This is the AWS account ID where you will deploy two of the four stacks. To see all accounts in the organization, go to AWS Organizations in the console, choose an account as hub and note the ID for use in step 5 and subsequent steps.
-- **ParentOuID:** This is the ID of the root or organizational unit (OU) where Innovation Sandbox OUs will be created. To find this ID, open AWS Organizations, the organization structure will display the ID under each OU name. You can also use the root organization ID.
+- **HubAccountId:** This is the AWS account ID where you will deploy two of the four stacks. To see all accounts in your organization, go to AWS Organizations in the console, select an account to be the hub, and record its ID for use in step 5 and subsequent steps.
+- **ParentOuID:** This is the ID of the root or organizational unit (OU) where the Innovation Sandbox OUs will be created. To find this ID, open AWS Organizations; the organization structure will display the ID under each OU's name. You can also use the root organization ID.
 
 ![architect](/images/organiza.jpg "Architect")
 
-**Initialize stack**
+**Initialize the stack**
 
-- Open AWS CloudFormation console.
-- Choose Stacks, then choose "Create stack".
+- Open the AWS CloudFormation console.
+- Select Stacks, then choose "Create stack".
 - Choose "With new resources (standard)".
 
-**Specify template**
+**Specify the template**
 
 - Choose "Amazon S3 URL".
-- Enter the template URL for AccountPool stack:  
+- Enter the template URL for the AccountPool stack:  
   `https://solutions-reference.s3.us-east-1.amazonaws.com/innovation-sandbox-on-aws/latest/InnovationSandbox-AccountPool.template`
 - Choose "Next".
 
 **Enter stack details**
 
-| Parameter         | Description                                                           | Example              |
+| Parameter         | Description                                                                 | Example              |
 |-------------------|-----------------------------------------------------------------------|----------------------|
-| Stack name        | Stack name (optional)                                                 | isb-accountpool      |
-| Namespace         | Unique identifier for this deployment (3-8 characters, letters/numbers) | isb01                |
-| HubAccountId      | AWS Account ID of hub account                                         | 123456789012         |
-| ParentOuId        | Root ID or OU ID where Innovation Sandbox OUs will be created        | r-abcd               |
-| IsbManagedRegions | List of allowed Regions, comma-separated                             | us-east-1,us-west-2  |
+| Stack name        | Stack name (optional)                                                  | fcj-accountpool      |
+| Namespace         | Unique identifier for this deployment (3-8 characters, letters/numbers) | fcj                  |
+| HubAccountId      | AWS Account ID of the hub account                                      | 123456789012         |
+| ParentOuId        | Root ID or OU ID where the Innovation Sandbox OUs will be created      | r-emd9               |
+| IsbManagedRegions | Comma-separated list of allowed Regions                                | us-east-1,us-west-2  |
 
 **Additional notes:**
 
@@ -109,120 +118,121 @@ Deploying the AccountPool stack will create the organization structure and polic
 - Add tags if desired.
 - Choose "Next".
 
-**Review and create stack**
+**Review and create the stack**
 
-- Review all entered information.
+- Review all the information you have entered.
 - Choose "Submit" to start creating the stack.
 
 **Check deployment progress**
 
-- Open CloudFormation console again, choose Stacks.
-- Find the newly created stack and check status. Wait until status changes to "CREATE_COMPLETE".
+- Reopen the CloudFormation console and select Stacks.
+- Find the newly created stack and check its status. Wait until the status changes to "CREATE_COMPLETE".
 
-You have successfully deployed the first stack. Continue with deploying the second stack according to the next guide.
+You have successfully deployed the first stack. Proceed to deploy the second stack following the next instructions.
 
-### Deploying IDC Stack
+### Deploying the IDC Stack
 
-IDC (Identity Center) stack is responsible for configuring integration with AWS IAM Identity Center and setting up access management for the lab.
-#### Deployment steps
+The IDC (Identity Center) stack is the second component of the Innovation Sandbox on AWS solution. This stack is deployed on the organization management account and is responsible for configuring integration with AWS IAM Identity Center and setting up access management for the solution.
 
-**1. Log in to AWS Management Console**
+#### Deployment Steps
 
-- Open AWS Management Console.
+**1. Log in to the AWS Management Console**
+
+- Open the AWS Management Console.
 - Log in with your organization management account.
-- Switch to the chosen home Region.
+- Switch to your chosen home Region.
 
 **2. Gather information for step 5**
 
-- Open IAM Identity Center console.
-- Choose Settings.
-- Copy and save two values: **Identity store ID** and **Instance ARN** for use in step 5.
+- Open the IAM Identity Center console.
+- Select Settings.
+- Copy and save the **Identity store ID** and **Instance ARN** values for use in step 5.
 
-**3. Initialize stack**
+**3. Initialize the stack**
 
-- Open AWS CloudFormation console.
-- Choose Stacks, then choose "Create stack".
+- Open the AWS CloudFormation console.
+- Select Stacks, then choose "Create stack".
 - Choose "With new resources (standard)".
 
-**4. Specify template**
+**4. Specify the template**
 
 - Choose "Amazon S3 URL".
-- Enter the template URL for IDC stack:  
+- Enter the template URL for the IDC stack:  
   `https://solutions-reference.s3.us-east-1.amazonaws.com/innovation-sandbox-on-aws/latest/InnovationSandbox-IDC.template`
 - Choose "Next".
 
 **5. Enter stack details**
 
-| Parameter         | Description                                                  | Example                                 |
+| Parameter         | Description                                                        | Example                                   |
 |-------------------|--------------------------------------------------------------|-----------------------------------------|
-| Stack name        | Stack name (optional)                                       | isb-idc                                 |
-| Namespace         | Namespace value same as AccountPool stack                   | isb01                                   |
-| HubAccountId      | AWS Account ID of hub account                                | 123456789012                            |
-| IdentityStoreId   | Identity store ID from IAM Identity Center (step 2)         | d-1234567890                            |
-| SsoInstanceArn    | SSO instance ARN in IAM Identity Center (step 2)            | arn:aws:sso:::instance/ssoins-12345678901234567 |
+| Stack name        | Stack name (optional)                                         | fcj-idc                                 |
+| Namespace         | The same namespace value as in the AccountPool stack              | fcj01                                   |
+| HubAccountId      | AWS Account ID of the hub account                             | 123456789012                            |
+| IdentityStoreId   | Identity store ID from IAM Identity Center (step 2)            | d-1234567890                            |
+| SsoInstanceArn    | ARN of the SSO instance in IAM Identity Center (step 2)      | arn:aws:sso:::instance/ssoins-12345678901234567 |
 
 **Additional notes:**
 
-- **Namespace:** Use the same value for all four stacks, same as previous stack.
-- **HubAccountId:** AWS Account ID where two of the four stacks will be deployed.
-- **IdentityStoreId** and **SsoInstanceArn:** Obtained from Settings section of IAM Identity Center in step 2.
+- **Namespace:** Use the same value for all four stacks, same as the previous stack.
+- **HubAccountId:** This is the AWS Account ID where two of the four stacks will be deployed.
+- **IdentityStoreId** and **SsoInstanceArn:** Obtained from the Settings section of IAM Identity Center in step 2.
 
 **6. Configure stack options**
 
-- Review advanced options if needed.
+- Review advanced options if necessary.
 - Add tags if desired.
 - Choose "Next".
 
-**7. Review and create stack**
+**7. Review and create the stack**
 
-- Review all entered information.
+- Review all the information you have entered.
 - Choose "Submit" to start creating the stack.
 
 **Check deployment progress**
 
-- Open CloudFormation console again, choose Stacks.
-- Find the newly created stack and check status. Wait until status changes to "CREATE_COMPLETE".
+- Reopen the CloudFormation console and select Stacks.
+- Find the newly created stack and check its status. Wait until the status changes to "CREATE_COMPLETE".
 
-You have successfully deployed the IDC stack. Continue deploying the third stack on the hub account according to the next guide.
+You have successfully deployed the IDC stack. Proceed to deploy the third stack on the hub account following the next instructions.
 
-### Deploying Data Stack
+### Deploying the Data Stack
 
-Data stack is the third component of the Innovation Sandbox solution on AWS. This stack is deployed on the hub account and is responsible for setting up data infrastructure and necessary backend services for the solution.
+The Data stack is the third component of the Innovation Sandbox on AWS solution. This stack is deployed on the hub account and is responsible for setting up the data infrastructure and necessary backend services for the solution.
 
-#### Important note
+#### Important Note
 
-- Ensure you log in correctly to the hub account.
-- Use the same AWS Region as previous deployments.
+- Ensure you are logged into the correct hub account.
+- Use the same AWS Region as in previous deployments.
 
-#### Deployment steps
+#### Deployment Steps
 
-**1. Log in to AWS Management Console**
+**1. Log in to the AWS Management Console**
 
-- Open AWS Management Console.
+- Open the AWS Management Console.
 - Log in with your hub account.
-- Switch to the chosen home Region.
+- Switch to your chosen home Region.
 
-**2. Initialize stack**
+**2. Initialize the stack**
 
-- Open AWS CloudFormation console.
-- Choose Stacks, then choose "Create stack".
+- Open the AWS CloudFormation console.
+- Select Stacks, then choose "Create stack".
 - Choose "With new resources (standard)".
 
-**3. Specify template**
+**3. Specify the template**
 
 - Choose "Amazon S3 URL".
-- Enter the template URL for Data stack:  
+- Enter the template URL for the Data stack:  
   `https://solutions-reference.s3.us-east-1.amazonaws.com/innovation-sandbox-on-aws/latest/InnovationSandbox-Data.template`
 - Choose "Next".
 
 **4. Enter stack details**
 
-| Parameter  | Description                                              | Example  |
-|------------|----------------------------------------------------------|----------|
-| Stack name | Stack name (optional)                                    | isb-data |
-| Namespace  | Namespace value same as previous deployments            | isb01    |
+| Parameter    | Description                                                    | Example   |
+|------------|----------------------------------------------------------|---------|
+| Stack name | Stack name (optional)                                     | fcj-data|
+| Namespace  | The same namespace value as in previous deployments   | fcj01   |
 
-- **Namespace:** Use the same value used in previous stacks (example: isb01).
+- **Namespace:** Use the same value used in the previous stacks (e.g., fcj01).
 
 **5. Configure stack options**
 
@@ -230,89 +240,75 @@ Data stack is the third component of the Innovation Sandbox solution on AWS. Thi
 - Add tags if desired.
 - Choose "Next".
 
-**6. Review and create stack**
+**6. Review and create the stack**
 
-- Review all entered information.
+- Review all the information you have entered.
 - Choose "Submit" to start creating the stack.
 
 **7. Check deployment progress**
 
-- Open CloudFormation console again, choose Stacks.
-- Find the newly created stack and check status.
-- Wait until status changes to "CREATE_COMPLETE".
+- Reopen the CloudFormation console and select Stacks.
+- Find the newly created stack and check its status.
+- Wait until the status changes to "CREATE_COMPLETE".
 
-You have successfully deployed the Data stack. Continue deploying the final stack on the hub account according to the next guide.
+You have successfully deployed the Data stack. Proceed to deploy the final stack on the hub account following the next instructions.
 
-### Deploying Compute Stack
+### Deploying the Compute Stack
 
-Compute stack is the final component of the Innovation Sandbox solution on AWS. This stack is deployed on the hub account and is responsible for setting up solution infrastructure, including web interface and processing components.
+The Compute stack is the final component of the Innovation Sandbox on AWS solution. This stack is deployed on the hub account and is responsible for setting up the solution's infrastructure, including the web interface and processing components.
 
-#### Deployment steps
+#### Important Note
 
-**1. Log in to AWS Management Console**
+- Ensure you are logged into the correct hub account.
+- Use the same AWS Region as in previous deployments.
 
-- Open AWS Management Console.
+#### Deployment Steps
+
+**1. Log in to the AWS Management Console**
+
+- Open the AWS Management Console.
 - Log in with your hub account.
-- Switch to the chosen home Region.
+- Switch to your chosen home Region.
 
-**2. Get management account information**
+**2. Initialize the stack**
 
-- You need the organization management account ID for step 5.
-- If you don't have it, log in to AWS Management Console with management account.
-- Click on account name menu in top right corner.
-- Copy the 12-digit account ID for use in next step.
-
-**3. Initialize stack**
-
-- Open AWS CloudFormation console.
-- Choose Stacks, then choose "Create stack".
+- Open the AWS CloudFormation console.
+- Select Stacks, then choose "Create stack".
 - Choose "With new resources (standard)".
 
-**4. Specify template**
+**3. Specify the template**
 
-- Choose "Amazon S3 URL".
-- Enter the template URL for Compute stack:  
-  `https://drive.google.com/file/d/1oJ9DeANLgpscQSEGuO_gk7rxiDSTWf-_/view?usp=sharing`
+- Choose "Upload a template file".
+- Upload the template file for the Compute stack from your computer.
 - Choose "Next".
 
-**5. Enter stack details**
+**4. Enter stack details**
 
-| Parameter         | Description                                                    | Example       |
-|-------------------|----------------------------------------------------------------|---------------|
-| Stack name        | Stack name (optional)                                         | isb-compute   |
-| Namespace         | Namespace value same as previous stacks                       | isb01         |
-| OrgMgtAccountId   | AWS Account ID of organization management account             | 123456789012  |
-| IdcAccountId      | AWS Account ID where IAM Identity Center was configured       | 123456789012  |
+| Parameter     | Description                                                          | Example       |
+|---------------|----------------------------------------------------------------------|---------------|
+| Stack name    | Stack name (optional)                                                | fcj-compute   |
+| Namespace     | The same namespace value as in previous deployments                  | fcj01         |
+| EmailAddress  | Email address to receive notifications and alerts. Must be verified in Amazon SES. | user@example.com |
 
-- **Namespace:** Use the same value for all stacks (example: isb01).
-- **OrgMgtAccountId:** Organization management account ID.
-- **IdcAccountId:** Account ID where IAM Identity Center was configured (usually also the management account).
+- **Namespace:** Use the same value used in the previous stacks.
+- **EmailAddress:** Enter a verified email address in Amazon SES to receive solution notifications.
 
-**6. Configure stack options**
+**5. Configure stack options**
 
 - Review advanced options if needed.
 - Add tags if desired.
 - Choose "Next".
 
-**7. Review and create stack**
+**6. Review and create the stack**
 
-- Review all entered information.
+- Review all the information you have entered.
+- Acknowledge that AWS CloudFormation might create IAM resources with custom names.
 - Choose "Submit" to start creating the stack.
 
-**8. Check deployment progress**
+**7. Check deployment progress**
 
-- Open CloudFormation console again, choose Stacks.
-- Find the newly created stack and check status.
-- Wait until status changes to "CREATE_COMPLETE".
+- Reopen the CloudFormation console and select Stacks.
+- Find the newly created stack and check its status.
+- Wait until the status changes to "CREATE_COMPLETE".
 
-#### After deployment
-
-- Go to CloudFormation console, choose Stacks.
-- Choose the just deployed Compute stack.
-- Access **Outputs** tab.
-- Copy the **CloudFrontDistributionUrl** value.
-
-Example:  
-`https://duyXXXXXXXeh.cloudfront.net`
-
-Save this value, you will need it in the next configuration section. This is also the main URL to access your Innovation Sandbox on AWS solution.
+After the Compute stack is successfully created, go to the Outputs tab and save the value of `CloudFrontDistributionUrl`. This is the URL to access the Innovation Sandbox on AWS solution.

@@ -1,18 +1,850 @@
-<!doctype html><html lang=en class="js csstransforms3d"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=generator content="Hugo 0.147.9"><meta name=description content><meta name=author content="journeyoftheaverageguy@gmail.com"><link rel=icon href=/images/favicon.png type=image/png><title>Configure the Solution :: Deploy ShareNote Application on Auto Scaling Group</title><link href=/css/nucleus.css?1752555298 rel=stylesheet><link href=/css/fontawesome-all.min.css?1752555298 rel=stylesheet><link href=/css/hybrid.css?1752555298 rel=stylesheet><link href=/css/featherlight.min.css?1752555298 rel=stylesheet><link href=/css/perfect-scrollbar.min.css?1752555298 rel=stylesheet><link href=/css/auto-complete.css?1752555298 rel=stylesheet><link href=/css/atom-one-dark-reasonable.css?1752555298 rel=stylesheet><link href=/css/theme.css?1752555298 rel=stylesheet><link href=/css/hugo-theme.css?1752555298 rel=stylesheet><link href=/css/theme-workshop.css?1752555298 rel=stylesheet><script src=/js/jquery-3.3.1.min.js?1752555298></script><style>:root #header+#content>#left>#rlblock_left{display:none !important}</style></head><body data-url=/3-configure-the-solution/><nav id=sidebar class=showVisitedLinks><div id=header-wrapper><div id=header><a id=logo href=/><svg id="Layer_1" data-name="Layer 1" viewBox="0 0 60 30" width="30%"><defs><style>.cls-1{fill:#fff}.cls-2{fill:#f90;fill-rule:evenodd}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09 10.85a4.7 4.7.0 00.19 1.48 7.73 7.73.0 00.54 1.19.77.77.0 01.12.38.64.64.0 01-.32.49l-1 .7a.83.83.0 01-.44.15.69.69.0 01-.49-.23 3.8 3.8.0 01-.6-.77q-.25-.42-.51-1a6.14 6.14.0 01-4.89 2.3 4.54 4.54.0 01-3.32-1.19 4.27 4.27.0 01-1.22-3.2 4.28 4.28.0 011.46-3.4A6.06 6.06.0 017.69 6.46a12.47 12.47.0 011.76.13q.92.13 1.91.36V5.73a3.65 3.65.0 00-.79-2.66A3.81 3.81.0 007.86 2.3a7.71 7.71.0 00-1.79.22 12.78 12.78.0 00-1.79.57 4.55 4.55.0 01-.58.22h-.26q-.35.0-.35-.52V2a1.09 1.09.0 01.12-.58 1.2 1.2.0 01.47-.35A10.88 10.88.0 015.77.32 10.19 10.19.0 018.36.0a6 6 0 014.35 1.35 5.49 5.49.0 011.38 4.09zM7.34 13.38a5.36 5.36.0 001.72-.31A3.63 3.63.0 0010.63 12 2.62 2.62.0 0011.19 11a5.63 5.63.0 00.16-1.44v-.7a14.35 14.35.0 00-1.53-.28 12.37 12.37.0 00-1.56-.1 3.84 3.84.0 00-2.47.67A2.34 2.34.0 005 11a2.35 2.35.0 00.61 1.76A2.4 2.4.0 007.34 13.38zm13.35 1.8a1 1 0 01-.64-.16 1.3 1.3.0 01-.35-.65L15.81 1.51a3 3 0 01-.15-.67.36.36.0 01.41-.41H17.7a1 1 0 01.65.16 1.4 1.4.0 01.33.65l2.79 11 2.59-11A1.17 1.17.0 0124.39.6a1.1 1.1.0 01.67-.16H26.4a1.1 1.1.0 01.67.16 1.17 1.17.0 01.32.65L30 12.39 32.88 1.25A1.39 1.39.0 0133.22.6a1 1 0 01.65-.16h1.54a.36.36.0 01.41.41 1.36 1.36.0 010 .26 3.64 3.64.0 01-.12.41l-4 12.86a1.3 1.3.0 01-.35.65 1 1 0 01-.64.16H29.25a1 1 0 01-.67-.17 1.26 1.26.0 01-.32-.67L25.67 3.64l-2.56 10.7a1.26 1.26.0 01-.32.67 1 1 0 01-.67.17zm21.36.44a11.28 11.28.0 01-2.56-.29 7.44 7.44.0 01-1.92-.67 1 1 0 01-.61-.93v-.84q0-.52.38-.52a.9.9.0 01.31.06l.42.17a8.77 8.77.0 001.83.58 9.78 9.78.0 002 .2 4.48 4.48.0 002.43-.55 1.76 1.76.0 00.86-1.57 1.61 1.61.0 00-.45-1.16A4.29 4.29.0 0043 9.22l-2.41-.76A5.15 5.15.0 0138 6.78a3.94 3.94.0 01-.83-2.41 3.7 3.7.0 01.45-1.85 4.47 4.47.0 011.19-1.37 5.27 5.27.0 011.7-.86A7.4 7.4.0 0142.6.0a8.87 8.87.0 011.12.07q.57.07 1.08.19t.95.26a4.27 4.27.0 01.7.29 1.59 1.59.0 01.49.41.94.94.0 01.15.55v.79q0 .52-.38.52a1.76 1.76.0 01-.64-.2 7.74 7.74.0 00-3.2-.64 4.37 4.37.0 00-2.21.47 1.6 1.6.0 00-.79 1.48 1.58 1.58.0 00.49 1.18 4.94 4.94.0 001.83.92L44.55 7a5.08 5.08.0 012.57 1.6A3.76 3.76.0 0147.9 11a4.21 4.21.0 01-.44 1.93 4.4 4.4.0 01-1.21 1.47 5.43 5.43.0 01-1.85.93A8.25 8.25.0 0142.05 15.62z"/><path class="cls-2" d="M45.19 23.81C39.72 27.85 31.78 30 25 30A36.64 36.64.0 01.22 20.57c-.51-.46-.06-1.09.56-.74A49.78 49.78.0 0025.53 26.4 49.23 49.23.0 0044.4 22.53C45.32 22.14 46.1 23.14 45.19 23.81z"/><path class="cls-2" d="M47.47 21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74 3.13-2.2 8.27-1.57 8.86-.83s-.16 5.89-3.09 8.35c-.45.38-.88.18-.68-.32C46.69 25.8 48.17 22.11 47.47 21.21z"/></svg></a></div><div class=searchbox><label for=search-by><i class="fas fa-search"></i></label>
-<input data-search-input id=search-by type=search placeholder=Search...>
-<span data-search-clear><i class="fas fa-times"></i></span></div><script type=text/javascript src=/js/lunr.min.js?1752555298></script><script type=text/javascript src=/js/auto-complete.js?1752555298></script><script type=text/javascript>var baseurl="/"</script><script type=text/javascript src=/js/search.js?1752555298></script></div><div class=highlightable><ul class=topics><li data-nav-id=/1-prerequisite/ title=Prerequisites class=dd-item><a href=/1-prerequisite/><b>1. </b>Prerequisites
-<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/2-deploy-the-solution/ title="Deploy the Solution" class=dd-item><a href=/2-deploy-the-solution/><b>2. </b>Deploy the Solution
-<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/3-configure-the-solution/ title="Configure the Solution" class="dd-item
-active"><a href=/3-configure-the-solution/><b>3. </b>Configure the Solution
-<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/4-use-the-solution/ title="Use the Solution" class=dd-item><a href=/4-use-the-solution/><b>4. </b>Use the Solution
-<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-remove-the-solution/ title="Remove the Solution" class=dd-item><a href=/5-remove-the-solution/><b>5. </b>Remove the Solution
-<i class="fas fa-check read-icon"></i></a></li></ul><section id=shortcuts><h3>More</h3><ul><li><a class=padding href=http://awsstudygroup.com><i class='fab fa-aws'></i> AWS Study Group - Blog</a></li><li><a class=padding href=https://www.facebook.com/groups/660548818043427/><i class='fab fa-facebook'></i> AWS Study Group - FB Group</a></li></ul></section><section id=prefooter><hr><ul><li><a class=padding><i class="fas fa-language fa-fw"></i><div class=select-style><select id=select-language onchange="location=this.value"><option id=en value=/3-configure-the-solution/ selected>English</option><option id=vi value=/vi/3-configure-the-solution/>Tiếng Việt</option></select>
-<svg id="Capa_1" xmlns:xlink="http://www.w3.org/1999/xlink" width="255" height="255" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255"><g><g id="arrow-drop-down"><polygon points="0,63.75 127.5,191.25 255,63.75"/></g></g></svg></div></a></li><li><a class=padding href=# data-clear-history-toggle><i class="fas fa-history fa-fw"></i> Clear History</a></li></ul></section><section id=footer><left><b>Workshop</b><br><img src="https://hitwebcounter.com/counter/counter.php?page=7831210&style=0038&nbdigits=9&type=page&initCount=0" title=Migrate alt="web counter" border=0></a><br><b><a href=https://cloudjourney.awsstudygroup.com/>Cloud Journey</a></b><br><img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0" title="Total CLoud Journey" alt="web counter" border=0>
-</left><left><br><br><b>Last Updated</b><br><i><font color=orange>17-09-2021</font></i>
-</left><left><br><br><b>Team</b><br><i><a href=https://www.linkedin.com/in/jotaguy style=color:orange>Gia Hưng</a>
-</i></left><script async defer src=https://buttons.github.io/buttons.js></script></section></div></nav><section id=body><div id=overlay></div><div class="padding highlightable"><div><div id=top-bar><div id=breadcrumbs itemscope itemtype=http://data-vocabulary.org/Breadcrumb><span id=sidebar-toggle-span><a href=# id=sidebar-toggle data-sidebar-toggle><i class="fas fa-bars"></i>
-</a></span><span id=toc-menu><i class="fas fa-list-alt"></i></span>
-<span class=links><a href=/>Innovation Lab</a> > Configure the Solution</span></div><div class=progress><div class=wrapper><nav id=TableOfContents><ul><li><ul><li><a href=#configure-the-solution>Configure the Solution</a></li><li><a href=#setting-up-saml-20-application-for-innovation-sandbox-on-aws>Setting up SAML 2.0 Application for Innovation Sandbox on AWS</a></li><li><a href=#configure-users-and-groups-in-iam-identity-center>Configure Users and Groups in IAM Identity Center</a></li><li><a href=#configure-web-application-with-aws-appconfig-and-aws-secrets-manager>Configure Web Application with AWS AppConfig and AWS Secrets Manager</a></li><li><a href=#onboard-sandbox-accounts-into-innovation-sandbox-on-aws>Onboard Sandbox Accounts into Innovation Sandbox on AWS</a></li></ul></li></ul></nav></div></div></div></div><div id=head-tags></div><div id=body-inner><h1>Configure the Solution</h1><h3 id=configure-the-solution>Configure the Solution</h3><p>After running all the stacks, you need to perform configuration steps to allow users to access and prepare the Innovation Sandbox on AWS environment for use.</p><h4 id=overview-of-configuration-steps>Overview of configuration steps</h4><ul><li>Set up SAML 2.0 federation</li><li>Configure AWS IAM Identity Center users</li><li>Configure web application</li><li>Onboard accounts into Innovation Sandbox structure</li></ul><h4 id=setting-up-saml-20-federation>Setting up SAML 2.0 federation</h4><p><strong>1. Configure SAML integration</strong></p><ul><li>Access AWS IAM Identity Center in the organization management account.</li><li>Choose &ldquo;Settings&rdquo; and switch to &ldquo;Identity Source&rdquo; section.</li><li>Choose &ldquo;External identity provider&rdquo; to use SAML 2.0.</li></ul><p><strong>2. Download certification</strong></p><ul><li>In the SAML configuration interface, download the certificate (.pem file) from AWS IAM Identity Center.</li><li>Save this file for use when configuring on external identity systems</li></ul><h4 id=configure-aws-iam-identity-center-users>Configure AWS IAM Identity Center users</h4><p><strong>1. Create and configure groups</strong></p><ul><li>In IAM Identity Center, go to &ldquo;Groups&rdquo;.</li><li>Create appropriate groups for usage roles (example: Admin, Developer, Viewer&mldr;).</li><li>Assign corresponding permission sets to each group.</li></ul><p><strong>2. Set up initial users</strong></p><ul><li>Go to &ldquo;Users&rdquo; in IAM Identity Center.</li><li>Add new users or sync from external identity systems (if SAML is configured).</li><li>Assign users to created groups.</li></ul><h4 id=configure-web-application>Configure web application</h4><p><strong>1. Update AWS AppConfig settings</strong></p><ul><li>Access AWS AppConfig in hub account.</li><li>Choose Innovation Sandbox application, update necessary configuration parameters (example: endpoint, environment parameters, etc.).</li><li>Confirm configuration information matches deployment environment.</li></ul><p><strong>2. Configure authentication</strong></p><ul><li>Ensure web application uses authentication through AWS IAM Identity Center.</li><li>Check SAML connection information or other authentication parameters if available.</li></ul><h4 id=onboard-accounts>Onboard accounts</h4><p><strong>1. Move accounts into Innovation Sandbox structure</strong></p><ul><li>Access AWS Organizations with management account.</li><li>Move member accounts (hub, sandbox&mldr;) into correct organizational unit (OU) designed for Innovation Sandbox.</li></ul><p><strong>2. Verify account configuration</strong></p><ul><li>Check again in AWS Organizations to ensure accounts are in correct position in OU structure.</li><li>Ensure related policies, access permissions and configurations are applied correctly.</li></ul><p><strong>Estimated time:</strong> About 15 minutes</p><p>Completing all the above steps will help the Innovation Sandbox on AWS solution be ready for user access and use, while ensuring compliance with organizational governance and security requirements.</p><h3 id=setting-up-saml-20-application-for-innovation-sandbox-on-aws>Setting up SAML 2.0 Application for Innovation Sandbox on AWS</h3><p>Configuring SAML 2.0 integration between AWS IAM Identity Center and Innovation Sandbox on AWS helps ensure secure user authentication when accessing the solution&rsquo;s web interface.</p><h4 id=important-note>Important note</h4><ul><li>Perform all steps below in the <strong>organization management account</strong> � where you have configured AWS IAM Identity Center.</li><li>Ensure you are in the correct <strong>home Region</strong> chosen for the entire system.</li></ul><h4 id=configuration-steps>Configuration steps</h4><p><strong>1. Create SAML application in IAM Identity Center</strong></p><ul><li>Open <strong>AWS IAM Identity Center console</strong> with organization management account.</li><li>In navigation bar, choose <strong>Applications</strong>.</li><li>Switch to <strong>Customer managed</strong> tab.
-<img src=/images/organiza.jpg alt=architect title=Architect></li></ul><p><strong>2. Add new application</strong></p><ul><li>Choose <strong>Add application</strong>.</li><li>Choose <strong>I have an application I want to set up</strong>.</li><li>Choose <strong>SAML 2.0</strong>, then click <strong>Next</strong>.</li></ul><p><img src=/images/Buoc3.png alt=architect title=Architect></p><p><strong>3. Configure application</strong></p><ul><li>On configuration page, enter <strong>Display name</strong> (example: MyISB app) and description for application.</li><li></li></ul><p><img src=/images/Buoc5.png alt=architect title=Architect></p><ul><li>In <strong>IAM Identity Center metadata</strong> section:<ul><li>Download <strong>SAML metadata file</strong> (identity provider metadata).</li><li>Download <strong>certificate</strong> (identity provider certificate).</li></ul></li></ul><p><img src=/images/Buoc6.png alt=architect title=Architect></p><ul><li>Note the <strong>Sign-in URL</strong> and <strong>Sign-out URL</strong> � will be needed when configuring on hub account.</li></ul><p><img src=/images/Buoc7.png alt=architect title=Architect></p><p><strong>4. Enter metadata information for application</strong></p><ul><li><p>In <strong>Application metadata</strong> section, choose <strong>Manually type your metadata values</strong>.</p></li><li><p>Enter the following values:</p><table><thead><tr><th>Field</th><th>Value to enter</th></tr></thead><tbody><tr><td>Application ACS URL</td><td><code>{ISB_WEB_URL}/api/auth/login/callback</code> (Replace <code>{ISB_WEB_URL}</code> with saved CloudFrontDistributionUrl, example: <code>https://duyXXXXXXXeh.cloudfront.net/api/auth/login/callback</code>)</td></tr><tr><td>Application SAML audience</td><td>Application identifier value (can use namespace name or initial stack name, example: <code>Isb-dev-namespace-Audience</code>). Save this value to configure AppConfig on hub account.</td></tr><tr><td><img src=/images/Buoc8.png alt=architect title=Architect></td><td></td></tr><tr><td><strong>5. Complete configuration</strong></td><td></td></tr></tbody></table></li><li><p>Click <strong>Submit</strong>.</p></li><li><p>You will receive confirmation message for successful SAML application configuration.</p></li><li><p>Note: You need to additionally configure <strong>attribute mappings</strong> for IAM Identity Center for authentication to work properly.</p></li></ul><h4 id=information-to-save-for-subsequent-configuration-steps>Information to save for subsequent configuration steps</h4><ul><li><strong>Sign-in URL</strong> (from metadata download step)</li><li><strong>Sign-out URL</strong> (from metadata download step)</li><li><strong>Audience value</strong> (value entered in Application SAML audience)</li></ul><p>This information will be used in the process of configuring web application and user authentication for Innovation Sandbox on AWS.</p><h3 id=configure-users-and-groups-in-iam-identity-center>Configure Users and Groups in IAM Identity Center</h3><p>Setting up users and groups in AWS IAM Identity Center helps control access and permissions for users using the Innovation Sandbox on AWS solution. Perform the steps below in the <strong>organization management account</strong> and correct <strong>home Region</strong> chosen.</p><h4 id=1-map-application-attributes>1. Map application attributes</h4><ul><li>Open <strong>IAM Identity Center console</strong> in management account.</li><li>Choose <strong>Applications</strong> in navigation bar.</li><li>In <strong>Customer managed applications</strong> list, choose the created application (example: MyISB app).</li><li>On application detail page, choose <strong>Actions</strong> > <strong>Edit attribute mappings</strong>.</li><li>In the second box (&ldquo;Maps to this string value or user attribute in IAM Identity Center&rdquo;), enter:<pre tabindex=0><code>${user:email}
-</code></pre></li><li>In third column, choose <strong>emailAddress</strong> format.</li><li>Click <strong>Save changes</strong> to save configuration.</li></ul><h4 id=2-assign-groups-to-application>2. Assign groups to application</h4><ul><li>Return to the just configured application.</li><li>Choose <strong>Assign users and groups</strong>.</li><li>Find and add all three groups created by IDC stack:<ul><li><code>{NAMESPACE}_IsbUsersGroup</code></li><li><code>{NAMESPACE}_IsbManagersGroup</code></li><li><code>{NAMESPACE}_IsbAdminsGroup</code></li></ul></li><li>Choose <strong>Assign</strong> to complete.</li></ul><h4 id=3-assign-group-to-user>3. Assign group to user</h4><ul><li>In IAM Identity Center console, choose <strong>Users</strong> in navigation bar.</li><li>In user list, choose user to assign to group. To add new user, choose <strong>Add user</strong>.</li><li>Choose <strong>Groups</strong> tab, then click <strong>Add user to groups</strong>.</li><li>Choose one of three created groups:<ul><li><code>{NAMESPACE}_IsbUsersGroup</code></li><li><code>{NAMESPACE}_IsbManagersGroup</code></li><li><code>{NAMESPACE}_IsbAdminsGroup</code></li></ul></li><li>Click <strong>Add user to 1 group</strong> to complete.</li></ul><p><img src=/images/users-and-groups.png alt=architect title=Architect></p><p><strong>Note:</strong><br>To test all three user roles (user personas), ensure you have at least three users, each belonging to a different group.</p><p>After completing the above steps, you have successfully configured users and groups for the Innovation Sandbox on AWS solution. Next, you will proceed to configure the web application on the hub account.</p><h3 id=configure-web-application-with-aws-appconfig-and-aws-secrets-manager>Configure Web Application with AWS AppConfig and AWS Secrets Manager</h3><p>Configuring the Innovation Sandbox on AWS web application helps activate user authentication and set global parameters for the application. These operations need to be performed in the <strong>hub account</strong> and correct <strong>home Region</strong> chosen.</p><h4 id=1-configure-aws-appconfig>1. Configure AWS AppConfig</h4><ul><li><strong>Open AWS AppConfig console</strong> in hub account.</li><li>In navigation bar, choose <strong>Applications</strong>.</li><li>Choose application <strong>InnovationSandboxData-Config-Application-XXXXXXX</strong>.</li><li>Choose <strong>InnovationSandboxData-Config-GlobalConfigHostedConfiguration-XXXXX</strong> (configuration profile).</li><li>Choose <strong>Create</strong> to create a new hosted configuration version.</li></ul><p><img src=/images/appconfig.png alt=architect title=Architect></p><p><strong>Update configuration:</strong></p><ul><li>Set <code>maintenanceMode</code> value to <code>false</code> to open application for users.</li></ul><p><strong>In <code>auth</code> section, update the following fields:</strong></p><table><thead><tr><th>Field</th><th>Update value</th></tr></thead><tbody><tr><td>idpSignInUrl</td><td>Sign-in URL from SAML 2.0 Application configuration step</td></tr><tr><td>idpSignOutUrl</td><td>Sign-out URL from SAML 2.0 Application configuration step</td></tr><tr><td>idpAudience</td><td>Audience ID from SAML 2.0 Application configuration step</td></tr><tr><td>webAppUrl</td><td>CloudFront Distribution URL (Innovation Sandbox URL) from CloudFormation Outputs tab (hub account)</td></tr><tr><td>awsAccessPortalUrl</td><td>AWS Access Portal URL from IAM Identity Center dashboard (organization management account)</td></tr><tr><td>sessionDurationInMinutes</td><td>Login session duration, example: 240</td></tr><tr><td>emailFrom</td><td>Your verified login email address</td></tr></tbody></table><ul><li>After updating, choose <strong>Create hosted configuration version</strong>.</li><li>Choose <strong>Start Deployment</strong> and choose the just created configuration version.</li><li>Choose <strong>Start Deployment</strong> to apply new configuration.</li></ul><h4 id=2-update-certificate-value-in-aws-secrets-manager>2. Update certificate value in AWS Secrets Manager</h4><ul><li>Open <strong>AWS Secrets Manager console</strong> in hub account.</li><li>Find and choose secret:<br><code>/InnovationSandbox//Auth/IDPCert</code></li><li>In <strong>Overview</strong> tab, <strong>Secret value</strong> section:<ul><li>Choose <strong>Retrieve secret value</strong>.</li><li>Choose <strong>Edit</strong>.</li><li>Choose <strong>Plaintext</strong>.</li><li>Choose <strong>Edit</strong> again.</li><li>Paste the IAM Identity Center certificate file (.pem) content downloaded when creating SAML 2.0 application.</li><li>Choose <strong>Save</strong> to save new value.</li></ul></li></ul><p><strong>Note:</strong></p><ul><li>Ensure all values are accurate and consistent with information obtained in previous configuration steps (SAML, CloudFront, IAM Identity Center).</li><li>Proper configuration helps the system authenticate and authorize users effectively, while ensuring the Innovation Sandbox on AWS web application operates stably and securely.</li></ul><h3 id=onboard-sandbox-accounts-into-innovation-sandbox-on-aws>Onboard Sandbox Accounts into Innovation Sandbox on AWS</h3><p>Onboarding sandbox accounts is the final configuration step to complete the Innovation Sandbox on AWS solution. This step helps move AWS accounts into the correct organizational structure and apply necessary controls.</p><h4 id=important-note-1>Important note</h4><ul><li>Perform these steps in the <strong>organization management account</strong> � where you have configured AWS IAM Identity Center.</li><li>Ensure you are in the correct <strong>home Region</strong> chosen for the entire system.</li></ul><h4 id=steps-to-onboard-sandbox-accounts>Steps to Onboard Sandbox Accounts</h4><ul><li>Log in to AWS Management Console with organization management account.</li><li>Open <strong>AWS Organizations console</strong>.</li></ul><p><strong>2. Find and select accounts to move</strong></p><ul><li>Choose <strong>AWS accounts</strong>.</li><li>Find the accounts you want to move into sandbox environment. You can browse by OU structure or choose <strong>List</strong> to see flat account list.</li><li><strong>Note:</strong> Do not select organization management account or hub account.</li></ul><p><img src=/images/account-onboarding.png alt=architect title=Architect></p><p><strong>3. Move accounts to Entry OU</strong></p><ul><li>Select the accounts to move.</li><li>In <strong>Actions</strong> menu (or corresponding action menu), choose <strong>Move</strong> under AWS account section.</li><li>In <strong>Move AWS account</strong> dialog, click the arrow next to Innovation Sandbox on AWS OU (this OU was created when deploying AccountPool stack) to expand and view child OUs.</li><li>Choose <strong>Entry OU</strong> (child OU for sandbox accounts).</li><li>Click <strong>Move AWS accounts</strong> to confirm the move.</li></ul><h4 id=result>Result</h4><ul><li>Sandbox accounts have been moved to the correct OU in the Innovation Sandbox on AWS organization structure.</li><li>Related control policies and configurations will automatically be applied to these accounts.</li></ul><p>Properly onboarding accounts into Entry OU ensures the sandbox environment operates separately, securely and complies with organization governance policies.</p><footer class=footline></footer></div></div><div id=navigation><a class="nav nav-prev" href=/2-deploy-the-solution/ title="Deploy the Solution"><i class="fa fa-chevron-left"></i></a>
-<a class="nav nav-next" href=/4-use-the-solution/ title="Use the Solution" style=margin-right:0><i class="fa fa-chevron-right"></i></a></div></section><div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px><div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div></div><script src=/js/clipboard.min.js?1752555299></script><script src=/js/perfect-scrollbar.min.js?1752555299></script><script src=/js/perfect-scrollbar.jquery.min.js?1752555299></script><script src=/js/jquery.sticky.js?1752555299></script><script src=/js/featherlight.min.js?1752555299></script><script src=/js/highlight.pack.js?1752555299></script><script>hljs.initHighlightingOnLoad()</script><script src=/js/modernizr.custom-3.6.0.js?1752555299></script><script src=/js/learn.js?1752555299></script><script src=/js/hugo-learn.js?1752555299></script><link href=/mermaid/mermaid.css?1752555299 rel=stylesheet><script src=/mermaid/mermaid.js?1752555299></script><script>mermaid.initialize({startOnLoad:!0})</script><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","https://www.google-analytics.com/analytics.js","ga"),ga("create","UA-158079754-2","auto"),ga("send","pageview")</script></body></html>
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.147.9">
+    <meta name="description" content="">
+<meta name="author" content="hieunghiwork123@gmail.com">
+
+    <link rel="icon" href="//localhost:1313/images/favicon.png" type="image/png">
+
+    <title>Configure the Solution :: Deploy Innovation Lab</title>
+
+    
+    <link href="//localhost:1313/css/nucleus.css?1752572531" rel="stylesheet">
+    <link href="//localhost:1313/css/fontawesome-all.min.css?1752572531" rel="stylesheet">
+    <link href="//localhost:1313/css/hybrid.css?1752572531" rel="stylesheet">
+    <link href="//localhost:1313/css/featherlight.min.css?1752572531" rel="stylesheet">
+    <link href="//localhost:1313/css/perfect-scrollbar.min.css?1752572531" rel="stylesheet">
+    <link href="//localhost:1313/css/auto-complete.css?1752572531" rel="stylesheet">
+    <link href="//localhost:1313/css/atom-one-dark-reasonable.css?1752572531" rel="stylesheet">
+    <link href="//localhost:1313/css/theme.css?1752572531" rel="stylesheet">
+    <link href="//localhost:1313/css/hugo-theme.css?1752572531" rel="stylesheet">
+    
+    <link href="//localhost:1313/css/theme-workshop.css?1752572531" rel="stylesheet">
+    
+    
+
+    <script src="//localhost:1313/js/jquery-3.3.1.min.js?1752572531"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="//localhost:1313/3-configure-the-solution/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="//localhost:1313/">
+
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="30%"><defs><style>.cls-1{fill:#fff;}.cls-2{fill:#f90;fill-rule:evenodd;}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"></path><path class="cls-2" d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"></path><path class="cls-2" d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"></path></svg>
+
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="//localhost:1313/js/lunr.min.js?1752572531"></script>
+<script type="text/javascript" src="//localhost:1313/js/auto-complete.js?1752572531"></script>
+<script type="text/javascript">
+    
+        var baseurl = "\/\/localhost:1313\/";
+    
+</script>
+<script type="text/javascript" src="//localhost:1313/js/search.js?1752572531"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/1-prerequisite/" title="Prerequisites" class="dd-item 
+        
+        
+        
+        ">
+      <a href="//localhost:1313/1-prerequisite/">
+          <b>1. </b>Prerequisites
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/2-deploy-the-solution/" title="Deploy the Solution" class="dd-item 
+        
+        
+        
+        ">
+      <a href="//localhost:1313/2-deploy-the-solution/">
+          <b>2. </b>Deploy the Solution
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/3-configure-the-solution/" title="Configure the Solution" class="dd-item 
+        
+        active
+        
+        ">
+      <a href="//localhost:1313/3-configure-the-solution/">
+          <b>3. </b>Configure the Solution
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-use-the-solution/" title="Use the Solution" class="dd-item 
+        
+        
+        
+        ">
+      <a href="//localhost:1313/4-use-the-solution/">
+          <b>4. </b>Use the Solution
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-remove-the-solution/" title="Remove the Solution" class="dd-item 
+        
+        
+        
+        ">
+      <a href="//localhost:1313/5-remove-the-solution/">
+          <b>5. </b>Remove the Solution
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="http://awsstudygroup.com"><i class='fab fa-aws'></i> AWS Study Group - Blog</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://www.facebook.com/groups/660548818043427/"><i class='fab fa-facebook'></i> AWS Study Group - FB Group</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+          <div class="select-style">
+            <select id="select-language" onchange="location = this.value;">
+          
+          
+          
+              
+              
+                  
+                    
+                    
+                      <option id="en" value="//localhost:1313/3-configure-the-solution/" selected>English</option>
+                    
+                  
+              
+                  
+              
+          
+              
+              
+                  
+              
+                  
+                    
+                    
+                      <option id="vi" value="//localhost:1313/vi/3-configure-the-solution/">Tiếng Việt</option>
+                    
+                  
+              
+          
+        </select>
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          width="255px" height="255px" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255;" xml:space="preserve">
+          <g>
+            <g id="arrow-drop-down">
+              <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+            </g>
+          </g>
+        </svg>
+        </div>
+        </a>
+        </li>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <left>
+    
+     <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7831210&style=0038&nbdigits=9&type=page&initCount=0" title="Migrate" Alt="web counter"   border="0" /></a>  <br>
+     <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0" title="Total CLoud Journey" Alt="web counter"   border="0"   />
+     
+</left>
+<left>
+    <br>
+    <br>
+        <b> Last Updated </b> <br>
+        <i><font color=orange>15-07-2025</font></i>
+    </left>
+    <left>
+        <br>
+        <br>
+            <b> Team </b> <br>
+           
+            <i>
+                <a href="https://www.linkedin.com/in/hieunghi/"  style="color:orange">Danh Hoàng Hiếu Nghị</a>
+        </i>
+        </left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            <a href='//localhost:1313/'>Innovation Lab</a> > Configure the Solution
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#configure-the-system">Configure the System</a></li>
+        <li><a href="#setting-up-saml-for-innovation-sandbox">Setting up SAML for Innovation Sandbox</a></li>
+        <li><a href="#configure-users-and-groups">Configure Users and Groups</a></li>
+        <li><a href="#configure-the-web-app">Configure the Web App</a></li>
+        <li><a href="#onboard-sandbox-accounts">Onboard Sandbox Accounts</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Configure the Solution
+            </h1>
+          
+
+        
+
+
+
+	<h3 id="configure-the-system">Configure the System</h3>
+<p>Okay, the stacks are done running, but you can&rsquo;t use it yet. You need to configure a bit more before users can get in.</p>
+<h4 id="what-needs-to-be-done">What needs to be done</h4>
+<ul>
+<li>Set up SAML for login</li>
+<li>Create users and groups in IAM Identity Center</li>
+<li>Configure the web app</li>
+<li>Move the sandbox accounts into the right place</li>
+</ul>
+<h4 id="setting-up-saml">Setting up SAML</h4>
+<p><strong>1. Configure SAML</strong></p>
+<ul>
+<li>Go to AWS IAM Identity Center in the management account</li>
+<li>Select &ldquo;Settings&rdquo; then switch to &ldquo;Identity Source&rdquo;</li>
+<li>Choose &ldquo;External identity provider&rdquo; to use SAML 2.0</li>
+</ul>
+<p><strong>2. Download the certificate</strong></p>
+<ul>
+<li>In the SAML interface, download the AWS IAM Identity Center certificate file (.pem)</li>
+<li>Save this file for later use</li>
+</ul>
+<h4 id="creating-users-and-groups">Creating users and groups</h4>
+<p><strong>1. Create groups</strong></p>
+<ul>
+<li>In IAM Identity Center, select &ldquo;Groups&rdquo;</li>
+<li>Create groups based on roles (Admin, Developer, Viewer&hellip;)</li>
+<li>Assign permissions to each group</li>
+</ul>
+<p><strong>2. Add users</strong></p>
+<ul>
+<li>Go to &ldquo;Users&rdquo; in IAM Identity Center</li>
+<li>Add new users or sync from an external system (if SAML is configured)</li>
+<li>Add users to the appropriate groups</li>
+</ul>
+<h4 id="configuring-the-web-app">Configuring the web app</h4>
+<p><strong>1. Update AWS AppConfig</strong></p>
+<ul>
+<li>Go to AWS AppConfig in the hub account</li>
+<li>Select the Innovation Sandbox app, update the necessary parameters</li>
+<li>Check if the information matches the environment</li>
+</ul>
+<p><strong>2. Configure authentication</strong></p>
+<ul>
+<li>Ensure the web app uses IAM Identity Center for login</li>
+<li>Check the SAML connection information</li>
+</ul>
+<h4 id="onboarding-accounts">Onboarding accounts</h4>
+<p><strong>1. Move accounts</strong></p>
+<ul>
+<li>Go to AWS Organizations using the management account</li>
+<li>Move the accounts (hub, sandbox&hellip;) into the correct designed OU</li>
+</ul>
+<p><strong>2. Double-check</strong></p>
+<ul>
+<li>Check in AWS Organizations to see if the accounts are in the right place</li>
+<li>Ensure that policies and permissions have been applied correctly</li>
+</ul>
+<p><strong>Time:</strong> About 15 minutes</p>
+<p>Completing these steps will make the system ready for users.</p>
+<h3 id="setting-up-saml-for-innovation-sandbox">Setting up SAML for Innovation Sandbox</h3>
+<p>This part is a bit technical, but it&rsquo;s necessary for users to log into the system securely.</p>
+<h4 id="important-notes">Important notes</h4>
+<ul>
+<li>Do everything in the <strong>organization management account</strong> - where IAM Identity Center is</li>
+<li>Make sure you are in the correct selected <strong>home Region</strong></li>
+</ul>
+<h4 id="steps">Steps</h4>
+<p><strong>1. Create a SAML app in IAM Identity Center</strong></p>
+<ul>
+<li>Open the <strong>AWS IAM Identity Center console</strong> with the management account</li>
+<li>In the navigation bar, select <strong>Applications</strong></li>
+<li>Switch to the <strong>Customer managed</strong> tab</li>
+</ul>
+<p><img src="//localhost:1313/images/organiza.jpg" alt="architect" title="Architect"></p>
+<p><strong>2. Add a new app</strong></p>
+<ul>
+<li>Select <strong>Add application</strong></li>
+<li>Select <strong>I have an application I want to set up</strong></li>
+<li>Select <strong>SAML 2.0</strong>, then <strong>Next</strong></li>
+</ul>
+<p><img src="//localhost:1313/images/Buoc3.png" alt="architect" title="Architect"></p>
+<p><strong>3. Configure the app</strong></p>
+<ul>
+<li>On the configuration page, enter a <strong>Display name</strong> (e.g., MyFCJ app) and description</li>
+</ul>
+<p><img src="//localhost:1313/images/Buoc5.png" alt="architect" title="Architect"></p>
+<ul>
+<li>
+<p>In the <strong>IAM Identity Center metadata</strong> section:</p>
+<ul>
+<li>Download the <strong>SAML metadata file</strong></li>
+<li>Download the <strong>certificate</strong></li>
+</ul>
+</li>
+<li>
+<p>Note the <strong>Sign-in URL</strong> and <strong>Sign-out URL</strong> - needed for configuration in the hub account</p>
+</li>
+</ul>
+<p><img src="//localhost:1313/images/Buoc7.png" alt="architect" title="Architect"></p>
+<p><strong>4. Enter metadata information</strong></p>
+<ul>
+<li>In the <strong>Application metadata</strong> section, select <strong>Manually type your metadata values</strong></li>
+<li>Enter the values:
+<table>
+  <thead>
+      <tr>
+          <th>Field</th>
+          <th>What to enter</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Application ACS URL</td>
+          <td><code>{FCJ_WEB_URL}/api/auth/login/callback</code> (Replace <code>{FCJ_WEB_URL}</code> with the saved CloudFrontDistributionUrl)</td>
+      </tr>
+      <tr>
+          <td>Application SAML audience</td>
+          <td>App identifier name (can use namespace, e.g., <code>Isb-dev-namespace-Audience</code>). Save for AppConfig configuration</td>
+      </tr>
+  </tbody>
+</table>
+</li>
+</ul>
+<p><img src="//localhost:1313/images/Buoc8.png" alt="architect" title="Architect"></p>
+<p><strong>5. Finish</strong></p>
+<ul>
+<li>Click <strong>Submit</strong></li>
+<li>A success message will appear</li>
+<li>Remember to configure <strong>attribute mappings</strong> for IAM Identity Center</li>
+</ul>
+<h4 id="information-to-save">Information to save</h4>
+<ul>
+<li><strong>Sign-in URL</strong></li>
+<li><strong>Sign-out URL</strong></li>
+<li><strong>Audience value</strong></li>
+</ul>
+<p>This information is used to configure the web app and user authentication.</p>
+<h3 id="configure-users-and-groups">Configure Users and Groups</h3>
+<p>Set up users and groups to control who can access and do what in the system. Do this in the <strong>management account</strong> and use the <strong>home Region</strong>.</p>
+<h4 id="1-map-app-attributes">1. Map app attributes</h4>
+<ul>
+<li>Open the <strong>IAM Identity Center console</strong></li>
+<li>Select <strong>Applications</strong></li>
+<li>Select the newly created app (MyFCJ app)</li>
+<li>On the app details page, select <strong>Actions</strong> &gt; <strong>Edit attribute mappings</strong></li>
+<li>In the second box, enter: <code>${user:email}</code></li>
+<li>In the third column, select <strong>emailAddress</strong></li>
+<li><strong>Save changes</strong></li>
+</ul>
+<h4 id="2-assign-groups-to-the-app">2. Assign groups to the app</h4>
+<ul>
+<li>Go back to the configured app</li>
+<li>Select <strong>Assign users and groups</strong></li>
+<li>Find and add the three groups created by the IDC stack:
+<ul>
+<li><code>{NAMESPACE}_IsbUsersGroup</code></li>
+<li><code>{NAMESPACE}_IsbManagersGroup</code></li>
+<li><code>{NAMESPACE}_IsbAdminsGroup</code></li>
+</ul>
+</li>
+<li>Select <strong>Assign</strong></li>
+</ul>
+<h4 id="3-add-users-to-groups">3. Add users to groups</h4>
+<ul>
+<li>In the IAM Identity Center console, select <strong>Users</strong></li>
+<li>Select the user to assign to a group (or <strong>Add user</strong> to add a new one)</li>
+<li>In the <strong>Groups</strong> tab, click <strong>Add user to groups</strong></li>
+<li>Select one of the three groups:
+<ul>
+<li><code>{NAMESPACE}_IsbUsersGroup</code></li>
+<li><code>{NAMESPACE}_IsbManagersGroup</code></li>
+<li><code>{NAMESPACE}_IsbAdminsGroup</code></li>
+</ul>
+</li>
+<li><strong>Add user to 1 group</strong></li>
+</ul>
+<p><img src="//localhost:1313/images/users-and-groups.png" alt="architect" title="Architect"></p>
+<p><strong>Note:</strong> To test all three roles, you need at least three users, each in a different group.</p>
+<h3 id="configure-the-web-app">Configure the Web App</h3>
+<p>This section enables login and sets parameters for the app. Do this in the <strong>hub account</strong> and use the <strong>home Region</strong>.</p>
+<h4 id="1-configure-aws-appconfig">1. Configure AWS AppConfig</h4>
+<ul>
+<li>Open the <strong>AWS AppConfig console</strong> in the hub account</li>
+<li>In the navigation bar, select <strong>Applications</strong></li>
+<li>Select <strong>InnovationSandboxData-Config-Application-XXXXXXX</strong></li>
+<li>Select <strong>InnovationSandboxData-Config-GlobalConfigHostedConfiguration-XXXXX</strong></li>
+<li><strong>Create</strong> to create a new configuration version</li>
+</ul>
+<p><img src="//localhost:1313/images/appconfig.png" alt="architect" title="Architect"></p>
+<p><strong>Update configuration:</strong></p>
+<ul>
+<li>Set <code>maintenanceMode</code> to <code>false</code> to open the app for users</li>
+</ul>
+<p><strong>In the <code>auth</code> section, update:</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>Field</th>
+          <th>What to update</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>idpSignInUrl</td>
+          <td>Sign-in URL from the SAML configuration step</td>
+      </tr>
+      <tr>
+          <td>idpSignOutUrl</td>
+          <td>Sign-out URL from the SAML configuration step</td>
+      </tr>
+      <tr>
+          <td>idpAudience</td>
+          <td>Audience ID from the SAML configuration step</td>
+      </tr>
+      <tr>
+          <td>webAppUrl</td>
+          <td>CloudFront Distribution URL from the CloudFormation Outputs tab (hub account)</td>
+      </tr>
+      <tr>
+          <td>awsAccessPortalUrl</td>
+          <td>AWS Access Portal URL from the IAM Identity Center dashboard (management account)</td>
+      </tr>
+      <tr>
+          <td>sessionDurationInMinutes</td>
+          <td>Session duration, e.g., 240</td>
+      </tr>
+      <tr>
+          <td>emailFrom</td>
+          <td>Your verified email address</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li><strong>Create hosted configuration version</strong></li>
+<li><strong>Start Deployment</strong> and select the newly created version</li>
+<li><strong>Start Deployment</strong> to apply</li>
+</ul>
+<h4 id="2-update-certificate-in-secrets-manager">2. Update certificate in Secrets Manager</h4>
+<ul>
+<li>Open the <strong>AWS Secrets Manager console</strong> in the hub account</li>
+<li>Find the secret: <code>/InnovationSandbox//Auth/IDPCert</code></li>
+<li>In the <strong>Overview</strong> tab, <strong>Secret value</strong> section:
+<ul>
+<li><strong>Retrieve secret value</strong></li>
+<li><strong>Edit</strong></li>
+<li><strong>Plaintext</strong></li>
+<li><strong>Edit</strong> again</li>
+<li>Paste the content of the downloaded IAM Identity Center certificate file (.pem)</li>
+<li><strong>Save</strong></li>
+</ul>
+</li>
+</ul>
+<p><strong>Note:</strong> Ensure all information is accurate and consistent with the previous steps.</p>
+<h3 id="onboard-sandbox-accounts">Onboard Sandbox Accounts</h3>
+<p>The final step to complete the configuration. Move AWS accounts into the correct structure and apply controls.</p>
+<h4 id="important-notes-1">Important notes</h4>
+<ul>
+<li>Do this in the <strong>organization management account</strong></li>
+<li>In the correct selected <strong>home Region</strong></li>
+</ul>
+<h4 id="steps-1">Steps</h4>
+<ul>
+<li>Log in to the AWS Management Console with the management account</li>
+<li>Open the <strong>AWS Organizations console</strong></li>
+</ul>
+<p><strong>2. Find accounts to move</strong></p>
+<ul>
+<li>Select <strong>AWS accounts</strong></li>
+<li>Find the accounts you want to move to the sandbox environment</li>
+<li><strong>Note:</strong> Do not select the management or hub account</li>
+</ul>
+<p><img src="//localhost:1313/images/account-onboarding.png" alt="architect" title="Architect"></p>
+<p><strong>3. Move to Entry OU</strong></p>
+<ul>
+<li>Select the accounts to move</li>
+<li>In the <strong>Actions</strong> menu, select <strong>Move</strong></li>
+<li>In the <strong>Move AWS account</strong> dialog, click the arrow next to the Innovation Sandbox OU to expand it</li>
+<li>Select <strong>Entry OU</strong></li>
+<li><strong>Move AWS accounts</strong> to confirm</li>
+</ul>
+<h4 id="result">Result</h4>
+<ul>
+<li>The sandbox accounts are now in the correct location in the Innovation Sandbox structure</li>
+<li>Control policies will be automatically applied to these accounts</li>
+</ul>
+<p>Doing this correctly ensures the sandbox environment operates separately, securely, and in compliance with organizational policies.</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="//localhost:1313/2-deploy-the-solution/" title="Deploy the Solution"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="//localhost:1313/4-use-the-solution/" title="Use the Solution" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="//localhost:1313/js/clipboard.min.js?1752572531"></script>
+    <script src="//localhost:1313/js/perfect-scrollbar.min.js?1752572531"></script>
+    <script src="//localhost:1313/js/perfect-scrollbar.jquery.min.js?1752572531"></script>
+    <script src="//localhost:1313/js/jquery.sticky.js?1752572531"></script>
+    <script src="//localhost:1313/js/featherlight.min.js?1752572531"></script>
+    <script src="//localhost:1313/js/highlight.pack.js?1752572531"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="//localhost:1313/js/modernizr.custom-3.6.0.js?1752572531"></script>
+    <script src="//localhost:1313/js/learn.js?1752572531"></script>
+    <script src="//localhost:1313/js/hugo-learn.js?1752572531"></script>
+
+    <link href="//localhost:1313/mermaid/mermaid.css?1752572531" rel="stylesheet" />
+    <script src="//localhost:1313/mermaid/mermaid.js?1752572531"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-158079754-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </body>
+</html>

@@ -9,27 +9,33 @@ chapter = false
 
 ## Tổng quan về Workshop
 
-**Innovation Sandbox on AWS Workshop** là một hướng dẫn giúp các nhóm học tập hay công ty có một nơi để vọc vạch hay là thử nghiệm này kia mà không phải lo về bảo mật hay chi phí
+**Innovation Sandbox on AWS Workshop** là một hướng dẫn giúp các nhóm học tập hay công ty có một nơi để  thử nghiệm này kia mà không phải lo về bảo mật hay chi phí 
 
-
+Nếu bạn có bất cứ đóng góp, bình luận hay tìm ra lỗi sai về kiến thức hay tài liệu. Hãy giúp mình bằng cách thông tin cho mình qua email : **hieunghiwork123@gmail.com**. Xin chân thành cảm on, chúc bạn làm workshop vui vẻ!.
 
 
 ![architect](/images/high-level.png "Architect")
 ### Mục đích chính
 
 
-- **Quản lý aws account riêng cho thử nghiệm**
+- **Quản lý từng Aws Account riêng cho từng nghiệm vụ (Thử nghiệm, quản lý, tập trung bill,..)**.
 - **Quản lý chi phí tiện lợi qua giao diện web**.
+
 
 
 ## Yêu cầu kiến thức (Nên biết trước)
 
-- Biết  **AWS Organizations** và **AWS IAM Identity Center**
-- Biết sơ sơ **AWS CloudFormation** (chỉ cần hiểu khái niệm vì đã có template file có sẵn sẵn)
+- Nên biết  **AWS Organizations** và **AWS IAM Identity Center**
+- Biết cơ bản **AWS CloudFormation** (chỉ cần hiểu các khái niệm cơ bản vì đã có template file có sẵn sẵn chỉ việc chạy Stack)
+
+
+[Identity Center Docs Here](https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html) --
+[Organization Docs Here](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_introduction.html) --
+[Cloud Formation Docs Here](https://docs.aws.amazon.com/cloudformation/)
 
 ## Thời gian hiện thực
 
-- **Tổng thời gian thực hiện:** Khoảng 2 giờ (có thể lâu hơn nếu bạn muốn tìm hiểu sâu)
+- **Tổng thời gian thực hiện:** Khoảng 3 giờ (có thể lâu hơn nếu bạn muốn tìm hiểu sâu)
 
 ## Các thành phần chính của giải pháp
 

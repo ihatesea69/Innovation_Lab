@@ -1,33 +1,825 @@
-<!doctype html><html lang=en class="js csstransforms3d"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=generator content="Hugo 0.147.9"><meta name=description content><meta name=author content="journeyoftheaverageguy@gmail.com"><link rel=icon href=/images/favicon.png type=image/png><title>Use the Solution :: Deploy ShareNote Application on Auto Scaling Group</title><link href=/css/nucleus.css?1752555298 rel=stylesheet><link href=/css/fontawesome-all.min.css?1752555298 rel=stylesheet><link href=/css/hybrid.css?1752555298 rel=stylesheet><link href=/css/featherlight.min.css?1752555298 rel=stylesheet><link href=/css/perfect-scrollbar.min.css?1752555298 rel=stylesheet><link href=/css/auto-complete.css?1752555298 rel=stylesheet><link href=/css/atom-one-dark-reasonable.css?1752555298 rel=stylesheet><link href=/css/theme.css?1752555298 rel=stylesheet><link href=/css/hugo-theme.css?1752555298 rel=stylesheet><link href=/css/theme-workshop.css?1752555298 rel=stylesheet><script src=/js/jquery-3.3.1.min.js?1752555298></script><style>:root #header+#content>#left>#rlblock_left{display:none !important}</style></head><body data-url=/4-use-the-solution/><nav id=sidebar class=showVisitedLinks><div id=header-wrapper><div id=header><a id=logo href=/><svg id="Layer_1" data-name="Layer 1" viewBox="0 0 60 30" width="30%"><defs><style>.cls-1{fill:#fff}.cls-2{fill:#f90;fill-rule:evenodd}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09 10.85a4.7 4.7.0 00.19 1.48 7.73 7.73.0 00.54 1.19.77.77.0 01.12.38.64.64.0 01-.32.49l-1 .7a.83.83.0 01-.44.15.69.69.0 01-.49-.23 3.8 3.8.0 01-.6-.77q-.25-.42-.51-1a6.14 6.14.0 01-4.89 2.3 4.54 4.54.0 01-3.32-1.19 4.27 4.27.0 01-1.22-3.2 4.28 4.28.0 011.46-3.4A6.06 6.06.0 017.69 6.46a12.47 12.47.0 011.76.13q.92.13 1.91.36V5.73a3.65 3.65.0 00-.79-2.66A3.81 3.81.0 007.86 2.3a7.71 7.71.0 00-1.79.22 12.78 12.78.0 00-1.79.57 4.55 4.55.0 01-.58.22h-.26q-.35.0-.35-.52V2a1.09 1.09.0 01.12-.58 1.2 1.2.0 01.47-.35A10.88 10.88.0 015.77.32 10.19 10.19.0 018.36.0a6 6 0 014.35 1.35 5.49 5.49.0 011.38 4.09zM7.34 13.38a5.36 5.36.0 001.72-.31A3.63 3.63.0 0010.63 12 2.62 2.62.0 0011.19 11a5.63 5.63.0 00.16-1.44v-.7a14.35 14.35.0 00-1.53-.28 12.37 12.37.0 00-1.56-.1 3.84 3.84.0 00-2.47.67A2.34 2.34.0 005 11a2.35 2.35.0 00.61 1.76A2.4 2.4.0 007.34 13.38zm13.35 1.8a1 1 0 01-.64-.16 1.3 1.3.0 01-.35-.65L15.81 1.51a3 3 0 01-.15-.67.36.36.0 01.41-.41H17.7a1 1 0 01.65.16 1.4 1.4.0 01.33.65l2.79 11 2.59-11A1.17 1.17.0 0124.39.6a1.1 1.1.0 01.67-.16H26.4a1.1 1.1.0 01.67.16 1.17 1.17.0 01.32.65L30 12.39 32.88 1.25A1.39 1.39.0 0133.22.6a1 1 0 01.65-.16h1.54a.36.36.0 01.41.41 1.36 1.36.0 010 .26 3.64 3.64.0 01-.12.41l-4 12.86a1.3 1.3.0 01-.35.65 1 1 0 01-.64.16H29.25a1 1 0 01-.67-.17 1.26 1.26.0 01-.32-.67L25.67 3.64l-2.56 10.7a1.26 1.26.0 01-.32.67 1 1 0 01-.67.17zm21.36.44a11.28 11.28.0 01-2.56-.29 7.44 7.44.0 01-1.92-.67 1 1 0 01-.61-.93v-.84q0-.52.38-.52a.9.9.0 01.31.06l.42.17a8.77 8.77.0 001.83.58 9.78 9.78.0 002 .2 4.48 4.48.0 002.43-.55 1.76 1.76.0 00.86-1.57 1.61 1.61.0 00-.45-1.16A4.29 4.29.0 0043 9.22l-2.41-.76A5.15 5.15.0 0138 6.78a3.94 3.94.0 01-.83-2.41 3.7 3.7.0 01.45-1.85 4.47 4.47.0 011.19-1.37 5.27 5.27.0 011.7-.86A7.4 7.4.0 0142.6.0a8.87 8.87.0 011.12.07q.57.07 1.08.19t.95.26a4.27 4.27.0 01.7.29 1.59 1.59.0 01.49.41.94.94.0 01.15.55v.79q0 .52-.38.52a1.76 1.76.0 01-.64-.2 7.74 7.74.0 00-3.2-.64 4.37 4.37.0 00-2.21.47 1.6 1.6.0 00-.79 1.48 1.58 1.58.0 00.49 1.18 4.94 4.94.0 001.83.92L44.55 7a5.08 5.08.0 012.57 1.6A3.76 3.76.0 0147.9 11a4.21 4.21.0 01-.44 1.93 4.4 4.4.0 01-1.21 1.47 5.43 5.43.0 01-1.85.93A8.25 8.25.0 0142.05 15.62z"/><path class="cls-2" d="M45.19 23.81C39.72 27.85 31.78 30 25 30A36.64 36.64.0 01.22 20.57c-.51-.46-.06-1.09.56-.74A49.78 49.78.0 0025.53 26.4 49.23 49.23.0 0044.4 22.53C45.32 22.14 46.1 23.14 45.19 23.81z"/><path class="cls-2" d="M47.47 21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74 3.13-2.2 8.27-1.57 8.86-.83s-.16 5.89-3.09 8.35c-.45.38-.88.18-.68-.32C46.69 25.8 48.17 22.11 47.47 21.21z"/></svg></a></div><div class=searchbox><label for=search-by><i class="fas fa-search"></i></label>
-<input data-search-input id=search-by type=search placeholder=Search...>
-<span data-search-clear><i class="fas fa-times"></i></span></div><script type=text/javascript src=/js/lunr.min.js?1752555298></script><script type=text/javascript src=/js/auto-complete.js?1752555298></script><script type=text/javascript>var baseurl="/"</script><script type=text/javascript src=/js/search.js?1752555298></script></div><div class=highlightable><ul class=topics><li data-nav-id=/1-prerequisite/ title=Prerequisites class=dd-item><a href=/1-prerequisite/><b>1. </b>Prerequisites
-<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/2-deploy-the-solution/ title="Deploy the Solution" class=dd-item><a href=/2-deploy-the-solution/><b>2. </b>Deploy the Solution
-<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/3-configure-the-solution/ title="Configure the Solution" class=dd-item><a href=/3-configure-the-solution/><b>3. </b>Configure the Solution
-<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/4-use-the-solution/ title="Use the Solution" class="dd-item
-active"><a href=/4-use-the-solution/><b>4. </b>Use the Solution
-<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-remove-the-solution/ title="Remove the Solution" class=dd-item><a href=/5-remove-the-solution/><b>5. </b>Remove the Solution
-<i class="fas fa-check read-icon"></i></a></li></ul><section id=shortcuts><h3>More</h3><ul><li><a class=padding href=http://awsstudygroup.com><i class='fab fa-aws'></i> AWS Study Group - Blog</a></li><li><a class=padding href=https://www.facebook.com/groups/660548818043427/><i class='fab fa-facebook'></i> AWS Study Group - FB Group</a></li></ul></section><section id=prefooter><hr><ul><li><a class=padding><i class="fas fa-language fa-fw"></i><div class=select-style><select id=select-language onchange="location=this.value"><option id=en value=/4-use-the-solution/ selected>English</option><option id=vi value=/vi/4-use-the-solution/>Tiếng Việt</option></select>
-<svg id="Capa_1" xmlns:xlink="http://www.w3.org/1999/xlink" width="255" height="255" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255"><g><g id="arrow-drop-down"><polygon points="0,63.75 127.5,191.25 255,63.75"/></g></g></svg></div></a></li><li><a class=padding href=# data-clear-history-toggle><i class="fas fa-history fa-fw"></i> Clear History</a></li></ul></section><section id=footer><left><b>Workshop</b><br><img src="https://hitwebcounter.com/counter/counter.php?page=7831210&style=0038&nbdigits=9&type=page&initCount=0" title=Migrate alt="web counter" border=0></a><br><b><a href=https://cloudjourney.awsstudygroup.com/>Cloud Journey</a></b><br><img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0" title="Total CLoud Journey" alt="web counter" border=0>
-</left><left><br><br><b>Last Updated</b><br><i><font color=orange>17-09-2021</font></i>
-</left><left><br><br><b>Team</b><br><i><a href=https://www.linkedin.com/in/jotaguy style=color:orange>Gia Hưng</a>
-</i></left><script async defer src=https://buttons.github.io/buttons.js></script></section></div></nav><section id=body><div id=overlay></div><div class="padding highlightable"><div><div id=top-bar><div id=breadcrumbs itemscope itemtype=http://data-vocabulary.org/Breadcrumb><span id=sidebar-toggle-span><a href=# id=sidebar-toggle data-sidebar-toggle><i class="fas fa-bars"></i>
-</a></span><span id=toc-menu><i class="fas fa-list-alt"></i></span>
-<span class=links><a href=/>Innovation Lab</a> > Use the Solution</span></div><div class=progress><div class=wrapper><nav id=TableOfContents><ul><li><ul><li><a href=#using-innovation-sandbox-on-aws>Using Innovation Sandbox on AWS</a></li><li><a href=#using-with-administrator-role>Using with Administrator role</a></li><li><a href=#using-innovation-sandbox-on-aws-with-manager-role>Using Innovation Sandbox on AWS with Manager role</a></li><li><a href=#editing-settings-with-aws-appconfig>Editing settings with AWS AppConfig</a></li><li><a href=#creating-lease-template>Creating Lease Template</a></li><li><a href=#creating-basic-lease-template>Creating Basic Lease Template</a></li><li><a href=#creating-advanced-lease-template>Creating Advanced Lease Template</a></li><li><a href=#next-steps-1>Next steps</a></li><li><a href=#using-innovation-sandbox-on-aws-with-end-user-role>Using Innovation Sandbox on AWS with End-User role</a></li></ul></li></ul></nav></div></div></div></div><div id=head-tags></div><div id=body-inner><h1>Use the Solution</h1><h3 id=using-innovation-sandbox-on-aws>Using Innovation Sandbox on AWS</h3><p>After fully deploying all stacks and configuring users, you can start using the Innovation Sandbox on AWS solution. Below is a detailed guide on how to use it with the <strong>administrator</strong> role.</p><h4 id=overview>Overview</h4><p>The solution supports three main usage roles:</p><ul><li><strong>Administrator</strong></li><li><strong>Manager</strong></li><li><strong>End user</strong></li></ul><p>Estimated practice time: about 30 minutes.</p><h3 id=using-with-administrator-role>Using with Administrator role</h3><h4 id=1-access-innovation-sandbox-on-aws>1. Access Innovation Sandbox on AWS</h4><ul><li>Get the solution access URL (CloudFrontDistributionUrl saved from deployment step).</li><li>Open this URL in browser.</li><li>Log in with administrator account. If first time logging in, choose <strong>Forgot password</strong> to set up password.</li></ul><p><strong>Note:</strong><br>If the interface has two tabs <strong>Accounts</strong> and <strong>Applications</strong>, choose <strong>Applications</strong> to enter the main application. The welcome page will appear.</p><p><img src=/images/Anha1.png alt=architect title=Architect></p><h4 id=2-add-accounts-for-lease>2. Add accounts for lease</h4><ul><li>In left navigation bar, under <strong>Administration</strong>, choose <strong>Accounts</strong>.</li><li>Click <strong>Add accounts</strong>.</li><li>In <strong>Select accounts</strong>, you will see list of available accounts. If there are no accounts, ensure sandbox accounts have been moved to <strong>Entry</strong> OU in organizational unit with name like <code>your-namespace_InnovationSandboxAccountPool</code>.</li><li>Select one or more accounts to add, click <strong>Next</strong> then <strong>Submit</strong>.</li></ul><p><img src=/images/Anha2.png alt=architect title=Architect></p><ul><li>Return to <strong>Accounts</strong> to check status of added accounts.</li></ul><h4 id=3-manage-system-settings>3. Manage system settings</h4><ul><li>In navigation bar, under <strong>Administration</strong>, choose <strong>Settings</strong>.</li><li>There are three main tabs:<ul><li><strong>General Settings</strong></li><li><strong>Lease Settings</strong> (default maximum budget limit is $100 USD)</li><li><strong>Clean Up Settings</strong></li></ul></li><li>To change these settings, you need to use <strong>AWS AppConfig</strong> (will be guided in next section).</li></ul><p><img src=/images/Anha3.png alt=architect title=Architect></p><h4 id=4-create-service-control-policy-scp-to-limit-resources>4. Create Service Control Policy (SCP) to limit resources</h4><p>Example: Create SCP to prevent sandbox users from launching <code>m5.large</code> EC2 instances.</p><p><strong>Implementation steps:</strong></p><ul><li>Log in to <strong>organization management account</strong>.</li><li>Open <strong>AWS Organizations</strong>.</li><li>In navigation bar, choose <strong>Policies</strong>.</li><li>Under <strong>Supported policy types</strong>, choose <strong>Service control policies</strong>.</li></ul><p><img src=/images/Anha4.png alt=architect title=Architect></p><ul><li>Click <strong>Create policy</strong> and enter:<ul><li><strong>Policy name:</strong> RestrictEC2Instances</li><li><strong>Policy description:</strong> This SCP restricts launching certain EC2 instance types.</li></ul></li><li>Paste the following JSON into policy editor:</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;Version&#34;</span>: <span style=color:#e6db74>&#34;2012-10-17&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;Statement&#34;</span>: [
-</span></span><span style=display:flex><span>    {
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;Effect&#34;</span>: <span style=color:#e6db74>&#34;Deny&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;Action&#34;</span>: <span style=color:#e6db74>&#34;ec2:RunInstances&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;Resource&#34;</span>: <span style=color:#e6db74>&#34;arn:aws:ec2:*:*:instance/*&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;Condition&#34;</span>: {
-</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;StringEquals&#34;</span>: {
-</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;ec2:InstanceType&#34;</span>: [
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;m5.large&#34;</span>
-</span></span><span style=display:flex><span>          ]
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>      }
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>  ]
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><ul><li>Click <strong>Create policy</strong> to save.</li><li>Return to <strong>Policies</strong>, choose the just created policy.</li><li>Choose <strong>Targets</strong> tab, click <strong>Attach</strong>.</li><li>Choose OU named <code>your-namespace_InnovationSandboxAccountPool</code> and click <strong>Attach policy</strong>.</li></ul><p><img src=/images/Anha6.png alt=architect title=Architect></p><p><strong>Result:</strong><br>Users in sandbox accounts will not be able to launch <code>m5.large</code> EC2 instances.</p><h4 id=next-steps>Next steps</h4><ul><li>You can continue to learn how to change system settings through <strong>AWS AppConfig</strong> and how to use the solution with <strong>manager</strong> and <strong>end user</strong> roles in subsequent steps.</li></ul><p><strong>Note:</strong></p><ul><li>Administrative operations need to be performed in correct account and Region as configured.</li><li>Ensure sandbox accounts have been onboarded to correct OU to appear in lease list.</li></ul><hr><h3 id=using-innovation-sandbox-on-aws-with-manager-role>Using Innovation Sandbox on AWS with Manager role</h3><p>The Innovation Sandbox on AWS solution supports three roles: <strong>administrator</strong>, <strong>manager</strong>, and <strong>end user</strong>. This section provides detailed guidance on using the solution with the <strong>manager</strong> role.</p><h4 id=overview-1>Overview</h4><p>In this section, you will:</p><ul><li>Edit Innovation Sandbox on AWS settings using AWS AppConfig.</li><li>Create basic lease template.</li><li>Create advanced lease template.</li></ul><h3 id=editing-settings-with-aws-appconfig>Editing settings with AWS AppConfig</h3><p><strong>Important note:</strong><br>Perform these steps in the <strong>hub account</strong>, not the organization management account. Ensure you are in the correct <strong>home Region</strong> of this account.</p><p><strong>Steps to edit settings:</strong></p><ul><li>Log in to hub account.</li><li>In console search bar, enter and choose <strong>AWS AppConfig</strong>.</li><li>In navigation bar, under AWS AppConfig, choose <strong>Applications</strong>.</li><li>Choose the path to application created for you.</li><li>Under <strong>Configuration Profiles and Feature Flags</strong>, choose the path named <strong>InnovationSandboxData-Config-GlobalConfigHostedConfiguration-ID</strong>.</li></ul><p><img src=/images/Manager1.png alt=architect title=Architect></p><ul><li>In <strong>Hosted configuration versions</strong>, choose <strong>Create</strong>.</li><li>Change <strong>maxBudget</strong> field to <strong>50</strong> (USD).</li></ul><p><img src=/images/Manager2.png alt=architect title=Architect></p><ul><li>Choose <strong>Create hosted configuration version</strong>.</li><li>Choose <strong>Start deployment</strong>.</li><li>Choose the just created configuration version, keep other default settings and choose <strong>Start deployment</strong>.</li></ul><h3 id=creating-lease-template>Creating Lease Template</h3><h4 id=introduction-to-lease-template>Introduction to Lease Template</h4><p>Lease template is a set of parameters and rules defining how users access and use resources in Innovation Sandbox on AWS environment. This is a template for creating individual leases (controlled access sessions to cloud resources). Main components of lease template include:</p><ul><li><strong>Resource allocation:</strong> Define maximum budget that can be used during lease period.</li><li><strong>Duration:</strong> Determine maximum time a lease can be active.</li><li><strong>Approval process:</strong> Determine if manager approval is needed before granting lease.</li><li><strong>Alerts and thresholds:</strong> Set up alerts based on budget consumption or remaining time.</li></ul><p>You will create two types of templates:</p><ul><li><strong>Basic template:</strong> Maximum budget $25, automatic approval, suitable for small projects and routine testing.</li><li><strong>Advanced template:</strong> Maximum budget $50, requires manager approval, suitable for large projects needing stricter control.</li></ul><h3 id=creating-basic-lease-template>Creating Basic Lease Template</h3><p>This guide helps you create lease template for accounts that don&rsquo;t need manager approval. This template allows maximum budget $25, alert at $15 consumption, duration 168 hours (1 week), alert 24 hours before expiration.</p><p><strong>Implementation steps:</strong></p><ul><li>On Innovation Sandbox on AWS console, choose user profile in top right corner and choose <strong>Sign out</strong>.</li><li>Log in with manager account. If first time logging in, use <strong>Forgot password</strong> function.</li><li>If screen shows two tabs <strong>Accounts</strong> and <strong>Applications</strong>, choose <strong>Applications</strong> to enter application. You will see Innovation Sandbox welcome page.</li><li>In navigation bar, choose <strong>Lease Templates</strong>.</li><li>Choose <strong>Add new lease template</strong>.</li><li>In <strong>Name</strong> field, enter: <code>Basic</code>.</li><li>In <strong>Description</strong> field, enter: <code>Basic account lease template</code>.</li><li>Uncheck <strong>Approval required</strong> box (users don&rsquo;t need manager approval when requesting this type of account).</li></ul><p><img src=/images/Manager3.png alt=architect title=Architect></p><ul><li>Choose <strong>Next</strong>.</li><li>In <strong>Maximum budget</strong> field, enter: <code>100</code>, choose <strong>Next</strong>.</li><li>If you edited AppConfig correctly, you will see error message about maximum budget being $50. Change <strong>Maximum Budget Amount</strong> field to <code>25</code>.</li><li>Under <strong>Budget Thresholds</strong>, choose <strong>Add a threshold</strong>.<ul><li>In <strong>amount consumed</strong>, enter <code>15</code>.</li><li>In <strong>action</strong>, choose <strong>Send Alert</strong>. User will receive alert when consuming $15, and account will be deleted when consuming all $25.</li></ul></li><li>Choose <strong>Next</strong>.</li><li>In <strong>Maximum Duration</strong>, choose <strong>Set a maximum duration</strong> and enter <code>168</code>.</li><li>Under <strong>Duration Thresholds</strong>, choose <strong>Add a threshold</strong>.<ul><li>In <strong>remaining hours</strong>, enter <code>24</code>.</li><li>In <strong>action</strong>, choose <strong>Send Alert</strong>. User will receive alert when 24 hours remain in lease.</li></ul></li><li>Choose <strong>Submit</strong>.</li><li>Under <strong>Lease Templates</strong>, you will see the just created lease template.</li></ul><p><img src=/images/Manager4.png alt=architect title=Architect></p><h3 id=creating-advanced-lease-template>Creating Advanced Lease Template</h3><p>This section guides you to create lease template requiring manager approval. This template has maximum budget $50, alert at $40 level, duration 168 hours, alert 24 hours before expiration. Suitable for large projects needing more careful monitoring.</p><p><strong>Implementation steps:</strong></p><ul><li>In navigation bar, choose <strong>Lease Templates</strong>.</li><li>Choose <strong>Add new lease template</strong>.</li><li>In <strong>Name</strong> field, enter: <code>Advanced</code>.</li><li>In <strong>Description</strong> field, enter: <code>Advanced account lease template</code>.</li><li>Keep <strong>Approval required</strong> box checked (users need manager approval when requesting this type of account).</li><li>Choose <strong>Next</strong>.</li><li>In <strong>Maximum budget</strong> field, enter: <code>50</code>, choose <strong>Next</strong>.</li><li>Under <strong>Budget Thresholds</strong>, choose <strong>Add a threshold</strong>.<ul><li>In <strong>amount consumed</strong>, enter <code>40</code>.</li><li>In <strong>action</strong>, choose <strong>Send Alert</strong>. User will receive alert when consuming $40, and account will be deleted when consuming all $50.</li></ul></li><li>Choose <strong>Next</strong>.</li><li>In <strong>Maximum Duration</strong>, choose <strong>Set a maximum duration</strong> and enter <code>168</code>.</li><li>Under <strong>Duration Thresholds</strong>, choose <strong>Add a threshold</strong>.<ul><li>In <strong>remaining hours</strong>, enter <code>24</code>.</li><li>In <strong>action</strong>, choose <strong>Send Alert</strong>. User will receive alert when 24 hours remain in lease.</li></ul></li><li>Choose <strong>Submit</strong>.</li><li>Under <strong>Lease Templates</strong>, you will see both created lease templates.</li></ul><p><img src=/images/Manager5.png alt=architect title=Architect></p><h3 id=next-steps-1>Next steps</h3><p>After creating two lease templates with manager role, in the next section you will:</p><ul><li>Log in to Innovation Sandbox on AWS as end user.</li><li>Request basic account:<ul><li>Experience automatic approval process.</li><li>Access newly created sandbox account.</li></ul></li><li>Request advanced account:<ul><li>Send request requiring manager approval.</li><li>Wait for manager review and approval.</li><li>Access approved sandbox account.</li></ul></li><li>Manage and monitor your sandbox accounts.</li></ul><h3 id=using-innovation-sandbox-on-aws-with-end-user-role>Using Innovation Sandbox on AWS with End-User role</h3><p>The Innovation Sandbox on AWS solution supports three roles: <strong>administrator</strong>, <strong>manager</strong> and <strong>end user</strong>. Below is detailed guidance for end users when using the system.</p><h4 id=1-request-and-access-basic-aws-account>1. Request and access basic AWS account</h4><p>Basic accounts will be automatically approved, allowing you immediate access to AWS resources within defined limits.</p><p><strong>Implementation steps:</strong></p><ul><li>On Innovation Sandbox on AWS interface, choose user profile in top right corner and choose <strong>Sign out</strong>.</li><li>Log in again with end user credentials.</li><li>If screen has two tabs <strong>Accounts</strong> and <strong>Applications</strong>, choose <strong>Applications</strong> to enter application. You will see Innovation Sandbox welcome page.</li><li>Choose <strong>Request a new account</strong>.</li><li>Choose <strong>Basic lease template</strong>, click <strong>Next</strong>.</li><li>Check <strong>I accept the above terms of service</strong>, click <strong>Next</strong>.</li></ul><p><img src=/images/User1.png alt=architect title=Architect></p><ul><li>In <strong>Comments</strong> section, enter reason (example: <code>Request for a basic account</code>).</li><li>Choose <strong>Submit</strong>.</li><li>In left navigation bar, choose <strong>Home</strong>. In <strong>Account</strong> section, click <strong>Refresh</strong> to update account status.</li></ul><p><img src=/images/User2.png alt=architect title=Architect></p><ul><li>When account has been granted, under <strong>Access</strong> section, choose <strong>Login to account</strong> for the newly added account.</li><li>Choose the role appearing in <strong>Select a role</strong> section to enter AWS Management Console.</li></ul><p><img src=/images/User3.png alt=architect title=Architect></p><h4 id=2-check-service-control-policy-scp-limits>2. Check Service Control Policy (SCP) limits</h4><p>You can check SCP effectiveness by trying to create a restricted EC2 instance.</p><p><strong>Check steps:</strong></p><ul><li>In AWS Management Console, enter <strong>EC2</strong> in search bar and choose the service.</li><li>In left navigation bar, choose <strong>Instances</strong>.</li><li>Choose <strong>Launch instances</strong>.</li><li>In <strong>Name</strong> field, enter <code>test-scp</code>. Keep default Amazon Machine Image (AMI).</li></ul><p><img src=/images/User4.png alt=architect title=Architect></p><ul><li>In <strong>Instance type</strong> field, choose <strong>m5.large</strong> (this type is blocked by SCP).</li><li>In <strong>Key pair</strong>, choose <strong>Proceed without a key pair</strong>.</li><li>Keep other default settings, then choose <strong>Launch instance</strong>.</li><li>You will see error message due to SCP not allowing <strong>m5.large</strong> EC2 instance type creation.</li></ul><p><img src=/images/User5.png alt=architect title=Architect></p><h4 id=3-request-advanced-account>3. Request advanced account</h4><p>Advanced accounts require manager approval before being granted access.</p><p><strong>Implementation steps:</strong></p><ul><li>Return to Innovation Sandbox on AWS interface, log in as end user.</li><li>Choose <strong>Request a new account</strong>.</li><li>Choose <strong>Advanced lease template</strong>, click <strong>Next</strong>.</li><li>Check <strong>I accept the above terms of service</strong>, click <strong>Next</strong>.</li><li>In <strong>Comments</strong> section, enter reason (example: <code>Request for an advanced account</code>).</li><li>Choose <strong>Submit</strong>.</li></ul><p><strong>Approval process:</strong></p><ul><li>Log out of Innovation Sandbox on AWS and log in with manager account.</li><li>On home page, you will see pending approval request. In left navigation bar, choose <strong>Approvals</strong>.</li><li>Choose the request, go to <strong>Actions</strong> and choose <strong>Approve request</strong>.</li></ul><p><strong>Lease management:</strong></p><ul><li>In navigation bar, choose <strong>Leases</strong>.</li><li>You will see two leases: one for basic account, one for advanced account.</li><li>Can choose lease and use <strong>Actions</strong> to terminate, suspend or update lease.</li></ul><p><img src=/images/User6.png alt=architect title=Architect></p><p><img src=/images/User7.png alt=architect title=Architect></p><h4 id=4-summary-of-functions-and-user-experience>4. Summary of functions and user experience</h4><ul><li><strong>Administrator</strong>: Set up system, create SCP to control resources, manage accounts and configure Innovation Sandbox environment, integrate with AWS AppConfig.</li><li><strong>Manager</strong>: Configure budget thresholds, create lease templates (Basic, Advanced), set up approval processes, monitor resource usage.</li><li><strong>End user</strong>: Request and access AWS accounts, test SCP effectiveness, use different account types with appropriate approval processes.</li></ul><footer class=footline></footer></div></div><div id=navigation><a class="nav nav-prev" href=/3-configure-the-solution/ title="Configure the Solution"><i class="fa fa-chevron-left"></i></a>
-<a class="nav nav-next" href=/5-remove-the-solution/ title="Remove the Solution" style=margin-right:0><i class="fa fa-chevron-right"></i></a></div></section><div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px><div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div></div><script src=/js/clipboard.min.js?1752555299></script><script src=/js/perfect-scrollbar.min.js?1752555299></script><script src=/js/perfect-scrollbar.jquery.min.js?1752555299></script><script src=/js/jquery.sticky.js?1752555299></script><script src=/js/featherlight.min.js?1752555299></script><script src=/js/highlight.pack.js?1752555299></script><script>hljs.initHighlightingOnLoad()</script><script src=/js/modernizr.custom-3.6.0.js?1752555299></script><script src=/js/learn.js?1752555299></script><script src=/js/hugo-learn.js?1752555299></script><link href=/mermaid/mermaid.css?1752555299 rel=stylesheet><script src=/mermaid/mermaid.js?1752555299></script><script>mermaid.initialize({startOnLoad:!0})</script><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","https://www.google-analytics.com/analytics.js","ga"),ga("create","UA-158079754-2","auto"),ga("send","pageview")</script></body></html>
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.147.9">
+    <meta name="description" content="">
+<meta name="author" content="hieunghiwork123@gmail.com">
+
+    <link rel="icon" href="//localhost:1313/images/favicon.png" type="image/png">
+
+    <title>Use the Solution :: Deploy Innovation Lab</title>
+
+    
+    <link href="//localhost:1313/css/nucleus.css?1752572531" rel="stylesheet">
+    <link href="//localhost:1313/css/fontawesome-all.min.css?1752572531" rel="stylesheet">
+    <link href="//localhost:1313/css/hybrid.css?1752572531" rel="stylesheet">
+    <link href="//localhost:1313/css/featherlight.min.css?1752572531" rel="stylesheet">
+    <link href="//localhost:1313/css/perfect-scrollbar.min.css?1752572531" rel="stylesheet">
+    <link href="//localhost:1313/css/auto-complete.css?1752572531" rel="stylesheet">
+    <link href="//localhost:1313/css/atom-one-dark-reasonable.css?1752572531" rel="stylesheet">
+    <link href="//localhost:1313/css/theme.css?1752572531" rel="stylesheet">
+    <link href="//localhost:1313/css/hugo-theme.css?1752572531" rel="stylesheet">
+    
+    <link href="//localhost:1313/css/theme-workshop.css?1752572531" rel="stylesheet">
+    
+    
+
+    <script src="//localhost:1313/js/jquery-3.3.1.min.js?1752572531"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="//localhost:1313/4-use-the-solution/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="//localhost:1313/">
+
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="30%"><defs><style>.cls-1{fill:#fff;}.cls-2{fill:#f90;fill-rule:evenodd;}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"></path><path class="cls-2" d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"></path><path class="cls-2" d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"></path></svg>
+
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="//localhost:1313/js/lunr.min.js?1752572531"></script>
+<script type="text/javascript" src="//localhost:1313/js/auto-complete.js?1752572531"></script>
+<script type="text/javascript">
+    
+        var baseurl = "\/\/localhost:1313\/";
+    
+</script>
+<script type="text/javascript" src="//localhost:1313/js/search.js?1752572531"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/1-prerequisite/" title="Prerequisites" class="dd-item 
+        
+        
+        
+        ">
+      <a href="//localhost:1313/1-prerequisite/">
+          <b>1. </b>Prerequisites
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/2-deploy-the-solution/" title="Deploy the Solution" class="dd-item 
+        
+        
+        
+        ">
+      <a href="//localhost:1313/2-deploy-the-solution/">
+          <b>2. </b>Deploy the Solution
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/3-configure-the-solution/" title="Configure the Solution" class="dd-item 
+        
+        
+        
+        ">
+      <a href="//localhost:1313/3-configure-the-solution/">
+          <b>3. </b>Configure the Solution
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-use-the-solution/" title="Use the Solution" class="dd-item 
+        
+        active
+        
+        ">
+      <a href="//localhost:1313/4-use-the-solution/">
+          <b>4. </b>Use the Solution
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-remove-the-solution/" title="Remove the Solution" class="dd-item 
+        
+        
+        
+        ">
+      <a href="//localhost:1313/5-remove-the-solution/">
+          <b>5. </b>Remove the Solution
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="http://awsstudygroup.com"><i class='fab fa-aws'></i> AWS Study Group - Blog</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://www.facebook.com/groups/660548818043427/"><i class='fab fa-facebook'></i> AWS Study Group - FB Group</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+          <div class="select-style">
+            <select id="select-language" onchange="location = this.value;">
+          
+          
+          
+              
+              
+                  
+                    
+                    
+                      <option id="en" value="//localhost:1313/4-use-the-solution/" selected>English</option>
+                    
+                  
+              
+                  
+              
+          
+              
+              
+                  
+              
+                  
+                    
+                    
+                      <option id="vi" value="//localhost:1313/vi/4-use-the-solution/">Tiếng Việt</option>
+                    
+                  
+              
+          
+        </select>
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          width="255px" height="255px" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255;" xml:space="preserve">
+          <g>
+            <g id="arrow-drop-down">
+              <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+            </g>
+          </g>
+        </svg>
+        </div>
+        </a>
+        </li>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <left>
+    
+     <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7831210&style=0038&nbdigits=9&type=page&initCount=0" title="Migrate" Alt="web counter"   border="0" /></a>  <br>
+     <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0" title="Total CLoud Journey" Alt="web counter"   border="0"   />
+     
+</left>
+<left>
+    <br>
+    <br>
+        <b> Last Updated </b> <br>
+        <i><font color=orange>15-07-2025</font></i>
+    </left>
+    <left>
+        <br>
+        <br>
+            <b> Team </b> <br>
+           
+            <i>
+                <a href="https://www.linkedin.com/in/hieunghi/"  style="color:orange">Danh Hoàng Hiếu Nghị</a>
+        </i>
+        </left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            <a href='//localhost:1313/'>Innovation Lab</a> > Use the Solution
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#using-the-system">Using the System</a></li>
+        <li><a href="#administrator-role">Administrator Role</a></li>
+        <li><a href="#manager-role">Manager Role</a></li>
+        <li><a href="#creating-lease-templates">Creating Lease Templates</a></li>
+        <li><a href="#creating-a-basic-template">Creating a Basic Template</a></li>
+        <li><a href="#creating-an-advanced-template">Creating an Advanced Template</a></li>
+        <li><a href="#end-user-role">End-User Role</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Use the Solution
+            </h1>
+          
+
+        
+
+
+
+	<h3 id="using-the-system">Using the System</h3>
+<p>Okay, now that everything is set up, we&rsquo;ll try using the system with three different roles to see how it works.</p>
+<h4 id="three-main-roles">Three main roles</h4>
+<ul>
+<li><strong>Administrator</strong> - the highest level of permission</li>
+<li><strong>Manager</strong> - creates templates and approves requests</li>
+<li><strong>End user</strong> - requests accounts to use</li>
+</ul>
+<p>It should take about 30 minutes to try them all.</p>
+<h3 id="administrator-role">Administrator Role</h3>
+<h4 id="1-logging-into-the-system">1. Logging into the system</h4>
+<ul>
+<li>Get the URL from the CloudFrontDistributionUrl saved during deployment</li>
+<li>Open the URL in a browser</li>
+<li>Log in with the admin account. The first time, select <strong>Forgot password</strong> to set it up.</li>
+</ul>
+<p><strong>Note:</strong> If you see two tabs, <strong>Accounts</strong> and <strong>Applications</strong>, select <strong>Applications</strong> to enter the main app.</p>
+<p><img src="//localhost:1313/images/Anh1.jpg" alt="architect" title="Architect"></p>
+<h4 id="2-adding-accounts-for-lease">2. Adding accounts for lease</h4>
+<ul>
+<li>In the left navigation bar, <strong>Administration</strong> &gt; <strong>Accounts</strong></li>
+<li>Click <strong>Add accounts</strong></li>
+<li>In <strong>Select accounts</strong>, you will see a list of available accounts. If there are none, check if the sandbox account has been moved to the <strong>Entry</strong> OU.</li>
+<li>Select a few accounts, <strong>Next</strong>, then <strong>Submit</strong>.</li>
+</ul>
+<p><img src="//localhost:1313/images/anh2.jpg" alt="architect" title="Architect"></p>
+<ul>
+<li>Go back to <strong>Accounts</strong> to check the status.</li>
+</ul>
+<h4 id="3-managing-settings">3. Managing settings</h4>
+<ul>
+<li>In the navigation bar, <strong>Administration</strong> &gt; <strong>Settings</strong></li>
+<li>There are three tabs:
+<ul>
+<li><strong>General Settings</strong></li>
+<li><strong>Lease Settings</strong> (default maximum budget is $100)</li>
+<li><strong>Clean Up Settings</strong></li>
+</ul>
+</li>
+<li>To change these, you must use <strong>AWS AppConfig</strong> (explained in the next section).</li>
+</ul>
+<p><img src="//localhost:1313/images/Anha3.png" alt="architect" title="Architect"></p>
+<h4 id="4-creating-a-service-control-policy-to-set-limits">4. Creating a Service Control Policy to set limits</h4>
+<p>Example: Create an SCP to prevent users from creating <code>m5.large</code> EC2 instances.</p>
+<p><strong>Steps:</strong></p>
+<ul>
+<li>Log into the <strong>organization management account</strong></li>
+<li>Open <strong>AWS Organizations</strong></li>
+<li>In the navigation bar, select <strong>Policies</strong></li>
+<li>Under <strong>Supported policy types</strong> &gt; <strong>Service control policies</strong></li>
+</ul>
+<p><img src="//localhost:1313/images/Anha4.png" alt="architect" title="Architect"></p>
+<ul>
+<li>Click <strong>Create policy</strong>:
+<ul>
+<li><strong>Policy name:</strong> RestrictEC2Instances</li>
+<li><strong>Policy description:</strong> This SCP restricts launching certain EC2 instance types.</li>
+</ul>
+</li>
+<li>Paste this JSON into the policy editor:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Version&#34;</span>: <span style="color:#e6db74">&#34;2012-10-17&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Statement&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Deny&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Action&#34;</span>: <span style="color:#e6db74">&#34;ec2:RunInstances&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Resource&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:ec2:*:*:instance/*&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Condition&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;StringEquals&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;ec2:InstanceType&#34;</span>: [
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;m5.large&#34;</span>
+</span></span><span style="display:flex;"><span>          ]
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li><strong>Create policy</strong></li>
+<li>Go back to <strong>Policies</strong>, select the newly created policy</li>
+<li>In the <strong>Targets</strong> tab, click <strong>Attach</strong></li>
+<li>Select the OU named <code>your-namespace_InnovationSandboxAccountPool</code>, <strong>Attach policy</strong></li>
+</ul>
+<p><img src="//localhost:1313/images/Anha6.png" alt="architect" title="Architect"></p>
+<p><strong>Result:</strong> Users in the sandbox account can no longer create <code>m5.large</code> EC2 instances.</p>
+<h3 id="manager-role">Manager Role</h3>
+<p>The manager can edit settings and create templates for user account requests.</p>
+<h4 id="editing-settings-with-appconfig">Editing settings with AppConfig</h4>
+<p><strong>Important note:</strong> Do this in the <strong>hub account</strong>, not the management account. Use the correct <strong>home Region</strong>.</p>
+<p><strong>Steps:</strong></p>
+<ul>
+<li>Log into the hub account</li>
+<li>In the console search bar, enter <strong>AWS AppConfig</strong></li>
+<li>In the navigation bar, select <strong>Applications</strong></li>
+<li>Select the created app</li>
+<li>Select <strong>InnovationSandboxData-Config-GlobalConfigHostedConfiguration-ID</strong></li>
+</ul>
+<p><img src="//localhost:1313/images/Manager1.png" alt="architect" title="Architect"></p>
+<ul>
+<li><strong>Hosted configuration versions</strong> &gt; <strong>Create</strong></li>
+<li>Change <strong>maxBudget</strong> to <strong>50</strong> (USD)</li>
+</ul>
+<p><img src="//localhost:1313/images/Manager2.png" alt="architect" title="Architect"></p>
+<ul>
+<li><strong>Create hosted configuration version</strong></li>
+<li><strong>Start deployment</strong></li>
+<li>Select the newly created version, keep the other settings, <strong>Start deployment</strong></li>
+</ul>
+<h3 id="creating-lease-templates">Creating Lease Templates</h3>
+<h4 id="what-is-a-lease-template">What is a Lease Template</h4>
+<p>Basically, it&rsquo;s a set of rules defining how users can use resources:</p>
+<ul>
+<li><strong>Maximum budget:</strong> How much they can spend</li>
+<li><strong>Duration:</strong> How long they can use it</li>
+<li><strong>Approval:</strong> Whether a manager needs to approve it</li>
+<li><strong>Alerts:</strong> Notifications for when money or time is almost up</li>
+</ul>
+<p>We&rsquo;ll create two types:</p>
+<ul>
+<li><strong>Basic:</strong> $25, auto-approved, for light testing</li>
+<li><strong>Advanced:</strong> $50, needs approval, for larger projects</li>
+</ul>
+<h3 id="creating-a-basic-template">Creating a Basic Template</h3>
+<p>This template is for requests that don&rsquo;t need approval. $25 maximum, alerts at $15, usable for 168 hours (1 week), with a 24-hour warning before expiration.</p>
+<p><strong>Steps:</strong></p>
+<ul>
+<li>In the Innovation Sandbox console, select the profile in the top right &gt; <strong>Sign out</strong></li>
+<li>Log in with the manager account. Use <strong>Forgot password</strong> the first time.</li>
+<li>If there are two tabs, <strong>Accounts</strong> and <strong>Applications</strong>, select <strong>Applications</strong>.</li>
+<li>In the navigation bar, select <strong>Lease Templates</strong>.</li>
+<li><strong>Add new lease template</strong></li>
+<li><strong>Name:</strong> <code>Basic</code></li>
+<li><strong>Description:</strong> <code>Basic account lease template</code></li>
+<li>Uncheck <strong>Approval required</strong> (no manager approval needed)</li>
+</ul>
+<p><img src="//localhost:1313/images/Manager3.png" alt="architect" title="Architect"></p>
+<ul>
+<li><strong>Next</strong></li>
+<li><strong>Maximum budget:</strong> <code>100</code>, <strong>Next</strong></li>
+<li>If AppConfig was set correctly, it will error, saying the max budget is $50. Change <strong>Maximum Budget Amount</strong> to <code>25</code>.</li>
+<li><strong>Budget Thresholds</strong> &gt; <strong>Add a threshold</strong>:
+<ul>
+<li><strong>amount consumed:</strong> <code>15</code></li>
+<li><strong>action:</strong> <strong>Send Alert</strong>. The user will be alerted at $15, and the account will be deleted at $25.</li>
+</ul>
+</li>
+<li><strong>Next</strong></li>
+<li><strong>Maximum Duration</strong> &gt; <strong>Set a maximum duration</strong> &gt; <code>168</code></li>
+<li><strong>Duration Thresholds</strong> &gt; <strong>Add a threshold</strong>:
+<ul>
+<li><strong>remaining hours:</strong> <code>24</code></li>
+<li><strong>action:</strong> <strong>Send Alert</strong>. A warning will be sent with 24 hours remaining.</li>
+</ul>
+</li>
+<li><strong>Submit</strong></li>
+</ul>
+<p><img src="//localhost:1313/images/Manager4.png" alt="architect" title="Architect"></p>
+<h3 id="creating-an-advanced-template">Creating an Advanced Template</h3>
+<p>This template requires manager approval. $50 maximum, alerts at $40, 168-hour duration, 24-hour warning.</p>
+<p><strong>Steps:</strong></p>
+<ul>
+<li><strong>Lease Templates</strong> &gt; <strong>Add new lease template</strong></li>
+<li><strong>Name:</strong> <code>Advanced</code></li>
+<li><strong>Description:</strong> <code>Advanced account lease template</code></li>
+<li>Keep <strong>Approval required</strong> checked</li>
+<li><strong>Next</strong></li>
+<li><strong>Maximum budget:</strong> <code>50</code>, <strong>Next</strong></li>
+<li><strong>Budget Thresholds</strong> &gt; <strong>Add a threshold</strong>:
+<ul>
+<li><strong>amount consumed:</strong> <code>40</code></li>
+<li><strong>action:</strong> <strong>Send Alert</strong></li>
+</ul>
+</li>
+<li><strong>Next</strong></li>
+<li><strong>Maximum Duration</strong> &gt; <strong>Set a maximum duration</strong> &gt; <code>168</code></li>
+<li><strong>Duration Thresholds</strong> &gt; <strong>Add a threshold</strong>:
+<ul>
+<li><strong>remaining hours:</strong> <code>24</code></li>
+<li><strong>action:</strong> <strong>Send Alert</strong></li>
+</ul>
+</li>
+<li><strong>Submit</strong></li>
+</ul>
+<p><img src="//localhost:1313/images/Manager5.png" alt="architect" title="Architect"></p>
+<h3 id="end-user-role">End-User Role</h3>
+<p>Now let&rsquo;s try being a regular user, requesting an account and using it.</p>
+<h4 id="1-requesting-a-basic-account">1. Requesting a basic account</h4>
+<p>The basic account will be auto-approved.</p>
+<p><strong>Steps:</strong></p>
+<ul>
+<li>In the Innovation Sandbox interface, select the profile in the top right &gt; <strong>Sign out</strong></li>
+<li>Log back in with the end user account</li>
+<li>If there are two tabs, select <strong>Applications</strong></li>
+<li><strong>Request a new account</strong></li>
+<li>Select <strong>Basic lease template</strong>, <strong>Next</strong></li>
+<li>Check <strong>I accept the above terms of service</strong>, <strong>Next</strong></li>
+</ul>
+<p><img src="//localhost:1313/images/User1.png" alt="architect" title="Architect"></p>
+<ul>
+<li><strong>Comments:</strong> enter a reason (e.g., <code>Request for a basic account</code>)</li>
+<li><strong>Submit</strong></li>
+<li>In the left navigation bar, select <strong>Home</strong>. In the <strong>Account</strong> section, click <strong>Refresh</strong> to update.</li>
+</ul>
+<p><img src="//localhost:1313/images/User2.png" alt="architect" title="Architect"></p>
+<ul>
+<li>When the account is granted, in the <strong>Access</strong> section, select <strong>Login to account</strong></li>
+<li>Select a role in <strong>Select a role</strong> to enter the AWS Management Console.</li>
+</ul>
+<p><img src="//localhost:1313/images/User3.png" alt="architect" title="Architect"></p>
+<h4 id="2-testing-scp-limits">2. Testing SCP limits</h4>
+<p>Check if the SCP is working by trying to create a forbidden EC2 instance.</p>
+<p><strong>Steps:</strong></p>
+<ul>
+<li>In the AWS Management Console, search for <strong>EC2</strong></li>
+<li>In the left navigation bar, select <strong>Instances</strong></li>
+<li><strong>Launch instances</strong></li>
+<li><strong>Name:</strong> <code>test-scp</code>. Keep the default AMI.</li>
+</ul>
+<p><img src="//localhost:1313/images/User4.png" alt="architect" title="Architect"></p>
+<ul>
+<li><strong>Instance type:</strong> select <strong>m5.large</strong> (this type is blocked by the SCP)</li>
+<li><strong>Key pair:</strong> <strong>Proceed without a key pair</strong></li>
+<li>Keep the other settings, <strong>Launch instance</strong></li>
+<li>You will see an error message because the SCP prevents the creation of <strong>m5.large</strong>.</li>
+</ul>
+<p><img src="//localhost:1313/images/User5.png" alt="architect" title="Architect"></p>
+<h4 id="3-requesting-an-advanced-account">3. Requesting an advanced account</h4>
+<p>The advanced account requires manager approval.</p>
+<p><strong>Steps:</strong></p>
+<ul>
+<li>Go back to the Innovation Sandbox interface, log in as an end user</li>
+<li><strong>Request a new account</strong></li>
+<li>Select <strong>Advanced lease template</strong>, <strong>Next</strong></li>
+<li>Check <strong>I accept the above terms of service</strong>, <strong>Next</strong></li>
+<li><strong>Comments:</strong> enter a reason (e.g., <code>Request for an advanced account</code>)</li>
+<li><strong>Submit</strong></li>
+</ul>
+<p><strong>Approval process:</strong></p>
+<ul>
+<li>Log out, log in with the manager account</li>
+<li>The homepage will show a pending request. In the navigation bar, select <strong>Approvals</strong>.</li>
+<li>Select the request, <strong>Actions</strong> &gt; <strong>Approve request</strong></li>
+</ul>
+<p><strong>Managing leases:</strong></p>
+<ul>
+<li>In the navigation bar, select <strong>Leases</strong></li>
+<li>You will see two leases: basic and advanced</li>
+<li>You can select a lease and use <strong>Actions</strong> to terminate, suspend, or update it.</li>
+</ul>
+<p><img src="//localhost:1313/images/User6.png" alt="architect" title="Architect"></p>
+<p><img src="//localhost:1313/images/User7.png" alt="architect" title="Architect"></p>
+<h4 id="4-summary">4. Summary</h4>
+<ul>
+<li><strong>Administrator:</strong> Sets up the system, creates SCPs to control resources, manages accounts, integrates AppConfig</li>
+<li><strong>Manager:</strong> Configures budgets, creates lease templates (Basic, Advanced), sets up approval processes, monitors usage</li>
+<li><strong>End user:</strong> Requests and accesses AWS accounts, tests SCPs, uses different account types with approval processes</li>
+</ul>
+<p>That&rsquo;s it, you now know how to use the Innovation Sandbox with all three roles!</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="//localhost:1313/3-configure-the-solution/" title="Configure the Solution"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="//localhost:1313/5-remove-the-solution/" title="Remove the Solution" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="//localhost:1313/js/clipboard.min.js?1752572531"></script>
+    <script src="//localhost:1313/js/perfect-scrollbar.min.js?1752572531"></script>
+    <script src="//localhost:1313/js/perfect-scrollbar.jquery.min.js?1752572531"></script>
+    <script src="//localhost:1313/js/jquery.sticky.js?1752572531"></script>
+    <script src="//localhost:1313/js/featherlight.min.js?1752572531"></script>
+    <script src="//localhost:1313/js/highlight.pack.js?1752572531"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="//localhost:1313/js/modernizr.custom-3.6.0.js?1752572531"></script>
+    <script src="//localhost:1313/js/learn.js?1752572531"></script>
+    <script src="//localhost:1313/js/hugo-learn.js?1752572531"></script>
+
+    <link href="//localhost:1313/mermaid/mermaid.css?1752572531" rel="stylesheet" />
+    <script src="//localhost:1313/mermaid/mermaid.js?1752572531"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-158079754-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </body>
+</html>

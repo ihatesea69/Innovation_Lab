@@ -1,69 +1,75 @@
 +++
 title = "Remove the Solution"
-date = 2025
+date = 2020
 weight = 5
 chapter = false
 pre = "<b>5. </b>"
 +++
 
-### Complete Removal Guide for Innovation Sandbox on AWS
-If you have deployed Innovation Sandbox on AWS in a testing environment and need to completely remove it, follow the steps below. Estimated time: about 15 minutes.
+### Clean up when you're done
 
-#### 1. Delete First Two CloudFormation Stacks (On Hub Account)
-Log in to hub account and ensure you are in the correct home Region.
+If you've finished testing and want to clean everything up, follow these steps. It should take about 15 minutes.
 
-Open AWS CloudFormation console.
+#### 1. Delete the first two stacks (in the hub account)
 
-Choose compute stack (example: isb-compute), click Delete.
+Log into the hub account, make sure you're in the right home Region.
 
-Wait for deletion process to complete.
+Open the AWS CloudFormation console.
 
-Continue to choose data stack (example: isb-data), click Delete.
+Select the compute stack (e.g., isb-compute), click Delete.
 
-Wait for deletion process to complete.
+Wait for it to finish deleting.
 
-#### 2. Delete IAM Identity Center Application Configuration (On Organization Management Account)
-Log in to organization management account and ensure you are in the correct home Region.
+Next, select the data stack (e.g., isb-data), click Delete.
 
-Open IAM Identity Center console.
+Wait for it to finish deleting.
 
-In navigation bar, choose Applications.
+#### 2. Delete the IAM Identity Center App configuration (in the management account)
 
-Switch to Customer managed tab.
+Log into the management account, make sure you're in the right home Region.
 
-Choose Innovation Sandbox on AWS application.
+Open the IAM Identity Center console.
+
+In the navigation bar, select Applications.
+
+Switch to the Customer managed tab.
+
+Select the Innovation Sandbox on AWS app.
 
 Go to Actions > Remove.
 
-Confirm by entering application name to complete deletion.
+Confirm by entering the app name to complete.
 
-#### 3. Delete Remaining CloudFormation Stacks (On Organization Management Account)
-Open AWS CloudFormation console.
+#### 3. Delete the remaining two stacks (in the management account)
 
-Choose IDC stack (example: isb-idc), click Delete.
+Open the AWS CloudFormation console.
 
-Wait for deletion process to complete.
+Select the IDC stack (e.g., isb-idc), click Delete.
 
-Choose AccountPool stack (example: isb-accountpool), click Delete.
+Wait for it to finish deleting.
 
-Wait for deletion process to complete.
+Select the AccountPool stack (e.g., isb-accountpool), click Delete.
 
-#### 4. Close AWS Sandbox Accounts (Optional)
-Note: Before closing AWS accounts, carefully read the process, prerequisites and impacts of account closure in the AWS account management guidance documentation.
+Wait for it to finish deleting.
 
-Open AWS Organizations console in organization management account.
+#### 4. Close the AWS Sandbox accounts (optional)
 
-Access organizational unit for Innovation Sandbox on AWS.
+Note: Before closing an AWS account, carefully read the instructions and impacts of closing an account in the AWS documentation.
 
-Open each sub-organizational unit to find sandbox accounts.
+Open the AWS Organizations console in the management account.
 
-For each account to close:
+Access the Innovation Sandbox on AWS organizational unit.
 
-Choose the account.
+Open each sub-organizational unit to find the sandbox accounts.
+
+For each account you want to close:
+
+Select the account.
 
 Go to Actions > Close.
 
-Confirm by entering AWS account ID.
+Confirm by entering the AWS account ID.
 
-#### Complete!
-You have completed the complete removal of the Innovation Sandbox on AWS solution from your testing environment.
+#### Done!
+
+You've now cleaned up the entire Innovation Sandbox on AWS from your test environment.

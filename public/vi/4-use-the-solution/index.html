@@ -1,33 +1,825 @@
-<!doctype html><html lang=vi class="js csstransforms3d"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=generator content="Hugo 0.147.9"><meta name=description content><meta name=author content="journeyoftheaverageguy@gmail.com"><link rel=icon href=/images/favicon.png type=image/png><title>Use the Solutio :: Triển khai Ứng dụng ShareNote với Auto Scaling Group</title><link href=/css/nucleus.css?1752555300 rel=stylesheet><link href=/css/fontawesome-all.min.css?1752555300 rel=stylesheet><link href=/css/hybrid.css?1752555300 rel=stylesheet><link href=/css/featherlight.min.css?1752555300 rel=stylesheet><link href=/css/perfect-scrollbar.min.css?1752555300 rel=stylesheet><link href=/css/auto-complete.css?1752555300 rel=stylesheet><link href=/css/atom-one-dark-reasonable.css?1752555300 rel=stylesheet><link href=/css/theme.css?1752555300 rel=stylesheet><link href=/css/hugo-theme.css?1752555300 rel=stylesheet><link href=/css/theme-workshop.css?1752555300 rel=stylesheet><script src=/js/jquery-3.3.1.min.js?1752555300></script><style>:root #header+#content>#left>#rlblock_left{display:none !important}</style></head><body data-url=/vi/4-use-the-solution/><nav id=sidebar class=showVisitedLinks><div id=header-wrapper><div id=header><a id=logo href=/><svg id="Layer_1" data-name="Layer 1" viewBox="0 0 60 30" width="30%"><defs><style>.cls-1{fill:#fff}.cls-2{fill:#f90;fill-rule:evenodd}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09 10.85a4.7 4.7.0 00.19 1.48 7.73 7.73.0 00.54 1.19.77.77.0 01.12.38.64.64.0 01-.32.49l-1 .7a.83.83.0 01-.44.15.69.69.0 01-.49-.23 3.8 3.8.0 01-.6-.77q-.25-.42-.51-1a6.14 6.14.0 01-4.89 2.3 4.54 4.54.0 01-3.32-1.19 4.27 4.27.0 01-1.22-3.2 4.28 4.28.0 011.46-3.4A6.06 6.06.0 017.69 6.46a12.47 12.47.0 011.76.13q.92.13 1.91.36V5.73a3.65 3.65.0 00-.79-2.66A3.81 3.81.0 007.86 2.3a7.71 7.71.0 00-1.79.22 12.78 12.78.0 00-1.79.57 4.55 4.55.0 01-.58.22h-.26q-.35.0-.35-.52V2a1.09 1.09.0 01.12-.58 1.2 1.2.0 01.47-.35A10.88 10.88.0 015.77.32 10.19 10.19.0 018.36.0a6 6 0 014.35 1.35 5.49 5.49.0 011.38 4.09zM7.34 13.38a5.36 5.36.0 001.72-.31A3.63 3.63.0 0010.63 12 2.62 2.62.0 0011.19 11a5.63 5.63.0 00.16-1.44v-.7a14.35 14.35.0 00-1.53-.28 12.37 12.37.0 00-1.56-.1 3.84 3.84.0 00-2.47.67A2.34 2.34.0 005 11a2.35 2.35.0 00.61 1.76A2.4 2.4.0 007.34 13.38zm13.35 1.8a1 1 0 01-.64-.16 1.3 1.3.0 01-.35-.65L15.81 1.51a3 3 0 01-.15-.67.36.36.0 01.41-.41H17.7a1 1 0 01.65.16 1.4 1.4.0 01.33.65l2.79 11 2.59-11A1.17 1.17.0 0124.39.6a1.1 1.1.0 01.67-.16H26.4a1.1 1.1.0 01.67.16 1.17 1.17.0 01.32.65L30 12.39 32.88 1.25A1.39 1.39.0 0133.22.6a1 1 0 01.65-.16h1.54a.36.36.0 01.41.41 1.36 1.36.0 010 .26 3.64 3.64.0 01-.12.41l-4 12.86a1.3 1.3.0 01-.35.65 1 1 0 01-.64.16H29.25a1 1 0 01-.67-.17 1.26 1.26.0 01-.32-.67L25.67 3.64l-2.56 10.7a1.26 1.26.0 01-.32.67 1 1 0 01-.67.17zm21.36.44a11.28 11.28.0 01-2.56-.29 7.44 7.44.0 01-1.92-.67 1 1 0 01-.61-.93v-.84q0-.52.38-.52a.9.9.0 01.31.06l.42.17a8.77 8.77.0 001.83.58 9.78 9.78.0 002 .2 4.48 4.48.0 002.43-.55 1.76 1.76.0 00.86-1.57 1.61 1.61.0 00-.45-1.16A4.29 4.29.0 0043 9.22l-2.41-.76A5.15 5.15.0 0138 6.78a3.94 3.94.0 01-.83-2.41 3.7 3.7.0 01.45-1.85 4.47 4.47.0 011.19-1.37 5.27 5.27.0 011.7-.86A7.4 7.4.0 0142.6.0a8.87 8.87.0 011.12.07q.57.07 1.08.19t.95.26a4.27 4.27.0 01.7.29 1.59 1.59.0 01.49.41.94.94.0 01.15.55v.79q0 .52-.38.52a1.76 1.76.0 01-.64-.2 7.74 7.74.0 00-3.2-.64 4.37 4.37.0 00-2.21.47 1.6 1.6.0 00-.79 1.48 1.58 1.58.0 00.49 1.18 4.94 4.94.0 001.83.92L44.55 7a5.08 5.08.0 012.57 1.6A3.76 3.76.0 0147.9 11a4.21 4.21.0 01-.44 1.93 4.4 4.4.0 01-1.21 1.47 5.43 5.43.0 01-1.85.93A8.25 8.25.0 0142.05 15.62z"/><path class="cls-2" d="M45.19 23.81C39.72 27.85 31.78 30 25 30A36.64 36.64.0 01.22 20.57c-.51-.46-.06-1.09.56-.74A49.78 49.78.0 0025.53 26.4 49.23 49.23.0 0044.4 22.53C45.32 22.14 46.1 23.14 45.19 23.81z"/><path class="cls-2" d="M47.47 21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74 3.13-2.2 8.27-1.57 8.86-.83s-.16 5.89-3.09 8.35c-.45.38-.88.18-.68-.32C46.69 25.8 48.17 22.11 47.47 21.21z"/></svg></a></div><div class=searchbox><label for=search-by><i class="fas fa-search"></i></label>
-<input data-search-input id=search-by type=search placeholder=Search...>
-<span data-search-clear><i class="fas fa-times"></i></span></div><script type=text/javascript src=/js/lunr.min.js?1752555300></script><script type=text/javascript src=/js/auto-complete.js?1752555300></script><script type=text/javascript>var baseurl="//vi"</script><script type=text/javascript src=/js/search.js?1752555300></script></div><div class=highlightable><ul class=topics><li data-nav-id=/vi/1-prerequisite/ title="Các bước chuẩn bị" class=dd-item><a href=/vi/1-prerequisite/><b>1. </b>Các bước chuẩn bị
-<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/vi/2-deploy-the-solution/ title="Deploy the Solution" class=dd-item><a href=/vi/2-deploy-the-solution/><b>2. </b>Deploy the Solution
-<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/vi/3-configure-the-solution/ title="Configure the Solution" class=dd-item><a href=/vi/3-configure-the-solution/><b>3. </b>Configure the Solution
-<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/vi/4-use-the-solution/ title="Use the Solutio" class="dd-item
-active"><a href=/vi/4-use-the-solution/><b>4. </b>Use the Solutio
-<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/vi/5-remove-the-solution/ title="Remove the Solution" class=dd-item><a href=/vi/5-remove-the-solution/><b>5. </b>Remove the Solution
-<i class="fas fa-check read-icon"></i></a></li></ul><section id=shortcuts><h3>More</h3><ul><li><a class=padding href=http://awsstudygroup.com><i class='fab fa-aws'></i> AWS Study Group - Blog</a></li><li><a class=padding href=https://www.facebook.com/groups/660548818043427/><i class='fab fa-facebook'></i> AWS Study Group - Nhóm FB</a></li></ul></section><section id=prefooter><hr><ul><li><a class=padding><i class="fas fa-language fa-fw"></i><div class=select-style><select id=select-language onchange="location=this.value"><option id=en value=/4-use-the-solution/>English</option><option id=vi value=/vi/4-use-the-solution/ selected>Tiếng Việt</option></select>
-<svg id="Capa_1" xmlns:xlink="http://www.w3.org/1999/xlink" width="255" height="255" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255"><g><g id="arrow-drop-down"><polygon points="0,63.75 127.5,191.25 255,63.75"/></g></g></svg></div></a></li><li><a class=padding href=# data-clear-history-toggle><i class="fas fa-history fa-fw"></i> Clear History</a></li></ul></section><section id=footer><left><b>Workshop</b><br><img src="https://hitwebcounter.com/counter/counter.php?page=7831210&style=0038&nbdigits=9&type=page&initCount=0" title=Migrate alt="web counter" border=0></a><br><b><a href=https://cloudjourney.awsstudygroup.com/>Cloud Journey</a></b><br><img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0" title="Total CLoud Journey" alt="web counter" border=0>
-</left><left><br><br><b>Last Updated</b><br><i><font color=orange>17-09-2021</font></i>
-</left><left><br><br><b>Team</b><br><i><a href=https://www.linkedin.com/in/jotaguy style=color:orange>Gia Hưng</a>
-</i></left><script async defer src=https://buttons.github.io/buttons.js></script></section></div></nav><section id=body><div id=overlay></div><div class="padding highlightable"><div><div id=top-bar><div id=breadcrumbs itemscope itemtype=http://data-vocabulary.org/Breadcrumb><span id=sidebar-toggle-span><a href=# id=sidebar-toggle data-sidebar-toggle><i class="fas fa-bars"></i>
-</a></span><span id=toc-menu><i class="fas fa-list-alt"></i></span>
-<span class=links><a href=/vi/>Innovation Lab</a> > Use the Solutio</span></div><div class=progress><div class=wrapper><nav id=TableOfContents><ul><li><ul><li><a href=#s-dng-h-thng>S? d?ng h? th?ng</a></li><li><a href=#vai-tr-administrator>Vai tr� Administrator</a></li><li><a href=#vai-tr-manager>Vai tr� Manager</a></li><li><a href=#to-lease-template>T?o Lease Template</a></li><li><a href=#to-basic-template>T?o Basic Template</a></li><li><a href=#to-advanced-template>T?o Advanced Template</a></li><li><a href=#vai-tr-end-user>Vai tr� End-User</a></li></ul></li></ul></nav></div></div></div></div><div id=head-tags></div><div id=body-inner><h1>Use the Solutio</h1><h3 id=s-dng-h-thng>S? d?ng h? th?ng</h3><p>Okay gi? d� setup xong h?t r?i, ch�ng ta s? th? x�i h? th?ng v?i 3 vai tr� kh�c nhau d? xem n� ho?t d?ng th? n�o.</p><h4 id=ba-vai-tr-chnh>Ba vai tr� ch�nh</h4><ul><li><strong>Administrator</strong> - qu?n tr? vi�n, quy?n cao nh?t</li><li><strong>Manager</strong> - qu?n l�, t?o template v� approve request</li><li><strong>End user</strong> - ngu?i d�ng cu?i, request t�i kho?n d? x�i</li></ul><p>D? ki?n m?t kho?ng 30 ph�t d? th? h?t.</p><h3 id=vai-tr-administrator>Vai tr� Administrator</h3><h4 id=1-ang-nhp-vo-h-thng>1. �ang nh?p v�o h? th?ng</h4><ul><li>L?y URL t? CloudFrontDistributionUrl d� luu l�c deploy</li><li>M? URL tr�n browser</li><li>�ang nh?p b?ng t�i kho?n admin. L?n d?u th� ch?n <strong>Forgot password</strong> d? set m?t kh?u</li></ul><p><strong>Luu �:</strong> N?u th?y hai tab <strong>Accounts</strong> v� <strong>Applications</strong>, ch?n <strong>Applications</strong> d? v�o app ch�nh.</p><p><img src=/images/Anha1.png alt=architect title=Architect></p><h4 id=2-thm-ti-khon-cho-thu>2. Th�m t�i kho?n cho thu�</h4><ul><li>Thanh di?u hu?ng b�n tr�i, <strong>Administration</strong> > <strong>Accounts</strong></li><li>Click <strong>Add accounts</strong></li><li>M?c <strong>Select accounts</strong>, s? th?y danh s�ch t�i kho?n c� s?n. N?u kh�ng c� g� th� check l?i xem sandbox account d� du?c move v�o OU <strong>Entry</strong> chua</li><li>Ch?n m?t v�i t�i kho?n, <strong>Next</strong> r?i <strong>Submit</strong></li></ul><p><img src=/images/Anha2.png alt=architect title=Architect></p><ul><li>Quay l?i <strong>Accounts</strong> d? check tr?ng th�i</li></ul><h4 id=3-qun-l-ci-dt>3. Qu?n l� c�i d?t</h4><ul><li>Thanh di?u hu?ng, <strong>Administration</strong> > <strong>Settings</strong></li><li>C� ba tab:<ul><li><strong>General Settings</strong></li><li><strong>Lease Settings</strong> (ng�n s�ch t?i da m?c d?nh $100)</li><li><strong>Clean Up Settings</strong></li></ul></li><li>Mu?n d?i th� ph?i d�ng <strong>AWS AppConfig</strong> (hu?ng d?n ? ph?n sau)</li></ul><p><img src=/images/Anha3.png alt=architect title=Architect></p><h4 id=4-to-service-control-policy-d-gii-hn>4. T?o Service Control Policy d? gi?i h?n</h4><p>V� d?: T?o SCP d? kh�ng cho user t?o EC2 instance lo?i <code>m5.large</code>.</p><p><strong>C�c bu?c:</strong></p><ul><li>�ang nh?p <strong>organization management account</strong></li><li>M? <strong>AWS Organizations</strong></li><li>Thanh di?u hu?ng ch?n <strong>Policies</strong></li><li><strong>Supported policy types</strong> > <strong>Service control policies</strong></li></ul><p><img src=/images/Anha4.png alt=architect title=Architect></p><ul><li>Click <strong>Create policy</strong>:<ul><li><strong>Policy name:</strong> RestrictEC2Instances</li><li><strong>Policy description:</strong> This SCP restricts launching certain EC2 instance types.</li></ul></li><li>D�n JSON n�y v�o policy editor:</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;Version&#34;</span>: <span style=color:#e6db74>&#34;2012-10-17&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;Statement&#34;</span>: [
-</span></span><span style=display:flex><span>    {
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;Effect&#34;</span>: <span style=color:#e6db74>&#34;Deny&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;Action&#34;</span>: <span style=color:#e6db74>&#34;ec2:RunInstances&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;Resource&#34;</span>: <span style=color:#e6db74>&#34;arn:aws:ec2:*:*:instance/*&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;Condition&#34;</span>: {
-</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;StringEquals&#34;</span>: {
-</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;ec2:InstanceType&#34;</span>: [
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;m5.large&#34;</span>
-</span></span><span style=display:flex><span>          ]
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>      }
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>  ]
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><ul><li><strong>Create policy</strong></li><li>Quay l?i <strong>Policies</strong>, ch?n policy v?a t?o</li><li>Tab <strong>Targets</strong>, click <strong>Attach</strong></li><li>Ch?n OU t�n <code>your-namespace_InnovationSandboxAccountPool</code>, <strong>Attach policy</strong></li></ul><p><img src=/images/Anha6.png alt=architect title=Architect></p><p><strong>K?t qu?:</strong> User trong sandbox account kh�ng th? t?o EC2 instance <code>m5.large</code> n?a.</p><h3 id=vai-tr-manager>Vai tr� Manager</h3><p>Manager c� th? ch?nh s?a c�i d?t v� t?o template cho user request t�i kho?n.</p><h4 id=chnh-sa-ci-dt-bng-appconfig>Ch?nh s?a c�i d?t b?ng AppConfig</h4><p><strong>Luu � quan tr?ng:</strong> L�m ? <strong>t�i kho?n hub</strong>, kh�ng ph?i t�i kho?n qu?n l�. ��ng <strong>home Region</strong>.</p><p><strong>C�c bu?c:</strong></p><ul><li>�ang nh?p t�i kho?n hub</li><li>Thanh t�m ki?m console, nh?p <strong>AWS AppConfig</strong></li><li>Thanh di?u hu?ng ch?n <strong>Applications</strong></li><li>Ch?n app d� t?o</li><li>Ch?n <strong>InnovationSandboxData-Config-GlobalConfigHostedConfiguration-ID</strong></li></ul><p><img src=/images/Manager1.png alt=architect title=Architect></p><ul><li><strong>Hosted configuration versions</strong> > <strong>Create</strong></li><li>�?i <strong>maxBudget</strong> th�nh <strong>50</strong> (USD)</li></ul><p><img src=/images/Manager2.png alt=architect title=Architect></p><ul><li><strong>Create hosted configuration version</strong></li><li><strong>Start deployment</strong></li><li>Ch?n phi�n b?n v?a t?o, gi? nguy�n setting kh�c, <strong>Start deployment</strong></li></ul><h3 id=to-lease-template>T?o Lease Template</h3><h4 id=lease-template-l-g>Lease Template l� g�</h4><p>V? co b?n th� d�y l� b? quy t?c d?nh nghia user c� th? x�i t�i nguy�n th? n�o:</p><ul><li><strong>Ng�n s�ch t?i da:</strong> C� th? ti�u bao nhi�u ti?n</li><li><strong>Th?i gian:</strong> �u?c x�i bao l�u</li><li><strong>Approval:</strong> C� c?n manager duy?t kh�ng</li><li><strong>C?nh b�o:</strong> B�o khi s?p h?t ti?n ho?c th?i gian</li></ul><p>S? t?o hai lo?i:</p><ul><li><strong>Basic:</strong> $25, t? d?ng approve, cho test nh?</li><li><strong>Advanced:</strong> $50, c?n approve, cho d? �n l?n</li></ul><h3 id=to-basic-template>T?o Basic Template</h3><p>Template n�y cho nh?ng request kh�ng c?n duy?t. $25 t?i da, b�o khi ti�u $15, d�ng du?c 168 ti?ng (1 tu?n), b�o tru?c 24 ti?ng khi h?t h?n.</p><p><strong>C�c bu?c:</strong></p><ul><li>Console Innovation Sandbox, ch?n profile g�c tr�n ph?i > <strong>Sign out</strong></li><li>�ang nh?p b?ng t�i kho?n manager. L?n d?u d�ng <strong>Forgot password</strong></li><li>N?u c� hai tab <strong>Accounts</strong> v� <strong>Applications</strong>, ch?n <strong>Applications</strong></li><li>Thanh di?u hu?ng ch?n <strong>Lease Templates</strong></li><li><strong>Add new lease template</strong></li><li><strong>Name:</strong> <code>Basic</code></li><li><strong>Description:</strong> <code>Basic account lease template</code></li><li>B? tick <strong>Approval required</strong> (kh�ng c?n manager duy?t)</li></ul><p><img src=/images/Manager3.png alt=architect title=Architect></p><ul><li><strong>Next</strong></li><li><strong>Maximum budget:</strong> <code>100</code>, <strong>Next</strong></li><li>N?u d� ch?nh AppConfig d�ng s? b�o l?i ng�n s�ch t?i da $50. �?i <strong>Maximum Budget Amount</strong> th�nh <code>25</code></li><li><strong>Budget Thresholds</strong> > <strong>Add a threshold</strong>:<ul><li><strong>amount consumed:</strong> <code>15</code></li><li><strong>action:</strong> <strong>Send Alert</strong>. User s? nh?n c?nh b�o khi ti�u $15, x�a account khi ti�u h?t $25</li></ul></li><li><strong>Next</strong></li><li><strong>Maximum Duration</strong> > <strong>Set a maximum duration</strong> > <code>168</code></li><li><strong>Duration Thresholds</strong> > <strong>Add a threshold</strong>:<ul><li><strong>remaining hours:</strong> <code>24</code></li><li><strong>action:</strong> <strong>Send Alert</strong>. B�o khi c�n 24 ti?ng</li></ul></li><li><strong>Submit</strong></li></ul><p><img src=/images/Manager4.png alt=architect title=Architect></p><h3 id=to-advanced-template>T?o Advanced Template</h3><p>Template n�y c?n manager approve. $50 t?i da, b�o ? $40, th?i gian 168 ti?ng, b�o tru?c 24 ti?ng.</p><p><strong>C�c bu?c:</strong></p><ul><li><strong>Lease Templates</strong> > <strong>Add new lease template</strong></li><li><strong>Name:</strong> <code>Advanced</code></li><li><strong>Description:</strong> <code>Advanced account lease template</code></li><li>Gi? nguy�n <strong>Approval required</strong> (c?n manager duy?t)</li><li><strong>Next</strong></li><li><strong>Maximum budget:</strong> <code>50</code>, <strong>Next</strong></li><li><strong>Budget Thresholds</strong> > <strong>Add a threshold</strong>:<ul><li><strong>amount consumed:</strong> <code>40</code></li><li><strong>action:</strong> <strong>Send Alert</strong></li></ul></li><li><strong>Next</strong></li><li><strong>Maximum Duration</strong> > <strong>Set a maximum duration</strong> > <code>168</code></li><li><strong>Duration Thresholds</strong> > <strong>Add a threshold</strong>:<ul><li><strong>remaining hours:</strong> <code>24</code></li><li><strong>action:</strong> <strong>Send Alert</strong></li></ul></li><li><strong>Submit</strong></li></ul><p><img src=/images/Manager5.png alt=architect title=Architect></p><h3 id=vai-tr-end-user>Vai tr� End-User</h3><p>Gi? s? th? l�m user thu?ng, request t�i kho?n v� x�i.</p><h4 id=1-request-ti-khon-co-bn>1. Request t�i kho?n co b?n</h4><p>T�i kho?n basic s? du?c approve t? d?ng.</p><p><strong>C�c bu?c:</strong></p><ul><li>Giao di?n Innovation Sandbox, ch?n profile g�c tr�n ph?i > <strong>Sign out</strong></li><li>�ang nh?p l?i b?ng t�i kho?n end user</li><li>N?u c� hai tab th� ch?n <strong>Applications</strong></li><li><strong>Request a new account</strong></li><li>Ch?n <strong>Basic lease template</strong>, <strong>Next</strong></li><li>Tick <strong>I accept the above terms of service</strong>, <strong>Next</strong></li></ul><p><img src=/images/User1.png alt=architect title=Architect></p><ul><li><strong>Comments:</strong> nh?p l� do (v� d?: <code>Request for a basic account</code>)</li><li><strong>Submit</strong></li><li>Thanh di?u hu?ng b�n tr�i ch?n <strong>Home</strong>. M?c <strong>Account</strong>, click <strong>Refresh</strong> d? c?p nh?t</li></ul><p><img src=/images/User2.png alt=architect title=Architect></p><ul><li>Khi t�i kho?n du?c c?p, m?c <strong>Access</strong> ch?n <strong>Login to account</strong></li><li>Ch?n role ? <strong>Select a role</strong> d? v�o AWS Management Console</li></ul><p><img src=/images/User3.png alt=architect title=Architect></p><h4 id=2-test-gii-hn-scp>2. Test gi?i h?n SCP</h4><p>Check xem SCP c� ho?t d?ng kh�ng b?ng c�ch th? t?o EC2 instance b? c?m.</p><p><strong>C�c bu?c:</strong></p><ul><li>AWS Management Console, nh?p <strong>EC2</strong> v�o thanh t�m ki?m</li><li>Thanh di?u hu?ng b�n tr�i ch?n <strong>Instances</strong></li><li><strong>Launch instances</strong></li><li><strong>Name:</strong> <code>test-scp</code>. Gi? nguy�n AMI m?c d?nh</li></ul><p><img src=/images/User4.png alt=architect title=Architect></p><ul><li><strong>Instance type:</strong> ch?n <strong>m5.large</strong> (lo?i n�y b? SCP ch?n)</li><li><strong>Key pair:</strong> <strong>Proceed without a key pair</strong></li><li>Gi? nguy�n setting kh�c, <strong>Launch instance</strong></li><li>S? th?y b�o l?i do SCP kh�ng cho t?o <strong>m5.large</strong></li></ul><p><img src=/images/User5.png alt=architect title=Architect></p><h4 id=3-request-ti-khon-nng-cao>3. Request t�i kho?n n�ng cao</h4><p>T�i kho?n advanced c?n manager approve.</p><p><strong>C�c bu?c:</strong></p><ul><li>Quay l?i giao di?n Innovation Sandbox, dang nh?p end user</li><li><strong>Request a new account</strong></li><li>Ch?n <strong>Advanced lease template</strong>, <strong>Next</strong></li><li>Tick <strong>I accept the above terms of service</strong>, <strong>Next</strong></li><li><strong>Comments:</strong> nh?p l� do (v� d?: <code>Request for an advanced account</code>)</li><li><strong>Submit</strong></li></ul><p><strong>Quy tr�nh approve:</strong></p><ul><li>�ang xu?t, dang nh?p b?ng t�i kho?n manager</li><li>Trang ch? s? th?y request ch? duy?t. Thanh di?u hu?ng ch?n <strong>Approvals</strong></li><li>Ch?n request, <strong>Actions</strong> > <strong>Approve request</strong></li></ul><p><strong>Qu?n l� lease:</strong></p><ul><li>Thanh di?u hu?ng ch?n <strong>Leases</strong></li><li>S? th?y hai lease: basic v� advanced</li><li>C� th? ch?n lease d�ng <strong>Actions</strong> d? terminate, suspend ho?c c?p nh?t</li></ul><p><img src=/images/User6.png alt=architect title=Architect></p><p><img src=/images/User7.png alt=architect title=Architect></p><h4 id=4-tng-kt>4. T?ng k?t</h4><ul><li><strong>Administrator:</strong> Setup h? th?ng, t?o SCP ki?m so�t t�i nguy�n, qu?n l� t�i kho?n, t�ch h?p AppConfig</li><li><strong>Manager:</strong> C?u h�nh ng�n s�ch, t?o lease template (Basic, Advanced), thi?t l?p quy tr�nh approve, gi�m s�t s? d?ng</li><li><strong>End user:</strong> Request v� truy c?p t�i kho?n AWS, test SCP, d�ng c�c lo?i t�i kho?n v?i quy tr�nh approve ph� h?p</li></ul><p>Th? l� xong, gi? b?n d� bi?t c�ch s? d?ng Innovation Sandbox v?i c? 3 vai tr� r?i!</p><footer class=footline></footer></div></div><div id=navigation><a class="nav nav-prev" href=/vi/3-configure-the-solution/ title="Configure the Solution"><i class="fa fa-chevron-left"></i></a>
-<a class="nav nav-next" href=/vi/5-remove-the-solution/ title="Remove the Solution" style=margin-right:0><i class="fa fa-chevron-right"></i></a></div></section><div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px><div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div></div><script src=/js/clipboard.min.js?1752555300></script><script src=/js/perfect-scrollbar.min.js?1752555300></script><script src=/js/perfect-scrollbar.jquery.min.js?1752555300></script><script src=/js/jquery.sticky.js?1752555300></script><script src=/js/featherlight.min.js?1752555300></script><script src=/js/highlight.pack.js?1752555300></script><script>hljs.initHighlightingOnLoad()</script><script src=/js/modernizr.custom-3.6.0.js?1752555300></script><script src=/js/learn.js?1752555300></script><script src=/js/hugo-learn.js?1752555300></script><link href=/mermaid/mermaid.css?1752555300 rel=stylesheet><script src=/mermaid/mermaid.js?1752555300></script><script>mermaid.initialize({startOnLoad:!0})</script><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","https://www.google-analytics.com/analytics.js","ga"),ga("create","UA-158079754-2","auto"),ga("send","pageview")</script></body></html>
+<!DOCTYPE html>
+<html lang="vi" class="js csstransforms3d">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.147.9">
+    <meta name="description" content="">
+<meta name="author" content="hieunghiwork123@gmail.com">
+
+    <link rel="icon" href="//localhost:1313/images/favicon.png" type="image/png">
+
+    <title>Use the Solution :: Triển khai Innovation Lab</title>
+
+    
+    <link href="//localhost:1313/css/nucleus.css?1752572531" rel="stylesheet">
+    <link href="//localhost:1313/css/fontawesome-all.min.css?1752572531" rel="stylesheet">
+    <link href="//localhost:1313/css/hybrid.css?1752572531" rel="stylesheet">
+    <link href="//localhost:1313/css/featherlight.min.css?1752572531" rel="stylesheet">
+    <link href="//localhost:1313/css/perfect-scrollbar.min.css?1752572531" rel="stylesheet">
+    <link href="//localhost:1313/css/auto-complete.css?1752572531" rel="stylesheet">
+    <link href="//localhost:1313/css/atom-one-dark-reasonable.css?1752572531" rel="stylesheet">
+    <link href="//localhost:1313/css/theme.css?1752572531" rel="stylesheet">
+    <link href="//localhost:1313/css/hugo-theme.css?1752572531" rel="stylesheet">
+    
+    <link href="//localhost:1313/css/theme-workshop.css?1752572531" rel="stylesheet">
+    
+    
+
+    <script src="//localhost:1313/js/jquery-3.3.1.min.js?1752572531"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="//localhost:1313/vi/4-use-the-solution/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="//localhost:1313/">
+
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="30%"><defs><style>.cls-1{fill:#fff;}.cls-2{fill:#f90;fill-rule:evenodd;}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"></path><path class="cls-2" d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"></path><path class="cls-2" d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"></path></svg>
+
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="//localhost:1313/js/lunr.min.js?1752572531"></script>
+<script type="text/javascript" src="//localhost:1313/js/auto-complete.js?1752572531"></script>
+<script type="text/javascript">
+    
+        var baseurl = "\/\/localhost:1313\/\/vi";
+    
+</script>
+<script type="text/javascript" src="//localhost:1313/js/search.js?1752572531"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/1-prerequisite/" title="Các bước chuẩn bị" class="dd-item 
+        
+        
+        
+        ">
+      <a href="//localhost:1313/vi/1-prerequisite/">
+          <b>1. </b>Các bước chuẩn bị
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/2-deploy-the-solution/" title="Deploy the Solution" class="dd-item 
+        
+        
+        
+        ">
+      <a href="//localhost:1313/vi/2-deploy-the-solution/">
+          <b>2. </b>Deploy the Solution
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/3-configure-the-solution/" title="Configure the Solution" class="dd-item 
+        
+        
+        
+        ">
+      <a href="//localhost:1313/vi/3-configure-the-solution/">
+          <b>3. </b>Configure the Solution
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-use-the-solution/" title="Use the Solution" class="dd-item 
+        
+        active
+        
+        ">
+      <a href="//localhost:1313/vi/4-use-the-solution/">
+          <b>4. </b>Use the Solution
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-remove-the-solution/" title="Remove the Solution" class="dd-item 
+        
+        
+        
+        ">
+      <a href="//localhost:1313/vi/5-remove-the-solution/">
+          <b>5. </b>Remove the Solution
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="http://awsstudygroup.com"><i class='fab fa-aws'></i> AWS Study Group - Blog</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://www.facebook.com/groups/660548818043427/"><i class='fab fa-facebook'></i> AWS Study Group - Nhóm FB</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+          <div class="select-style">
+            <select id="select-language" onchange="location = this.value;">
+          
+          
+          
+              
+              
+                  
+                    
+                    
+                      <option id="en" value="//localhost:1313/4-use-the-solution/">English</option>
+                    
+                  
+              
+                  
+              
+          
+              
+              
+                  
+              
+                  
+                    
+                    
+                      <option id="vi" value="//localhost:1313/vi/4-use-the-solution/" selected>Tiếng Việt</option>
+                    
+                  
+              
+          
+        </select>
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          width="255px" height="255px" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255;" xml:space="preserve">
+          <g>
+            <g id="arrow-drop-down">
+              <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+            </g>
+          </g>
+        </svg>
+        </div>
+        </a>
+        </li>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <left>
+    
+     <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7831210&style=0038&nbdigits=9&type=page&initCount=0" title="Migrate" Alt="web counter"   border="0" /></a>  <br>
+     <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0" title="Total CLoud Journey" Alt="web counter"   border="0"   />
+     
+</left>
+<left>
+    <br>
+    <br>
+        <b> Last Updated </b> <br>
+        <i><font color=orange>15-07-2025</font></i>
+    </left>
+    <left>
+        <br>
+        <br>
+            <b> Team </b> <br>
+           
+            <i>
+                <a href="https://www.linkedin.com/in/hieunghi/"  style="color:orange">Danh Hoàng Hiếu Nghị</a>
+        </i>
+        </left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            <a href='//localhost:1313/vi/'>Innovation Lab</a> > Use the Solution
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#sử-dụng-hệ-thống">Sử dụng hệ thống</a></li>
+        <li><a href="#vai-trò-administrator">Vai trò Administrator</a></li>
+        <li><a href="#vai-trò-manager">Vai trò Manager</a></li>
+        <li><a href="#tạo-lease-template">Tạo Lease Template</a></li>
+        <li><a href="#tạo-basic-template">Tạo Basic Template</a></li>
+        <li><a href="#tạo-advanced-template">Tạo Advanced Template</a></li>
+        <li><a href="#vai-trò-end-user">Vai trò End-User</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Use the Solution
+            </h1>
+          
+
+        
+
+
+
+	<h3 id="sử-dụng-hệ-thống">Sử dụng hệ thống</h3>
+<p>Okay giờ đã setup xong hết rồi, chúng ta sẽ thử xài hệ thống với 3 vai trò khác nhau để xem nó hoạt động thế nào.</p>
+<h4 id="ba-vai-trò-chính">Ba vai trò chính</h4>
+<ul>
+<li><strong>Administrator</strong> - quản trị viên, quyền cao nhất</li>
+<li><strong>Manager</strong> - quản lý, tạo template và approve request</li>
+<li><strong>End user</strong> - người dùng cuối, request tài khoản để xài</li>
+</ul>
+<p>Dự kiến mất khoảng 30 phút để thử hết.</p>
+<h3 id="vai-trò-administrator">Vai trò Administrator</h3>
+<h4 id="1-đăng-nhập-vào-hệ-thống">1. Đăng nhập vào hệ thống</h4>
+<ul>
+<li>Lấy URL từ CloudFrontDistributionUrl đã lưu lúc deploy</li>
+<li>Mở URL trên browser</li>
+<li>Đăng nhập bằng tài khoản admin. Lần đầu thì chọn <strong>Forgot password</strong> để set mật khẩu</li>
+</ul>
+<p><strong>Lưu ý:</strong> Nếu thấy hai tab <strong>Accounts</strong> và <strong>Applications</strong>, chọn <strong>Applications</strong> để vào app chính.</p>
+<p><img src="//localhost:1313/images/Anh1.jpg" alt="architect" title="Architect"></p>
+<h4 id="2-thêm-tài-khoản-cho-thuê">2. Thêm tài khoản cho thuê</h4>
+<ul>
+<li>Thanh điều hướng bên trái, <strong>Administration</strong> &gt; <strong>Accounts</strong></li>
+<li>Click <strong>Add accounts</strong></li>
+<li>Mục <strong>Select accounts</strong>, sẽ thấy danh sách tài khoản có sẵn. Nếu không có gì thì check lại xem sandbox account đã được move vào OU <strong>Entry</strong> chưa</li>
+<li>Chọn một vài tài khoản, <strong>Next</strong> rồi <strong>Submit</strong></li>
+</ul>
+<p><img src="//localhost:1313/images/anh2.jpg" alt="architect" title="Architect"></p>
+<ul>
+<li>Quay lại <strong>Accounts</strong> để check trạng thái</li>
+</ul>
+<h4 id="3-quản-lý-cài-đặt">3. Quản lý cài đặt</h4>
+<ul>
+<li>Thanh điều hướng, <strong>Administration</strong> &gt; <strong>Settings</strong></li>
+<li>Có ba tab:
+<ul>
+<li><strong>General Settings</strong></li>
+<li><strong>Lease Settings</strong> (ngân sách tối đa mặc định $100)</li>
+<li><strong>Clean Up Settings</strong></li>
+</ul>
+</li>
+<li>Muốn đổi thì phải dùng <strong>AWS AppConfig</strong> (hướng dẫn ở phần sau)</li>
+</ul>
+<p><img src="//localhost:1313/images/Anha3.png" alt="architect" title="Architect"></p>
+<h4 id="4-tạo-service-control-policy-để-giới-hạn">4. Tạo Service Control Policy để giới hạn</h4>
+<p>Ví dụ: Tạo SCP để không cho user tạo EC2 instance loại <code>m5.large</code>.</p>
+<p><strong>Các bước:</strong></p>
+<ul>
+<li>Đăng nhập <strong>organization management account</strong></li>
+<li>Mở <strong>AWS Organizations</strong></li>
+<li>Thanh điều hướng chọn <strong>Policies</strong></li>
+<li><strong>Supported policy types</strong> &gt; <strong>Service control policies</strong></li>
+</ul>
+<p><img src="//localhost:1313/images/Anha4.png" alt="architect" title="Architect"></p>
+<ul>
+<li>Click <strong>Create policy</strong>:
+<ul>
+<li><strong>Policy name:</strong> RestrictEC2Instances</li>
+<li><strong>Policy description:</strong> This SCP restricts launching certain EC2 instance types.</li>
+</ul>
+</li>
+<li>Dán JSON này vào policy editor:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Version&#34;</span>: <span style="color:#e6db74">&#34;2012-10-17&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Statement&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Deny&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Action&#34;</span>: <span style="color:#e6db74">&#34;ec2:RunInstances&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Resource&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:ec2:*:*:instance/*&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Condition&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;StringEquals&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;ec2:InstanceType&#34;</span>: [
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;m5.large&#34;</span>
+</span></span><span style="display:flex;"><span>          ]
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li><strong>Create policy</strong></li>
+<li>Quay lại <strong>Policies</strong>, chọn policy vừa tạo</li>
+<li>Tab <strong>Targets</strong>, click <strong>Attach</strong></li>
+<li>Chọn OU tên <code>your-namespace_InnovationSandboxAccountPool</code>, <strong>Attach policy</strong></li>
+</ul>
+<p><img src="//localhost:1313/images/Anha6.png" alt="architect" title="Architect"></p>
+<p><strong>Kết quả:</strong> User trong sandbox account không thể tạo EC2 instance <code>m5.large</code> nữa.</p>
+<h3 id="vai-trò-manager">Vai trò Manager</h3>
+<p>Manager có thể chỉnh sửa cài đặt và tạo template cho user request tài khoản.</p>
+<h4 id="chỉnh-sửa-cài-đặt-bằng-appconfig">Chỉnh sửa cài đặt bằng AppConfig</h4>
+<p><strong>Lưu ý quan trọng:</strong> Làm ở <strong>tài khoản hub</strong>, không phải tài khoản quản lý. Đúng <strong>home Region</strong>.</p>
+<p><strong>Các bước:</strong></p>
+<ul>
+<li>Đăng nhập tài khoản hub</li>
+<li>Thanh tìm kiếm console, nhập <strong>AWS AppConfig</strong></li>
+<li>Thanh điều hướng chọn <strong>Applications</strong></li>
+<li>Chọn app đã tạo</li>
+<li>Chọn <strong>InnovationSandboxData-Config-GlobalConfigHostedConfiguration-ID</strong></li>
+</ul>
+<p><img src="//localhost:1313/images/Manager1.png" alt="architect" title="Architect"></p>
+<ul>
+<li><strong>Hosted configuration versions</strong> &gt; <strong>Create</strong></li>
+<li>Đổi <strong>maxBudget</strong> thành <strong>50</strong> (USD)</li>
+</ul>
+<p><img src="//localhost:1313/images/Manager2.png" alt="architect" title="Architect"></p>
+<ul>
+<li><strong>Create hosted configuration version</strong></li>
+<li><strong>Start deployment</strong></li>
+<li>Chọn phiên bản vừa tạo, giữ nguyên setting khác, <strong>Start deployment</strong></li>
+</ul>
+<h3 id="tạo-lease-template">Tạo Lease Template</h3>
+<h4 id="lease-template-là-gì">Lease Template là gì</h4>
+<p>Về cơ bản thì đây là bộ quy tắc định nghĩa user có thể xài tài nguyên thế nào:</p>
+<ul>
+<li><strong>Ngân sách tối đa:</strong> Có thể tiêu bao nhiều tiền</li>
+<li><strong>Thời gian:</strong> Được xài bao lâu</li>
+<li><strong>Approval:</strong> Có cần manager duyệt không</li>
+<li><strong>Cảnh báo:</strong> Báo khi sắp hết tiền hoặc thời gian</li>
+</ul>
+<p>Sẽ tạo hai loại:</p>
+<ul>
+<li><strong>Basic:</strong> $25, tự động approve, cho test nhẹ</li>
+<li><strong>Advanced:</strong> $50, cần approve, cho dự án lớn</li>
+</ul>
+<h3 id="tạo-basic-template">Tạo Basic Template</h3>
+<p>Template này cho những request không cần duyệt. $25 tối đa, báo khi tiêu $15, dùng được 168 tiếng (1 tuần), báo trước 24 tiếng khi hết hạn.</p>
+<p><strong>Các bước:</strong></p>
+<ul>
+<li>Console Innovation Sandbox, chọn profile góc trên phải &gt; <strong>Sign out</strong></li>
+<li>Đăng nhập bằng tài khoản manager. Lần đầu dùng <strong>Forgot password</strong></li>
+<li>Nếu có hai tab <strong>Accounts</strong> và <strong>Applications</strong>, chọn <strong>Applications</strong></li>
+<li>Thanh điều hướng chọn <strong>Lease Templates</strong></li>
+<li><strong>Add new lease template</strong></li>
+<li><strong>Name:</strong> <code>Basic</code></li>
+<li><strong>Description:</strong> <code>Basic account lease template</code></li>
+<li>Bỏ tick <strong>Approval required</strong> (không cần manager duyệt)</li>
+</ul>
+<p><img src="//localhost:1313/images/Manager3.png" alt="architect" title="Architect"></p>
+<ul>
+<li><strong>Next</strong></li>
+<li><strong>Maximum budget:</strong> <code>100</code>, <strong>Next</strong></li>
+<li>Nếu đã chỉnh AppConfig đúng sẽ báo lỗi ngân sách tối đa $50. Đổi <strong>Maximum Budget Amount</strong> thành <code>25</code></li>
+<li><strong>Budget Thresholds</strong> &gt; <strong>Add a threshold</strong>:
+<ul>
+<li><strong>amount consumed:</strong> <code>15</code></li>
+<li><strong>action:</strong> <strong>Send Alert</strong>. User sẽ nhận cảnh báo khi tiêu $15, xóa account khi tiêu hết $25</li>
+</ul>
+</li>
+<li><strong>Next</strong></li>
+<li><strong>Maximum Duration</strong> &gt; <strong>Set a maximum duration</strong> &gt; <code>168</code></li>
+<li><strong>Duration Thresholds</strong> &gt; <strong>Add a threshold</strong>:
+<ul>
+<li><strong>remaining hours:</strong> <code>24</code></li>
+<li><strong>action:</strong> <strong>Send Alert</strong>. Báo khi còn 24 tiếng</li>
+</ul>
+</li>
+<li><strong>Submit</strong></li>
+</ul>
+<p><img src="//localhost:1313/images/Manager4.png" alt="architect" title="Architect"></p>
+<h3 id="tạo-advanced-template">Tạo Advanced Template</h3>
+<p>Template này cần manager approve. $50 tối đa, báo ở $40, thời gian 168 tiếng, báo trước 24 tiếng.</p>
+<p><strong>Các bước:</strong></p>
+<ul>
+<li><strong>Lease Templates</strong> &gt; <strong>Add new lease template</strong></li>
+<li><strong>Name:</strong> <code>Advanced</code></li>
+<li><strong>Description:</strong> <code>Advanced account lease template</code></li>
+<li>Giữ nguyên <strong>Approval required</strong> (cần manager duyệt)</li>
+<li><strong>Next</strong></li>
+<li><strong>Maximum budget:</strong> <code>50</code>, <strong>Next</strong></li>
+<li><strong>Budget Thresholds</strong> &gt; <strong>Add a threshold</strong>:
+<ul>
+<li><strong>amount consumed:</strong> <code>40</code></li>
+<li><strong>action:</strong> <strong>Send Alert</strong></li>
+</ul>
+</li>
+<li><strong>Next</strong></li>
+<li><strong>Maximum Duration</strong> &gt; <strong>Set a maximum duration</strong> &gt; <code>168</code></li>
+<li><strong>Duration Thresholds</strong> &gt; <strong>Add a threshold</strong>:
+<ul>
+<li><strong>remaining hours:</strong> <code>24</code></li>
+<li><strong>action:</strong> <strong>Send Alert</strong></li>
+</ul>
+</li>
+<li><strong>Submit</strong></li>
+</ul>
+<p><img src="//localhost:1313/images/Manager5.png" alt="architect" title="Architect"></p>
+<h3 id="vai-trò-end-user">Vai trò End-User</h3>
+<p>Giờ sẽ thử làm user thường, request tài khoản và xài.</p>
+<h4 id="1-request-tài-khoản-cơ-bản">1. Request tài khoản cơ bản</h4>
+<p>Tài khoản basic sẽ được approve tự động.</p>
+<p><strong>Các bước:</strong></p>
+<ul>
+<li>Giao diện Innovation Sandbox, chọn profile góc trên phải &gt; <strong>Sign out</strong></li>
+<li>Đăng nhập lại bằng tài khoản end user</li>
+<li>Nếu có hai tab thì chọn <strong>Applications</strong></li>
+<li><strong>Request a new account</strong></li>
+<li>Chọn <strong>Basic lease template</strong>, <strong>Next</strong></li>
+<li>Tick <strong>I accept the above terms of service</strong>, <strong>Next</strong></li>
+</ul>
+<p><img src="//localhost:1313/images/User1.png" alt="architect" title="Architect"></p>
+<ul>
+<li><strong>Comments:</strong> nhập lý do (ví dụ: <code>Request for a basic account</code>)</li>
+<li><strong>Submit</strong></li>
+<li>Thanh điều hướng bên trái chọn <strong>Home</strong>. Mục <strong>Account</strong>, click <strong>Refresh</strong> để cập nhật</li>
+</ul>
+<p><img src="//localhost:1313/images/User2.png" alt="architect" title="Architect"></p>
+<ul>
+<li>Khi tài khoản được cấp, mục <strong>Access</strong> chọn <strong>Login to account</strong></li>
+<li>Chọn role ở <strong>Select a role</strong> để vào AWS Management Console</li>
+</ul>
+<p><img src="//localhost:1313/images/User3.png" alt="architect" title="Architect"></p>
+<h4 id="2-test-giới-hạn-scp">2. Test giới hạn SCP</h4>
+<p>Check xem SCP có hoạt động không bằng cách thử tạo EC2 instance bị cấm.</p>
+<p><strong>Các bước:</strong></p>
+<ul>
+<li>AWS Management Console, nhập <strong>EC2</strong> vào thanh tìm kiếm</li>
+<li>Thanh điều hướng bên trái chọn <strong>Instances</strong></li>
+<li><strong>Launch instances</strong></li>
+<li><strong>Name:</strong> <code>test-scp</code>. Giữ nguyên AMI mặc định</li>
+</ul>
+<p><img src="//localhost:1313/images/User4.png" alt="architect" title="Architect"></p>
+<ul>
+<li><strong>Instance type:</strong> chọn <strong>m5.large</strong> (loại này bị SCP chặn)</li>
+<li><strong>Key pair:</strong> <strong>Proceed without a key pair</strong></li>
+<li>Giữ nguyên setting khác, <strong>Launch instance</strong></li>
+<li>Sẽ thấy báo lỗi do SCP không cho tạo <strong>m5.large</strong></li>
+</ul>
+<p><img src="//localhost:1313/images/User5.png" alt="architect" title="Architect"></p>
+<h4 id="3-request-tài-khoản-nâng-cao">3. Request tài khoản nâng cao</h4>
+<p>Tài khoản advanced cần manager approve.</p>
+<p><strong>Các bước:</strong></p>
+<ul>
+<li>Quay lại giao diện Innovation Sandbox, đăng nhập end user</li>
+<li><strong>Request a new account</strong></li>
+<li>Chọn <strong>Advanced lease template</strong>, <strong>Next</strong></li>
+<li>Tick <strong>I accept the above terms of service</strong>, <strong>Next</strong></li>
+<li><strong>Comments:</strong> nhập lý do (ví dụ: <code>Request for an advanced account</code>)</li>
+<li><strong>Submit</strong></li>
+</ul>
+<p><strong>Quy trình approve:</strong></p>
+<ul>
+<li>Đăng xuất, đăng nhập bằng tài khoản manager</li>
+<li>Trang chủ sẽ thấy request chờ duyệt. Thanh điều hướng chọn <strong>Approvals</strong></li>
+<li>Chọn request, <strong>Actions</strong> &gt; <strong>Approve request</strong></li>
+</ul>
+<p><strong>Quản lý lease:</strong></p>
+<ul>
+<li>Thanh điều hướng chọn <strong>Leases</strong></li>
+<li>Sẽ thấy hai lease: basic và advanced</li>
+<li>Có thể chọn lease dùng <strong>Actions</strong> để terminate, suspend hoặc cập nhật</li>
+</ul>
+<p><img src="//localhost:1313/images/User6.png" alt="architect" title="Architect"></p>
+<p><img src="//localhost:1313/images/User7.png" alt="architect" title="Architect"></p>
+<h4 id="4-tổng-kết">4. Tổng kết</h4>
+<ul>
+<li><strong>Administrator:</strong> Setup hệ thống, tạo SCP kiểm soát tài nguyên, quản lý tài khoản, tích hợp AppConfig</li>
+<li><strong>Manager:</strong> Cấu hình ngân sách, tạo lease template (Basic, Advanced), thiết lập quy trình approve, giám sát sử dụng</li>
+<li><strong>End user:</strong> Request và truy cập tài khoản AWS, test SCP, dùng các loại tài khoản với quy trình approve phù hợp</li>
+</ul>
+<p>Thế là xong, giờ bạn đã biết cách sử dụng Innovation Sandbox với cả 3 vai trò rồi!</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="//localhost:1313/vi/3-configure-the-solution/" title="Configure the Solution"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="//localhost:1313/vi/5-remove-the-solution/" title="Remove the Solution" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="//localhost:1313/js/clipboard.min.js?1752572531"></script>
+    <script src="//localhost:1313/js/perfect-scrollbar.min.js?1752572531"></script>
+    <script src="//localhost:1313/js/perfect-scrollbar.jquery.min.js?1752572531"></script>
+    <script src="//localhost:1313/js/jquery.sticky.js?1752572531"></script>
+    <script src="//localhost:1313/js/featherlight.min.js?1752572531"></script>
+    <script src="//localhost:1313/js/highlight.pack.js?1752572531"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="//localhost:1313/js/modernizr.custom-3.6.0.js?1752572531"></script>
+    <script src="//localhost:1313/js/learn.js?1752572531"></script>
+    <script src="//localhost:1313/js/hugo-learn.js?1752572531"></script>
+
+    <link href="//localhost:1313/mermaid/mermaid.css?1752572531" rel="stylesheet" />
+    <script src="//localhost:1313/mermaid/mermaid.js?1752572531"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-158079754-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </body>
+</html>

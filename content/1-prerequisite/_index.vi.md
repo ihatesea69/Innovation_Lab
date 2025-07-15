@@ -15,7 +15,7 @@ pre = "<b>1. </b>"
 - Xác định các tài khoản AWS cần thiết
 - Chọn region AWS 
 - Thiết lập tổ chức AWS (AWS Organization)
-- Kích hoạt các sau:
+- Kích hoạt các dịch vụ sau:
   - AWS IAM Identity Center
   - AWS Resource Access Manager (RAM)
   - AWS CloudFormation StackSets

@@ -28,7 +28,7 @@ Dự kiến mất khoảng 30 phút để thử hết.
 
 **Lưu ý:** Nếu thấy hai tab **Accounts** và **Applications**, chọn **Applications** để vào app chính.
 
-![architect](../images/1/Anh1.jpg "Architect")
+![architect](/images/Anh1.jpg "Architect")
 
 #### 2. Thêm tài khoản cho thuê
 
@@ -37,7 +37,7 @@ Dự kiến mất khoảng 30 phút để thử hết.
 - Mục **Select accounts**, sẽ thấy danh sách tài khoản có sẵn. Nếu không có gì thì check lại xem sandbox account đã được move vào OU **Entry** chưa
 - Chọn một vài tài khoản, **Next** rồi **Submit**
 
-![architect](../images/1/anh2.jpg "Architect")
+![architect](/images/anh2.jpg "Architect")
 
 - Quay lại **Accounts** để check trạng thái
 
@@ -50,7 +50,7 @@ Dự kiến mất khoảng 30 phút để thử hết.
   - **Clean Up Settings**
 - Muốn đổi thì phải dùng **AWS AppConfig** (hướng dẫn ở phần sau)
 
-![architect](../images/1/Anha3.png "Architect")
+![architect](/images/Anha3.png "Architect")
 
 #### 4. Tạo Service Control Policy để giới hạn
 
@@ -63,7 +63,7 @@ Ví dụ: Tạo SCP để không cho user tạo EC2 instance loại `m5.large`.
 - Thanh điều hướng chọn **Policies**
 - **Supported policy types** > **Service control policies**
 
-![architect](../images/1/Anha4.png "Architect")
+![architect](/images/Anha4.png "Architect")
 
 - Click **Create policy**:
   - **Policy name:** RestrictEC2Instances
@@ -95,7 +95,7 @@ Ví dụ: Tạo SCP để không cho user tạo EC2 instance loại `m5.large`.
 - Tab **Targets**, click **Attach**
 - Chọn OU tên `your-namespace_InnovationSandboxAccountPool`, **Attach policy**
 
-![architect](../images/1/Anha6.png "Architect")
+![architect](/images/Anha6.png "Architect")
 
 **Kết quả:** User trong sandbox account không thể tạo EC2 instance `m5.large` nữa.
 
@@ -115,12 +115,12 @@ Manager có thể chỉnh sửa cài đặt và tạo template cho user request 
 - Chọn app đã tạo
 - Chọn **InnovationSandboxData-Config-GlobalConfigHostedConfiguration-ID**
 
-![architect](../images/1/Manager1.png "Architect")
+![architect](/images/Manager1.png "Architect")
 
 - **Hosted configuration versions** > **Create**
 - Đổi **maxBudget** thành **50** (USD)
 
-![architect](../images/1/Manager2.png "Architect")
+![architect](/images/Manager2.png "Architect")
 
 - **Create hosted configuration version**
 - **Start deployment**
@@ -156,7 +156,7 @@ Template này cho những request không cần duyệt. $25 tối đa, báo khi 
 - **Description:** `Basic account lease template`
 - Bỏ tick **Approval required** (không cần manager duyệt)
 
-![architect](../images/1/Manager3.png "Architect")
+![architect](/images/Manager3.png "Architect")
 
 - **Next**
 - **Maximum budget:** `100`, **Next**
@@ -171,7 +171,7 @@ Template này cho những request không cần duyệt. $25 tối đa, báo khi 
   - **action:** **Send Alert**. Báo khi còn 24 tiếng
 - **Submit**
 
-![architect](../images/1/Manager4.png "Architect")
+![architect](/images/Manager4.png "Architect")
 
 ### Tạo Advanced Template
 
@@ -195,7 +195,7 @@ Template này cần manager approve. $50 tối đa, báo ở $40, thời gian 16
   - **action:** **Send Alert**
 - **Submit**
 
-![architect](../images/1/Manager5.png "Architect")
+![architect](/images/Manager5.png "Architect")
 
 ### Vai trò End-User
 
@@ -214,18 +214,18 @@ Tài khoản basic sẽ được approve tự động.
 - Chọn **Basic lease template**, **Next**
 - Tick **I accept the above terms of service**, **Next**
 
-![architect](../images/1/User1.png "Architect")
+![architect](/images/User1.png "Architect")
 
 - **Comments:** nhập lý do (ví dụ: `Request for a basic account`)
 - **Submit**
 - Thanh điều hướng bên trái chọn **Home**. Mục **Account**, click **Refresh** để cập nhật
 
-![architect](../images/1/User2.png "Architect")
+![architect](/images/User2.png "Architect")
 
 - Khi tài khoản được cấp, mục **Access** chọn **Login to account**
 - Chọn role ở **Select a role** để vào AWS Management Console
 
-![architect](../images/1/User3.png "Architect")
+![architect](/images/User3.png "Architect")
 
 #### 2. Test giới hạn SCP
 
@@ -238,14 +238,14 @@ Check xem SCP có hoạt động không bằng cách thử tạo EC2 instance b�
 - **Launch instances**
 - **Name:** `test-scp`. Giữ nguyên AMI mặc định
 
-![architect](../images/1/User4.png "Architect")
+![architect](/images/User4.png "Architect")
 
 - **Instance type:** chọn **m5.large** (loại này bị SCP chặn)
 - **Key pair:** **Proceed without a key pair**
 - Giữ nguyên setting khác, **Launch instance**
 - Sẽ thấy báo lỗi do SCP không cho tạo **m5.large**
 
-![architect](../images/1/User5.png "Architect")
+![architect](/images/User5.png "Architect")
 
 #### 3. Request tài khoản nâng cao
 
@@ -272,9 +272,9 @@ Tài khoản advanced cần manager approve.
 - Sẽ thấy hai lease: basic và advanced
 - Có thể chọn lease dùng **Actions** để terminate, suspend hoặc cập nhật
 
-![architect](../images/1/User6.png "Architect")
+![architect](/images/User6.png "Architect")
 
-![architect](../images/1/User7.png "Architect")
+![architect](/images/User7.png "Architect")
 
 #### 4. Tổng kết
 

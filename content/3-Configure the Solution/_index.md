@@ -6,270 +6,259 @@ chapter = false
 pre = "<b>3. </b>"
 +++
 
-### Configure the Solution
+### Configure the System
 
-After running all the stacks, you need to perform configuration steps to allow users to access and prepare the Innovation Sandbox on AWS environment for use.
+Okay, the stacks are done running, but you can't use it yet. You need to configure a bit more before users can get in.
 
-#### Overview of configuration steps
+#### What needs to be done
 
-- Set up SAML 2.0 federation
-- Configure AWS IAM Identity Center users
-- Configure web application
-- Onboard accounts into Innovation Sandbox structure
+- Set up SAML for login
+- Create users and groups in IAM Identity Center
+- Configure the web app
+- Move the sandbox accounts into the right place
 
-#### Setting up SAML 2.0 federation
+#### Setting up SAML
 
-**1. Configure SAML integration**
+**1. Configure SAML**
 
-- Access AWS IAM Identity Center in the organization management account.
-- Choose "Settings" and switch to "Identity Source" section.
-- Choose "External identity provider" to use SAML 2.0.
+- Go to AWS IAM Identity Center in the management account
+- Select "Settings" then switch to "Identity Source"
+- Choose "External identity provider" to use SAML 2.0
 
-**2. Download certification**
+**2. Download the certificate**
 
-- In the SAML configuration interface, download the certificate (.pem file) from AWS IAM Identity Center.
-- Save this file for use when configuring on external identity systems
+- In the SAML interface, download the AWS IAM Identity Center certificate file (.pem)
+- Save this file for later use
 
-#### Configure AWS IAM Identity Center users
+#### Creating users and groups
 
-**1. Create and configure groups**
+**1. Create groups**
 
-- In IAM Identity Center, go to "Groups".
-- Create appropriate groups for usage roles (example: Admin, Developer, Viewer...).
-- Assign corresponding permission sets to each group.
+- In IAM Identity Center, select "Groups"
+- Create groups based on roles (Admin, Developer, Viewer...)
+- Assign permissions to each group
 
-**2. Set up initial users**
+**2. Add users**
 
-- Go to "Users" in IAM Identity Center.
-- Add new users or sync from external identity systems (if SAML is configured).
-- Assign users to created groups.
+- Go to "Users" in IAM Identity Center
+- Add new users or sync from an external system (if SAML is configured)
+- Add users to the appropriate groups
 
-#### Configure web application
+#### Configuring the web app
 
-**1. Update AWS AppConfig settings**
+**1. Update AWS AppConfig**
 
-- Access AWS AppConfig in hub account.
-- Choose Innovation Sandbox application, update necessary configuration parameters (example: endpoint, environment parameters, etc.).
-- Confirm configuration information matches deployment environment.
+- Go to AWS AppConfig in the hub account
+- Select the Innovation Sandbox app, update the necessary parameters
+- Check if the information matches the environment
 
 **2. Configure authentication**
 
-- Ensure web application uses authentication through AWS IAM Identity Center.
-- Check SAML connection information or other authentication parameters if available.
+- Ensure the web app uses IAM Identity Center for login
+- Check the SAML connection information
 
-#### Onboard accounts
+#### Onboarding accounts
 
-**1. Move accounts into Innovation Sandbox structure**
+**1. Move accounts**
 
-- Access AWS Organizations with management account.
-- Move member accounts (hub, sandbox...) into correct organizational unit (OU) designed for Innovation Sandbox.
+- Go to AWS Organizations using the management account
+- Move the accounts (hub, sandbox...) into the correct designed OU
 
-**2. Verify account configuration**
+**2. Double-check**
 
-- Check again in AWS Organizations to ensure accounts are in correct position in OU structure.
-- Ensure related policies, access permissions and configurations are applied correctly.
+- Check in AWS Organizations to see if the accounts are in the right place
+- Ensure that policies and permissions have been applied correctly
 
-**Estimated time:** About 15 minutes
+**Time:** About 15 minutes
 
-Completing all the above steps will help the Innovation Sandbox on AWS solution be ready for user access and use, while ensuring compliance with organizational governance and security requirements.
+Completing these steps will make the system ready for users.
 
-### Setting up SAML 2.0 Application for Innovation Sandbox on AWS
+### Setting up SAML for Innovation Sandbox
 
-Configuring SAML 2.0 integration between AWS IAM Identity Center and Innovation Sandbox on AWS helps ensure secure user authentication when accessing the solution's web interface.
+This part is a bit technical, but it's necessary for users to log into the system securely.
 
-#### Important note
+#### Important notes
 
-- Perform all steps below in the **organization management account** – where you have configured AWS IAM Identity Center.
-- Ensure you are in the correct **home Region** chosen for the entire system.
+- Do everything in the **organization management account** - where IAM Identity Center is
+- Make sure you are in the correct selected **home Region**
 
-#### Configuration steps
+#### Steps
 
-**1. Create SAML application in IAM Identity Center**
+**1. Create a SAML app in IAM Identity Center**
 
-- Open **AWS IAM Identity Center console** with organization management account.
-- In navigation bar, choose **Applications**.
-- Switch to **Customer managed** tab.
+- Open the **AWS IAM Identity Center console** with the management account
+- In the navigation bar, select **Applications**
+- Switch to the **Customer managed** tab
+
 ![architect](/images/organiza.jpg "Architect")
 
-**2. Add new application**
+**2. Add a new app**
 
-- Choose **Add application**.
-- Choose **I have an application I want to set up**.
-- Choose **SAML 2.0**, then click **Next**.
+- Select **Add application**
+- Select **I have an application I want to set up**
+- Select **SAML 2.0**, then **Next**
 
 ![architect](/images/Buoc3.png "Architect")
 
-**3. Configure application**
+**3. Configure the app**
 
-- On configuration page, enter **Display name** (example: MyISB app) and description for application.
-- 
+- On the configuration page, enter a **Display name** (e.g., MyFCJ app) and description
+
 ![architect](/images/Buoc5.png "Architect")
 
-- In **IAM Identity Center metadata** section:
-  - Download **SAML metadata file** (identity provider metadata).
-  - Download **certificate** (identity provider certificate).
+- In the **IAM Identity Center metadata** section:
+  - Download the **SAML metadata file** 
+  - Download the **certificate**
 
-![architect](/images/Buoc6.png "Architect")
-
-
-- Note the **Sign-in URL** and **Sign-out URL** – will be needed when configuring on hub account.
+- Note the **Sign-in URL** and **Sign-out URL** - needed for configuration in the hub account
 
 ![architect](/images/Buoc7.png "Architect")
 
-**4. Enter metadata information for application**
+**4. Enter metadata information**
 
-- In **Application metadata** section, choose **Manually type your metadata values**.
-- Enter the following values:
+- In the **Application metadata** section, select **Manually type your metadata values**
+- Enter the values:
 
-  | Field                   | Value to enter                                                                                        |
-  |-------------------------|-------------------------------------------------------------------------------------------------------|
-  | Application ACS URL     | `{ISB_WEB_URL}/api/auth/login/callback`  (Replace `{ISB_WEB_URL}` with saved CloudFrontDistributionUrl, example: `https://duyXXXXXXXeh.cloudfront.net/api/auth/login/callback`) |
-  | Application SAML audience | Application identifier value (can use namespace name or initial stack name, example: `Isb-dev-namespace-Audience`). Save this value to configure AppConfig on hub account. |
+  | Field                   | What to enter                                                                                          |
+  |-------------------------|--------------------------------------------------------------------------------------------------|
+  | Application ACS URL     | `{FCJ_WEB_URL}/api/auth/login/callback` (Replace `{FCJ_WEB_URL}` with the saved CloudFrontDistributionUrl) |
+  | Application SAML audience | App identifier name (can use namespace, e.g., `Isb-dev-namespace-Audience`). Save for AppConfig configuration |
+
 ![architect](/images/Buoc8.png "Architect")
-**5. Complete configuration**
 
-- Click **Submit**.
-- You will receive confirmation message for successful SAML application configuration.
-- Note: You need to additionally configure **attribute mappings** for IAM Identity Center for authentication to work properly.
+**5. Finish**
 
-#### Information to save for subsequent configuration steps
+- Click **Submit**
+- A success message will appear
+- Remember to configure **attribute mappings** for IAM Identity Center
 
-- **Sign-in URL** (from metadata download step)
-- **Sign-out URL** (from metadata download step)
-- **Audience value** (value entered in Application SAML audience)
+#### Information to save
 
-This information will be used in the process of configuring web application and user authentication for Innovation Sandbox on AWS.
+- **Sign-in URL** 
+- **Sign-out URL** 
+- **Audience value** 
 
-### Configure Users and Groups in IAM Identity Center
+This information is used to configure the web app and user authentication.
 
-Setting up users and groups in AWS IAM Identity Center helps control access and permissions for users using the Innovation Sandbox on AWS solution. Perform the steps below in the **organization management account** and correct **home Region** chosen.
+### Configure Users and Groups
 
-#### 1. Map application attributes
+Set up users and groups to control who can access and do what in the system. Do this in the **management account** and use the **home Region**.
 
-- Open **IAM Identity Center console** in management account.
-- Choose **Applications** in navigation bar.
-- In **Customer managed applications** list, choose the created application (example: MyISB app).
-- On application detail page, choose **Actions** > **Edit attribute mappings**.
-- In the second box ("Maps to this string value or user attribute in IAM Identity Center"), enter:  
-  ```
-  ${user:email}
-  ```
-- In third column, choose **emailAddress** format.
-- Click **Save changes** to save configuration.
+#### 1. Map app attributes
 
-#### 2. Assign groups to application
+- Open the **IAM Identity Center console**
+- Select **Applications** 
+- Select the newly created app (MyFCJ app)
+- On the app details page, select **Actions** > **Edit attribute mappings**
+- In the second box, enter: `${user:email}`
+- In the third column, select **emailAddress**
+- **Save changes**
 
-- Return to the just configured application.
-- Choose **Assign users and groups**.
-- Find and add all three groups created by IDC stack:
+#### 2. Assign groups to the app
+
+- Go back to the configured app
+- Select **Assign users and groups**
+- Find and add the three groups created by the IDC stack:
   - `{NAMESPACE}_IsbUsersGroup`
   - `{NAMESPACE}_IsbManagersGroup`
   - `{NAMESPACE}_IsbAdminsGroup`
-- Choose **Assign** to complete.
+- Select **Assign**
 
-#### 3. Assign group to user
+#### 3. Add users to groups
 
-- In IAM Identity Center console, choose **Users** in navigation bar.
-- In user list, choose user to assign to group. To add new user, choose **Add user**.
-- Choose **Groups** tab, then click **Add user to groups**.
-- Choose one of three created groups:
+- In the IAM Identity Center console, select **Users**
+- Select the user to assign to a group (or **Add user** to add a new one)
+- In the **Groups** tab, click **Add user to groups**
+- Select one of the three groups:
   - `{NAMESPACE}_IsbUsersGroup`
   - `{NAMESPACE}_IsbManagersGroup`
   - `{NAMESPACE}_IsbAdminsGroup`
-- Click **Add user to 1 group** to complete.
+- **Add user to 1 group**
 
 ![architect](/images/users-and-groups.png "Architect")
 
-**Note:**  
-To test all three user roles (user personas), ensure you have at least three users, each belonging to a different group.
+**Note:** To test all three roles, you need at least three users, each in a different group.
 
-After completing the above steps, you have successfully configured users and groups for the Innovation Sandbox on AWS solution. Next, you will proceed to configure the web application on the hub account.
+### Configure the Web App
 
-### Configure Web Application with AWS AppConfig and AWS Secrets Manager
-
-Configuring the Innovation Sandbox on AWS web application helps activate user authentication and set global parameters for the application. These operations need to be performed in the **hub account** and correct **home Region** chosen.
+This section enables login and sets parameters for the app. Do this in the **hub account** and use the **home Region**.
 
 #### 1. Configure AWS AppConfig
 
-- **Open AWS AppConfig console** in hub account.
-- In navigation bar, choose **Applications**.
-- Choose application **InnovationSandboxData-Config-Application-XXXXXXX**.
-- Choose **InnovationSandboxData-Config-GlobalConfigHostedConfiguration-XXXXX** (configuration profile).
-- Choose **Create** to create a new hosted configuration version.
-
+- Open the **AWS AppConfig console** in the hub account
+- In the navigation bar, select **Applications**
+- Select **InnovationSandboxData-Config-Application-XXXXXXX**
+- Select **InnovationSandboxData-Config-GlobalConfigHostedConfiguration-XXXXX**
+- **Create** to create a new configuration version
 
 ![architect](/images/appconfig.png "Architect")
 
 **Update configuration:**
-- Set `maintenanceMode` value to `false` to open application for users.
+- Set `maintenanceMode` to `false` to open the app for users
 
-**In `auth` section, update the following fields:**
+**In the `auth` section, update:**
 
-| Field               | Update value                                                                                          |
-|---------------------|-------------------------------------------------------------------------------------------------------|
-| idpSignInUrl        | Sign-in URL from SAML 2.0 Application configuration step                                            |
-| idpSignOutUrl       | Sign-out URL from SAML 2.0 Application configuration step                                           |
-| idpAudience         | Audience ID from SAML 2.0 Application configuration step                                            |
-| webAppUrl           | CloudFront Distribution URL (Innovation Sandbox URL) from CloudFormation Outputs tab (hub account) |
-| awsAccessPortalUrl  | AWS Access Portal URL from IAM Identity Center dashboard (organization management account)          |
-| sessionDurationInMinutes | Login session duration, example: 240                                                           |
-| emailFrom           | Your verified login email address                                                                     |
+| Field              | What to update                                                                                       |
+|---------------------|---------------------------------------------------------------------------------------------------|
+| idpSignInUrl        | Sign-in URL from the SAML configuration step                                                              |
+| idpSignOutUrl       | Sign-out URL from the SAML configuration step                                                              |
+| idpAudience         | Audience ID from the SAML configuration step                                                                |
+| webAppUrl           | CloudFront Distribution URL from the CloudFormation Outputs tab (hub account)                       |
+| awsAccessPortalUrl  | AWS Access Portal URL from the IAM Identity Center dashboard (management account)                      |
+| sessionDurationInMinutes | Session duration, e.g., 240                                                               |
+| emailFrom           | Your verified email address                                                                         |
 
-- After updating, choose **Create hosted configuration version**.
-- Choose **Start Deployment** and choose the just created configuration version.
-- Choose **Start Deployment** to apply new configuration.
+- **Create hosted configuration version**
+- **Start Deployment** and select the newly created version
+- **Start Deployment** to apply
 
-#### 2. Update certificate value in AWS Secrets Manager
+#### 2. Update certificate in Secrets Manager
 
-- Open **AWS Secrets Manager console** in hub account.
-- Find and choose secret:  
-  `/InnovationSandbox//Auth/IDPCert`
-- In **Overview** tab, **Secret value** section:
-  - Choose **Retrieve secret value**.
-  - Choose **Edit**.
-  - Choose **Plaintext**.
-  - Choose **Edit** again.
-  - Paste the IAM Identity Center certificate file (.pem) content downloaded when creating SAML 2.0 application.
-  - Choose **Save** to save new value.
+- Open the **AWS Secrets Manager console** in the hub account
+- Find the secret: `/InnovationSandbox//Auth/IDPCert`
+- In the **Overview** tab, **Secret value** section:
+  - **Retrieve secret value**
+  - **Edit**
+  - **Plaintext**
+  - **Edit** again
+  - Paste the content of the downloaded IAM Identity Center certificate file (.pem)
+  - **Save**
 
-**Note:**  
-- Ensure all values are accurate and consistent with information obtained in previous configuration steps (SAML, CloudFront, IAM Identity Center).
-- Proper configuration helps the system authenticate and authorize users effectively, while ensuring the Innovation Sandbox on AWS web application operates stably and securely.
+**Note:** Ensure all information is accurate and consistent with the previous steps.
 
-### Onboard Sandbox Accounts into Innovation Sandbox on AWS
+### Onboard Sandbox Accounts
 
-Onboarding sandbox accounts is the final configuration step to complete the Innovation Sandbox on AWS solution. This step helps move AWS accounts into the correct organizational structure and apply necessary controls.
+The final step to complete the configuration. Move AWS accounts into the correct structure and apply controls.
 
-#### Important note
+#### Important notes
 
-- Perform these steps in the **organization management account** – where you have configured AWS IAM Identity Center.
-- Ensure you are in the correct **home Region** chosen for the entire system.
+- Do this in the **organization management account**
+- In the correct selected **home Region**
 
-#### Steps to Onboard Sandbox Accounts
+#### Steps
 
-- Log in to AWS Management Console with organization management account.
-- Open **AWS Organizations console**.
+- Log in to the AWS Management Console with the management account
+- Open the **AWS Organizations console**
 
+**2. Find accounts to move**
 
-**2. Find and select accounts to move**
+- Select **AWS accounts**
+- Find the accounts you want to move to the sandbox environment
+- **Note:** Do not select the management or hub account
 
-- Choose **AWS accounts**.
-- Find the accounts you want to move into sandbox environment. You can browse by OU structure or choose **List** to see flat account list.
-- **Note:** Do not select organization management account or hub account.
-  
 ![architect](/images/account-onboarding.png "Architect")
 
-**3. Move accounts to Entry OU**
+**3. Move to Entry OU**
 
-- Select the accounts to move.
-- In **Actions** menu (or corresponding action menu), choose **Move** under AWS account section.
-- In **Move AWS account** dialog, click the arrow next to Innovation Sandbox on AWS OU (this OU was created when deploying AccountPool stack) to expand and view child OUs.
-- Choose **Entry OU** (child OU for sandbox accounts).
-- Click **Move AWS accounts** to confirm the move.
+- Select the accounts to move
+- In the **Actions** menu, select **Move** 
+- In the **Move AWS account** dialog, click the arrow next to the Innovation Sandbox OU to expand it
+- Select **Entry OU**
+- **Move AWS accounts** to confirm
 
 #### Result
 
-- Sandbox accounts have been moved to the correct OU in the Innovation Sandbox on AWS organization structure.
-- Related control policies and configurations will automatically be applied to these accounts.
+- The sandbox accounts are now in the correct location in the Innovation Sandbox structure
+- Control policies will be automatically applied to these accounts
 
-Properly onboarding accounts into Entry OU ensures the sandbox environment operates separately, securely and complies with organization governance policies.
+Doing this correctly ensures the sandbox environment operates separately, securely, and in compliance with organizational policies.

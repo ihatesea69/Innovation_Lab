@@ -42,7 +42,7 @@ Mỗi stack CloudFormation có mối quan hệ phụ thuộc với các stack kh
 
 #### Mẫu Template CloudFormation
 
-Để triển khai giải pháp, sử dụng các đường dẫn template CloudFormation sau:
+Để triển khai giải pháp, sử dụng các đường dẫn template CloudFormation sau (Workshop gốc của AWS thì có một số lỗi liên quan tới Compute Stack nên tác giả đã thay thế bằng link drive có stack mới, nếu link này lỗi xin vui long liên hệ qua email hieunghiwork123@gmail.com):
 
 | Stack         | Template URL                                                                                              |
 |---------------|----------------------------------------------------------------------------------------------------------|
@@ -99,10 +99,10 @@ Triển khai AccountPool stack là bước đầu tiên trong tài khoản quả
 
 | Tham số           | Mô tả                                                                 | Ví dụ                |
 |-------------------|-----------------------------------------------------------------------|----------------------|
-| Stack name        | Tên stack (tùy chọn)                                                  | isb-accountpool      |
-| Namespace         | Định danh duy nhất cho triển khai này (3-8 ký tự, chữ/số)             | isb01                |
+| Stack name        | Tên stack (tùy chọn)                                                  | fcj-accountpool      |
+| Namespace         | Định danh duy nhất cho triển khai này (3-8 ký tự, chữ/số)             | fcj                |
 | HubAccountId      | AWS Account ID của tài khoản hub                                      | 123456789012         |
-| ParentOuId        | Root ID hoặc OU ID nơi tạo các OU của Innovation Sandbox              | r-abcd               |
+| ParentOuId        | Root ID hoặc OU ID nơi tạo các OU của Innovation Sandbox              | r-emd9               |
 | IsbManagedRegions | Danh sách các Region cho phép, cách nhau bằng dấu phẩy                | us-east-1,us-west-2  |
 
 **Lưu ý thêm:**
@@ -165,8 +165,8 @@ IDC (Identity Center) stack là thành phần thứ hai của giải pháp Innov
 
 | Tham số           | Mô tả                                                        | Ví dụ                                   |
 |-------------------|--------------------------------------------------------------|-----------------------------------------|
-| Stack name        | Tên stack (tùy chọn)                                         | isb-idc                                 |
-| Namespace         | Giá trị namespace giống như ở stack AccountPool              | isb01                                   |
+| Stack name        | Tên stack (tùy chọn)                                         | fcj-idc                                 |
+| Namespace         | Giá trị namespace giống như ở stack AccountPool              | fcj01                                   |
 | HubAccountId      | AWS Account ID của tài khoản hub                             | 123456789012                            |
 | IdentityStoreId   | Identity store ID từ IAM Identity Center (bước 2)            | d-1234567890                            |
 | SsoInstanceArn    | ARN của instance SSO trong IAM Identity Center (bước 2)      | arn:aws:sso:::instance/ssoins-12345678901234567 |
@@ -229,10 +229,10 @@ Data stack là thành phần thứ ba của giải pháp Innovation Sandbox trê
 
 | Tham số    | Mô tả                                                    | Ví dụ   |
 |------------|----------------------------------------------------------|---------|
-| Stack name | Tên stack (tùy chọn)                                     | isb-data|
-| Namespace  | Giá trị namespace giống như ở các lần triển khai trước   | isb01   |
+| Stack name | Tên stack (tùy chọn)                                     | fcj-data|
+| Namespace  | Giá trị namespace giống như ở các lần triển khai trước   | fcj01   |
 
-- **Namespace:** Dùng cùng một giá trị đã sử dụng ở các stack trước (ví dụ: isb01).
+- **Namespace:** Dùng cùng một giá trị đã sử dụng ở các stack trước (ví dụ: fcj01).
 
 **5. Cấu hình các tuỳ chọn stack**
 
@@ -289,8 +289,8 @@ Compute stack là thành phần cuối cùng của giải pháp Innovation Sandb
 
 | Tham số           | Mô tả                                                          | Ví dụ         |
 |-------------------|----------------------------------------------------------------|---------------|
-| Stack name        | Tên stack (tùy chọn)                                           | isb-compute   |
-| Namespace         | Giá trị namespace giống như ở các stack trước                  | isb01         |
+| Stack name        | Tên stack (tùy chọn)                                           | fcj-compute   |
+| Namespace         | Giá trị namespace giống như ở các stack trước                  | fcj01         |
 | OrgMgtAccountId   | AWS Account ID của tài khoản quản lý tổ chức                   | 123456789012  |
 | IdcAccountId      | AWS Account ID nơi đã cấu hình IAM Identity Center             | 123456789012  |
 

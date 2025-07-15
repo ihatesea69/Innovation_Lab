@@ -6,72 +6,69 @@ chapter = false
 pre = "<b>4. </b>"
 +++
 
-### Using Innovation Sandbox on AWS
+### Using the System
 
-After fully deploying all stacks and configuring users, you can start using the Innovation Sandbox on AWS solution. Below is a detailed guide on how to use it with the **administrator** role.
+Okay, now that everything is set up, we'll try using the system with three different roles to see how it works.
 
-#### Overview
+#### Three main roles
 
-The solution supports three main usage roles:
+- **Administrator** - the highest level of permission
+- **Manager** - creates templates and approves requests
+- **End user** - requests accounts to use
 
-- **Administrator**
-- **Manager**
-- **End user**
+It should take about 30 minutes to try them all.
 
-Estimated practice time: about 30 minutes.
+### Administrator Role
 
-### Using with Administrator role
+#### 1. Logging into the system
 
-#### 1. Access Innovation Sandbox on AWS
+- Get the URL from the CloudFrontDistributionUrl saved during deployment
+- Open the URL in a browser
+- Log in with the admin account. The first time, select **Forgot password** to set it up.
 
-- Get the solution access URL (CloudFrontDistributionUrl saved from deployment step).
-- Open this URL in browser.
-- Log in with administrator account. If first time logging in, choose **Forgot password** to set up password.
+**Note:** If you see two tabs, **Accounts** and **Applications**, select **Applications** to enter the main app.
 
-**Note:**  
-If the interface has two tabs **Accounts** and **Applications**, choose **Applications** to enter the main application. The welcome page will appear.
+![architect](/images/Anh1.jpg "Architect")
 
-![architect](/images/Anha1.png "Architect")
+#### 2. Adding accounts for lease
 
-#### 2. Add accounts for lease
+- In the left navigation bar, **Administration** > **Accounts**
+- Click **Add accounts**
+- In **Select accounts**, you will see a list of available accounts. If there are none, check if the sandbox account has been moved to the **Entry** OU.
+- Select a few accounts, **Next**, then **Submit**.
 
-- In left navigation bar, under **Administration**, choose **Accounts**.
-- Click **Add accounts**.
-- In **Select accounts**, you will see list of available accounts. If there are no accounts, ensure sandbox accounts have been moved to **Entry** OU in organizational unit with name like `your-namespace_InnovationSandboxAccountPool`.
-- Select one or more accounts to add, click **Next** then **Submit**.
+![architect](/images/anh2.jpg "Architect")
 
-![architect](/images/Anha2.png "Architect")
+- Go back to **Accounts** to check the status.
 
-- Return to **Accounts** to check status of added accounts.
+#### 3. Managing settings
 
-#### 3. Manage system settings
-
-- In navigation bar, under **Administration**, choose **Settings**.
-- There are three main tabs:
+- In the navigation bar, **Administration** > **Settings**
+- There are three tabs:
   - **General Settings**
-  - **Lease Settings** (default maximum budget limit is $100 USD)
+  - **Lease Settings** (default maximum budget is $100)
   - **Clean Up Settings**
-- To change these settings, you need to use **AWS AppConfig** (will be guided in next section).
+- To change these, you must use **AWS AppConfig** (explained in the next section).
 
 ![architect](/images/Anha3.png "Architect")
 
-#### 4. Create Service Control Policy (SCP) to limit resources
+#### 4. Creating a Service Control Policy to set limits
 
-Example: Create SCP to prevent sandbox users from launching `m5.large` EC2 instances.
+Example: Create an SCP to prevent users from creating `m5.large` EC2 instances.
 
-**Implementation steps:**
+**Steps:**
 
-- Log in to **organization management account**.
-- Open **AWS Organizations**.
-- In navigation bar, choose **Policies**.
-- Under **Supported policy types**, choose **Service control policies**.
+- Log into the **organization management account**
+- Open **AWS Organizations**
+- In the navigation bar, select **Policies**
+- Under **Supported policy types** > **Service control policies**
 
 ![architect](/images/Anha4.png "Architect")
 
-- Click **Create policy** and enter:
+- Click **Create policy**:
   - **Policy name:** RestrictEC2Instances
   - **Policy description:** This SCP restricts launching certain EC2 instance types.
-- Paste the following JSON into policy editor:
+- Paste this JSON into the policy editor:
 
 ```json
 {
@@ -93,234 +90,196 @@ Example: Create SCP to prevent sandbox users from launching `m5.large` EC2 insta
 }
 ```
 
-- Click **Create policy** to save.
-- Return to **Policies**, choose the just created policy.
-- Choose **Targets** tab, click **Attach**.
-- Choose OU named `your-namespace_InnovationSandboxAccountPool` and click **Attach policy**.
+- **Create policy**
+- Go back to **Policies**, select the newly created policy
+- In the **Targets** tab, click **Attach**
+- Select the OU named `your-namespace_InnovationSandboxAccountPool`, **Attach policy**
 
 ![architect](/images/Anha6.png "Architect")
 
-**Result:**  
-Users in sandbox accounts will not be able to launch `m5.large` EC2 instances.
+**Result:** Users in the sandbox account can no longer create `m5.large` EC2 instances.
 
-#### Next steps
+### Manager Role
 
-- You can continue to learn how to change system settings through **AWS AppConfig** and how to use the solution with **manager** and **end user** roles in subsequent steps.
+The manager can edit settings and create templates for user account requests.
 
-**Note:**  
-- Administrative operations need to be performed in correct account and Region as configured.
-- Ensure sandbox accounts have been onboarded to correct OU to appear in lease list.
+#### Editing settings with AppConfig
 
-------------------------
-### Using Innovation Sandbox on AWS with Manager role
+**Important note:** Do this in the **hub account**, not the management account. Use the correct **home Region**.
 
-The Innovation Sandbox on AWS solution supports three roles: **administrator**, **manager**, and **end user**. This section provides detailed guidance on using the solution with the **manager** role.
+**Steps:**
 
-#### Overview
-
-In this section, you will:
-
-- Edit Innovation Sandbox on AWS settings using AWS AppConfig.
-- Create basic lease template.
-- Create advanced lease template.
-
-### Editing settings with AWS AppConfig
-
-**Important note:**  
-Perform these steps in the **hub account**, not the organization management account. Ensure you are in the correct **home Region** of this account.
-
-**Steps to edit settings:**
-
-- Log in to hub account.
-- In console search bar, enter and choose **AWS AppConfig**.
-- In navigation bar, under AWS AppConfig, choose **Applications**.
-- Choose the path to application created for you.
-- Under **Configuration Profiles and Feature Flags**, choose the path named **InnovationSandboxData-Config-GlobalConfigHostedConfiguration-ID**.
-
-
+- Log into the hub account
+- In the console search bar, enter **AWS AppConfig**
+- In the navigation bar, select **Applications**
+- Select the created app
+- Select **InnovationSandboxData-Config-GlobalConfigHostedConfiguration-ID**
 
 ![architect](/images/Manager1.png "Architect")
 
-- In **Hosted configuration versions**, choose **Create**.
-- Change **maxBudget** field to **50** (USD).
+- **Hosted configuration versions** > **Create**
+- Change **maxBudget** to **50** (USD)
 
 ![architect](/images/Manager2.png "Architect")
 
-- Choose **Create hosted configuration version**.
-- Choose **Start deployment**.
-- Choose the just created configuration version, keep other default settings and choose **Start deployment**.
+- **Create hosted configuration version**
+- **Start deployment**
+- Select the newly created version, keep the other settings, **Start deployment**
 
-### Creating Lease Template
+### Creating Lease Templates
 
-#### Introduction to Lease Template
+#### What is a Lease Template
 
-Lease template is a set of parameters and rules defining how users access and use resources in Innovation Sandbox on AWS environment. This is a template for creating individual leases (controlled access sessions to cloud resources). Main components of lease template include:
+Basically, it's a set of rules defining how users can use resources:
 
-- **Resource allocation:** Define maximum budget that can be used during lease period.
-- **Duration:** Determine maximum time a lease can be active.
-- **Approval process:** Determine if manager approval is needed before granting lease.
-- **Alerts and thresholds:** Set up alerts based on budget consumption or remaining time.
+- **Maximum budget:** How much they can spend
+- **Duration:** How long they can use it
+- **Approval:** Whether a manager needs to approve it
+- **Alerts:** Notifications for when money or time is almost up
 
-You will create two types of templates:
+We'll create two types:
+- **Basic:** $25, auto-approved, for light testing
+- **Advanced:** $50, needs approval, for larger projects
 
-- **Basic template:** Maximum budget $25, automatic approval, suitable for small projects and routine testing.
-- **Advanced template:** Maximum budget $50, requires manager approval, suitable for large projects needing stricter control.
+### Creating a Basic Template
 
-### Creating Basic Lease Template
+This template is for requests that don't need approval. $25 maximum, alerts at $15, usable for 168 hours (1 week), with a 24-hour warning before expiration.
 
-This guide helps you create lease template for accounts that don't need manager approval. This template allows maximum budget $25, alert at $15 consumption, duration 168 hours (1 week), alert 24 hours before expiration.
+**Steps:**
 
-**Implementation steps:**
-
-- On Innovation Sandbox on AWS console, choose user profile in top right corner and choose **Sign out**.
-- Log in with manager account. If first time logging in, use **Forgot password** function.
-- If screen shows two tabs **Accounts** and **Applications**, choose **Applications** to enter application. You will see Innovation Sandbox welcome page.
-- In navigation bar, choose **Lease Templates**.
-- Choose **Add new lease template**.
-- In **Name** field, enter: `Basic`.
-- In **Description** field, enter: `Basic account lease template`.
-- Uncheck **Approval required** box (users don't need manager approval when requesting this type of account).
+- In the Innovation Sandbox console, select the profile in the top right > **Sign out**
+- Log in with the manager account. Use **Forgot password** the first time.
+- If there are two tabs, **Accounts** and **Applications**, select **Applications**.
+- In the navigation bar, select **Lease Templates**.
+- **Add new lease template**
+- **Name:** `Basic`
+- **Description:** `Basic account lease template`
+- Uncheck **Approval required** (no manager approval needed)
 
 ![architect](/images/Manager3.png "Architect")
 
-- Choose **Next**.
-- In **Maximum budget** field, enter: `100`, choose **Next**.
-- If you edited AppConfig correctly, you will see error message about maximum budget being $50. Change **Maximum Budget Amount** field to `25`.
-- Under **Budget Thresholds**, choose **Add a threshold**.
-  - In **amount consumed**, enter `15`.
-  - In **action**, choose **Send Alert**. User will receive alert when consuming $15, and account will be deleted when consuming all $25.
-- Choose **Next**.
-- In **Maximum Duration**, choose **Set a maximum duration** and enter `168`.
-- Under **Duration Thresholds**, choose **Add a threshold**.
-  - In **remaining hours**, enter `24`.
-  - In **action**, choose **Send Alert**. User will receive alert when 24 hours remain in lease.
-- Choose **Submit**.
-- Under **Lease Templates**, you will see the just created lease template.
+- **Next**
+- **Maximum budget:** `100`, **Next**
+- If AppConfig was set correctly, it will error, saying the max budget is $50. Change **Maximum Budget Amount** to `25`.
+- **Budget Thresholds** > **Add a threshold**:
+  - **amount consumed:** `15`
+  - **action:** **Send Alert**. The user will be alerted at $15, and the account will be deleted at $25.
+- **Next**
+- **Maximum Duration** > **Set a maximum duration** > `168`
+- **Duration Thresholds** > **Add a threshold**:
+  - **remaining hours:** `24`
+  - **action:** **Send Alert**. A warning will be sent with 24 hours remaining.
+- **Submit**
 
 ![architect](/images/Manager4.png "Architect")
 
+### Creating an Advanced Template
 
-### Creating Advanced Lease Template
+This template requires manager approval. $50 maximum, alerts at $40, 168-hour duration, 24-hour warning.
 
-This section guides you to create lease template requiring manager approval. This template has maximum budget $50, alert at $40 level, duration 168 hours, alert 24 hours before expiration. Suitable for large projects needing more careful monitoring.
+**Steps:**
 
-**Implementation steps:**
-
-- In navigation bar, choose **Lease Templates**.
-- Choose **Add new lease template**.
-- In **Name** field, enter: `Advanced`.
-- In **Description** field, enter: `Advanced account lease template`.
-- Keep **Approval required** box checked (users need manager approval when requesting this type of account).
-- Choose **Next**.
-- In **Maximum budget** field, enter: `50`, choose **Next**.
-- Under **Budget Thresholds**, choose **Add a threshold**.
-  - In **amount consumed**, enter `40`.
-  - In **action**, choose **Send Alert**. User will receive alert when consuming $40, and account will be deleted when consuming all $50.
-- Choose **Next**.
-- In **Maximum Duration**, choose **Set a maximum duration** and enter `168`.
-- Under **Duration Thresholds**, choose **Add a threshold**.
-  - In **remaining hours**, enter `24`.
-  - In **action**, choose **Send Alert**. User will receive alert when 24 hours remain in lease.
-- Choose **Submit**.
-- Under **Lease Templates**, you will see both created lease templates.
+- **Lease Templates** > **Add new lease template**
+- **Name:** `Advanced`
+- **Description:** `Advanced account lease template`
+- Keep **Approval required** checked
+- **Next**
+- **Maximum budget:** `50`, **Next**
+- **Budget Thresholds** > **Add a threshold**:
+  - **amount consumed:** `40`
+  - **action:** **Send Alert**
+- **Next**
+- **Maximum Duration** > **Set a maximum duration** > `168`
+- **Duration Thresholds** > **Add a threshold**:
+  - **remaining hours:** `24`
+  - **action:** **Send Alert**
+- **Submit**
 
 ![architect](/images/Manager5.png "Architect")
 
-### Next steps
+### End-User Role
 
-After creating two lease templates with manager role, in the next section you will:
+Now let's try being a regular user, requesting an account and using it.
 
-- Log in to Innovation Sandbox on AWS as end user.
-- Request basic account:
-  - Experience automatic approval process.
-  - Access newly created sandbox account.
-- Request advanced account:
-  - Send request requiring manager approval.
-  - Wait for manager review and approval.
-  - Access approved sandbox account.
-- Manage and monitor your sandbox accounts.
+#### 1. Requesting a basic account
 
-### Using Innovation Sandbox on AWS with End-User role
+The basic account will be auto-approved.
 
-The Innovation Sandbox on AWS solution supports three roles: **administrator**, **manager** and **end user**. Below is detailed guidance for end users when using the system.
+**Steps:**
 
-#### 1. Request and access basic AWS account
-
-Basic accounts will be automatically approved, allowing you immediate access to AWS resources within defined limits.
-
-**Implementation steps:**
-
-- On Innovation Sandbox on AWS interface, choose user profile in top right corner and choose **Sign out**.
-- Log in again with end user credentials.
-- If screen has two tabs **Accounts** and **Applications**, choose **Applications** to enter application. You will see Innovation Sandbox welcome page.
-- Choose **Request a new account**.
-- Choose **Basic lease template**, click **Next**.
-- Check **I accept the above terms of service**, click **Next**.
+- In the Innovation Sandbox interface, select the profile in the top right > **Sign out**
+- Log back in with the end user account
+- If there are two tabs, select **Applications**
+- **Request a new account**
+- Select **Basic lease template**, **Next**
+- Check **I accept the above terms of service**, **Next**
 
 ![architect](/images/User1.png "Architect")
 
-- In **Comments** section, enter reason (example: `Request for a basic account`).
-- Choose **Submit**.
-- In left navigation bar, choose **Home**. In **Account** section, click **Refresh** to update account status.
+- **Comments:** enter a reason (e.g., `Request for a basic account`)
+- **Submit**
+- In the left navigation bar, select **Home**. In the **Account** section, click **Refresh** to update.
 
 ![architect](/images/User2.png "Architect")
 
-- When account has been granted, under **Access** section, choose **Login to account** for the newly added account.
-- Choose the role appearing in **Select a role** section to enter AWS Management Console.
+- When the account is granted, in the **Access** section, select **Login to account**
+- Select a role in **Select a role** to enter the AWS Management Console.
 
 ![architect](/images/User3.png "Architect")
 
-#### 2. Check Service Control Policy (SCP) limits
+#### 2. Testing SCP limits
 
-You can check SCP effectiveness by trying to create a restricted EC2 instance.
+Check if the SCP is working by trying to create a forbidden EC2 instance.
 
-**Check steps:**
+**Steps:**
 
-- In AWS Management Console, enter **EC2** in search bar and choose the service.
-- In left navigation bar, choose **Instances**.
-- Choose **Launch instances**.
-- In **Name** field, enter `test-scp`. Keep default Amazon Machine Image (AMI).
+- In the AWS Management Console, search for **EC2**
+- In the left navigation bar, select **Instances**
+- **Launch instances**
+- **Name:** `test-scp`. Keep the default AMI.
 
 ![architect](/images/User4.png "Architect")
 
-- In **Instance type** field, choose **m5.large** (this type is blocked by SCP).
-- In **Key pair**, choose **Proceed without a key pair**.
-- Keep other default settings, then choose **Launch instance**.
-- You will see error message due to SCP not allowing **m5.large** EC2 instance type creation.
+- **Instance type:** select **m5.large** (this type is blocked by the SCP)
+- **Key pair:** **Proceed without a key pair**
+- Keep the other settings, **Launch instance**
+- You will see an error message because the SCP prevents the creation of **m5.large**.
 
 ![architect](/images/User5.png "Architect")
 
-#### 3. Request advanced account
+#### 3. Requesting an advanced account
 
-Advanced accounts require manager approval before being granted access.
+The advanced account requires manager approval.
 
-**Implementation steps:**
+**Steps:**
 
-- Return to Innovation Sandbox on AWS interface, log in as end user.
-- Choose **Request a new account**.
-- Choose **Advanced lease template**, click **Next**.
-- Check **I accept the above terms of service**, click **Next**.
-- In **Comments** section, enter reason (example: `Request for an advanced account`).
-- Choose **Submit**.
+- Go back to the Innovation Sandbox interface, log in as an end user
+- **Request a new account**
+- Select **Advanced lease template**, **Next**
+- Check **I accept the above terms of service**, **Next**
+- **Comments:** enter a reason (e.g., `Request for an advanced account`)
+- **Submit**
 
 **Approval process:**
 
-- Log out of Innovation Sandbox on AWS and log in with manager account.
-- On home page, you will see pending approval request. In left navigation bar, choose **Approvals**.
-- Choose the request, go to **Actions** and choose **Approve request**.
+- Log out, log in with the manager account
+- The homepage will show a pending request. In the navigation bar, select **Approvals**.
+- Select the request, **Actions** > **Approve request**
 
-**Lease management:**
+**Managing leases:**
 
-- In navigation bar, choose **Leases**.
-- You will see two leases: one for basic account, one for advanced account.
-- Can choose lease and use **Actions** to terminate, suspend or update lease.
+- In the navigation bar, select **Leases**
+- You will see two leases: basic and advanced
+- You can select a lease and use **Actions** to terminate, suspend, or update it.
 
 ![architect](/images/User6.png "Architect")
 
 ![architect](/images/User7.png "Architect")
 
-#### 4. Summary of functions and user experience
+#### 4. Summary
 
-- **Administrator**: Set up system, create SCP to control resources, manage accounts and configure Innovation Sandbox environment, integrate with AWS AppConfig.
-- **Manager**: Configure budget thresholds, create lease templates (Basic, Advanced), set up approval processes, monitor resource usage.
-- **End user**: Request and access AWS accounts, test SCP effectiveness, use different account types with appropriate approval processes.
+- **Administrator:** Sets up the system, creates SCPs to control resources, manages accounts, integrates AppConfig
+- **Manager:** Configures budgets, creates lease templates (Basic, Advanced), sets up approval processes, monitors usage
+- **End user:** Requests and accesses AWS accounts, tests SCPs, uses different account types with approval processes
+
+That's it, you now know how to use the Innovation Sandbox with all three roles!

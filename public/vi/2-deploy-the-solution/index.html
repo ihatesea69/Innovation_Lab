@@ -1,16 +1,985 @@
-<!doctype html><html lang=vi class="js csstransforms3d"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=generator content="Hugo 0.147.9"><meta name=description content><meta name=author content="journeyoftheaverageguy@gmail.com"><link rel=icon href=/images/favicon.png type=image/png><title>Deploy the Solution :: Triển khai Ứng dụng ShareNote với Auto Scaling Group</title><link href=/css/nucleus.css?1752555300 rel=stylesheet><link href=/css/fontawesome-all.min.css?1752555300 rel=stylesheet><link href=/css/hybrid.css?1752555300 rel=stylesheet><link href=/css/featherlight.min.css?1752555300 rel=stylesheet><link href=/css/perfect-scrollbar.min.css?1752555300 rel=stylesheet><link href=/css/auto-complete.css?1752555300 rel=stylesheet><link href=/css/atom-one-dark-reasonable.css?1752555300 rel=stylesheet><link href=/css/theme.css?1752555300 rel=stylesheet><link href=/css/hugo-theme.css?1752555300 rel=stylesheet><link href=/css/theme-workshop.css?1752555300 rel=stylesheet><script src=/js/jquery-3.3.1.min.js?1752555300></script><style>:root #header+#content>#left>#rlblock_left{display:none !important}</style></head><body data-url=/vi/2-deploy-the-solution/><nav id=sidebar class=showVisitedLinks><div id=header-wrapper><div id=header><a id=logo href=/><svg id="Layer_1" data-name="Layer 1" viewBox="0 0 60 30" width="30%"><defs><style>.cls-1{fill:#fff}.cls-2{fill:#f90;fill-rule:evenodd}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09 10.85a4.7 4.7.0 00.19 1.48 7.73 7.73.0 00.54 1.19.77.77.0 01.12.38.64.64.0 01-.32.49l-1 .7a.83.83.0 01-.44.15.69.69.0 01-.49-.23 3.8 3.8.0 01-.6-.77q-.25-.42-.51-1a6.14 6.14.0 01-4.89 2.3 4.54 4.54.0 01-3.32-1.19 4.27 4.27.0 01-1.22-3.2 4.28 4.28.0 011.46-3.4A6.06 6.06.0 017.69 6.46a12.47 12.47.0 011.76.13q.92.13 1.91.36V5.73a3.65 3.65.0 00-.79-2.66A3.81 3.81.0 007.86 2.3a7.71 7.71.0 00-1.79.22 12.78 12.78.0 00-1.79.57 4.55 4.55.0 01-.58.22h-.26q-.35.0-.35-.52V2a1.09 1.09.0 01.12-.58 1.2 1.2.0 01.47-.35A10.88 10.88.0 015.77.32 10.19 10.19.0 018.36.0a6 6 0 014.35 1.35 5.49 5.49.0 011.38 4.09zM7.34 13.38a5.36 5.36.0 001.72-.31A3.63 3.63.0 0010.63 12 2.62 2.62.0 0011.19 11a5.63 5.63.0 00.16-1.44v-.7a14.35 14.35.0 00-1.53-.28 12.37 12.37.0 00-1.56-.1 3.84 3.84.0 00-2.47.67A2.34 2.34.0 005 11a2.35 2.35.0 00.61 1.76A2.4 2.4.0 007.34 13.38zm13.35 1.8a1 1 0 01-.64-.16 1.3 1.3.0 01-.35-.65L15.81 1.51a3 3 0 01-.15-.67.36.36.0 01.41-.41H17.7a1 1 0 01.65.16 1.4 1.4.0 01.33.65l2.79 11 2.59-11A1.17 1.17.0 0124.39.6a1.1 1.1.0 01.67-.16H26.4a1.1 1.1.0 01.67.16 1.17 1.17.0 01.32.65L30 12.39 32.88 1.25A1.39 1.39.0 0133.22.6a1 1 0 01.65-.16h1.54a.36.36.0 01.41.41 1.36 1.36.0 010 .26 3.64 3.64.0 01-.12.41l-4 12.86a1.3 1.3.0 01-.35.65 1 1 0 01-.64.16H29.25a1 1 0 01-.67-.17 1.26 1.26.0 01-.32-.67L25.67 3.64l-2.56 10.7a1.26 1.26.0 01-.32.67 1 1 0 01-.67.17zm21.36.44a11.28 11.28.0 01-2.56-.29 7.44 7.44.0 01-1.92-.67 1 1 0 01-.61-.93v-.84q0-.52.38-.52a.9.9.0 01.31.06l.42.17a8.77 8.77.0 001.83.58 9.78 9.78.0 002 .2 4.48 4.48.0 002.43-.55 1.76 1.76.0 00.86-1.57 1.61 1.61.0 00-.45-1.16A4.29 4.29.0 0043 9.22l-2.41-.76A5.15 5.15.0 0138 6.78a3.94 3.94.0 01-.83-2.41 3.7 3.7.0 01.45-1.85 4.47 4.47.0 011.19-1.37 5.27 5.27.0 011.7-.86A7.4 7.4.0 0142.6.0a8.87 8.87.0 011.12.07q.57.07 1.08.19t.95.26a4.27 4.27.0 01.7.29 1.59 1.59.0 01.49.41.94.94.0 01.15.55v.79q0 .52-.38.52a1.76 1.76.0 01-.64-.2 7.74 7.74.0 00-3.2-.64 4.37 4.37.0 00-2.21.47 1.6 1.6.0 00-.79 1.48 1.58 1.58.0 00.49 1.18 4.94 4.94.0 001.83.92L44.55 7a5.08 5.08.0 012.57 1.6A3.76 3.76.0 0147.9 11a4.21 4.21.0 01-.44 1.93 4.4 4.4.0 01-1.21 1.47 5.43 5.43.0 01-1.85.93A8.25 8.25.0 0142.05 15.62z"/><path class="cls-2" d="M45.19 23.81C39.72 27.85 31.78 30 25 30A36.64 36.64.0 01.22 20.57c-.51-.46-.06-1.09.56-.74A49.78 49.78.0 0025.53 26.4 49.23 49.23.0 0044.4 22.53C45.32 22.14 46.1 23.14 45.19 23.81z"/><path class="cls-2" d="M47.47 21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74 3.13-2.2 8.27-1.57 8.86-.83s-.16 5.89-3.09 8.35c-.45.38-.88.18-.68-.32C46.69 25.8 48.17 22.11 47.47 21.21z"/></svg></a></div><div class=searchbox><label for=search-by><i class="fas fa-search"></i></label>
-<input data-search-input id=search-by type=search placeholder=Search...>
-<span data-search-clear><i class="fas fa-times"></i></span></div><script type=text/javascript src=/js/lunr.min.js?1752555300></script><script type=text/javascript src=/js/auto-complete.js?1752555300></script><script type=text/javascript>var baseurl="//vi"</script><script type=text/javascript src=/js/search.js?1752555300></script></div><div class=highlightable><ul class=topics><li data-nav-id=/vi/1-prerequisite/ title="Các bước chuẩn bị" class=dd-item><a href=/vi/1-prerequisite/><b>1. </b>Các bước chuẩn bị
-<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/vi/2-deploy-the-solution/ title="Deploy the Solution" class="dd-item
-active"><a href=/vi/2-deploy-the-solution/><b>2. </b>Deploy the Solution
-<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/vi/3-configure-the-solution/ title="Configure the Solution" class=dd-item><a href=/vi/3-configure-the-solution/><b>3. </b>Configure the Solution
-<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/vi/4-use-the-solution/ title="Use the Solutio" class=dd-item><a href=/vi/4-use-the-solution/><b>4. </b>Use the Solutio
-<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/vi/5-remove-the-solution/ title="Remove the Solution" class=dd-item><a href=/vi/5-remove-the-solution/><b>5. </b>Remove the Solution
-<i class="fas fa-check read-icon"></i></a></li></ul><section id=shortcuts><h3>More</h3><ul><li><a class=padding href=http://awsstudygroup.com><i class='fab fa-aws'></i> AWS Study Group - Blog</a></li><li><a class=padding href=https://www.facebook.com/groups/660548818043427/><i class='fab fa-facebook'></i> AWS Study Group - Nhóm FB</a></li></ul></section><section id=prefooter><hr><ul><li><a class=padding><i class="fas fa-language fa-fw"></i><div class=select-style><select id=select-language onchange="location=this.value"><option id=en value=/2-deploy-the-solution/>English</option><option id=vi value=/vi/2-deploy-the-solution/ selected>Tiếng Việt</option></select>
-<svg id="Capa_1" xmlns:xlink="http://www.w3.org/1999/xlink" width="255" height="255" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255"><g><g id="arrow-drop-down"><polygon points="0,63.75 127.5,191.25 255,63.75"/></g></g></svg></div></a></li><li><a class=padding href=# data-clear-history-toggle><i class="fas fa-history fa-fw"></i> Clear History</a></li></ul></section><section id=footer><left><b>Workshop</b><br><img src="https://hitwebcounter.com/counter/counter.php?page=7831210&style=0038&nbdigits=9&type=page&initCount=0" title=Migrate alt="web counter" border=0></a><br><b><a href=https://cloudjourney.awsstudygroup.com/>Cloud Journey</a></b><br><img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0" title="Total CLoud Journey" alt="web counter" border=0>
-</left><left><br><br><b>Last Updated</b><br><i><font color=orange>17-09-2021</font></i>
-</left><left><br><br><b>Team</b><br><i><a href=https://www.linkedin.com/in/jotaguy style=color:orange>Gia Hưng</a>
-</i></left><script async defer src=https://buttons.github.io/buttons.js></script></section></div></nav><section id=body><div id=overlay></div><div class="padding highlightable"><div><div id=top-bar><div id=breadcrumbs itemscope itemtype=http://data-vocabulary.org/Breadcrumb><span id=sidebar-toggle-span><a href=# id=sidebar-toggle data-sidebar-toggle><i class="fas fa-bars"></i>
-</a></span><span id=toc-menu><i class="fas fa-list-alt"></i></span>
-<span class=links><a href=/vi/>Innovation Lab</a> > Deploy the Solution</span></div><div class=progress><div class=wrapper><nav id=TableOfContents><ul><li><ul><li><a href=#triển-khai-giải-pháp-deploy-the-solution>Triển khai Giải pháp (Deploy the Solution)</a></li><li><a href=#triển-khai-accountpool-stack>Triển khai AccountPool Stack</a></li><li><a href=#triển-khai-idc-stack>Triển khai IDC Stack</a></li><li><a href=#triển-khai-data-stack>Triển khai Data Stack</a></li><li><a href=#triển-khai-compute-stack>Triển khai Compute Stack</a></li></ul></li></ul></nav></div></div></div></div><div id=head-tags></div><div id=body-inner><h1>Deploy the Solution</h1><h3 id=triển-khai-giải-pháp-deploy-the-solution>Triển khai Giải pháp (Deploy the Solution)</h3><p>Giải pháp Innovation Sandbox trên AWS sử dụng bốn stack AWS CloudFormation, cần được triển khai theo thứ tự nhất định. Mỗi stack phải được triển khai đúng tài khoản và vùng AWS (Region) đã chọn để đảm bảo hoạt động chính xác. Trong suốt quá trình triển khai, hãy sử dụng cùng một home Region đã xác định từ trước.</p><h4 id=tổng-quan-về-các-stack-cloudformation>Tổng quan về các Stack CloudFormation</h4><p>Việc triển khai bao gồm bốn stack CloudFormation, mỗi stack xây dựng dựa trên stack trước đó:</p><ul><li><p><strong>AccountPool Stack</strong></p><ul><li>Triển khai trên tài khoản quản lý tổ chức (organization management account)</li><li>Tạo cấu trúc tổ chức AWS</li><li>Thiết lập các chính sách và kiểm soát nền tảng</li></ul></li><li><p><strong>IDC Stack</strong></p><ul><li>Triển khai trên tài khoản quản lý tổ chức</li><li>Cấu hình tích hợp AWS IAM Identity Center</li><li>Thiết lập quản lý danh tính và truy cập</li></ul></li><li><p><strong>Data Stack</strong></p><ul><li>Triển khai trên tài khoản hub</li><li>Triển khai các thành phần lưu trữ và quản lý dữ liệu</li><li>Cấu hình các dịch vụ backend</li></ul></li><li><p><strong>Compute Stack</strong></p><ul><li>Triển khai trên tài khoản hub</li><li>Thiết lập hạ tầng giải pháp</li><li>Tạo giao diện web và các thành phần xử lý</li></ul></li></ul><h4 id=sơ-đồ-quan-hệ-giữa-các-stack>Sơ đồ quan hệ giữa các Stack</h4><p>Mỗi stack CloudFormation có mối quan hệ phụ thuộc với các stack khác và được triển khai trên các tài khoản khác nhau, đảm bảo các thành phần của giải pháp hoạt động phối hợp.</p><p><img src=/images/stack-relationships.png alt=architect title=Architect></p><h4 id=mẫu-template-cloudformation>Mẫu Template CloudFormation</h4><p>Để triển khai giải pháp, sử dụng các đường dẫn template CloudFormation sau:</p><table><thead><tr><th>Stack</th><th>Template URL</th></tr></thead><tbody><tr><td>AccountPool</td><td><a href=https://solutions-reference.s3.us-east-1.amazonaws.com/innovation-sandbox-on-aws/latest/InnovationSandbox-AccountPool.template>https://solutions-reference.s3.us-east-1.amazonaws.com/innovation-sandbox-on-aws/latest/InnovationSandbox-AccountPool.template</a></td></tr><tr><td>IDC</td><td><a href=https://solutions-reference.s3.us-east-1.amazonaws.com/innovation-sandbox-on-aws/latest/InnovationSandbox-IDC.template>https://solutions-reference.s3.us-east-1.amazonaws.com/innovation-sandbox-on-aws/latest/InnovationSandbox-IDC.template</a></td></tr><tr><td>Data</td><td><a href=https://solutions-reference.s3.us-east-1.amazonaws.com/innovation-sandbox-on-aws/latest/InnovationSandbox-Data.template>https://solutions-reference.s3.us-east-1.amazonaws.com/innovation-sandbox-on-aws/latest/InnovationSandbox-Data.template</a></td></tr><tr><td>Compute</td><td><a href="https://drive.google.com/file/d/1oJ9DeANLgpscQSEGuO_gk7rxiDSTWf-_/view?usp=sharing">https://drive.google.com/file/d/1oJ9DeANLgpscQSEGuO_gk7rxiDSTWf-_/view?usp=sharing</a></td></tr></tbody></table><h4 id=trước-khi-bắt-đầu>Trước khi bắt đầu</h4><p>Trước khi triển khai, hãy đảm bảo bạn đã hoàn thành các bước sau:</p><ul><li>Hoàn thành tất cả các bước trong phần Yêu cầu trước (Prerequisites module)</li><li>Đảm bảo có quyền truy cập vào cả hai tài khoản: tài khoản quản lý tổ chức (organization management account) và tài khoản hub<ul><li>Tài khoản dùng để thiết lập AWS Organizations hoặc AWS Control Tower chính là tài khoản quản lý tổ chức</li></ul></li></ul><p><strong>Thời gian dự kiến:</strong> Khoảng 45 phút</p><p>Việc triển khai đúng thứ tự và đúng tài khoản/vùng sẽ đảm bảo giải pháp Innovation Sandbox trên AWS hoạt động hiệu quả và tuân thủ các chính sách quản trị của tổ chức.</p><h3 id=triển-khai-accountpool-stack>Triển khai AccountPool Stack</h3><p>Triển khai AccountPool stack là bước đầu tiên trong tài khoản quản lý tổ chức (organization management account). Stack này sẽ tạo cấu trúc tổ chức và các chính sách nền tảng cần thiết cho giải pháp.</p><h4 id=các-bước-triển-khai>Các bước triển khai</h4><p><strong>Đăng nhập vào AWS Management Console</strong></p><ul><li>Mở AWS Management Console.</li><li>Đăng nhập bằng tài khoản quản lý tổ chức của bạn.</li><li>Chuyển sang vùng AWS chính (home Region) đã chọn.</li></ul><p><strong>Thu thập thông tin cần thiết</strong></p><ul><li><strong>HubAccountId:</strong> Đây là ID tài khoản AWS nơi bạn sẽ triển khai hai trong bốn stack. Để xem tất cả các tài khoản trong tổ chức, vào AWS Organizations trong console, chọn một tài khoản làm hub và ghi lại ID để sử dụng ở bước 5 và các bước sau.</li><li><strong>ParentOuID:</strong> Đây là ID của root hoặc organizational unit (OU) nơi các OU của Innovation Sandbox sẽ được tạo. Để tìm ID này, mở AWS Organizations, cấu trúc tổ chức sẽ hiển thị ID dưới tên từng OU. Bạn cũng có thể dùng root organization ID.</li></ul><p><img src=/images/organiza.jpg alt=architect title=Architect></p><p><strong>Khởi tạo stack</strong></p><ul><li>Mở AWS CloudFormation console.</li><li>Chọn mục Stack, sau đó chọn &ldquo;Create stack&rdquo;.</li><li>Chọn &ldquo;With new resources (standard)&rdquo;.</li></ul><p><strong>Chỉ định template</strong></p><ul><li>Chọn &ldquo;Amazon S3 URL&rdquo;.</li><li>Nhập đường dẫn template của AccountPool stack:<br><code>https://solutions-reference.s3.us-east-1.amazonaws.com/innovation-sandbox-on-aws/latest/InnovationSandbox-AccountPool.template</code></li><li>Chọn &ldquo;Next&rdquo;.</li></ul><p><strong>Nhập thông tin chi tiết cho stack</strong></p><table><thead><tr><th>Tham số</th><th>Mô tả</th><th>Ví dụ</th></tr></thead><tbody><tr><td>Stack name</td><td>Tên stack (tùy chọn)</td><td>isb-accountpool</td></tr><tr><td>Namespace</td><td>Định danh duy nhất cho triển khai này (3-8 ký tự, chữ/số)</td><td>isb01</td></tr><tr><td>HubAccountId</td><td>AWS Account ID của tài khoản hub</td><td>123456789012</td></tr><tr><td>ParentOuId</td><td>Root ID hoặc OU ID nơi tạo các OU của Innovation Sandbox</td><td>r-abcd</td></tr><tr><td>IsbManagedRegions</td><td>Danh sách các Region cho phép, cách nhau bằng dấu phẩy</td><td>us-east-1,us-west-2</td></tr></tbody></table><p><strong>Lưu ý thêm:</strong></p><ul><li><strong>Namespace:</strong> Sử dụng cùng một giá trị này cho cả bốn stack. Ghi nhớ giá trị này để dùng cho các bước tiếp theo.</li><li><strong>HubAccountId:</strong> Nhập ID tài khoản hub đã lấy ở bước 2.</li><li><strong>ParentOuID:</strong> Nhập root ID hoặc OU ID đã lấy ở bước 2.</li><li><strong>IsbManagedRegions:</strong> Nhập danh sách các Region mà người dùng Innovation Sandbox được phép truy cập.</li></ul><p><strong>Cấu hình các tuỳ chọn stack</strong></p><ul><li>Xem lại các tuỳ chọn nâng cao nếu cần.</li><li>Thêm tags nếu muốn.</li><li>Chọn &ldquo;Next&rdquo;.</li></ul><p><strong>Xem lại và tạo stack</strong></p><ul><li>Kiểm tra lại toàn bộ thông tin đã nhập.</li><li>Chọn &ldquo;Submit&rdquo; để bắt đầu tạo stack.</li></ul><p><strong>Kiểm tra quá trình triển khai</strong></p><ul><li>Mở lại CloudFormation console, chọn mục Stacks.</li><li>Tìm stack vừa tạo và kiểm tra trạng thái. Đợi đến khi trạng thái chuyển sang &ldquo;CREATE_COMPLETE&rdquo;.</li></ul><p>Bạn đã triển khai thành công stack đầu tiên. Tiếp tục với việc triển khai stack thứ hai theo hướng dẫn tiếp theo.</p><h3 id=triển-khai-idc-stack>Triển khai IDC Stack</h3><p>IDC (Identity Center) stack là thành phần thứ hai của giải pháp Innovation Sandbox trên AWS. Stack này được triển khai trên tài khoản quản lý tổ chức (organization management account) và có nhiệm vụ cấu hình tích hợp với AWS IAM Identity Center, đồng thời thiết lập quản lý truy cập cho giải pháp.</p><h4 id=các-bước-triển-khai-1>Các bước triển khai</h4><p><strong>1. Đăng nhập vào AWS Management Console</strong></p><ul><li>Mở AWS Management Console.</li><li>Đăng nhập bằng tài khoản quản lý tổ chức của bạn.</li><li>Chuyển sang vùng AWS chính (home Region) đã chọn.</li></ul><p><strong>2. Thu thập thông tin cho bước 5</strong></p><ul><li>Mở IAM Identity Center console.</li><li>Chọn mục Settings (Cài đặt).</li><li>Sao chép và lưu lại hai giá trị: <strong>Identity store ID</strong> và <strong>Instance ARN</strong> để sử dụng ở bước 5.</li></ul><p><strong>3. Khởi tạo stack</strong></p><ul><li>Mở AWS CloudFormation console.</li><li>Chọn mục Stacks, sau đó chọn &ldquo;Create stack&rdquo;.</li><li>Chọn &ldquo;With new resources (standard)&rdquo;.</li></ul><p><strong>4. Chỉ định template</strong></p><ul><li>Chọn &ldquo;Amazon S3 URL&rdquo;.</li><li>Nhập đường dẫn template của IDC stack:<br><code>https://solutions-reference.s3.us-east-1.amazonaws.com/innovation-sandbox-on-aws/latest/InnovationSandbox-IDC.template</code></li><li>Chọn &ldquo;Next&rdquo;.</li></ul><p><strong>5. Nhập thông tin chi tiết cho stack</strong></p><table><thead><tr><th>Tham số</th><th>Mô tả</th><th>Ví dụ</th></tr></thead><tbody><tr><td>Stack name</td><td>Tên stack (tùy chọn)</td><td>isb-idc</td></tr><tr><td>Namespace</td><td>Giá trị namespace giống như ở stack AccountPool</td><td>isb01</td></tr><tr><td>HubAccountId</td><td>AWS Account ID của tài khoản hub</td><td>123456789012</td></tr><tr><td>IdentityStoreId</td><td>Identity store ID từ IAM Identity Center (bước 2)</td><td>d-1234567890</td></tr><tr><td>SsoInstanceArn</td><td>ARN của instance SSO trong IAM Identity Center (bước 2)</td><td>arn:aws:sso:::instance/ssoins-12345678901234567</td></tr></tbody></table><p><strong>Lưu ý thêm:</strong></p><ul><li><strong>Namespace:</strong> Dùng cùng một giá trị cho cả bốn stack, giống với stack trước.</li><li><strong>HubAccountId:</strong> Là AWS Account ID nơi sẽ triển khai hai trong bốn stack.</li><li><strong>IdentityStoreId</strong> và <strong>SsoInstanceArn:</strong> Lấy từ mục Settings của IAM Identity Center ở bước 2.</li></ul><p><strong>6. Cấu hình các tuỳ chọn stack</strong></p><ul><li>Xem lại các tuỳ chọn nâng cao nếu cần thiết.</li><li>Thêm tags nếu muốn.</li><li>Chọn &ldquo;Next&rdquo;.</li></ul><p><strong>7. Xem lại và tạo stack</strong></p><ul><li>Kiểm tra lại toàn bộ thông tin đã nhập.</li><li>Chọn &ldquo;Submit&rdquo; để bắt đầu tạo stack.</li></ul><p><strong>Kiểm tra quá trình triển khai</strong></p><ul><li>Mở lại CloudFormation console, chọn mục Stacks.</li><li>Tìm stack vừa tạo và kiểm tra trạng thái. Đợi đến khi trạng thái chuyển sang &ldquo;CREATE_COMPLETE&rdquo;.</li></ul><p>Bạn đã triển khai thành công IDC stack. Tiếp tục triển khai stack thứ ba trên tài khoản hub theo hướng dẫn tiếp theo.</p><h3 id=triển-khai-data-stack>Triển khai Data Stack</h3><p>Data stack là thành phần thứ ba của giải pháp Innovation Sandbox trên AWS. Stack này được triển khai trên tài khoản hub và có nhiệm vụ thiết lập hạ tầng dữ liệu cũng như các dịch vụ backend cần thiết cho giải pháp.</p><h4 id=lưu-ý-quan-trọng>Lưu ý quan trọng</h4><ul><li>Đảm bảo bạn đăng nhập đúng vào tài khoản hub.</li><li>Sử dụng cùng một AWS Region như các lần triển khai trước đó.</li></ul><h4 id=các-bước-triển-khai-2>Các bước triển khai</h4><p><strong>1. Đăng nhập vào AWS Management Console</strong></p><ul><li>Mở AWS Management Console.</li><li>Đăng nhập bằng tài khoản hub của bạn.</li><li>Chuyển sang vùng AWS chính (home Region) đã chọn.</li></ul><p><strong>2. Khởi tạo stack</strong></p><ul><li>Mở AWS CloudFormation console.</li><li>Chọn mục Stacks, sau đó chọn &ldquo;Create stack&rdquo;.</li><li>Chọn &ldquo;With new resources (standard)&rdquo;.</li></ul><p><strong>3. Chỉ định template</strong></p><ul><li>Chọn &ldquo;Amazon S3 URL&rdquo;.</li><li>Nhập đường dẫn template của Data stack:<br><code>https://solutions-reference.s3.us-east-1.amazonaws.com/innovation-sandbox-on-aws/latest/InnovationSandbox-Data.template</code></li><li>Chọn &ldquo;Next&rdquo;.</li></ul><p><strong>4. Nhập thông tin chi tiết cho stack</strong></p><table><thead><tr><th>Tham số</th><th>Mô tả</th><th>Ví dụ</th></tr></thead><tbody><tr><td>Stack name</td><td>Tên stack (tùy chọn)</td><td>isb-data</td></tr><tr><td>Namespace</td><td>Giá trị namespace giống như ở các lần triển khai trước</td><td>isb01</td></tr></tbody></table><ul><li><strong>Namespace:</strong> Dùng cùng một giá trị đã sử dụng ở các stack trước (ví dụ: isb01).</li></ul><p><strong>5. Cấu hình các tuỳ chọn stack</strong></p><ul><li>Xem lại các tuỳ chọn nâng cao nếu cần.</li><li>Thêm tags nếu muốn.</li><li>Chọn &ldquo;Next&rdquo;.</li></ul><p><strong>6. Xem lại và tạo stack</strong></p><ul><li>Kiểm tra lại toàn bộ thông tin đã nhập.</li><li>Chọn &ldquo;Submit&rdquo; để bắt đầu tạo stack.</li></ul><p><strong>7. Kiểm tra quá trình triển khai</strong></p><ul><li>Mở lại CloudFormation console, chọn mục Stacks.</li><li>Tìm stack vừa tạo và kiểm tra trạng thái.</li><li>Đợi đến khi trạng thái chuyển sang &ldquo;CREATE_COMPLETE&rdquo;.</li></ul><p>Bạn đã triển khai thành công Data stack. Tiếp tục triển khai stack cuối cùng trên tài khoản hub theo hướng dẫn tiếp theo.</p><h3 id=triển-khai-compute-stack>Triển khai Compute Stack</h3><p>Compute stack là thành phần cuối cùng của giải pháp Innovation Sandbox trên AWS. Stack này được triển khai trên tài khoản hub và chịu trách nhiệm thiết lập hạ tầng giải pháp, bao gồm giao diện web và các thành phần xử lý.</p><h4 id=các-bước-triển-khai-3>Các bước triển khai</h4><p><strong>1. Đăng nhập vào AWS Management Console</strong></p><ul><li>Mở AWS Management Console.</li><li>Đăng nhập bằng tài khoản hub của bạn.</li><li>Chuyển sang vùng AWS chính (home Region) đã chọn.</li></ul><p><strong>2. Lấy thông tin tài khoản quản lý</strong></p><ul><li>Bạn cần ID tài khoản quản lý tổ chức (management account ID) cho bước 5.</li><li>Nếu chưa có, đăng nhập vào AWS Management Console bằng tài khoản quản lý.</li><li>Nhấn vào menu tên tài khoản ở góc trên bên phải.</li><li>Sao chép 12 chữ số ID tài khoản để dùng ở bước tiếp theo.</li></ul><p><strong>3. Khởi tạo stack</strong></p><ul><li>Mở AWS CloudFormation console.</li><li>Chọn mục Stacks, sau đó chọn &ldquo;Create stack&rdquo;.</li><li>Chọn &ldquo;With new resources (standard)&rdquo;.</li></ul><p><strong>4. Chỉ định template</strong></p><ul><li>Chọn &ldquo;Amazon S3 URL&rdquo;.</li><li>Nhập đường dẫn template của Compute stack:<br><code>https://drive.google.com/file/d/1oJ9DeANLgpscQSEGuO_gk7rxiDSTWf-_/view?usp=sharing</code></li><li>Chọn &ldquo;Next&rdquo;.</li></ul><p><strong>5. Nhập thông tin chi tiết cho stack</strong></p><table><thead><tr><th>Tham số</th><th>Mô tả</th><th>Ví dụ</th></tr></thead><tbody><tr><td>Stack name</td><td>Tên stack (tùy chọn)</td><td>isb-compute</td></tr><tr><td>Namespace</td><td>Giá trị namespace giống như ở các stack trước</td><td>isb01</td></tr><tr><td>OrgMgtAccountId</td><td>AWS Account ID của tài khoản quản lý tổ chức</td><td>123456789012</td></tr><tr><td>IdcAccountId</td><td>AWS Account ID nơi đã cấu hình IAM Identity Center</td><td>123456789012</td></tr></tbody></table><ul><li><strong>Namespace:</strong> Dùng cùng một giá trị cho tất cả các stack (ví dụ: isb01).</li><li><strong>OrgMgtAccountId:</strong> ID tài khoản quản lý tổ chức.</li><li><strong>IdcAccountId:</strong> ID tài khoản đã cấu hình IAM Identity Center (thường cũng là tài khoản quản lý).</li></ul><p><strong>6. Cấu hình các tuỳ chọn stack</strong></p><ul><li>Xem lại các tuỳ chọn nâng cao nếu cần.</li><li>Thêm tags nếu muốn.</li><li>Chọn &ldquo;Next&rdquo;.</li></ul><p><strong>7. Xem lại và tạo stack</strong></p><ul><li>Kiểm tra lại toàn bộ thông tin đã nhập.</li><li>Chọn &ldquo;Submit&rdquo; để bắt đầu tạo stack.</li></ul><p><strong>8. Kiểm tra quá trình triển khai</strong></p><ul><li>Mở lại CloudFormation console, chọn mục Stacks.</li><li>Tìm stack vừa tạo và kiểm tra trạng thái.</li><li>Đợi đến khi trạng thái chuyển sang &ldquo;CREATE_COMPLETE&rdquo;.</li></ul><h4 id=sau-khi-triển-khai>Sau khi triển khai</h4><ul><li>Vào CloudFormation console, chọn mục Stacks.</li><li>Chọn Compute stack vừa triển khai.</li><li>Truy cập tab <strong>Outputs</strong>.</li><li>Sao chép giá trị <strong>CloudFrontDistributionUrl</strong>.</li></ul><p>Ví dụ:<br><code>https://duyXXXXXXXeh.cloudfront.net</code></p><p>Lưu lại giá trị này, bạn sẽ cần dùng trong phần cấu hình tiếp theo. Đây cũng là URL chính để truy cập giải pháp Innovation Sandbox trên AWS của bạn.</p><footer class=footline></footer></div></div><div id=navigation><a class="nav nav-prev" href=/vi/1-prerequisite/ title="Các bước chuẩn bị"><i class="fa fa-chevron-left"></i></a>
-<a class="nav nav-next" href=/vi/3-configure-the-solution/ title="Configure the Solution" style=margin-right:0><i class="fa fa-chevron-right"></i></a></div></section><div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px><div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div></div><script src=/js/clipboard.min.js?1752555300></script><script src=/js/perfect-scrollbar.min.js?1752555300></script><script src=/js/perfect-scrollbar.jquery.min.js?1752555300></script><script src=/js/jquery.sticky.js?1752555300></script><script src=/js/featherlight.min.js?1752555300></script><script src=/js/highlight.pack.js?1752555300></script><script>hljs.initHighlightingOnLoad()</script><script src=/js/modernizr.custom-3.6.0.js?1752555300></script><script src=/js/learn.js?1752555300></script><script src=/js/hugo-learn.js?1752555300></script><link href=/mermaid/mermaid.css?1752555300 rel=stylesheet><script src=/mermaid/mermaid.js?1752555300></script><script>mermaid.initialize({startOnLoad:!0})</script><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","https://www.google-analytics.com/analytics.js","ga"),ga("create","UA-158079754-2","auto"),ga("send","pageview")</script></body></html>
+<!DOCTYPE html>
+<html lang="vi" class="js csstransforms3d">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.147.9">
+    <meta name="description" content="">
+<meta name="author" content="hieunghiwork123@gmail.com">
+
+    <link rel="icon" href="//localhost:1313/images/favicon.png" type="image/png">
+
+    <title>Deploy the Solution :: Triển khai Innovation Lab</title>
+
+    
+    <link href="//localhost:1313/css/nucleus.css?1752572531" rel="stylesheet">
+    <link href="//localhost:1313/css/fontawesome-all.min.css?1752572531" rel="stylesheet">
+    <link href="//localhost:1313/css/hybrid.css?1752572531" rel="stylesheet">
+    <link href="//localhost:1313/css/featherlight.min.css?1752572531" rel="stylesheet">
+    <link href="//localhost:1313/css/perfect-scrollbar.min.css?1752572531" rel="stylesheet">
+    <link href="//localhost:1313/css/auto-complete.css?1752572531" rel="stylesheet">
+    <link href="//localhost:1313/css/atom-one-dark-reasonable.css?1752572531" rel="stylesheet">
+    <link href="//localhost:1313/css/theme.css?1752572531" rel="stylesheet">
+    <link href="//localhost:1313/css/hugo-theme.css?1752572531" rel="stylesheet">
+    
+    <link href="//localhost:1313/css/theme-workshop.css?1752572531" rel="stylesheet">
+    
+    
+
+    <script src="//localhost:1313/js/jquery-3.3.1.min.js?1752572531"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="//localhost:1313/vi/2-deploy-the-solution/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="//localhost:1313/">
+
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="30%"><defs><style>.cls-1{fill:#fff;}.cls-2{fill:#f90;fill-rule:evenodd;}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"></path><path class="cls-2" d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"></path><path class="cls-2" d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"></path></svg>
+
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="//localhost:1313/js/lunr.min.js?1752572531"></script>
+<script type="text/javascript" src="//localhost:1313/js/auto-complete.js?1752572531"></script>
+<script type="text/javascript">
+    
+        var baseurl = "\/\/localhost:1313\/\/vi";
+    
+</script>
+<script type="text/javascript" src="//localhost:1313/js/search.js?1752572531"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/1-prerequisite/" title="Các bước chuẩn bị" class="dd-item 
+        
+        
+        
+        ">
+      <a href="//localhost:1313/vi/1-prerequisite/">
+          <b>1. </b>Các bước chuẩn bị
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/2-deploy-the-solution/" title="Deploy the Solution" class="dd-item 
+        
+        active
+        
+        ">
+      <a href="//localhost:1313/vi/2-deploy-the-solution/">
+          <b>2. </b>Deploy the Solution
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/3-configure-the-solution/" title="Configure the Solution" class="dd-item 
+        
+        
+        
+        ">
+      <a href="//localhost:1313/vi/3-configure-the-solution/">
+          <b>3. </b>Configure the Solution
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-use-the-solution/" title="Use the Solution" class="dd-item 
+        
+        
+        
+        ">
+      <a href="//localhost:1313/vi/4-use-the-solution/">
+          <b>4. </b>Use the Solution
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-remove-the-solution/" title="Remove the Solution" class="dd-item 
+        
+        
+        
+        ">
+      <a href="//localhost:1313/vi/5-remove-the-solution/">
+          <b>5. </b>Remove the Solution
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="http://awsstudygroup.com"><i class='fab fa-aws'></i> AWS Study Group - Blog</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://www.facebook.com/groups/660548818043427/"><i class='fab fa-facebook'></i> AWS Study Group - Nhóm FB</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+          <div class="select-style">
+            <select id="select-language" onchange="location = this.value;">
+          
+          
+          
+              
+              
+                  
+                    
+                    
+                      <option id="en" value="//localhost:1313/2-deploy-the-solution/">English</option>
+                    
+                  
+              
+                  
+              
+          
+              
+              
+                  
+              
+                  
+                    
+                    
+                      <option id="vi" value="//localhost:1313/vi/2-deploy-the-solution/" selected>Tiếng Việt</option>
+                    
+                  
+              
+          
+        </select>
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          width="255px" height="255px" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255;" xml:space="preserve">
+          <g>
+            <g id="arrow-drop-down">
+              <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+            </g>
+          </g>
+        </svg>
+        </div>
+        </a>
+        </li>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <left>
+    
+     <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7831210&style=0038&nbdigits=9&type=page&initCount=0" title="Migrate" Alt="web counter"   border="0" /></a>  <br>
+     <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0" title="Total CLoud Journey" Alt="web counter"   border="0"   />
+     
+</left>
+<left>
+    <br>
+    <br>
+        <b> Last Updated </b> <br>
+        <i><font color=orange>15-07-2025</font></i>
+    </left>
+    <left>
+        <br>
+        <br>
+            <b> Team </b> <br>
+           
+            <i>
+                <a href="https://www.linkedin.com/in/hieunghi/"  style="color:orange">Danh Hoàng Hiếu Nghị</a>
+        </i>
+        </left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            <a href='//localhost:1313/vi/'>Innovation Lab</a> > Deploy the Solution
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#triển-khai-giải-pháp-deploy-the-solution">Triển khai Giải pháp (Deploy the Solution)</a></li>
+        <li><a href="#triển-khai-accountpool-stack">Triển khai AccountPool Stack</a></li>
+        <li><a href="#triển-khai-idc-stack">Triển khai IDC Stack</a></li>
+        <li><a href="#triển-khai-data-stack">Triển khai Data Stack</a></li>
+        <li><a href="#triển-khai-compute-stack">Triển khai Compute Stack</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Deploy the Solution
+            </h1>
+          
+
+        
+
+
+
+	<h3 id="triển-khai-giải-pháp-deploy-the-solution">Triển khai Giải pháp (Deploy the Solution)</h3>
+<p>Giải pháp Innovation Sandbox trên AWS sử dụng bốn stack AWS CloudFormation, cần được triển khai theo thứ tự nhất định. Mỗi stack phải được triển khai đúng tài khoản và vùng AWS (Region) đã chọn để đảm bảo hoạt động chính xác. Trong suốt quá trình triển khai, hãy sử dụng cùng một home Region đã xác định từ trước.</p>
+<h4 id="tổng-quan-về-các-stack-cloudformation">Tổng quan về các Stack CloudFormation</h4>
+<p>Việc triển khai bao gồm bốn stack CloudFormation, mỗi stack xây dựng dựa trên stack trước đó:</p>
+<ul>
+<li>
+<p><strong>AccountPool Stack</strong></p>
+<ul>
+<li>Triển khai trên tài khoản quản lý tổ chức (organization management account)</li>
+<li>Tạo cấu trúc tổ chức AWS</li>
+<li>Thiết lập các chính sách và kiểm soát nền tảng</li>
+</ul>
+</li>
+<li>
+<p><strong>IDC Stack</strong></p>
+<ul>
+<li>Triển khai trên tài khoản quản lý tổ chức</li>
+<li>Cấu hình tích hợp AWS IAM Identity Center</li>
+<li>Thiết lập quản lý danh tính và truy cập</li>
+</ul>
+</li>
+<li>
+<p><strong>Data Stack</strong></p>
+<ul>
+<li>Triển khai trên tài khoản hub</li>
+<li>Triển khai các thành phần lưu trữ và quản lý dữ liệu</li>
+<li>Cấu hình các dịch vụ backend</li>
+</ul>
+</li>
+<li>
+<p><strong>Compute Stack</strong></p>
+<ul>
+<li>Triển khai trên tài khoản hub</li>
+<li>Thiết lập hạ tầng giải pháp</li>
+<li>Tạo giao diện web và các thành phần xử lý</li>
+</ul>
+</li>
+</ul>
+<h4 id="sơ-đồ-quan-hệ-giữa-các-stack">Sơ đồ quan hệ giữa các Stack</h4>
+<p>Mỗi stack CloudFormation có mối quan hệ phụ thuộc với các stack khác và được triển khai trên các tài khoản khác nhau, đảm bảo các thành phần của giải pháp hoạt động phối hợp.</p>
+<p><img src="//localhost:1313/images/stack-relationships.png" alt="architect" title="Architect"></p>
+<h4 id="mẫu-template-cloudformation">Mẫu Template CloudFormation</h4>
+<p>Để triển khai giải pháp, sử dụng các đường dẫn template CloudFormation sau (Workshop gốc của AWS thì có một số lỗi liên quan tới Compute Stack nên tác giả đã thay thế bằng link drive có stack mới, nếu link này lỗi xin vui long liên hệ qua email <a href="mailto:hieunghiwork123@gmail.com">hieunghiwork123@gmail.com</a>):</p>
+<table>
+  <thead>
+      <tr>
+          <th>Stack</th>
+          <th>Template URL</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>AccountPool</td>
+          <td><a href="https://solutions-reference.s3.us-east-1.amazonaws.com/innovation-sandbox-on-aws/latest/InnovationSandbox-AccountPool.template">https://solutions-reference.s3.us-east-1.amazonaws.com/innovation-sandbox-on-aws/latest/InnovationSandbox-AccountPool.template</a></td>
+      </tr>
+      <tr>
+          <td>IDC</td>
+          <td><a href="https://solutions-reference.s3.us-east-1.amazonaws.com/innovation-sandbox-on-aws/latest/InnovationSandbox-IDC.template">https://solutions-reference.s3.us-east-1.amazonaws.com/innovation-sandbox-on-aws/latest/InnovationSandbox-IDC.template</a></td>
+      </tr>
+      <tr>
+          <td>Data</td>
+          <td><a href="https://solutions-reference.s3.us-east-1.amazonaws.com/innovation-sandbox-on-aws/latest/InnovationSandbox-Data.template">https://solutions-reference.s3.us-east-1.amazonaws.com/innovation-sandbox-on-aws/latest/InnovationSandbox-Data.template</a></td>
+      </tr>
+      <tr>
+          <td>Compute</td>
+          <td><a href="https://drive.google.com/file/d/1oJ9DeANLgpscQSEGuO_gk7rxiDSTWf-_/view?usp=sharing">https://drive.google.com/file/d/1oJ9DeANLgpscQSEGuO_gk7rxiDSTWf-_/view?usp=sharing</a></td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="trước-khi-bắt-đầu">Trước khi bắt đầu</h4>
+<p>Trước khi triển khai, hãy đảm bảo bạn đã hoàn thành các bước sau:</p>
+<ul>
+<li>Hoàn thành tất cả các bước trong phần Yêu cầu trước (Prerequisites module)</li>
+<li>Đảm bảo có quyền truy cập vào cả hai tài khoản: tài khoản quản lý tổ chức (organization management account) và tài khoản hub
+<ul>
+<li>Tài khoản dùng để thiết lập AWS Organizations hoặc AWS Control Tower chính là tài khoản quản lý tổ chức</li>
+</ul>
+</li>
+</ul>
+<p><strong>Thời gian dự kiến:</strong> Khoảng 45 phút</p>
+<p>Việc triển khai đúng thứ tự và đúng tài khoản/vùng sẽ đảm bảo giải pháp Innovation Sandbox trên AWS hoạt động hiệu quả và tuân thủ các chính sách quản trị của tổ chức.</p>
+<h3 id="triển-khai-accountpool-stack">Triển khai AccountPool Stack</h3>
+<p>Triển khai AccountPool stack là bước đầu tiên trong tài khoản quản lý tổ chức (organization management account). Stack này sẽ tạo cấu trúc tổ chức và các chính sách nền tảng cần thiết cho giải pháp.</p>
+<h4 id="các-bước-triển-khai">Các bước triển khai</h4>
+<p><strong>Đăng nhập vào AWS Management Console</strong></p>
+<ul>
+<li>Mở AWS Management Console.</li>
+<li>Đăng nhập bằng tài khoản quản lý tổ chức của bạn.</li>
+<li>Chuyển sang vùng AWS chính (home Region) đã chọn.</li>
+</ul>
+<p><strong>Thu thập thông tin cần thiết</strong></p>
+<ul>
+<li><strong>HubAccountId:</strong> Đây là ID tài khoản AWS nơi bạn sẽ triển khai hai trong bốn stack. Để xem tất cả các tài khoản trong tổ chức, vào AWS Organizations trong console, chọn một tài khoản làm hub và ghi lại ID để sử dụng ở bước 5 và các bước sau.</li>
+<li><strong>ParentOuID:</strong> Đây là ID của root hoặc organizational unit (OU) nơi các OU của Innovation Sandbox sẽ được tạo. Để tìm ID này, mở AWS Organizations, cấu trúc tổ chức sẽ hiển thị ID dưới tên từng OU. Bạn cũng có thể dùng root organization ID.</li>
+</ul>
+<p><img src="//localhost:1313/images/organiza.jpg" alt="architect" title="Architect"></p>
+<p><strong>Khởi tạo stack</strong></p>
+<ul>
+<li>Mở AWS CloudFormation console.</li>
+<li>Chọn mục Stack, sau đó chọn &ldquo;Create stack&rdquo;.</li>
+<li>Chọn &ldquo;With new resources (standard)&rdquo;.</li>
+</ul>
+<p><strong>Chỉ định template</strong></p>
+<ul>
+<li>Chọn &ldquo;Amazon S3 URL&rdquo;.</li>
+<li>Nhập đường dẫn template của AccountPool stack:<br>
+<code>https://solutions-reference.s3.us-east-1.amazonaws.com/innovation-sandbox-on-aws/latest/InnovationSandbox-AccountPool.template</code></li>
+<li>Chọn &ldquo;Next&rdquo;.</li>
+</ul>
+<p><strong>Nhập thông tin chi tiết cho stack</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>Tham số</th>
+          <th>Mô tả</th>
+          <th>Ví dụ</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Stack name</td>
+          <td>Tên stack (tùy chọn)</td>
+          <td>fcj-accountpool</td>
+      </tr>
+      <tr>
+          <td>Namespace</td>
+          <td>Định danh duy nhất cho triển khai này (3-8 ký tự, chữ/số)</td>
+          <td>fcj</td>
+      </tr>
+      <tr>
+          <td>HubAccountId</td>
+          <td>AWS Account ID của tài khoản hub</td>
+          <td>123456789012</td>
+      </tr>
+      <tr>
+          <td>ParentOuId</td>
+          <td>Root ID hoặc OU ID nơi tạo các OU của Innovation Sandbox</td>
+          <td>r-emd9</td>
+      </tr>
+      <tr>
+          <td>IsbManagedRegions</td>
+          <td>Danh sách các Region cho phép, cách nhau bằng dấu phẩy</td>
+          <td>us-east-1,us-west-2</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Lưu ý thêm:</strong></p>
+<ul>
+<li><strong>Namespace:</strong> Sử dụng cùng một giá trị này cho cả bốn stack. Ghi nhớ giá trị này để dùng cho các bước tiếp theo.</li>
+<li><strong>HubAccountId:</strong> Nhập ID tài khoản hub đã lấy ở bước 2.</li>
+<li><strong>ParentOuID:</strong> Nhập root ID hoặc OU ID đã lấy ở bước 2.</li>
+<li><strong>IsbManagedRegions:</strong> Nhập danh sách các Region mà người dùng Innovation Sandbox được phép truy cập.</li>
+</ul>
+<p><strong>Cấu hình các tuỳ chọn stack</strong></p>
+<ul>
+<li>Xem lại các tuỳ chọn nâng cao nếu cần.</li>
+<li>Thêm tags nếu muốn.</li>
+<li>Chọn &ldquo;Next&rdquo;.</li>
+</ul>
+<p><strong>Xem lại và tạo stack</strong></p>
+<ul>
+<li>Kiểm tra lại toàn bộ thông tin đã nhập.</li>
+<li>Chọn &ldquo;Submit&rdquo; để bắt đầu tạo stack.</li>
+</ul>
+<p><strong>Kiểm tra quá trình triển khai</strong></p>
+<ul>
+<li>Mở lại CloudFormation console, chọn mục Stacks.</li>
+<li>Tìm stack vừa tạo và kiểm tra trạng thái. Đợi đến khi trạng thái chuyển sang &ldquo;CREATE_COMPLETE&rdquo;.</li>
+</ul>
+<p>Bạn đã triển khai thành công stack đầu tiên. Tiếp tục với việc triển khai stack thứ hai theo hướng dẫn tiếp theo.</p>
+<h3 id="triển-khai-idc-stack">Triển khai IDC Stack</h3>
+<p>IDC (Identity Center) stack là thành phần thứ hai của giải pháp Innovation Sandbox trên AWS. Stack này được triển khai trên tài khoản quản lý tổ chức (organization management account) và có nhiệm vụ cấu hình tích hợp với AWS IAM Identity Center, đồng thời thiết lập quản lý truy cập cho giải pháp.</p>
+<h4 id="các-bước-triển-khai-1">Các bước triển khai</h4>
+<p><strong>1. Đăng nhập vào AWS Management Console</strong></p>
+<ul>
+<li>Mở AWS Management Console.</li>
+<li>Đăng nhập bằng tài khoản quản lý tổ chức của bạn.</li>
+<li>Chuyển sang vùng AWS chính (home Region) đã chọn.</li>
+</ul>
+<p><strong>2. Thu thập thông tin cho bước 5</strong></p>
+<ul>
+<li>Mở IAM Identity Center console.</li>
+<li>Chọn mục Settings (Cài đặt).</li>
+<li>Sao chép và lưu lại hai giá trị: <strong>Identity store ID</strong> và <strong>Instance ARN</strong> để sử dụng ở bước 5.</li>
+</ul>
+<p><strong>3. Khởi tạo stack</strong></p>
+<ul>
+<li>Mở AWS CloudFormation console.</li>
+<li>Chọn mục Stacks, sau đó chọn &ldquo;Create stack&rdquo;.</li>
+<li>Chọn &ldquo;With new resources (standard)&rdquo;.</li>
+</ul>
+<p><strong>4. Chỉ định template</strong></p>
+<ul>
+<li>Chọn &ldquo;Amazon S3 URL&rdquo;.</li>
+<li>Nhập đường dẫn template của IDC stack:<br>
+<code>https://solutions-reference.s3.us-east-1.amazonaws.com/innovation-sandbox-on-aws/latest/InnovationSandbox-IDC.template</code></li>
+<li>Chọn &ldquo;Next&rdquo;.</li>
+</ul>
+<p><strong>5. Nhập thông tin chi tiết cho stack</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>Tham số</th>
+          <th>Mô tả</th>
+          <th>Ví dụ</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Stack name</td>
+          <td>Tên stack (tùy chọn)</td>
+          <td>fcj-idc</td>
+      </tr>
+      <tr>
+          <td>Namespace</td>
+          <td>Giá trị namespace giống như ở stack AccountPool</td>
+          <td>fcj01</td>
+      </tr>
+      <tr>
+          <td>HubAccountId</td>
+          <td>AWS Account ID của tài khoản hub</td>
+          <td>123456789012</td>
+      </tr>
+      <tr>
+          <td>IdentityStoreId</td>
+          <td>Identity store ID từ IAM Identity Center (bước 2)</td>
+          <td>d-1234567890</td>
+      </tr>
+      <tr>
+          <td>SsoInstanceArn</td>
+          <td>ARN của instance SSO trong IAM Identity Center (bước 2)</td>
+          <td>arn:aws:sso:::instance/ssoins-12345678901234567</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Lưu ý thêm:</strong></p>
+<ul>
+<li><strong>Namespace:</strong> Dùng cùng một giá trị cho cả bốn stack, giống với stack trước.</li>
+<li><strong>HubAccountId:</strong> Là AWS Account ID nơi sẽ triển khai hai trong bốn stack.</li>
+<li><strong>IdentityStoreId</strong> và <strong>SsoInstanceArn:</strong> Lấy từ mục Settings của IAM Identity Center ở bước 2.</li>
+</ul>
+<p><strong>6. Cấu hình các tuỳ chọn stack</strong></p>
+<ul>
+<li>Xem lại các tuỳ chọn nâng cao nếu cần thiết.</li>
+<li>Thêm tags nếu muốn.</li>
+<li>Chọn &ldquo;Next&rdquo;.</li>
+</ul>
+<p><strong>7. Xem lại và tạo stack</strong></p>
+<ul>
+<li>Kiểm tra lại toàn bộ thông tin đã nhập.</li>
+<li>Chọn &ldquo;Submit&rdquo; để bắt đầu tạo stack.</li>
+</ul>
+<p><strong>Kiểm tra quá trình triển khai</strong></p>
+<ul>
+<li>Mở lại CloudFormation console, chọn mục Stacks.</li>
+<li>Tìm stack vừa tạo và kiểm tra trạng thái. Đợi đến khi trạng thái chuyển sang &ldquo;CREATE_COMPLETE&rdquo;.</li>
+</ul>
+<p>Bạn đã triển khai thành công IDC stack. Tiếp tục triển khai stack thứ ba trên tài khoản hub theo hướng dẫn tiếp theo.</p>
+<h3 id="triển-khai-data-stack">Triển khai Data Stack</h3>
+<p>Data stack là thành phần thứ ba của giải pháp Innovation Sandbox trên AWS. Stack này được triển khai trên tài khoản hub và có nhiệm vụ thiết lập hạ tầng dữ liệu cũng như các dịch vụ backend cần thiết cho giải pháp.</p>
+<h4 id="lưu-ý-quan-trọng">Lưu ý quan trọng</h4>
+<ul>
+<li>Đảm bảo bạn đăng nhập đúng vào tài khoản hub.</li>
+<li>Sử dụng cùng một AWS Region như các lần triển khai trước đó.</li>
+</ul>
+<h4 id="các-bước-triển-khai-2">Các bước triển khai</h4>
+<p><strong>1. Đăng nhập vào AWS Management Console</strong></p>
+<ul>
+<li>Mở AWS Management Console.</li>
+<li>Đăng nhập bằng tài khoản hub của bạn.</li>
+<li>Chuyển sang vùng AWS chính (home Region) đã chọn.</li>
+</ul>
+<p><strong>2. Khởi tạo stack</strong></p>
+<ul>
+<li>Mở AWS CloudFormation console.</li>
+<li>Chọn mục Stacks, sau đó chọn &ldquo;Create stack&rdquo;.</li>
+<li>Chọn &ldquo;With new resources (standard)&rdquo;.</li>
+</ul>
+<p><strong>3. Chỉ định template</strong></p>
+<ul>
+<li>Chọn &ldquo;Amazon S3 URL&rdquo;.</li>
+<li>Nhập đường dẫn template của Data stack:<br>
+<code>https://solutions-reference.s3.us-east-1.amazonaws.com/innovation-sandbox-on-aws/latest/InnovationSandbox-Data.template</code></li>
+<li>Chọn &ldquo;Next&rdquo;.</li>
+</ul>
+<p><strong>4. Nhập thông tin chi tiết cho stack</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>Tham số</th>
+          <th>Mô tả</th>
+          <th>Ví dụ</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Stack name</td>
+          <td>Tên stack (tùy chọn)</td>
+          <td>fcj-data</td>
+      </tr>
+      <tr>
+          <td>Namespace</td>
+          <td>Giá trị namespace giống như ở các lần triển khai trước</td>
+          <td>fcj01</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li><strong>Namespace:</strong> Dùng cùng một giá trị đã sử dụng ở các stack trước (ví dụ: fcj01).</li>
+</ul>
+<p><strong>5. Cấu hình các tuỳ chọn stack</strong></p>
+<ul>
+<li>Xem lại các tuỳ chọn nâng cao nếu cần.</li>
+<li>Thêm tags nếu muốn.</li>
+<li>Chọn &ldquo;Next&rdquo;.</li>
+</ul>
+<p><strong>6. Xem lại và tạo stack</strong></p>
+<ul>
+<li>Kiểm tra lại toàn bộ thông tin đã nhập.</li>
+<li>Chọn &ldquo;Submit&rdquo; để bắt đầu tạo stack.</li>
+</ul>
+<p><strong>7. Kiểm tra quá trình triển khai</strong></p>
+<ul>
+<li>Mở lại CloudFormation console, chọn mục Stacks.</li>
+<li>Tìm stack vừa tạo và kiểm tra trạng thái.</li>
+<li>Đợi đến khi trạng thái chuyển sang &ldquo;CREATE_COMPLETE&rdquo;.</li>
+</ul>
+<p>Bạn đã triển khai thành công Data stack. Tiếp tục triển khai stack cuối cùng trên tài khoản hub theo hướng dẫn tiếp theo.</p>
+<h3 id="triển-khai-compute-stack">Triển khai Compute Stack</h3>
+<p>Compute stack là thành phần cuối cùng của giải pháp Innovation Sandbox trên AWS. Stack này được triển khai trên tài khoản hub và chịu trách nhiệm thiết lập hạ tầng giải pháp, bao gồm giao diện web và các thành phần xử lý.</p>
+<h4 id="các-bước-triển-khai-3">Các bước triển khai</h4>
+<p><strong>1. Đăng nhập vào AWS Management Console</strong></p>
+<ul>
+<li>Mở AWS Management Console.</li>
+<li>Đăng nhập bằng tài khoản hub của bạn.</li>
+<li>Chuyển sang vùng AWS chính (home Region) đã chọn.</li>
+</ul>
+<p><strong>2. Lấy thông tin tài khoản quản lý</strong></p>
+<ul>
+<li>Bạn cần ID tài khoản quản lý tổ chức (management account ID) cho bước 5.</li>
+<li>Nếu chưa có, đăng nhập vào AWS Management Console bằng tài khoản quản lý.</li>
+<li>Nhấn vào menu tên tài khoản ở góc trên bên phải.</li>
+<li>Sao chép 12 chữ số ID tài khoản để dùng ở bước tiếp theo.</li>
+</ul>
+<p><strong>3. Khởi tạo stack</strong></p>
+<ul>
+<li>Mở AWS CloudFormation console.</li>
+<li>Chọn mục Stacks, sau đó chọn &ldquo;Create stack&rdquo;.</li>
+<li>Chọn &ldquo;With new resources (standard)&rdquo;.</li>
+</ul>
+<p><strong>4. Chỉ định template</strong></p>
+<ul>
+<li>Chọn &ldquo;Amazon S3 URL&rdquo;.</li>
+<li>Nhập đường dẫn template của Compute stack:<br>
+<code>https://drive.google.com/file/d/1oJ9DeANLgpscQSEGuO_gk7rxiDSTWf-_/view?usp=sharing </code></li>
+<li>Chọn &ldquo;Next&rdquo;.</li>
+</ul>
+<p><strong>5. Nhập thông tin chi tiết cho stack</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>Tham số</th>
+          <th>Mô tả</th>
+          <th>Ví dụ</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Stack name</td>
+          <td>Tên stack (tùy chọn)</td>
+          <td>fcj-compute</td>
+      </tr>
+      <tr>
+          <td>Namespace</td>
+          <td>Giá trị namespace giống như ở các stack trước</td>
+          <td>fcj01</td>
+      </tr>
+      <tr>
+          <td>OrgMgtAccountId</td>
+          <td>AWS Account ID của tài khoản quản lý tổ chức</td>
+          <td>123456789012</td>
+      </tr>
+      <tr>
+          <td>IdcAccountId</td>
+          <td>AWS Account ID nơi đã cấu hình IAM Identity Center</td>
+          <td>123456789012</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li><strong>Namespace:</strong> Dùng cùng một giá trị cho tất cả các stack (ví dụ: isb01).</li>
+<li><strong>OrgMgtAccountId:</strong> ID tài khoản quản lý tổ chức.</li>
+<li><strong>IdcAccountId:</strong> ID tài khoản đã cấu hình IAM Identity Center (thường cũng là tài khoản quản lý).</li>
+</ul>
+<p><strong>6. Cấu hình các tuỳ chọn stack</strong></p>
+<ul>
+<li>Xem lại các tuỳ chọn nâng cao nếu cần.</li>
+<li>Thêm tags nếu muốn.</li>
+<li>Chọn &ldquo;Next&rdquo;.</li>
+</ul>
+<p><strong>7. Xem lại và tạo stack</strong></p>
+<ul>
+<li>Kiểm tra lại toàn bộ thông tin đã nhập.</li>
+<li>Chọn &ldquo;Submit&rdquo; để bắt đầu tạo stack.</li>
+</ul>
+<p><strong>8. Kiểm tra quá trình triển khai</strong></p>
+<ul>
+<li>Mở lại CloudFormation console, chọn mục Stacks.</li>
+<li>Tìm stack vừa tạo và kiểm tra trạng thái.</li>
+<li>Đợi đến khi trạng thái chuyển sang &ldquo;CREATE_COMPLETE&rdquo;.</li>
+</ul>
+<h4 id="sau-khi-triển-khai">Sau khi triển khai</h4>
+<ul>
+<li>Vào CloudFormation console, chọn mục Stacks.</li>
+<li>Chọn Compute stack vừa triển khai.</li>
+<li>Truy cập tab <strong>Outputs</strong>.</li>
+<li>Sao chép giá trị <strong>CloudFrontDistributionUrl</strong>.</li>
+</ul>
+<p>Ví dụ:<br>
+<code>https://duyXXXXXXXeh.cloudfront.net</code></p>
+<p>Lưu lại giá trị này, bạn sẽ cần dùng trong phần cấu hình tiếp theo. Đây cũng là URL chính để truy cập giải pháp Innovation Sandbox trên AWS của bạn.</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="//localhost:1313/vi/1-prerequisite/" title="Các bước chuẩn bị"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="//localhost:1313/vi/3-configure-the-solution/" title="Configure the Solution" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="//localhost:1313/js/clipboard.min.js?1752572531"></script>
+    <script src="//localhost:1313/js/perfect-scrollbar.min.js?1752572531"></script>
+    <script src="//localhost:1313/js/perfect-scrollbar.jquery.min.js?1752572531"></script>
+    <script src="//localhost:1313/js/jquery.sticky.js?1752572531"></script>
+    <script src="//localhost:1313/js/featherlight.min.js?1752572531"></script>
+    <script src="//localhost:1313/js/highlight.pack.js?1752572531"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="//localhost:1313/js/modernizr.custom-3.6.0.js?1752572531"></script>
+    <script src="//localhost:1313/js/learn.js?1752572531"></script>
+    <script src="//localhost:1313/js/hugo-learn.js?1752572531"></script>
+
+    <link href="//localhost:1313/mermaid/mermaid.css?1752572531" rel="stylesheet" />
+    <script src="//localhost:1313/mermaid/mermaid.js?1752572531"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-158079754-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </body>
+</html>

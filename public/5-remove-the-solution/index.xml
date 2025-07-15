@@ -1,1 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Remove the Solution on Deploy ShareNote Application on Auto Scaling Group</title><link>/5-remove-the-solution/</link><description>Recent content in Remove the Solution on Deploy ShareNote Application on Auto Scaling Group</description><generator>Hugo</generator><language>en</language><lastBuildDate/><atom:link href="/5-remove-the-solution/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Remove the Solution on Deploy Innovation Lab</title>
+    <link>//localhost:1313/5-remove-the-solution/</link>
+    <description>Recent content in Remove the Solution on Deploy Innovation Lab</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate></lastBuildDate>
+    <atom:link href="//localhost:1313/5-remove-the-solution/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>
