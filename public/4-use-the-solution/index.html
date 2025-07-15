@@ -12,21 +12,21 @@
     <title>Use the Solution :: Deploy ShareNote Application on Auto Scaling Group</title>
 
     
-    <link href="/css/nucleus.css?1752251806" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1752251806" rel="stylesheet">
-    <link href="/css/hybrid.css?1752251806" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1752251806" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1752251806" rel="stylesheet">
-    <link href="/css/auto-complete.css?1752251806" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1752251806" rel="stylesheet">
-    <link href="/css/theme.css?1752251806" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1752251806" rel="stylesheet">
+    <link href="/css/nucleus.css?1752552515" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1752552515" rel="stylesheet">
+    <link href="/css/hybrid.css?1752552515" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1752552515" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1752552515" rel="stylesheet">
+    <link href="/css/auto-complete.css?1752552515" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1752552515" rel="stylesheet">
+    <link href="/css/theme.css?1752552515" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1752552515" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1752251806" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1752552515" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1752251806"></script>
+    <script src="/js/jquery-3.3.1.min.js?1752552515"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1752251806"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1752251806"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1752552515"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1752552515"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1752251806"></script>
+<script type="text/javascript" src="/js/search.js?1752552515"></script>
 
     
   </div>
@@ -186,13 +186,13 @@
  
   
     
-    <li data-nav-id="/5-remove-the-solution/" title="5-Remove the Solution" class="dd-item 
+    <li data-nav-id="/5-remove-the-solution/" title="Remove the Solution" class="dd-item 
         
         
         
         ">
       <a href="/5-remove-the-solution/">
-          <b>5. </b>5-Remove the Solution
+          <b>5. </b>Remove the Solution
           
             <i class="fas fa-check read-icon"></i>
           
@@ -413,7 +413,7 @@
 </ul>
 <p><strong>Note:</strong><br>
 If the interface has two tabs <strong>Accounts</strong> and <strong>Applications</strong>, choose <strong>Applications</strong> to enter the main application. The welcome page will appear.</p>
-<p><img src="/resources/_gen/images/Anha1.png" alt="architect" title="Architect"></p>
+<p><img src="/images/Anha1.png" alt="architect" title="Architect"></p>
 <h4 id="2-add-accounts-for-lease">2. Add accounts for lease</h4>
 <ul>
 <li>In left navigation bar, under <strong>Administration</strong>, choose <strong>Accounts</strong>.</li>
@@ -421,7 +421,7 @@ If the interface has two tabs <strong>Accounts</strong> and <strong>Applications
 <li>In <strong>Select accounts</strong>, you will see list of available accounts. If there are no accounts, ensure sandbox accounts have been moved to <strong>Entry</strong> OU in organizational unit with name like <code>your-namespace_InnovationSandboxAccountPool</code>.</li>
 <li>Select one or more accounts to add, click <strong>Next</strong> then <strong>Submit</strong>.</li>
 </ul>
-<p><img src="/resources/_gen/images/Anha2.png" alt="architect" title="Architect"></p>
+<p><img src="/images/Anha2.png" alt="architect" title="Architect"></p>
 <ul>
 <li>Return to <strong>Accounts</strong> to check status of added accounts.</li>
 </ul>
@@ -437,7 +437,7 @@ If the interface has two tabs <strong>Accounts</strong> and <strong>Applications
 </li>
 <li>To change these settings, you need to use <strong>AWS AppConfig</strong> (will be guided in next section).</li>
 </ul>
-<p><img src="/resources/_gen/images/Anha3.png" alt="architect" title="Architect"></p>
+<p><img src="/images/Anha3.png" alt="architect" title="Architect"></p>
 <h4 id="4-create-service-control-policy-scp-to-limit-resources">4. Create Service Control Policy (SCP) to limit resources</h4>
 <p>Example: Create SCP to prevent sandbox users from launching <code>m5.large</code> EC2 instances.</p>
 <p><strong>Implementation steps:</strong></p>
@@ -447,7 +447,7 @@ If the interface has two tabs <strong>Accounts</strong> and <strong>Applications
 <li>In navigation bar, choose <strong>Policies</strong>.</li>
 <li>Under <strong>Supported policy types</strong>, choose <strong>Service control policies</strong>.</li>
 </ul>
-<p><img src="/resources/_gen/images/Anha4.png" alt="architect" title="Architect"></p>
+<p><img src="/images/Anha4.png" alt="architect" title="Architect"></p>
 <ul>
 <li>Click <strong>Create policy</strong> and enter:
 <ul>
@@ -480,7 +480,7 @@ If the interface has two tabs <strong>Accounts</strong> and <strong>Applications
 <li>Choose <strong>Targets</strong> tab, click <strong>Attach</strong>.</li>
 <li>Choose OU named <code>your-namespace_InnovationSandboxAccountPool</code> and click <strong>Attach policy</strong>.</li>
 </ul>
-<p><img src="/resources/_gen/images/Anha6.png" alt="architect" title="Architect"></p>
+<p><img src="/images/Anha6.png" alt="architect" title="Architect"></p>
 <p><strong>Result:</strong><br>
 Users in sandbox accounts will not be able to launch <code>m5.large</code> EC2 instances.</p>
 <h4 id="next-steps">Next steps</h4>
@@ -513,12 +513,12 @@ Perform these steps in the <strong>hub account</strong>, not the organization ma
 <li>Choose the path to application created for you.</li>
 <li>Under <strong>Configuration Profiles and Feature Flags</strong>, choose the path named <strong>InnovationSandboxData-Config-GlobalConfigHostedConfiguration-ID</strong>.</li>
 </ul>
-<p><img src="/resources/_gen/images/Manager1.png" alt="architect" title="Architect"></p>
+<p><img src="/images/Manager1.png" alt="architect" title="Architect"></p>
 <ul>
 <li>In <strong>Hosted configuration versions</strong>, choose <strong>Create</strong>.</li>
 <li>Change <strong>maxBudget</strong> field to <strong>50</strong> (USD).</li>
 </ul>
-<p><img src="/resources/_gen/images/Manager2.png" alt="architect" title="Architect"></p>
+<p><img src="/images/Manager2.png" alt="architect" title="Architect"></p>
 <ul>
 <li>Choose <strong>Create hosted configuration version</strong>.</li>
 <li>Choose <strong>Start deployment</strong>.</li>
@@ -551,7 +551,7 @@ Perform these steps in the <strong>hub account</strong>, not the organization ma
 <li>In <strong>Description</strong> field, enter: <code>Basic account lease template</code>.</li>
 <li>Uncheck <strong>Approval required</strong> box (users don&rsquo;t need manager approval when requesting this type of account).</li>
 </ul>
-<p><img src="/resources/_gen/images/Manager3.png" alt="architect" title="Architect"></p>
+<p><img src="/images/Manager3.png" alt="architect" title="Architect"></p>
 <ul>
 <li>Choose <strong>Next</strong>.</li>
 <li>In <strong>Maximum budget</strong> field, enter: <code>100</code>, choose <strong>Next</strong>.</li>
@@ -573,7 +573,7 @@ Perform these steps in the <strong>hub account</strong>, not the organization ma
 <li>Choose <strong>Submit</strong>.</li>
 <li>Under <strong>Lease Templates</strong>, you will see the just created lease template.</li>
 </ul>
-<p><img src="/resources/_gen/images/Manager4.png" alt="architect" title="Architect"></p>
+<p><img src="/images/Manager4.png" alt="architect" title="Architect"></p>
 <h3 id="creating-advanced-lease-template">Creating Advanced Lease Template</h3>
 <p>This section guides you to create lease template requiring manager approval. This template has maximum budget $50, alert at $40 level, duration 168 hours, alert 24 hours before expiration. Suitable for large projects needing more careful monitoring.</p>
 <p><strong>Implementation steps:</strong></p>
@@ -602,7 +602,7 @@ Perform these steps in the <strong>hub account</strong>, not the organization ma
 <li>Choose <strong>Submit</strong>.</li>
 <li>Under <strong>Lease Templates</strong>, you will see both created lease templates.</li>
 </ul>
-<p><img src="/resources/_gen/images/Manager5.png" alt="architect" title="Architect"></p>
+<p><img src="/images/Manager5.png" alt="architect" title="Architect"></p>
 <h3 id="next-steps-1">Next steps</h3>
 <p>After creating two lease templates with manager role, in the next section you will:</p>
 <ul>
@@ -635,18 +635,18 @@ Perform these steps in the <strong>hub account</strong>, not the organization ma
 <li>Choose <strong>Basic lease template</strong>, click <strong>Next</strong>.</li>
 <li>Check <strong>I accept the above terms of service</strong>, click <strong>Next</strong>.</li>
 </ul>
-<p><img src="/resources/_gen/images/User1.png" alt="architect" title="Architect"></p>
+<p><img src="/images/User1.png" alt="architect" title="Architect"></p>
 <ul>
 <li>In <strong>Comments</strong> section, enter reason (example: <code>Request for a basic account</code>).</li>
 <li>Choose <strong>Submit</strong>.</li>
 <li>In left navigation bar, choose <strong>Home</strong>. In <strong>Account</strong> section, click <strong>Refresh</strong> to update account status.</li>
 </ul>
-<p><img src="/resources/_gen/images/User2.png" alt="architect" title="Architect"></p>
+<p><img src="/images/User2.png" alt="architect" title="Architect"></p>
 <ul>
 <li>When account has been granted, under <strong>Access</strong> section, choose <strong>Login to account</strong> for the newly added account.</li>
 <li>Choose the role appearing in <strong>Select a role</strong> section to enter AWS Management Console.</li>
 </ul>
-<p><img src="/resources/_gen/images/User3.png" alt="architect" title="Architect"></p>
+<p><img src="/images/User3.png" alt="architect" title="Architect"></p>
 <h4 id="2-check-service-control-policy-scp-limits">2. Check Service Control Policy (SCP) limits</h4>
 <p>You can check SCP effectiveness by trying to create a restricted EC2 instance.</p>
 <p><strong>Check steps:</strong></p>
@@ -656,14 +656,14 @@ Perform these steps in the <strong>hub account</strong>, not the organization ma
 <li>Choose <strong>Launch instances</strong>.</li>
 <li>In <strong>Name</strong> field, enter <code>test-scp</code>. Keep default Amazon Machine Image (AMI).</li>
 </ul>
-<p><img src="/resources/_gen/images/User4.png" alt="architect" title="Architect"></p>
+<p><img src="/images/User4.png" alt="architect" title="Architect"></p>
 <ul>
 <li>In <strong>Instance type</strong> field, choose <strong>m5.large</strong> (this type is blocked by SCP).</li>
 <li>In <strong>Key pair</strong>, choose <strong>Proceed without a key pair</strong>.</li>
 <li>Keep other default settings, then choose <strong>Launch instance</strong>.</li>
 <li>You will see error message due to SCP not allowing <strong>m5.large</strong> EC2 instance type creation.</li>
 </ul>
-<p><img src="/resources/_gen/images/User5.png" alt="architect" title="Architect"></p>
+<p><img src="/images/User5.png" alt="architect" title="Architect"></p>
 <h4 id="3-request-advanced-account">3. Request advanced account</h4>
 <p>Advanced accounts require manager approval before being granted access.</p>
 <p><strong>Implementation steps:</strong></p>
@@ -687,8 +687,8 @@ Perform these steps in the <strong>hub account</strong>, not the organization ma
 <li>You will see two leases: one for basic account, one for advanced account.</li>
 <li>Can choose lease and use <strong>Actions</strong> to terminate, suspend or update lease.</li>
 </ul>
-<p><img src="/resources/_gen/images/User6.png" alt="architect" title="Architect"></p>
-<p><img src="/resources/_gen/images/User7.png" alt="architect" title="Architect"></p>
+<p><img src="/images/User6.png" alt="architect" title="Architect"></p>
+<p><img src="/images/User7.png" alt="architect" title="Architect"></p>
 <h4 id="4-summary-of-functions-and-user-experience">4. Summary of functions and user experience</h4>
 <ul>
 <li><strong>Administrator</strong>: Set up system, create SCP to control resources, manage accounts and configure Innovation Sandbox environment, integrate with AWS AppConfig.</li>
@@ -829,7 +829,7 @@ Perform these steps in the <strong>hub account</strong>, not the organization ma
 			<a class="nav nav-prev" href="/3-configure-the-solution/" title="Configure the Solution"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/5-remove-the-solution/" title="5-Remove the Solution" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/5-remove-the-solution/" title="Remove the Solution" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -839,19 +839,19 @@ Perform these steps in the <strong>hub account</strong>, not the organization ma
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1752251806"></script>
-    <script src="/js/perfect-scrollbar.min.js?1752251806"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1752251806"></script>
-    <script src="/js/jquery.sticky.js?1752251806"></script>
-    <script src="/js/featherlight.min.js?1752251806"></script>
-    <script src="/js/highlight.pack.js?1752251806"></script>
+    <script src="/js/clipboard.min.js?1752552515"></script>
+    <script src="/js/perfect-scrollbar.min.js?1752552515"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1752552515"></script>
+    <script src="/js/jquery.sticky.js?1752552515"></script>
+    <script src="/js/featherlight.min.js?1752552515"></script>
+    <script src="/js/highlight.pack.js?1752552515"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1752251806"></script>
-    <script src="/js/learn.js?1752251806"></script>
-    <script src="/js/hugo-learn.js?1752251806"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1752552515"></script>
+    <script src="/js/learn.js?1752552515"></script>
+    <script src="/js/hugo-learn.js?1752552515"></script>
 
-    <link href="/mermaid/mermaid.css?1752251806" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1752251806"></script>
+    <link href="/mermaid/mermaid.css?1752552515" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1752552515"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

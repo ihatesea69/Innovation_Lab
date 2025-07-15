@@ -15,7 +15,7 @@ chapter = false
 
 
 
-![architect](/resources/_gen/images/high-level.png "Architect")
+![architect](/images/high-level.png "Architect")
 ### Main Objectives
 
 
@@ -46,7 +46,7 @@ chapter = false
 | AWS Step Functions       | Manage sandbox account state according to logical processes                                           |
 | AWS accounts             | Sandbox accounts prepared and distributed to end users                                               |
 
-![Account LifeCycle](/resources/_gen/images/sandbox-account-ou-lifecycle.png "a title")
+![Account LifeCycle](/images/sandbox-account-ou-lifecycle.png "a title")
 
 ## Account Lifecycle
 

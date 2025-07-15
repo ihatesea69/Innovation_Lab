@@ -12,21 +12,21 @@
     <title>Configure the Solution :: Deploy ShareNote Application on Auto Scaling Group</title>
 
     
-    <link href="/css/nucleus.css?1752251806" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1752251806" rel="stylesheet">
-    <link href="/css/hybrid.css?1752251806" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1752251806" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1752251806" rel="stylesheet">
-    <link href="/css/auto-complete.css?1752251806" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1752251806" rel="stylesheet">
-    <link href="/css/theme.css?1752251806" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1752251806" rel="stylesheet">
+    <link href="/css/nucleus.css?1752552515" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1752552515" rel="stylesheet">
+    <link href="/css/hybrid.css?1752552515" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1752552515" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1752552515" rel="stylesheet">
+    <link href="/css/auto-complete.css?1752552515" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1752552515" rel="stylesheet">
+    <link href="/css/theme.css?1752552515" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1752552515" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1752251806" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1752552515" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1752251806"></script>
+    <script src="/js/jquery-3.3.1.min.js?1752552515"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1752251806"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1752251806"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1752552515"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1752552515"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1752251806"></script>
+<script type="text/javascript" src="/js/search.js?1752552515"></script>
 
     
   </div>
@@ -186,13 +186,13 @@
  
   
     
-    <li data-nav-id="/5-remove-the-solution/" title="5-Remove the Solution" class="dd-item 
+    <li data-nav-id="/5-remove-the-solution/" title="Remove the Solution" class="dd-item 
         
         
         
         ">
       <a href="/5-remove-the-solution/">
-          <b>5. </b>5-Remove the Solution
+          <b>5. </b>Remove the Solution
           
             <i class="fas fa-check read-icon"></i>
           
@@ -462,7 +462,7 @@
 <li>Open <strong>AWS IAM Identity Center console</strong> with organization management account.</li>
 <li>In navigation bar, choose <strong>Applications</strong>.</li>
 <li>Switch to <strong>Customer managed</strong> tab.
-<img src="/resources/_gen/images/organiza.jpg" alt="architect" title="Architect"></li>
+<img src="/images/organiza.jpg" alt="architect" title="Architect"></li>
 </ul>
 <p><strong>2. Add new application</strong></p>
 <ul>
@@ -470,13 +470,13 @@
 <li>Choose <strong>I have an application I want to set up</strong>.</li>
 <li>Choose <strong>SAML 2.0</strong>, then click <strong>Next</strong>.</li>
 </ul>
-<p><img src="/resources/_gen/images/Buoc3.png" alt="architect" title="Architect"></p>
+<p><img src="/images/Buoc3.png" alt="architect" title="Architect"></p>
 <p><strong>3. Configure application</strong></p>
 <ul>
 <li>On configuration page, enter <strong>Display name</strong> (example: MyISB app) and description for application.</li>
 <li></li>
 </ul>
-<p><img src="/resources/_gen/images/Buoc5.png" alt="architect" title="Architect"></p>
+<p><img src="/images/Buoc5.png" alt="architect" title="Architect"></p>
 <ul>
 <li>In <strong>IAM Identity Center metadata</strong> section:
 <ul>
@@ -485,11 +485,11 @@
 </ul>
 </li>
 </ul>
-<p><img src="/resources/_gen/images/Buoc6.png" alt="architect" title="Architect"></p>
+<p><img src="/images/Buoc6.png" alt="architect" title="Architect"></p>
 <ul>
 <li>Note the <strong>Sign-in URL</strong> and <strong>Sign-out URL</strong> – will be needed when configuring on hub account.</li>
 </ul>
-<p><img src="/resources/_gen/images/Buoc7.png" alt="architect" title="Architect"></p>
+<p><img src="/images/Buoc7.png" alt="architect" title="Architect"></p>
 <p><strong>4. Enter metadata information for application</strong></p>
 <ul>
 <li>
@@ -514,7 +514,7 @@
           <td>Application identifier value (can use namespace name or initial stack name, example: <code>Isb-dev-namespace-Audience</code>). Save this value to configure AppConfig on hub account.</td>
       </tr>
       <tr>
-          <td><img src="/resources/_gen/images/Buoc8.png" alt="architect" title="Architect"></td>
+          <td><img src="/images/Buoc8.png" alt="architect" title="Architect"></td>
           <td></td>
       </tr>
       <tr>
@@ -582,7 +582,7 @@
 </li>
 <li>Click <strong>Add user to 1 group</strong> to complete.</li>
 </ul>
-<p><img src="/resources/_gen/images/users-and-groups.png" alt="architect" title="Architect"></p>
+<p><img src="/images/users-and-groups.png" alt="architect" title="Architect"></p>
 <p><strong>Note:</strong><br>
 To test all three user roles (user personas), ensure you have at least three users, each belonging to a different group.</p>
 <p>After completing the above steps, you have successfully configured users and groups for the Innovation Sandbox on AWS solution. Next, you will proceed to configure the web application on the hub account.</p>
@@ -596,7 +596,7 @@ To test all three user roles (user personas), ensure you have at least three use
 <li>Choose <strong>InnovationSandboxData-Config-GlobalConfigHostedConfiguration-XXXXX</strong> (configuration profile).</li>
 <li>Choose <strong>Create</strong> to create a new hosted configuration version.</li>
 </ul>
-<p><img src="/resources/_gen/images/appconfig.png" alt="architect" title="Architect"></p>
+<p><img src="/images/appconfig.png" alt="architect" title="Architect"></p>
 <p><strong>Update configuration:</strong></p>
 <ul>
 <li>Set <code>maintenanceMode</code> value to <code>false</code> to open application for users.</li>
@@ -684,7 +684,7 @@ To test all three user roles (user personas), ensure you have at least three use
 <li>Find the accounts you want to move into sandbox environment. You can browse by OU structure or choose <strong>List</strong> to see flat account list.</li>
 <li><strong>Note:</strong> Do not select organization management account or hub account.</li>
 </ul>
-<p><img src="/resources/_gen/images/account-onboarding.png" alt="architect" title="Architect"></p>
+<p><img src="/images/account-onboarding.png" alt="architect" title="Architect"></p>
 <p><strong>3. Move accounts to Entry OU</strong></p>
 <ul>
 <li>Select the accounts to move.</li>
@@ -843,19 +843,19 @@ To test all three user roles (user personas), ensure you have at least three use
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1752251806"></script>
-    <script src="/js/perfect-scrollbar.min.js?1752251806"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1752251806"></script>
-    <script src="/js/jquery.sticky.js?1752251806"></script>
-    <script src="/js/featherlight.min.js?1752251806"></script>
-    <script src="/js/highlight.pack.js?1752251806"></script>
+    <script src="/js/clipboard.min.js?1752552515"></script>
+    <script src="/js/perfect-scrollbar.min.js?1752552515"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1752552515"></script>
+    <script src="/js/jquery.sticky.js?1752552515"></script>
+    <script src="/js/featherlight.min.js?1752552515"></script>
+    <script src="/js/highlight.pack.js?1752552515"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1752251806"></script>
-    <script src="/js/learn.js?1752251806"></script>
-    <script src="/js/hugo-learn.js?1752251806"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1752552515"></script>
+    <script src="/js/learn.js?1752552515"></script>
+    <script src="/js/hugo-learn.js?1752552515"></script>
 
-    <link href="/mermaid/mermaid.css?1752251806" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1752251806"></script>
+    <link href="/mermaid/mermaid.css?1752552515" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1752552515"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

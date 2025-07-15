@@ -90,7 +90,7 @@ Phần này hơi kỹ thuật tí, nhưng cần thiết để user đăng nhập
 - Thanh điều hướng chọn **Applications**
 - Chuyển sang tab **Customer managed**
 
-![architect](/resources/_gen/images/organiza.jpg "Architect")
+![architect](/images/organiza.jpg "Architect")
 
 **2. Thêm app mới**
 
@@ -98,23 +98,23 @@ Phần này hơi kỹ thuật tí, nhưng cần thiết để user đăng nhập
 - Chọn **I have an application I want to set up**
 - Chọn **SAML 2.0**, rồi **Next**
 
-![architect](/resources/_gen/images/Buoc3.png "Architect")
+![architect](/images/Buoc3.png "Architect")
 
 **3. Cấu hình app**
 
 - Trang cấu hình, nhập **Display name** (ví dụ: MyISB app) và mô tả
 
-![architect](/resources/_gen/images/Buoc5.png "Architect")
+![architect](/images/Buoc5.png "Architect")
 
 - Phần **IAM Identity Center metadata**:
   - Tải **SAML metadata file** 
   - Tải **certificate**
 
-![architect](/resources/_gen/images/Buoc6.png "Architect")
+![architect](/images/Buoc6.png "Architect")
 
 - Ghi lại **Sign-in URL** và **Sign-out URL** - cần dùng khi cấu hình ở tài khoản hub
 
-![architect](/resources/_gen/images/Buoc7.png "Architect")
+![architect](/images/Buoc7.png "Architect")
 
 **4. Nhập thông tin metadata**
 
@@ -126,7 +126,7 @@ Phần này hơi kỹ thuật tí, nhưng cần thiết để user đăng nhập
   | Application ACS URL     | `{ISB_WEB_URL}/api/auth/login/callback` (Thay `{ISB_WEB_URL}` bằng CloudFrontDistributionUrl đã lưu) |
   | Application SAML audience | Tên định danh app (có thể dùng tên namespace, ví dụ: `Isb-dev-namespace-Audience`). Lưu lại để cấu hình AppConfig |
 
-![architect](/resources/_gen/images/Buoc8.png "Architect")
+![architect](/images/Buoc8.png "Architect")
 
 **5. Hoàn tất**
 
@@ -177,7 +177,7 @@ Thiết lập user và nhóm để kiểm soát ai được vào và làm gì tr
   - `{NAMESPACE}_IsbAdminsGroup`
 - **Add user to 1 group**
 
-![architect](/resources/_gen/images/users-and-groups.png "Architect")
+![architect](/images/users-and-groups.png "Architect")
 
 **Lưu ý:** Để test đủ ba vai trò, cần ít nhất ba user, mỗi người một nhóm khác nhau.
 
@@ -193,7 +193,7 @@ Phần này kích hoạt đăng nhập và thiết lập các tham số cho app.
 - Chọn **InnovationSandboxData-Config-GlobalConfigHostedConfiguration-XXXXX**
 - **Create** để tạo phiên bản cấu hình mới
 
-![architect](/resources/_gen/images/appconfig.png "Architect")
+![architect](/images/appconfig.png "Architect")
 
 **Cập nhật cấu hình:**
 - Đặt `maintenanceMode` thành `false` để mở app cho user
@@ -248,7 +248,7 @@ Bước cuối để hoàn thành cấu hình. Chuyển các tài khoản AWS v�
 - Tìm các tài khoản muốn chuyển vào môi trường sandbox
 - **Lưu ý:** Đừng chọn tài khoản quản lý hoặc tài khoản hub
 
-![architect](/resources/_gen/images/account-onboarding.png "Architect")
+![architect](/images/account-onboarding.png "Architect")
 
 **3. Chuyển vào Entry OU**
 
